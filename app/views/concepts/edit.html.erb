@@ -1,0 +1,12 @@
+<h1>Editing concept</h1>
+
+<% form_for(@concept) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @concept %> |
+<%= link_to 'Back', concepts_path %>

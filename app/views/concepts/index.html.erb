@@ -1,0 +1,18 @@
+<h1>Listing concepts</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for concept in @concepts %>
+  <tr>
+    <td><%= link_to 'Show', concept %></td>
+    <td><%= link_to 'Edit', edit_concept_path(concept) %></td>
+    <td><%= link_to 'Destroy', concept, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New concept', new_concept_path %>

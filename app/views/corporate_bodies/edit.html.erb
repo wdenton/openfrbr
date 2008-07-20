@@ -1,0 +1,12 @@
+<h1>Editing corporate_body</h1>
+
+<% form_for(@corporate_body) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @corporate_body %> |
+<%= link_to 'Back', corporate_bodies_path %>

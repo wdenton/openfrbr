@@ -1,0 +1,18 @@
+<h1>Listing manifestations</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for manifestation in @manifestations %>
+  <tr>
+    <td><%= link_to 'Show', manifestation %></td>
+    <td><%= link_to 'Edit', edit_manifestation_path(manifestation) %></td>
+    <td><%= link_to 'Destroy', manifestation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New manifestation', new_manifestation_path %>

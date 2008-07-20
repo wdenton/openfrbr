@@ -1,0 +1,12 @@
+<h1>Editing frbr_object</h1>
+
+<% form_for(@frbr_object) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @frbr_object %> |
+<%= link_to 'Back', frbr_objects_path %>

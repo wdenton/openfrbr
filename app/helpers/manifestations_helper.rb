@@ -1,0 +1,2 @@
+module ManifestationsHelper
+end

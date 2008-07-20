@@ -1,0 +1,12 @@
+<h1>Editing manifestation</h1>
+
+<% form_for(@manifestation) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @manifestation %> |
+<%= link_to 'Back', manifestations_path %>

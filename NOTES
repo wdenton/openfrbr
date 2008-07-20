@@ -1,0 +1,37 @@
+20 July 2008
+
+$ rails openfrbr
+
+Used the notes here to put everything under git:
+
+http://toolmantim.com/article/2007/12/5/setting_up_a_new_rails_app_with_git
+
+$ cat .gitignore
+log/*.log
+tmp/**/*
+.DS_Store
+doc/api
+doc/app
+$ touch log/.gitignore
+$ touch tmp/.gitignore
+
+$ ./script/generate scaffold work
+$ ./script/generate scaffold expression
+$ ./script/generate scaffold manifestation
+$ ./script/generate scaffold item
+$ ./script/generate scaffold person
+$ ./script/generate scaffold family
+$ ./script/generate scaffold corporate_body
+$ ./script/generate scaffold concept
+$ ./script/generate scaffold frbr_object (object is a reserved word)
+$ ./script/generate scaffold event
+$ ./script/generate scaffold place
+
+
+
+
+
+
+
+
+

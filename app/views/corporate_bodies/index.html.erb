@@ -1,0 +1,18 @@
+<h1>Listing corporate_bodies</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for corporate_body in @corporate_bodies %>
+  <tr>
+    <td><%= link_to 'Show', corporate_body %></td>
+    <td><%= link_to 'Edit', edit_corporate_body_path(corporate_body) %></td>
+    <td><%= link_to 'Destroy', corporate_body, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New corporate_body', new_corporate_body_path %>
