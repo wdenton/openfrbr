@@ -27,6 +27,14 @@ $ ./script/generate scaffold frbr_object (object is a reserved word)
 $ ./script/generate scaffold event
 $ ./script/generate scaffold place
 
+$ git init
+$ git add .
+$ git commit -m "Initial checkin in; a bit of scaffolding"
+
+
+
+
+
 
 
 
