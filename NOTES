@@ -12,6 +12,7 @@ tmp/**/*
 .DS_Store
 doc/api
 doc/app
+*~
 $ touch log/.gitignore
 $ touch tmp/.gitignore
 
@@ -31,6 +32,38 @@ $ git init
 $ git add .
 $ git commit -m "Initial checkin in; a bit of scaffolding"
 
+On the Eee I ran
+
+$ cd src
+$ git clone buff@10.1.0.9:src/openfrbr 
+
+and it copied everything over.
+
+First database migration
+
+$ ./script/generate migration create_works_table
+      exists  db/migrate
+      create  db/migrate/20080721001523_create_works_table.rb
+
+I edited the file and added basic stuff to make the works table
+
+class CreateWorksTable < ActiveRecord::Migration
+  def self.up
+    create_table :works do |table|
+      table.column :title, :string
+      table.column :form, :string
+      table.column :date, :date
+      table.column :comment, :string
+  end
+
+  def self.down
+    drop_table :works
+  end
+end
+
+$ rake db.migrate
+
+There was a bunch of output about all the various tables.
 
 
 
