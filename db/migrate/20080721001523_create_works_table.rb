@@ -5,6 +5,7 @@ class CreateWorksTable < ActiveRecord::Migration
       table.column :form, :string
       table.column :date, :date
       table.column :comment, :string
+    end
   end
 
   def self.down
