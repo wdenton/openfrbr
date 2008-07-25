@@ -1,6 +1,7 @@
 class CreateWorks < ActiveRecord::Migration
   def self.up
     create_table :works do |t|
+      t.timestamps
       t.column :title,   :string
       t.column :form,    :string
       t.column :date,    :date
@@ -14,7 +15,6 @@ class CreateWorks < ActiveRecord::Migration
     Work.create :title => "Harry Potter and the Order of the Phoenix", :form => "", :date => "2003", :comment => "Fifth book"
     Work.create :title => "Harry Potter and the Half-Blood Prince", :form => "", :date => "2005", :comment => "Sixth book"
     Work.create :title => "Harry Potter and the Deathly Hallows", :form => "", :date => "2007", :comment => "Seventh book"
-
   end
 
   def self.down

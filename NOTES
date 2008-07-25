@@ -1,4 +1,4 @@
-20 July 2008
+* 20 July 2008
 
 $ rails openfrbr
 
@@ -65,10 +65,21 @@ $ rake db.migrate
 
 There was a bunch of output about all the various tables.
 
+* 25 July 2008
 
+I'm not using these migrations right.  I wanted to load up the
+development database with some initial data, and I knew that could be
+done in migrations.  (Is this new to Rails 2?  Much of what I found
+about this online seems out of date now.)  I made a new migration file
+to load in the data, but it didn't take.  I then edited an early migration,
+which didn't take either, so I had to do rake:db:migrate VERISON=0 to back to
+the very start and then rake:db:migrate to catch up on everything.  I
+don't know if this is the right way or not, but it works.
 
-
-
+When I refreshed things on the Eee and ran script/server and hit
+/works I got some kind of cookie error.  Data copied over by git that
+shouldn't have been?  And then the migration stuff didn't work. Said
+I'd already created the works table!
 
 
 
