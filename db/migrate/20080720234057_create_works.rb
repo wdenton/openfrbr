@@ -1,7 +1,6 @@
 class CreateWorks < ActiveRecord::Migration
   def self.up
     create_table :works do |t|
-      t.timestamps
       t.column :title,   :string
       t.column :form,    :string
       t.column :date,    :date
