@@ -2,10 +2,17 @@
 
 <table>
   <tr>
+    <% for column in Manifestation.content_columns %>
+    <th><%=h column.name %></th>
+    <% end %>
+    <th></th> <th></th> <th></th> 
   </tr>
 
 <% for manifestation in @manifestations %>
   <tr>
+    <% for column in Manifestation.content_columns %>
+    <td><%=h manifestation.send(column.name) %></td>
+    <% end %>
     <td><%= link_to 'Show', manifestation %></td>
     <td><%= link_to 'Edit', edit_manifestation_path(manifestation) %></td>
     <td><%= link_to 'Destroy', manifestation, :confirm => 'Are you sure?', :method => :delete %></td>

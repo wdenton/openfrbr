@@ -1,3 +1,100 @@
+<!-- Manifestation -->
+
+<p>
+
+Work: 
+<cite>
+<%= link_to "#{@manifestation.expression.work.title}",
+                 :controller => "works",
+                 :action     => "show",
+                 :id         => @manifestation.expression.work.id %>
+
+</cite>
+
+</p>
+
+<p>
+
+&nbsp;&nbsp;&nbsp;&gt; 
+Expression: 
+<%= link_to "#{@manifestation.expression.language}, 
+#{@manifestation.expression.form}",
+                 :controller => "expressions",
+                 :action     => "show",
+                 :id         => @manifestation.expression.id %>
+
+</p>
+
+<h2>Manifestation: <cite><%= @manifestation.title %></h2>
+
+<p>
+
+Produced by:
+
+<%= @manifestation.people.map {|person|
+link_to "#{person.name}",
+                 :controller => "people",
+                 :action     => "show",
+                 :id         => person.id
+}.join ", " %>
+
+<%= @manifestation.corporate_bodies.map {|c|
+link_to "#{c.name}",
+                 :controller => "corporate_bodies",
+                 :action     => "show",
+                 :id         => c.id
+}.join ", " %>
+
+</p>
+
+<ul>
+
+<li> Edition: <%= @manifestation.edition %>
+</li>
+
+<li> ISBN: <%= @manifestation.isbn %>
+</li>
+
+<li> Imprint: <%= @manifestation.imprint %>
+</li>
+
+<li> Publication date: <%= @manifestation.publication_date %>
+</li>
+
+<li> Physical description: <%= @manifestation.physical_description %>
+</li>
+
+<li> Comment: <%= @manifestation.comment %>
+</li>
+
+</ul>
+
+<h2>Items</h2>
+
+<p>
+
+<%= link_to "Add item for this work",
+  :controller => "items",
+  :action     => "new",
+  :manifestation_id    => @manifestation.id %>
+
+</p>
+
+<ul>
+
+<% @manifestation.items.each do |item| %>
+
+<li> <%= link_to "#{item.identifier}",
+                 :controller => "items",
+                 :action     => "show",
+                 :id         => item.id %>
+(<%= item.comment %>)
+</li>
+
+<% end %>
+
+</ul>
+
 
 <%= link_to 'Edit', edit_manifestation_path(@manifestation) %> |
 <%= link_to 'Back', manifestations_path %>

@@ -1,0 +1,97 @@
+body {
+  color: black;
+  margin: 2em;
+  max-width: 50em;
+}
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h3 {
+  margin-left: 4%;
+  margin-right: 4%;
+  font-weight: bold
+}
+
+pre {
+  font-family: monospace;
+  margin-left: 5%;
+  white-space: pre;
+  text-indent: 0em;
+}
+
+code {
+  font-family: monospace;
+  /* white-space: pre; */
+}
+
+table caption {
+  font-size: larger;
+  font-weight: bolder
+}
+
+table {
+  margin-left: 4%;
+  margin-right: 4%
+  border-width: 1px 1px 1px 1px;
+  border-spacing: 0px;
+  border-style: outset outset outset outset;
+  border-color: white white white white;
+  border-collapse: separate;
+  background-color: white;
+}
+
+table th {
+    border-width: 1px 1px 1px 1px;
+    padding: 5px 5px 5px 5px;
+    border-style: inset inset inset inset;
+    border-color: white white white white;
+    background-color: white;
+}
+
+table td {
+    border-width: 1px 1px 1px 1px;
+    padding: 5px 5px 5px 5px;
+    border-style: inset inset inset inset;
+    border-color: white white white white;
+    background-color: white;
+}
+
+p small {
+  font-size: smaller;
+}
+
+blockquote {
+  margin-left: 5em;
+  margin-right: 5em;
+  padding: 1em;
+  border: thin solid #000000;
+}
+
+acronym {
+  border-bottom: thin dotted black;
+  cursor: help;
+}
+
+a {
+  color: #00F;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #800080;
+}

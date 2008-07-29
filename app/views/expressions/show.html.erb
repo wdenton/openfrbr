@@ -1,3 +1,96 @@
+<!-- Expression -->
+
+<p>
+
+Work: 
+<cite>
+<%= link_to "#{@expression.work.title}",
+                 :controller => "works",
+                 :action     => "show",
+                 :id         => @expression.work.id %>
+
+</cite>
+
+</p>
+
+<h2>Expression: <cite><%= @expression.title %></h2>
+
+<p>
+
+Realized by:
+
+<ul>
+
+<% @expression.people.each do |p| %>
+
+<li> <%= link_to "#{p.name}",
+                 :controller => "people",
+                 :action     => "show",
+                 :id         => p.id %>
+</li>
+
+<% end %>
+
+<% @expression.corporate_bodies.each do |c| %>
+
+<li> <%= link_to "#{c.name}",
+                 :controller => "corporate_bodies",
+                 :action     => "show",
+                 :id         => c.id %>
+</li>
+
+<% end %>
+
+</ul>
+
+<p>
+
+Attributes
+
+</p>
+
+<ul>
+
+<li> Form: <%= @expression.form %>
+</li>
+
+<li> Language: <%= @expression.language %>
+</li>
+
+<li> Date: <%= @expression.date %>
+</li>
+
+<li> Comment: <%= @expression.comment %>
+</li>
+
+</ul>
+
+<h2>Manifestations</h2>
+
+<p>
+
+<%= link_to "Add manifestation for this expression",
+  :controller => "manifestations",
+  :action     => "new",
+  :expression_id    => @expression.id %>
+
+</p>
+
+<ul>
+
+<% @expression.manifestations.each do |manifestation| %>
+
+<li> <%= link_to "<cite>#{manifestation.title}</cite>",
+                 :controller => "manifestations",
+                 :action     => "show",
+                 :id         => manifestation.id %>
+(<%= manifestation.imprint %>, <%= manifestation.physical_description %>, <%= manifestation.isbn %>)
+</li>
+
+<% end %>
+
+</ul>
+
 
 <%= link_to 'Edit', edit_expression_path(@expression) %> |
 <%= link_to 'Back', expressions_path %>

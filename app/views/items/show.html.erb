@@ -1,3 +1,82 @@
+<!-- Item show -->
+
+<p>
+
+Work: 
+<cite>
+<%= link_to "#{@item.manifestation.expression.work.title}",
+                 :controller => "works",
+                 :action     => "show",
+                 :id         => @item.manifestation.expression.work.id 
+%>
+
+</cite>
+
+</p>
+
+<p>
+
+&nbsp;&nbsp;&nbsp;&gt; 
+Expression: 
+<%= link_to "#{@item.manifestation.expression.language}, 
+#{@item.manifestation.expression.form}",
+                 :controller => "expressions",
+                 :action     => "show",
+                 :id         => @item.manifestation.expression.id %>
+
+</p>
+
+<p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;
+Manifestation: 
+<cite>
+<%= link_to "#{@item.manifestation.title}",
+                 :controller => "manifestations",
+                 :action     => "show",
+                 :id         => @item.manifestation.id %>
+</cite>
+(<%= @item.manifestation.imprint %>,
+<%= @item.manifestation.physical_description %>, 
+<%= @item.manifestation.isbn %>)
+
+</p>
+
+<h2>This item</h2>
+
+<p>
+
+Owned by:
+
+<%= @item.people.map {|person|
+link_to "#{person.name}",
+                 :controller => "people",
+                 :action     => "show",
+                 :id         => person.id
+}.join ", " %>
+
+<%= @item.corporate_bodies.map {|c|
+link_to "#{c.name}",
+                 :controller => "corporate_bodies",
+                 :action     => "show",
+                 :id         => c.id
+}.join ", " %>
+
+</p>
+
+<ul>
+
+<li> Call number: <%= @item.call_number %>
+</li>
+
+<li> Identifier: <%= @item.identifier %>
+</li>
+
+<li> Comment: <%= @item.comment %>
+</li>
+
+</ul>
+
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

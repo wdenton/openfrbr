@@ -2,10 +2,17 @@
 
 <table>
   <tr>
+    <% for column in Expression.content_columns %>
+    <th><%=h column.name %></th>
+    <% end %>
+    <th></th> <th></th> <th></th> 
   </tr>
 
 <% for expression in @expressions %>
   <tr>
+    <% for column in Expression.content_columns %>
+    <td><%=h expression.send(column.name) %></td>
+    <% end %>
     <td><%= link_to 'Show', expression %></td>
     <td><%= link_to 'Edit', edit_expression_path(expression) %></td>
     <td><%= link_to 'Destroy', expression, :confirm => 'Are you sure?', :method => :delete %></td>
