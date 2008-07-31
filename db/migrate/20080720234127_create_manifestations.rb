@@ -3,13 +3,11 @@ class CreateManifestations < ActiveRecord::Migration
     create_table :manifestations do |t|
       t.timestamps
       t.column :title,    :string
-      t.column :statement_of_responsibility, :string
       t.column :edition, :string
       t.column :isbn, :string
       t.column :physical_description, :string
       t.column :imprint, :string
       t.column :publication_date, :string
-      t.column :series_statement, :string
       t.column :comment, :string
       t.column :expression_id,  :integer # foreign key for the expression
     end
