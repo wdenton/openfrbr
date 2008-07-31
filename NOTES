@@ -93,6 +93,26 @@ does sort of keep it tidy and gives me a decent baseline to work with for
 later, when I add attributes to the relationships between things.
 
 
+# 31 July 2008
+
+Did some more setting up of the entities and defining some test
+data.  Didn't set up any relationships between PHILOSOPHER'S STONE
+and Platform 9 3/4 as a place, though, or anything like that.
+
+I had a look at the entity-relationship diagram I did that shows all of 
+the FRBR entities and relationships, and realized my data model was wrong. 
+I need to have attributes on the relationships, so instead of 
+has_and_belongs_to_many I need to use has_many :through, and then set up 
+the join with attributes.  A work can be created by Person A and also have 
+Person B as a subject.  I don't want to clutter it all up with tons of 
+different tables for all those joins.
+
+Looked at a polymorphism plug-in but I don't feel like tackling that.
+
+Since sqlite won't work on the Eee I tried to get it going with 
+Postgresql, but I don't think I was running the daemon right because it 
+couldn't connect.  I'd better tackle fixing sqlite again, before messing 
+about with anything more serious.
 
 
 
