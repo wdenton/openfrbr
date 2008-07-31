@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.timestamps
       t.column :call_number, :string
       t.column :identifier, :string
+      t.column :provenance, :string
       t.column :comment, :string
       t.column :manifestation_id, :integer
     end

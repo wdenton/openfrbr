@@ -2,9 +2,10 @@ class CreateCorporateBodies < ActiveRecord::Migration
   def self.up
     create_table :corporate_bodies do |t|
       t.timestamps
-      t.column :name,    :string
-      t.column :dates,   :string
-      t.column :place,   :string
+      t.column :name, :string
+      t.column :dates, :string
+      t.column :other_designation, :string
+      t.column :place, :string
       t.column :comment, :string
     end
 
@@ -47,7 +48,7 @@ class CreateCorporateBodies < ActiveRecord::Migration
     drop_table :corporate_bodies
     drop_table :works_corporate_bodies
     drop_table :expressions_corporate_bodies
-    drop_table :manifesations_corporate_bodies
+    drop_table :manifestations_corporate_bodies
     drop_table :items_corporate_bodies
   end
 end

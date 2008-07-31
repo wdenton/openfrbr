@@ -1,15 +1,19 @@
 class CreatePeople < ActiveRecord::Migration
-  def self.up
+  def self.up 
     create_table :people do |t|
       t.timestamps
-      t.column :name,    :string
-      t.column :dates,   :string
+      t.column :name, :string
+      t.column :dates, :string
+      t.column :title, :string
+      t.column :other_designation, :string
+      t.column :affiliation, :string
+      t.column :country, :string
       t.column :comment, :string
     end
 
     Person.create :name => "J.K. Rowling", :dates => "31 July 1965 - ", :comment => ""
-    Person.create :name => "William Denton", :dates => "", :comment => ""
-    Person.create :name => "Jim Date", :dates => "", :comment => "Great voice actor"
+    Person.create :name => "William Denton", :comment => ""
+    Person.create :name => "Jim Date", :comment => "Great voice actor"
 
     create_table :works_people, :id => false do |t|
       t.timestamps
