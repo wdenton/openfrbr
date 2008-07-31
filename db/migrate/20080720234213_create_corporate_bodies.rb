@@ -3,8 +3,12 @@ class CreateCorporateBodies < ActiveRecord::Migration
     create_table :corporate_bodies do |t|
       t.timestamps
       t.column :name,    :string
+      t.column :type,    :string
+      t.column :number,  :string
       t.column :dates,   :string
       t.column :place,   :string
+      t.column :other_designation, :string
+      t.column :history, :string
       t.column :comment, :string
     end
 
