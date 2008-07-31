@@ -81,6 +81,17 @@ When I refreshed things on the Eee and ran script/server and hit
 shouldn't have been?  And then the migration stuff didn't work. Said
 I'd already created the works table!
 
+* 28 July 2008
+
+rake db:drop; rake db:migrate seems to work well for getting around any 
+migration errors. It just drops everything and then you can start over.
+
+Put a bunch of table configuration and test data into the migration files, 
+including setting up the HABTM join tables.  Kept resetting the database 
+and migrating it from scratch. Probably not the best way to do it, but it 
+does sort of keep it tidy and gives me a decent baseline to work with for 
+later, when I add attributes to the relationships between things.
+
 
 
 
