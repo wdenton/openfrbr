@@ -1,11 +1,18 @@
-<h1>Listing events</h1>
+<h1>Listing Events</h1>
 
 <table>
   <tr>
+    <% for column in Event.content_columns %>
+    <th><%=h column.name %></th>
+    <% end %>
+    <th></th> <th></th> <th></th> 
   </tr>
 
 <% for event in @events %>
   <tr>
+    <% for column in Event.content_columns %>
+    <td><%=h event.send(column.name) %></td>
+    <% end %>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>

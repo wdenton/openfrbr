@@ -16,7 +16,6 @@ Work:
 
 <p>
 
-&nbsp;&nbsp;&nbsp;&gt; 
 Expression: 
 <%= link_to "#{@item.manifestation.expression.language}, 
 #{@item.manifestation.expression.form}",
@@ -28,7 +27,6 @@ Expression:
 
 <p>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;
 Manifestation: 
 <cite>
 <%= link_to "#{@item.manifestation.title}",
@@ -36,13 +34,13 @@ Manifestation:
                  :action     => "show",
                  :id         => @item.manifestation.id %>
 </cite>
-(<%= @item.manifestation.imprint %>,
-<%= @item.manifestation.physical_description %>, 
-<%= @item.manifestation.isbn %>)
+(<%= @item.manifestation.publisher %>,
+<%= @item.manifestation.form_of_carrier %>, 
+<%= @item.manifestation.identifier %>)
 
 </p>
 
-<h2>This item</h2>
+<h2><%= @item.identifier %></h2>
 
 <p>
 
@@ -70,6 +68,9 @@ link_to "#{c.name}",
 </li>
 
 <li> Identifier: <%= @item.identifier %>
+</li>
+
+<li> Provenance: <%= @item.provenance %>
 </li>
 
 <li> Comment: <%= @item.comment %>

@@ -84,7 +84,7 @@ Attributes
                  :controller => "manifestations",
                  :action     => "show",
                  :id         => manifestation.id %>
-(<%= manifestation.imprint %>, <%= manifestation.physical_description %>, <%= manifestation.isbn %>)
+(<%= manifestation.form_of_carrier %>, <%= manifestation.identifier %>)
 </li>
 
 <% end %>

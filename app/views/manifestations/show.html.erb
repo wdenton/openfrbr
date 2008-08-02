@@ -3,22 +3,17 @@
 <p>
 
 Work: 
-<cite>
-<%= link_to "#{@manifestation.expression.work.title}",
+<cite><%= link_to "#{@manifestation.expression.work.title}",
                  :controller => "works",
                  :action     => "show",
-                 :id         => @manifestation.expression.work.id %>
-
-</cite>
-
+                 :id         => @manifestation.expression.work.id %></cite>
+                 
 </p>
 
 <p>
-
-&nbsp;&nbsp;&nbsp;&gt; 
+ 
 Expression: 
-<%= link_to "#{@manifestation.expression.language}, 
-#{@manifestation.expression.form}",
+<%= link_to "#{@manifestation.expression.language}, #{@manifestation.expression.form}",
                  :controller => "expressions",
                  :action     => "show",
                  :id         => @manifestation.expression.id %>
@@ -49,19 +44,28 @@ link_to "#{c.name}",
 
 <ul>
 
+<li> Statement of responsibility: <%= @manifestation.statement_of_responsibility %>
+</li>
+
 <li> Edition: <%= @manifestation.edition %>
 </li>
 
-<li> ISBN: <%= @manifestation.isbn %>
+<li> Identifier: <%= @manifestation.identifier %>
 </li>
 
-<li> Imprint: <%= @manifestation.imprint %>
+<li> Form of carrier: <%= @manifestation.form_of_carrier %>
+</li>
+
+<li> Publisher: <%= @manifestation.publisher %>
 </li>
 
 <li> Publication date: <%= @manifestation.publication_date %>
 </li>
 
-<li> Physical description: <%= @manifestation.physical_description %>
+<li> Publication place: <%= @manifestation.publication_place %>
+</li>
+
+<li> Series statement: <%= @manifestation.series_statement %>
 </li>
 
 <li> Comment: <%= @manifestation.comment %>
@@ -88,7 +92,7 @@ link_to "#{c.name}",
                  :controller => "items",
                  :action     => "show",
                  :id         => item.id %>
-(<%= item.comment %>)
+(<%= item.call_number %>)
 </li>
 
 <% end %>

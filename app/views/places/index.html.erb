@@ -1,11 +1,18 @@
-<h1>Listing places</h1>
+<h1>Listing Places</h1>
 
 <table>
   <tr>
+    <% for column in Place.content_columns %>
+    <th><%=h column.name %></th>
+    <% end %>
+    <th></th> <th></th> <th></th> 
   </tr>
 
 <% for place in @places %>
   <tr>
+    <% for column in Place.content_columns %>
+    <td><%=h place.send(column.name) %></td>
+    <% end %>
     <td><%= link_to 'Show', place %></td>
     <td><%= link_to 'Edit', edit_place_path(place) %></td>
     <td><%= link_to 'Destroy', place, :confirm => 'Are you sure?', :method => :delete %></td>

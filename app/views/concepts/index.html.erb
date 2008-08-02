@@ -1,11 +1,18 @@
-<h1>Listing concepts</h1>
+<h1>Listing Concepts</h1>
 
 <table>
   <tr>
+    <% for column in Concept.content_columns %>
+    <th><%=h column.name %></th>
+    <% end %>
+    <th></th> <th></th> <th></th> 
   </tr>
 
 <% for concept in @concepts %>
   <tr>
+   <% for column in Concept.content_columns %>
+    <td><%=h concept.send(column.name) %></td>
+    <% end %>
     <td><%= link_to 'Show', concept %></td>
     <td><%= link_to 'Edit', edit_concept_path(concept) %></td>
     <td><%= link_to 'Destroy', concept, :confirm => 'Are you sure?', :method => :delete %></td>

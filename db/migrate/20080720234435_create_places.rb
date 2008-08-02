@@ -7,7 +7,7 @@ class CreatePlaces < ActiveRecord::Migration
     end
     
     Place.create :term => "Platform 9 3/4, King's Cross Station"
-    Place.create :term => "Number 4, Privet Drive, Little Whinging, Surry, England"
+    Place.create :term => "Number 4, Privet Drive, Little Whinging, Surrey, England"
     
   end
 

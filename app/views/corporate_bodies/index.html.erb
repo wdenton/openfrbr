@@ -1,12 +1,19 @@
-<h1>Listing corporate_bodies</h1>
+<h1>Listing Corporate Bodies</h1>
 
 <table>
   <tr>
+ <tr>
+    <% for column in CorporateBody.content_columns %>
+    <th><%=h column.name %></th>
+    <% end %>
+    <th></th> <th></th> <th></th> 
   </tr>
 
 <% for corporate_body in @corporate_bodies %>
   <tr>
-    <td><%= link_to 'Show', corporate_body %></td>
+   <% for column in CorporateBody.content_columns %>
+    <td><%=h corporate_body.send(column.name) %></td>
+    <% end %>    <td><%= link_to 'Show', corporate_body %></td>
     <td><%= link_to 'Edit', edit_corporate_body_path(corporate_body) %></td>
     <td><%= link_to 'Destroy', corporate_body, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

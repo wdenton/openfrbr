@@ -1,4 +1,15 @@
-<h1>Listing works</h1>
+<% @pagetitle = "Works" %>
+
+<h1>Listing Works</h1>
+
+<ul>
+
+<% for work in @works %>
+<li> <%= link_to '<cite>'+work.title+'</cite>', work%> 
+ (Date: <%= work.date %>) (Comment: <%= work.comment %>) </li>
+<% end %>
+
+</ul>
 
 <table>
   <tr>

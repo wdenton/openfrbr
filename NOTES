@@ -92,8 +92,7 @@ and migrating it from scratch. Probably not the best way to do it, but it
 does sort of keep it tidy and gives me a decent baseline to work with for 
 later, when I add attributes to the relationships between things.
 
-
-# 31 July 2008
+* 31 July 2008
 
 Did some more setting up of the entities and defining some test
 data.  Didn't set up any relationships between PHILOSOPHER'S STONE
@@ -113,6 +112,20 @@ Since sqlite won't work on the Eee I tried to get it going with
 Postgresql, but I don't think I was running the daemon right because it 
 couldn't connect.  I'd better tackle fixing sqlite again, before messing 
 about with anything more serious.
+
+* 2 August 2008
+
+Checked FRBR and FRAD and updated the attributes on the entities.  Thought
+about how to connect them all with has_many :through but haven't done
+that yet.  Should use these expressions of FRBR in RDF:
+
+  http://vocab.org/frbr/core
+  http://vocab.org/frbr/extended
+  
+Created app/views/layouts/application.html.erb and then removed all of the
+other layouts.  The application layout will be used by all views now.
+I'll do a bit of CSS and styling to get a left nav going, or something
+like that.
 
 
 
