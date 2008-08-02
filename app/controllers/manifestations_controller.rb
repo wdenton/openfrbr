@@ -1,4 +1,5 @@
 class ManifestationsController < ApplicationController
+  
   # GET /manifestations
   # GET /manifestations.xml
   def index

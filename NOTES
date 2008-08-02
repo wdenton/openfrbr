@@ -127,6 +127,17 @@ other layouts.  The application layout will be used by all views now.
 I'll do a bit of CSS and styling to get a left nav going, or something
 like that.
 
+For fun I thought I'd try autocompletion on manifestation titles, just
+to see how that worked.  Followed what is explained here:
+
+  http://codeintensity.blogspot.com/2008/02/auto-complete-text-fields-in-rails-2.html
+  
+After a few minutes of this I decided I was getting ahead of myself, so I stopped.
+
+
+
+
+
 
 
 
