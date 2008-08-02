@@ -95,3 +95,24 @@ a:active {
 a:visited {
   color: #800080;
 }
+
+div.left {
+  /* float: left; */
+  /* width: 20%; */
+
+  position: absolute;
+  /* top: 5.1em; */
+  left: 1em;
+  width: 12em;
+
+  /* padding: 1%; */
+  border-right: thin solid black;
+}
+
+div.right {
+  /* float: right; */
+  /* width: 75%; */
+  margin-left: 13em;
+  padding: 1%;
+  max-width: 40em;
+}
