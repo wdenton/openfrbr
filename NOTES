@@ -134,6 +134,13 @@ to see how that worked.  Followed what is explained here:
   
 After a few minutes of this I decided I was getting ahead of myself, so I stopped.
 
+Fiddled with the CSS so there's a left nav.
+
+Removed public/index.html and added this to routes.rb:
+
+  map.root :controller => "works"
+
+Now the default for http://localhost:3000/ is to list all the works.
 
 
 

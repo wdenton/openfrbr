@@ -10,15 +10,54 @@
 </head>
 <body>
 
-<div id="left">
+<div class="left">
+
+<p>
+
+<a href="/">OpenFRBR</a>
+
+</p>
+
+<p>
+
+List:
+
+</p>
+
+<ul>
+
+<li> <a href="/works/">works</a> </li>
+<li> <a href="/expressions/">expressions</a> </li>
+<li> <a href="/manifestations/">manifestations</a> </li>
+<li> <a href="/items/">items</a> </li>
+<li> <a href="/people/">people</a> </li>
+<li> <a href="/families/">families</a> </li>
+<li> <a href="/corporate_bodies/">corporate bodies</a> </li>
+<li> <a href="/concepts/">concepts</a> </li>
+<li> <a href="/frbr_objects/">objects</a> </li>
+<li> <a href="/events/">events</a> </li>
+<li> <a href="/places/">places</a> </li>
+
+</ul>
 
 </div>
 
-<div id="main">
+<div class="right">
 
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>
+
+</div>
+
+<div class="footer">
+
+<p>
+
+If you are running this locally, see the <a
+href="http://www.openfrbr.org/">OpenFRBR</a> web site for more.
+
+</p>
 
 </div>
 
