@@ -1,3 +1,30 @@
+<% @pagetitle = "Person: #{@person.name}" %>
+
+<h1><%= @person.name %></h1>
+
+<ul>
+
+<li> Dates: <%= @person.dates %>
+</li>
+
+<li> Title: <%= @person.title %>
+</li>
+
+<li> Other designation: <%= @person.other_designation %>
+</li>
+
+<li> Affiliation: <%= @person.affiliation %>
+</li>
+
+<li> Country: <%= @person.country %>
+</li>
+
+<li> Comment: <%= @person.comment %>
+</li>
+
+</ul>
+
+
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

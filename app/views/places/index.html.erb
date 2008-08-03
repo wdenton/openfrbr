@@ -1,25 +1,21 @@
-<h1>Listing Places</h1>
+<% @pagetitle = "Places" %>
 
-<table>
-  <tr>
-    <% for column in Place.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<h1>Places</h1>
+
+<dl>
 
 <% for place in @places %>
-  <tr>
-    <% for column in Place.content_columns %>
-    <td><%=h place.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', place %></td>
-    <td><%= link_to 'Edit', edit_place_path(place) %></td>
-    <td><%= link_to 'Destroy', place, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<dt> <%= link_to place.term, place %>
+(<%= link_to 'Show', place %>
+<%= link_to 'Edit', edit_place_path(place) %>
+<%= link_to 'Destroy', place, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Comment: <%= place.comment %>
+</dd>
 <% end %>
-</table>
 
-<br />
+</dl>
+
 
 <%= link_to 'New place', new_place_path %>

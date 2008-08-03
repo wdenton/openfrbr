@@ -1,26 +1,28 @@
-<h1>Listing Families</h1>
+<% @pagetitle = "Families" %>
 
-<table>
- <tr>
-    <% for column in Family.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<h1>Families</h1>
 
+<dl>
 
 <% for family in @families %>
-  <tr>
-   <% for column in Family.content_columns %>
-    <td><%=h family.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', family %></td>
-    <td><%= link_to 'Edit', edit_family_path(family) %></td>
-    <td><%= link_to 'Destroy', family, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<dt> <%= link_to family.name, family %>
+(<%= link_to 'Show', family %>
+<%= link_to 'Edit', edit_family_path(family) %>
+<%= link_to 'Destroy', family, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Dates: <%= family.dates %>
 <br />
+Type: <%= family.family_type %>
+<br />
+Places: <%= family.places %>
+<br />
+History: <%= family.history %>
+<br />
+Comment: <%= family.comment %>
+</dd>
+<% end %>
+
+</dl>
 
 <%= link_to 'New family', new_family_path %>

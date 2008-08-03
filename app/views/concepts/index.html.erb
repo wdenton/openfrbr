@@ -1,25 +1,20 @@
-<h1>Listing Concepts</h1>
+<% @pagetitle = "Concepts" %>
 
-<table>
-  <tr>
-    <% for column in Concept.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<h1>Concepts</h1>
+
+<dl>
 
 <% for concept in @concepts %>
-  <tr>
-   <% for column in Concept.content_columns %>
-    <td><%=h concept.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', concept %></td>
-    <td><%= link_to 'Edit', edit_concept_path(concept) %></td>
-    <td><%= link_to 'Destroy', concept, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<dt> <%= link_to concept.term, concept %>
+(<%= link_to 'Show', concept %>
+<%= link_to 'Edit', edit_concept_path(concept) %>
+<%= link_to 'Destroy', concept, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Comment: <%= concept.comment %>
+</dd>
 <% end %>
-</table>
 
-<br />
+</dl>
 
 <%= link_to 'New concept', new_concept_path %>

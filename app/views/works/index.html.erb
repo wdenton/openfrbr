@@ -1,36 +1,24 @@
 <% @pagetitle = "Works" %>
 
-<h1>Listing Works</h1>
+<h1>Works</h1>
 
-<ul>
-
-<% for work in @works %>
-<li> <%= link_to '<cite>'+work.title+'</cite>', work%> 
- (Date: <%= work.date %>) (Comment: <%= work.comment %>) </li>
-<% end %>
-
-</ul>
-
-<table>
-  <tr>
-    <% for column in Work.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<dl>
 
 <% for work in @works %>
-  <tr>
-    <% for column in Work.content_columns %>
-    <td><%=h work.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', work %></td>
-    <td><%= link_to 'Edit', edit_work_path(work) %></td>
-    <td><%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<dt> <%= link_to '<cite>'+work.title+'</cite>', work%> (<%= work.date %>)
+(<%= link_to 'Show', work %>
+<%= link_to 'Edit', edit_work_path(work) %>
+<%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Form: <%= work.form %>
 <br />
+Comment: <%= work.comment %>
+<br />
+</dd>
+<% end %>
+
+</dl>
+
 
 <%= link_to 'New work', new_work_path %>

@@ -1,3 +1,22 @@
+<% @pagetitle = "Corporate body: #{@corporate_body.name}" %>
+
+<h1><%= @corporate_body.name %></h1>
+
+<ul>
+
+<li> Dates: <%= @corporate_body.dates %>
+</li>
+
+<li> Other designation: <%= @corporate_body.other_designation %>
+</li>
+
+<li> Place: <%= @corporate_body.place %>
+</li>
+
+s<li> Comment: <%= @corporate_body.comment %>
+</li>
+
+</ul>
 
 <%= link_to 'Edit', edit_corporate_body_path(@corporate_body) %> |
 <%= link_to 'Back', corporate_bodies_path %>

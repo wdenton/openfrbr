@@ -1,25 +1,20 @@
-<h1>Listing Objects</h1>
+<% @pagetitle = "Objects" %>
 
-<table>
-  <tr>
-    <% for column in FrbrObject.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<h1>Objects</h1>
+
+<dl>
 
 <% for frbr_object in @frbr_objects %>
-  <tr>
-   <% for column in FrbrObject.content_columns %>
-    <td><%=h frbr_object.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', frbr_object %></td>
-    <td><%= link_to 'Edit', edit_frbr_object_path(frbr_object) %></td>
-    <td><%= link_to 'Destroy', frbr_object, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<dt> <%= link_to frbr_object.term, frbr_object %>
+(<%= link_to 'Show', frbr_object %>
+<%= link_to 'Edit', edit_frbr_object_path(frbr_object) %>
+<%= link_to 'Destroy', frbr_object, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Comment: <%= frbr_object.comment %>
+</dd>
 <% end %>
-</table>
 
-<br />
+</dl>
 
 <%= link_to 'New frbr_object', new_frbr_object_path %>

@@ -1,25 +1,24 @@
-<h1>Listing Items</h1>
+<% @pagetitle = "Items" %>
 
-<table>
-  <tr>
-    <% for column in Item.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<h1>Items</h1>
+
+<dl>
 
 <% for item in @items %>
-  <tr>
-    <% for column in Item.content_columns %>
-    <td><%=h item.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<dt> <%= link_to "<cite>#{item.manifestation.title}</cite>", item %> (<%= item.identifier %>)
+(<%= link_to 'Show', item %>
+<%= link_to 'Edit', edit_item_path(item) %>
+<%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Call number: <%= item.call_number %>
 <br />
+Identifer: <%= item.identifier %>
+<br />
+Provenance: <%= item.provenance %>
+</dd>
+<% end %>
+
+</dl>
 
 <%= link_to 'New item', new_item_path %>

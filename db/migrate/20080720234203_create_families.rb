@@ -3,10 +3,11 @@ class CreateFamilies < ActiveRecord::Migration
     create_table :families do |t|
       t.timestamps
       t.column :name, :string
-      t.column :type, :string
+      t.column :family_type, :string
       t.column :dates, :string
       t.column :places, :string
       t.column :history, :string
+      t.column :comment, :string
     end
 
   Family.create :name => "Potter family", :places => ""

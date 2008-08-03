@@ -1,25 +1,30 @@
-<h1>Listing People</h1>
+<% @pagetitle = "People" %>
 
-<table>
-  <tr>
-    <% for column in Person.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<h1>People</h1>
+
+<dl>
 
 <% for person in @people %>
-  <tr>
-    <% for column in Person.content_columns %>
-    <td><%=h person.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<dt> <%= link_to person.name, person %>
+(<%= link_to 'Show', person %>
+<%= link_to 'Edit', edit_person_path(person) %>
+<%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Dates: <%= person.dates %>
 <br />
+Title: <%= person.title %>
+<br />
+Other designation: <%= person.other_designation %>
+<br />
+Affiliation: <%= person.affiliation %>
+<br />
+Country: <%= person.country %>
+<br />
+Comment: <%= person.comment %>
+</dd>
+<% end %>
+
+</dl>
 
 <%= link_to 'New person', new_person_path %>

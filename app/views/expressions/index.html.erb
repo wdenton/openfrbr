@@ -1,25 +1,25 @@
-<h1>Listing Expressions</h1>
+<% @pagetitle = "Expressions" %>
 
-<table>
-  <tr>
-    <% for column in Expression.content_columns %>
-    <th><%=h column.name %></th>
-    <% end %>
-    <th></th> <th></th> <th></th> 
-  </tr>
+<h1>Expressions</h1>
+
+<dl>
 
 <% for expression in @expressions %>
-  <tr>
-    <% for column in Expression.content_columns %>
-    <td><%=h expression.send(column.name) %></td>
-    <% end %>
-    <td><%= link_to 'Show', expression %></td>
-    <td><%= link_to 'Edit', edit_expression_path(expression) %></td>
-    <td><%= link_to 'Destroy', expression, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<dt> <%= link_to '<cite>'+expression.title+'</cite>', expression%> (<%= expression.date %>)
+(<%= link_to 'Show', expression %>
+<%= link_to 'Edit', edit_expression_path(expression) %>
+<%= link_to 'Destroy', expression, :confirm => 'Are you sure?', :method => :delete %>)
+</dt>
+<dd> 
+Language: <%= expression.language %>
 <br />
+Form: <%= expression.form %>
+<br />
+Comment: <%= expression.comment %>
+<br />
+</dd>
+<% end %>
+
+</dl>
 
 <%= link_to 'New expression', new_expression_path %>

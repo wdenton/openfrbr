@@ -13,7 +13,7 @@ class CreatePeople < ActiveRecord::Migration
 
     Person.create :name => "J.K. Rowling", :dates => "31 July 1965 - ", :comment => ""
     Person.create :name => "William Denton", :comment => ""
-    Person.create :name => "Jim Date", :comment => "Great voice actor"
+    Person.create :name => "Jim Dale", :comment => "Great voice actor"
 
     create_table :works_people, :id => false do |t|
       t.timestamps

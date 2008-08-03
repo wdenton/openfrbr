@@ -1,3 +1,13 @@
+<% @pagetitle = "Concept: #{@concept.term}" %>
+
+<h1><%= @concept.term %></h1>
+
+<ul>
+
+<li> Comment: <%= @concept.comment %>
+</li>
+
+</ul>
 
 <%= link_to 'Edit', edit_concept_path(@concept) %> |
 <%= link_to 'Back', concepts_path %>

@@ -1,3 +1,13 @@
+<% @pagetitle = "Object: #{@frbr_object.term}" %>
+
+<h1><%= @frbr_object.term %></h1>
+
+<ul>
+
+<li> Comment: <%= @frbr_object.comment %>
+</li>
+
+</ul>
 
 <%= link_to 'Edit', edit_frbr_object_path(@frbr_object) %> |
 <%= link_to 'Back', frbr_objects_path %>

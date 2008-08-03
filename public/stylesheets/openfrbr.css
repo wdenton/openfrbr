@@ -1,15 +1,17 @@
 body {
   color: black;
   margin: 1em;
-  max-width: 50em;
+  /* max-width: 50em; */
 }
 
 h1 {
+  font-size: 130%;
   font-weight: bold;
   text-align: center;
 }
 
 h2 {
+  font-size: 120%;
   font-weight: bold;
 }
 
@@ -98,15 +100,16 @@ a:visited {
 
 div.left {
   position: absolute;
-  left: 1em;
-  width: 12em;
-  border-right: thin solid black;
+  left: 5px;
+  width: 175px;
+  border: thin solid #cccccc;
+  padding: 10px;
 }
 
 div.right {
-  margin-left: 12em;
+  margin-left: 200px;
   padding: 1%;
-  max-width: 40em;
+  /* max-width: 600px; */
 }
 
 div.footer {

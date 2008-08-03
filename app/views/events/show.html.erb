@@ -1,3 +1,16 @@
+<% @pagetitle = "Event: #{@event.term}" %>
+
+<h1><%= @event.term %></h1>
+
+<ul>
+
+<li> Date: <%= @event.date %>
+</li>
+
+<li> Comment: <%= @event.comment %>
+</li>
+
+</ul>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

@@ -1,3 +1,5 @@
+<% @pagetitle = "Item: #{@item.manifestation.title} (#{@item.identifier})s" %>
+
 <!-- Item show -->
 
 <p>
@@ -17,11 +19,12 @@ Work:
 <p>
 
 Expression: 
-<%= link_to "#{@item.manifestation.expression.language}, 
-#{@item.manifestation.expression.form}",
-                 :controller => "expressions",
-                 :action     => "show",
-                 :id         => @item.manifestation.expression.id %>
+<cite><%= link_to "#{@item.manifestation.expression.title}",
+  :controller => "expressions",
+  :action     => "show",
+  :id         => @item.manifestation.expression.id %></cite>
+(<%= @item.manifestation.expression.language %>, <%= @item.manifestation.expression.form %>)
+
 
 </p>
 
@@ -34,13 +37,12 @@ Manifestation:
                  :action     => "show",
                  :id         => @item.manifestation.id %>
 </cite>
-(<%= @item.manifestation.publisher %>,
-<%= @item.manifestation.form_of_carrier %>, 
+(<%= @item.manifestation.form_of_carrier %>, 
 <%= @item.manifestation.identifier %>)
 
 </p>
 
-<h2><%= @item.identifier %></h2>
+<h1><%= @item.identifier %></h1>
 
 <p>
 

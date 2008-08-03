@@ -1,3 +1,13 @@
+<% @pagetitle = "Place: #{@place.term}" %>
+
+<h1><%= @place.term %></h1>
+
+<ul>
+
+<li> Comment: <%= @place.comment %>
+</li>
+
+</ul>
 
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>
