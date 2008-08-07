@@ -142,7 +142,10 @@ Removed public/index.html and added this to routes.rb:
 
 Now the default for http://localhost:3000/ is to list all the works.
 
+* 5 August 2008
 
+I installed Ubuntu on my Eee and now I can use Rails without any trouble.  I was
+getting errors with rake db:migrate on the old OS but now all is well.
 
 
 

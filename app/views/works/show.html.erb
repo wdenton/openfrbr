@@ -41,18 +41,7 @@ Attributes:
 
 </p>
 
-<ul>
-
-<li> Form: <%= @work.form %>
-</li>
-
-<li> Date: <%= @work.date %>
-</li>
-
-<li> Comment: <%= @work.comment %>
-</li>
-
-</ul>
+<%= render(:partial => 'attributes', :object => @work) %>
 
 <h2>Expressions</h2>
 

@@ -5,16 +5,13 @@
 <dl>
 
 <% for work in @works %>
-<dt> <%= link_to '<cite>'+work.title+'</cite>', work%> (<%= work.date %>)
+<dt> <%= link_to '<cite>'+work.title+'</cite>', work %> (<%= work.date %>)
 (<%= link_to 'Show', work %>
 <%= link_to 'Edit', edit_work_path(work) %>
 <%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %>)
 </dt>
 <dd> 
-Form: <%= work.form %>
-<br />
-Comment: <%= work.comment %>
-<br />
+<%= render(:partial => 'attributes', :object => work) %>
 </dd>
 <% end %>
 
