@@ -2,20 +2,11 @@
 
 <h1>Works</h1>
 
-<dl>
-
 <% for work in @works %>
-<dt> <%= link_to '<cite>'+work.title+'</cite>', work %> (<%= work.date %>)
-(<%= link_to 'Show', work %>
-<%= link_to 'Edit', edit_work_path(work) %>
-<%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
+<h2> <%= link_to work.title, work %> (<%= work.date %>)</h2>
+
 <%= render(:partial => 'attributes', :object => work) %>
-</dd>
+
 <% end %>
-
-</dl>
-
 
 <%= link_to 'New work', new_work_path %>

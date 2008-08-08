@@ -5,17 +5,14 @@
 <p>
 
 Work: 
-<cite>
 <%= link_to "#{@expression.work.title}",
-                 :controller => "works",
-                 :action     => "show",
-                 :id         => @expression.work.id %>
-
-</cite>
+  :controller => "works",
+  :action     => "show",
+  :id         => @expression.work.id %>
 
 </p>
 
-<h1>Expression: <cite><%= @expression.title %></cite></h1>
+<h1>Expression: <%= @expression.title %></h1>
 
 <p>
 
@@ -51,21 +48,7 @@ Attributes
 
 </p>
 
-<ul>
-
-<li> Form: <%= @expression.form %>
-</li>
-
-<li> Language: <%= @expression.language %>
-</li>
-
-<li> Date: <%= @expression.date %>
-</li>
-
-<li> Comment: <%= @expression.comment %>
-</li>
-
-</ul>
+<%= render(:partial => 'attributes', :object => @expression) %>
 
 <h2>Manifestations</h2>
 
@@ -82,10 +65,10 @@ Attributes
 
 <% @expression.manifestations.each do |manifestation| %>
 
-<li> <%= link_to "<cite>#{manifestation.title}</cite>",
-                 :controller => "manifestations",
-                 :action     => "show",
-                 :id         => manifestation.id %>
+<li> <%= link_to manifestation.title,
+   :controller => "manifestations",
+   :action     => "show",
+   :id         => manifestation.id %>
 (<%= manifestation.form_of_carrier %>, <%= manifestation.identifier %>)
 </li>
 

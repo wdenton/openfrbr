@@ -2,34 +2,11 @@
 
 <h1>Manifestations</h1>
 
-<dl>
-
 <% for manifestation in @manifestations %>
-<dt> <%= link_to '<cite>'+manifestation.title+'</cite>', manifestation%> (<%= manifestation.publication_date %>)
-(<%= link_to 'Show', manifestation %>
-<%= link_to 'Edit', edit_manifestation_path(manifestation) %>
-<%= link_to 'Destroy', manifestation, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Statement of responsibility: <%= manifestation.statement_of_responsibility %>
-<br />
-Date: <%= manifestation.publication_date %>
-<br />
-Edition: <%= manifestation.edition %>
-<br />
-Identifer: <%= manifestation.identifier %>
-<br />
-Form of carrier: <%= manifestation.form_of_carrier %>
-<br />
-Publisher: <%= manifestation.publisher %>
-<br />
-Publication place: <%= manifestation.publication_place %>
-<br />
-Series statement: <%= manifestation.series_statement %>
-<br />
-Comment: <%= manifestation.comment %>
-<br />
-</dd>
+<h2><%= link_to manifestation.title, manifestation%> (<%= manifestation.publication_date %>)</h2>
+
+<%= render(:partial => 'attributes', :object => manifestation) %>
+
 <% end %>
 
 </dl>

@@ -2,7 +2,7 @@
 
 <!-- Work -->
 
-<h1>Work: <cite><%= @work.title %></cite></h1>
+<h1>Work: <%= @work.title %></h1>
 
 <p>
 
@@ -58,17 +58,16 @@ Attributes:
 
 <% @work.expressions.each do |expression| %>
 
-<li> <%= link_to "<cite>#{expression.title}</cite>",
-                 :controller => "expressions",
-                 :action     => "show",
-                 :id         => expression.id %>
+<li> <%= link_to expression.title,
+  :controller => "expressions",
+  :action     => "show",
+  :id         => expression.id %>
 (<%= expression.language %>, <%= expression.form %>)
 </li>
 
 <% end %>
 
 </ul>
-
 
 <%= link_to 'Edit', edit_work_path(@work) %> |
 <%= link_to 'Back', works_path %>

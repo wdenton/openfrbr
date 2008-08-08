@@ -1,42 +1,34 @@
 <% @pagetitle = "Item: #{@item.manifestation.title} (#{@item.identifier})s" %>
 
-<!-- Item show -->
-
 <p>
 
 Work: 
-<cite>
 <%= link_to "#{@item.manifestation.expression.work.title}",
-                 :controller => "works",
-                 :action     => "show",
-                 :id         => @item.manifestation.expression.work.id 
+  :controller => "works",
+  :action     => "show",
+  :id         => @item.manifestation.expression.work.id 
 %>
-
-</cite>
 
 </p>
 
 <p>
 
 Expression: 
-<cite><%= link_to "#{@item.manifestation.expression.title}",
+<%= link_to "#{@item.manifestation.expression.title}",
   :controller => "expressions",
   :action     => "show",
-  :id         => @item.manifestation.expression.id %></cite>
+  :id         => @item.manifestation.expression.id %>
 (<%= @item.manifestation.expression.language %>, <%= @item.manifestation.expression.form %>)
-
 
 </p>
 
 <p>
 
 Manifestation: 
-<cite>
 <%= link_to "#{@item.manifestation.title}",
-                 :controller => "manifestations",
-                 :action     => "show",
-                 :id         => @item.manifestation.id %>
-</cite>
+  :controller => "manifestations",
+  :action     => "show",
+  :id         => @item.manifestation.id %>
 (<%= @item.manifestation.form_of_carrier %>, 
 <%= @item.manifestation.identifier %>)
 
@@ -64,22 +56,7 @@ link_to "#{c.name}",
 
 </p>
 
-<ul>
-
-<li> Call number: <%= @item.call_number %>
-</li>
-
-<li> Identifier: <%= @item.identifier %>
-</li>
-
-<li> Provenance: <%= @item.provenance %>
-</li>
-
-<li> Comment: <%= @item.comment %>
-</li>
-
-</ul>
-
+<%= render(:partial => 'attributes', :object => @item) %>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

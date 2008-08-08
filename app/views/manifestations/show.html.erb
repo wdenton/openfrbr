@@ -1,30 +1,27 @@
 <% @pagetitle = "Manifestation: #{@manifestation.title} (#{@manifestation.form_of_carrier}, #{@manifestation.identifier})" %>
 
-
-<!-- Manifestation -->
-
 <p>
 
 Work: 
-<cite><%= link_to "#{@manifestation.expression.work.title}",
-                 :controller => "works",
-                 :action     => "show",
-                 :id         => @manifestation.expression.work.id %></cite>
+<%= link_to "#{@manifestation.expression.work.title}",
+  :controller => "works",
+  :action     => "show",
+  :id         => @manifestation.expression.work.id %>
                  
 </p>
 
 <p>
  
 Expression: 
-<cite><%= link_to "#{@manifestation.expression.title}",
+<%= link_to "#{@manifestation.expression.title}",
   :controller => "expressions",
   :action     => "show",
-  :id         => @manifestation.expression.id %></cite>
+  :id         => @manifestation.expression.id %>
 (<%= @manifestation.expression.language %>, <%= @manifestation.expression.form %>)
 
 </p>
 
-<h1>Manifestation: <cite><%= @manifestation.title %></h1>
+<h1>Manifestation: <%= @manifestation.title %></h1>
 
 <p>
 
@@ -46,36 +43,8 @@ link_to "#{c.name}",
 
 </p>
 
-<ul>
+<%= render(:partial => 'attributes', :object => @manifestation) %>
 
-<li> Statement of responsibility: <%= @manifestation.statement_of_responsibility %>
-</li>
-
-<li> Edition: <%= @manifestation.edition %>
-</li>
-
-<li> Identifier: <%= @manifestation.identifier %>
-</li>
-
-<li> Form of carrier: <%= @manifestation.form_of_carrier %>
-</li>
-
-<li> Publisher: <%= @manifestation.publisher %>
-</li>
-
-<li> Publication date: <%= @manifestation.publication_date %>
-</li>
-
-<li> Publication place: <%= @manifestation.publication_place %>
-</li>
-
-<li> Series statement: <%= @manifestation.series_statement %>
-</li>
-
-<li> Comment: <%= @manifestation.comment %>
-</li>
-
-</ul>
 
 <h2>Items</h2>
 

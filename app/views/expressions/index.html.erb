@@ -5,21 +5,10 @@
 <dl>
 
 <% for expression in @expressions %>
-<dt> <%= link_to '<cite>'+expression.title+'</cite>', expression%> (<%= expression.date %>)
-(<%= link_to 'Show', expression %>
-<%= link_to 'Edit', edit_expression_path(expression) %>
-<%= link_to 'Destroy', expression, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Language: <%= expression.language %>
-<br />
-Form: <%= expression.form %>
-<br />
-Comment: <%= expression.comment %>
-<br />
-</dd>
-<% end %>
+<h2> <%= link_to expression.title, expression%> (<%= expression.date %>)</h2>
 
-</dl>
+<%= render(:partial => 'attributes', :object => expression) %>
+
+<% end %>
 
 <%= link_to 'New expression', new_expression_path %>
