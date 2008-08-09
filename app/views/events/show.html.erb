@@ -2,6 +2,8 @@
 
 <h1><%= @event.term %></h1>
 
+<%= link_to 'Edit', edit_event_path(@event) %>
+
 <ul>
 
 <li> Date: <%= @event.date %>
@@ -12,5 +14,23 @@
 
 </ul>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<p>
+
+Works:
+
+</p>
+
+<ul>
+
+<% @event.works.each do |w| %>
+
+<li> <%= link_to "#{w.title}",
+  :controller => "works",
+  :action     => "show",
+  :id         => w.id %>
+</li>
+
+<% end %>
+
+</ul>
+

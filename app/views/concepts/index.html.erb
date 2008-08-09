@@ -2,19 +2,14 @@
 
 <h1>Concepts</h1>
 
-<dl>
+<ul>
 
 <% for concept in @concepts %>
-<dt> <%= link_to concept.term, concept %>
-(<%= link_to 'Show', concept %>
-<%= link_to 'Edit', edit_concept_path(concept) %>
-<%= link_to 'Destroy', concept, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Comment: <%= concept.comment %>
-</dd>
+<li> <%= link_to concept.term, concept %> 
+(Comment: <%= concept.comment %>)
+</li>
 <% end %>
 
-</dl>
+</ul>
 
-<%= link_to 'New concept', new_concept_path %>
+<%= link_to 'Add a concept', new_concept_path %>

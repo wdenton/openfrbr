@@ -2,6 +2,8 @@
 
 <h1><%= @frbr_object.term %></h1>
 
+<%= link_to 'Edit', edit_frbr_object_path(@frbr_object) %>
+
 <ul>
 
 <li> Comment: <%= @frbr_object.comment %>
@@ -9,5 +11,23 @@
 
 </ul>
 
-<%= link_to 'Edit', edit_frbr_object_path(@frbr_object) %> |
-<%= link_to 'Back', frbr_objects_path %>
+<p>
+
+Works:
+
+</p>
+
+<ul>
+
+<% @frbr_object.works.each do |w| %>
+
+<li> <%= link_to "#{w.title}",
+  :controller => "works",
+  :action     => "show",
+  :id         => w.id %>
+</li>
+
+<% end %>
+
+</ul>
+

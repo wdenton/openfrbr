@@ -1,8 +1,8 @@
 <% @pagetitle = "Work: " + @work.title %>
 
-<!-- Work -->
-
 <h1>Work: <%= @work.title %></h1>
+
+<%= link_to 'Edit this work', edit_work_path(@work) %>
 
 <p>
 
@@ -12,28 +12,27 @@ Created by:
 
 <ul>
 
-<% @work.people.each do |p| %>
+<%- @work.people.each do |p| %>
 
 <li> <%= link_to "#{p.name}",
-                 :controller => "people",
-                 :action     => "show",
-                 :id         => p.id %>
+  :controller => "people",
+  :action     => "show",
+  :id         => p.id %>
 </li>
 
-<% end %>
+<%- end %>
 
 <% @work.corporate_bodies.each do |c| %>
 
 <li> <%= link_to "#{c.name}",
-                 :controller => "corporate_bodies",
-                 :action     => "show",
-                 :id         => c.id %>
+  :controller => "corporate_bodies",
+  :action     => "show",
+  :id         => c.id %>
 </li>
 
 <% end %>
 
 </ul>
-
 
 <p>
 
@@ -69,5 +68,85 @@ Attributes:
 
 </ul>
 
-<%= link_to 'Edit', edit_work_path(@work) %> |
-<%= link_to 'Back', works_path %>
+<h2>Subjects</h2>
+
+<p>
+
+Concepts:
+
+</p>
+
+<ul>
+
+<% @work.concepts.each do |c| %>
+
+<li> <%= link_to "#{c.term}",
+  :controller => "concepts",
+  :action     => "show",
+  :id         => c.id %>
+</li>
+
+<% end %>
+
+</ul>
+
+<p>
+
+Events:
+
+</p>
+
+<ul>
+
+<% @work.events.each do |e| %>
+
+<li> <%= link_to "#{e.term}",
+  :controller => "events",
+  :action     => "show",
+  :id         => e.id %>
+</li>
+
+<% end %>
+
+</ul>
+
+<p>
+
+Objects:
+
+</p>
+
+<ul>
+
+<% @work.frbr_objects.each do |o| %>
+
+<li> <%= link_to "#{o.term}",
+  :controller => "frbr_objects",
+  :action     => "show",
+  :id         => o.id %>
+</li>
+
+<% end %>
+
+</ul>
+
+<p>
+
+Places:
+
+</p>
+
+<ul>
+
+<% @work.places.each do |p| %>
+
+<li> <%= link_to "#{p.term}",
+  :controller => "places",
+  :action     => "show",
+  :id         => p.id %>
+</li>
+
+<% end %>
+
+</ul>
+

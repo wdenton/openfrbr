@@ -2,21 +2,18 @@
 
 <h1>Events</h1>
 
-<dl>
+<ul>
 
 <% for event in @events %>
-<dt> <%= link_to event.term, event %>
-(<%= link_to 'Show', event %>
-<%= link_to 'Edit', edit_event_path(event) %>
-<%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Date: <%= event.date %>
-<br />
-Comment: <%= event.comment %>
-</dd>
+<li> <%= link_to event.term, event %> 
+<ul>
+<li> Date: <%= event.date %></li>
+<li> Comment: <%= event.comment %></li>
+</ul>
+</li>
 <% end %>
 
-</dl>
+</ul>
 
-<%= link_to 'New event', new_event_path %>
+<%= link_to 'Add an event', new_event_path %>
+

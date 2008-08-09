@@ -2,20 +2,14 @@
 
 <h1>Places</h1>
 
-<dl>
+<ul>
 
 <% for place in @places %>
-<dt> <%= link_to place.term, place %>
-(<%= link_to 'Show', place %>
-<%= link_to 'Edit', edit_place_path(place) %>
-<%= link_to 'Destroy', place, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Comment: <%= place.comment %>
-</dd>
+<li> <%= link_to place.term, place %> 
+(Comment: <%= place.comment %>)</li>
 <% end %>
 
-</dl>
+</ul>
 
+<%= link_to 'Add a place', new_place_path %>
 
-<%= link_to 'New place', new_place_path %>

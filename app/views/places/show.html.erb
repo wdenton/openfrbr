@@ -2,6 +2,8 @@
 
 <h1><%= @place.term %></h1>
 
+<%= link_to 'Edit', edit_place_path(@place) %>
+
 <ul>
 
 <li> Comment: <%= @place.comment %>
@@ -9,5 +11,23 @@
 
 </ul>
 
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+<p>
+
+Works:
+
+</p>
+
+<ul>
+
+<% @place.works.each do |w| %>
+
+<li> <%= link_to "#{w.title}",
+  :controller => "works",
+  :action     => "place",
+  :id         => w.id %>
+</li>
+
+<% end %>
+
+</ul>
+

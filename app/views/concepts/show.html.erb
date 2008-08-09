@@ -1,6 +1,8 @@
 <% @pagetitle = "Concept: #{@concept.term}" %>
 
-<h1><%= @concept.term %></h1>
+<h1>Concept: <%= @concept.term %></h1>
+
+<%= link_to 'Edit', edit_concept_path(@concept) %>
 
 <ul>
 
@@ -9,5 +11,23 @@
 
 </ul>
 
-<%= link_to 'Edit', edit_concept_path(@concept) %> |
-<%= link_to 'Back', concepts_path %>
+<p>
+
+Works:
+
+</p>
+
+<ul>
+
+<% @concept.works.each do |w| %>
+
+<li> <%= link_to "#{w.title}",
+  :controller => "works",
+  :action     => "show",
+  :id         => w.id %>
+</li>
+
+<% end %>
+
+</ul>
+
