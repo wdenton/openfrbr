@@ -1,7 +1,33 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  title: Harry Potter and the Philosopher's Stone
+  edition: 
+  identifier: 1551923963
+  form_of_carrier: hardcover
+  publisher: Raincoast Books
+  publication_date: 2000
+  comment: 
+  expression_id: 1
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+two:
+  id: 2
+  title: Harry Potter and the Chamber of Secrets
+  edition:
+  identifier: 1551922444
+  form_of_carrier: hardcover
+  publisher: Raincoast Books
+  publication_date: 1999
+  comment:
+  expression_id: 2
+
+three:
+  id: 3
+  title: Harry Potter and the Prisoner of Azkaban
+  edition:
+  identifier: 1551922460
+  form_of_carrier: hardcover
+  publisher: Raincoast Books
+  publication_date: 1999
+  comment:
+  expression_id: 3
+

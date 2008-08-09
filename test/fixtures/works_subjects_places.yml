@@ -1,0 +1,39 @@
+one:
+  work_id: 1
+  place_id: 1
+
+two: 
+  work_id: 1
+  place_id: 2
+
+three:
+  work_id: 1
+  place_id: 3
+
+four:
+  work_id: 2
+  place_id: 1
+
+five: 
+  work_id: 2
+  place_id: 2
+
+six:
+  work_id: 2
+  place_id: 3
+
+seven:
+  work_id: 3
+  place_id: 1
+
+eight: 
+  work_id: 3
+  place_id: 2
+
+nine:
+  work_id: 3
+  place_id: 3
+
+
+
+

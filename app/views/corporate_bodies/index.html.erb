@@ -2,25 +2,11 @@
 
 <h1>Corporate Bodies</h1>
 
-<dl>
-
 <% for corporate_body in @corporate_bodies %>
-<dt> <%= link_to corporate_body.name, corporate_body %>
-(<%= link_to 'Show', corporate_body %>
-<%= link_to 'Edit', edit_corporate_body_path(corporate_body) %>
-<%= link_to 'Destroy', corporate_body, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Dates: <%= corporate_body.dates %>
-<br />
-Other designation: <%= corporate_body.other_designation %>
-<br />
-Place: <%= corporate_body.place %>
-<br />
-Comment: <%= corporate_body.comment %>
-</dd>
-<% end %>
+<h2><%= link_to corporate_body.name, corporate_body %></h2>
 
-</dl>
+<%= render(:partial => 'attributes', :object => corporate_body) %>
+
+<% end %>
 
 <%= link_to 'New corporate_body', new_corporate_body_path %>

@@ -2,24 +2,6 @@
 
 <h1><%= @family.name %></h1>
 
-<ul>
+<%= link_to 'Edit', edit_family_path(@family) %>
 
-<li> Dates: <%= @family.dates %>
-</li>
-
-<li> Type: <%= @family.family_type %>
-</li>
-
-<li> Places: <%= @family.places %>
-</li>
-
-<li> History: <%= @family.history %>
-</li>
-
-<li> Comment: <%= @family.comment %>
-</li>
-
-</ul>
-
-<%= link_to 'Edit', edit_family_path(@family) %> |
-<%= link_to 'Back', families_path %>
+<%= render(:partial => 'attributes', :object => @family) %>

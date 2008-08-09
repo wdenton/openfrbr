@@ -2,29 +2,27 @@
 
 <h1><%= @person.name %></h1>
 
+<%= link_to 'Edit', edit_person_path(@person) %>
+
+<%= render(:partial => 'attributes', :object => @person) %>
+
+<p>
+
+Creations:
+
+</p>
+
 <ul>
 
-<li> Dates: <%= @person.dates %>
+<%- @person.creators.each do |c| %>
+
+<li> <%= c.relation %> <%= link_to Work.find(c.work_id).title,
+  :controller => "works",
+  :action     => "show",
+  :id         => c.work_id %> 
 </li>
 
-<li> Title: <%= @person.title %>
-</li>
-
-<li> Other designation: <%= @person.other_designation %>
-</li>
-
-<li> Affiliation: <%= @person.affiliation %>
-</li>
-
-<li> Country: <%= @person.country %>
-</li>
-
-<li> Comment: <%= @person.comment %>
-</li>
+<%- end %>
 
 </ul>
 
-
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>

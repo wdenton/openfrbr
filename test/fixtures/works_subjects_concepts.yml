@@ -1,0 +1,27 @@
+# All three works are about love (1) and evil (2)
+
+one:
+  work_id: 1
+  concept_id: 1
+
+two:
+  work_id: 2
+  concept_id: 1
+
+three:
+  work_id: 3
+  concept_id: 1
+
+four:
+  work_id: 1
+  concept_id: 2
+
+five:
+  work_id: 2
+  concept_id: 2
+
+six:
+  work_id: 3
+  concept_id: 2
+
+

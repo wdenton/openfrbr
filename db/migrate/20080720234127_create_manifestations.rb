@@ -15,10 +15,6 @@ class CreateManifestations < ActiveRecord::Migration
       t.column :expression_id,  :integer # foreign key for the expression
     end
 
-    Manifestation.create :title => "Harry Potter and the Philosopher's Stone", :edition => "", :identifier => "1551923963", :form_of_carrier => "hardcover", :publisher => "Raincoast Books", :publication_date => "2000", :comment => "", :expression_id => 1
-    Manifestation.create :title => "Harry Potter and the Chamber of Secrets", :edition => "", :identifier => "1551922444", :form_of_carrier => "hardcover", :publisher => "Raincoast Books", :publication_date => "1999", :comment => "", :expression_id => 2
-    Manifestation.create :title => "Harry Potter and the Prisoner of Azkaban", :edition => "", :identifier => "1551922460", :form_of_carrier => "hardcover", :publisher => "Raincoast Books", :publication_date => "1999", :comment => "", :expression_id => 3
-
   end
 
   def self.down

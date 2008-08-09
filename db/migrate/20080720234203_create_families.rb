@@ -9,10 +9,6 @@ class CreateFamilies < ActiveRecord::Migration
       t.column :history, :string
       t.column :comment, :string
     end
-
-  Family.create :name => "Potter family", :places => ""
-  Family.create :name => "Dursley family", :places => ""
-
   end
 
   def self.down

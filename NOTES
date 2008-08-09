@@ -144,10 +144,110 @@ Now the default for http://localhost:3000/ is to list all the works.
 
 * 5 August 2008
 
-I installed Ubuntu on my Eee and now I can use Rails without any trouble.  I was
-getting errors with rake db:migrate on the old OS but now all is well.
+I installed Ubuntu on my Eee and now I can use Rails without any
+trouble.  I was getting errors with rake db:migrate on the old OS but
+now all is well.
 
+* 9 August 2008
 
+After some fiddling around so that associated works are listed on the
+subject pages, I'll try setting up has_many :through relations between
+works and people just for starters. What I think I need is a
+polymorphic many-to-many relationship between Group 1 and Group 2
+entities, with attributes on the relationships.  Any Group 1 entity
+can be in a variety of many-to-many relationships with any Group 2
+entity, and if I can have that all in one model, that would be cool. I
+think. I don't know. I'll start small and build up.  Not sure how this
+will all go in migrations.  I think I need to use fixtures to set up
+my test data.
+
+I couldn't think of a word or phrase to sum up all of these different
+relationships, so I just called the model TwoAndOne.
+
+$ ./script/generate model TwoAndOne -g
+      exists  app/models/
+      exists  test/unit/
+      exists  test/fixtures/
+      create  app/models/two_and_one.rb
+add 'app/models/two_and_one.rb'
+      create  test/unit/two_and_one_test.rb
+add 'test/unit/two_and_one_test.rb'
+      create  test/fixtures/two_and_ones.yml
+add 'test/fixtures/two_and_ones.yml'
+      exists  db/migrate
+      create  db/migrate/20080809163307_create_two_and_ones.rb
+add 'db/migrate/20080809163307_create_two_and_ones.rb'
+
+After some time not getting this to work, I decided to make a model
+called Creator, and start by making it so that works and people were
+in a many-to-many relationship this way.  That's more natural.
+That's the way we talk.
+
+./script/destroy model TwoAndOne -g
+
+had a lot of output.
+
+Later: Got this working.  My models look like this:
+
+class Work < ActiveRecord::Base
+  has_many :expressions
+  has_many :people, :through => :creators
+  has_many :creators
+end
+
+class Person < ActiveRecord::Base
+  has_many :works, :through => :creators
+  has_many :creators
+end
+
+class Creator < ActiveRecord::Base
+  belongs_to :work
+  belongs_to :person
+end
+
+I set up creators.yml with
+
+one:
+  work_id: 1
+  person_id: 1
+  relation: isAuthorOf
+
+two:
+  work_id: 2
+  person_id: 1
+  relation: isAuthorOf
+
+three:
+  work_id: 3
+  person_id: 1
+  relation: isAuthorOf
+
+And now this does it in show.html.erb for people:
+
+<ul>
+
+<%- @person.creators.each do |c| %>
+
+<li> <%= c.relation %> <%= link_to Work.find(c.work_id).title,
+  :controller => "works",
+  :action     => "show",
+  :id         => c.work_id %> 
+</li>
+
+<%- end %>
+
+</ul>
+
+That says that she "isAuthorOf Harry Potter and the Philosopher's
+Stone" and two others.
+
+Getting families and corporate bodies into the mix won't be hard, but
+I'm going to commit this now.
+
+Question: How can I change the method name on people so that I can say
+work.creators but person.creations?  I want the name of the
+many-to-many relation to be different depending on which way I look at
+it.  Must be some way to do that.
 
 
 

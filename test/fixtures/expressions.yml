@@ -1,7 +1,27 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  title: Harry Potter and the Philosopher's Stone
+  form: text
+  date: 1997
+  language: English
+  comment:
+  work_id: 1
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+two:
+  id: 2
+  title: Harry Potter and the Chamber of Secrets
+  form: text
+  date: 1998
+  language: English
+  comment:
+  work_id: 2
+
+three:
+  id: 3
+  title: Harry Potter and the Prisoner of Azkaban
+  form: text
+  date: 1999
+  language: English
+  comment:
+  work_id: 3
+

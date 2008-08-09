@@ -1,7 +1,19 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1    
+  term: Death of James and Lily Potter
+  date: 31 October 1981
+  comment:
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+two:
+  id: 2
+  term: Birth of Harry Potter
+  date: 31 July 1980
+  comment:
+
+three:
+  id: 3
+  term: Harry Potter begins at Hogwarts
+  date: September 1991
+  comment:
+
+    

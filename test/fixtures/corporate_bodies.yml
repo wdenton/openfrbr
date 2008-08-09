@@ -1,7 +1,20 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  name: Raincoast Books
+  dates:
+  place: Vancouver, BC
+  comment:
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+two:
+  id: 2
+  name: Arthur A. Levine
+  dates:
+  place: USA
+  comment:
+
+three:
+  id: 3
+  name: Listening Library
+  dates:
+  place:
+  comment:

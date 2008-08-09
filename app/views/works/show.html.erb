@@ -6,33 +6,26 @@
 
 <p>
 
-Created by:
+Creators:
 
 </p>
 
 <ul>
 
-<%- @work.people.each do |p| %>
+<%- @work.creators.each do |c| %>
 
-<li> <%= link_to "#{p.name}",
+<li> <%= link_to Person.find(c.person_id).name,
   :controller => "people",
   :action     => "show",
-  :id         => p.id %>
+  :id         => c.person_id %>
+(<%= c.relation %>)
 </li>
 
 <%- end %>
 
-<% @work.corporate_bodies.each do |c| %>
-
-<li> <%= link_to "#{c.name}",
-  :controller => "corporate_bodies",
-  :action     => "show",
-  :id         => c.id %>
-</li>
-
-<% end %>
-
 </ul>
+
+<!-- Put corporate_bodies and families here -->
 
 <p>
 

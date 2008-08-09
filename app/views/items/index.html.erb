@@ -3,7 +3,7 @@
 <h1>Items</h1>
 
 <% for item in @items %>
-<h1><%= link_to "<cite>#{item.manifestation.title}</cite>", item %> (<%= item.identifier %>)</h1>
+<h1><%= link_to item.manifestation.title, item %> (<%= item.identifier %>)</h1>
 
 <%= render(:partial => 'attributes', :object => item) %>
 

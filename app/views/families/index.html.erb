@@ -2,27 +2,12 @@
 
 <h1>Families</h1>
 
-<dl>
-
 <% for family in @families %>
-<dt> <%= link_to family.name, family %>
-(<%= link_to 'Show', family %>
-<%= link_to 'Edit', edit_family_path(family) %>
-<%= link_to 'Destroy', family, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Dates: <%= family.dates %>
-<br />
-Type: <%= family.family_type %>
-<br />
-Places: <%= family.places %>
-<br />
-History: <%= family.history %>
-<br />
-Comment: <%= family.comment %>
-</dd>
-<% end %>
 
-</dl>
+<h2><%= link_to family.name, family %></h2>
+
+<%= render(:partial => 'attributes', :object => family) %>
+
+<% end %>
 
 <%= link_to 'New family', new_family_path %>

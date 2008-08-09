@@ -2,21 +2,13 @@
 
 <h1><%= @corporate_body.name %></h1>
 
-<ul>
+<%= link_to 'Edit', edit_corporate_body_path(@corporate_body) %>
 
-<li> Dates: <%= @corporate_body.dates %>
-</li>
+<p>
 
-<li> Other designation: <%= @corporate_body.other_designation %>
-</li>
+Attributes
 
-<li> Place: <%= @corporate_body.place %>
-</li>
+</p>
 
-s<li> Comment: <%= @corporate_body.comment %>
-</li>
+<%= render(:partial => 'attributes', :object => @corporate_body) %>
 
-</ul>
-
-<%= link_to 'Edit', edit_corporate_body_path(@corporate_body) %> |
-<%= link_to 'Back', corporate_bodies_path %>

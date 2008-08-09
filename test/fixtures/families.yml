@@ -1,7 +1,9 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  name: Potter family
+  places:
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+two:
+  id: 2
+  name: Dursley family
+  places:

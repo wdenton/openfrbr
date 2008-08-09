@@ -2,29 +2,11 @@
 
 <h1>People</h1>
 
-<dl>
-
 <% for person in @people %>
-<dt> <%= link_to person.name, person %>
-(<%= link_to 'Show', person %>
-<%= link_to 'Edit', edit_person_path(person) %>
-<%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %>)
-</dt>
-<dd> 
-Dates: <%= person.dates %>
-<br />
-Title: <%= person.title %>
-<br />
-Other designation: <%= person.other_designation %>
-<br />
-Affiliation: <%= person.affiliation %>
-<br />
-Country: <%= person.country %>
-<br />
-Comment: <%= person.comment %>
-</dd>
-<% end %>
+<h2><%= link_to person.name, person %></h2>
 
-</dl>
+<%= render(:partial => 'attributes', :object => person) %>
+
+<% end %>
 
 <%= link_to 'New person', new_person_path %>

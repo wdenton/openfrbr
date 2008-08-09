@@ -8,11 +8,6 @@ class CreateItems < ActiveRecord::Migration
       t.column :comment, :string
       t.column :manifestation_id, :integer
     end
-
-    Item.create :call_number => "FIC ROW", :identifier => "My copy", :comment => "", :manifestation_id => 1
-    Item.create :call_number => "YA ROWLING", :identifier => "My copy", :comment => "", :manifestation_id => 2
-    Item.create :call_number => "PR 6068 O93 H322 1999", :identifier => "My copy", :comment => "", :manifestation_id => 3
-
   end
 
   def self.down

@@ -5,10 +5,6 @@ class CreateConcepts < ActiveRecord::Migration
       t.column :term, :string
       t.column :comment, :string
     end
-
-  Concept.create :term => "love"
-  Concept.create :term => "evil"
-  
   end
 
   def self.down

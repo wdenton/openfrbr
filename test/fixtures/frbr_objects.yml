@@ -1,7 +1,14 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  term: wand
+  comment:
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+two:
+  id: 2
+  term: Sorting Hat
+  comment:
+
+three:
+  id: 3
+  term: butterbeer
+  comment:

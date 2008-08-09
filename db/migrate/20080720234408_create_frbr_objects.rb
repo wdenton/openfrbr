@@ -5,11 +5,6 @@ class CreateFrbrObjects < ActiveRecord::Migration
       t.column :term, :string
       t.column :comment, :string
     end
-    
-    FrbrObject.create :term => "wand"
-    FrbrObject.create :term => "Sorting Hat"
-    FrbrObject.create :term => "butterbeer"
-    
   end
 
   def self.down

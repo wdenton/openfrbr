@@ -82,4 +82,5 @@ class PeopleController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end
