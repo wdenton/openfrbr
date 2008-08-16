@@ -249,6 +249,21 @@ work.creators but person.creations?  I want the name of the
 many-to-many relation to be different depending on which way I look at
 it.  Must be some way to do that.
 
+Later: Installed the has_many_polymorphs gem.
+
+* 16 August 2008
+
+Now I'm on the train back to Toronto.  The Creation and Creator models
+are both broken, but I'm going to leave them that way for now.  To get
+moving along I'm going to do a basic has_many :through polymorphic
+relation to set up the Subject relationship.  Work is in a
+many-to-many relationship with every other entity as a Subject: a Work
+can have any of Work, Expression, Manifestation, Item, Person, Family,
+Corporate Body, Concept, Event, Object, or Place as a subject.
+There's only one relation: hasSubject (inverse isSubjectOf).
+
+
+
 
 
 

@@ -65,3 +65,7 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
+
+# Use this gem (had to add by hand after installing gem)
+require 'has_many_polymorphs'
+
