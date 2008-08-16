@@ -262,17 +262,6 @@ can have any of Work, Expression, Manifestation, Item, Person, Family,
 Corporate Body, Concept, Event, Object, or Place as a subject.
 There's only one relation: hasSubject (inverse isSubjectOf).
 
-./script/generate model Subject -g
-
-Hmm, I think that was stupid.  What I'd be doing there is a has_many
-:through polymorphic association, which is what I was trying to do
-with Creation, but couldn't get to work, so now I three broken and
-incomplete things going on. 
-
-All right, I'm going to revert to the last checkin to just wipe all
-that out.
-
-
 
 
 
