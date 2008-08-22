@@ -12,7 +12,7 @@ Creators:
 
 <ul>
 
-<%- @work.creators.each do |c| %>
+<%- @work.people.each do |c| %>
 
 <li> <%= link_to Person.find(c.person_id).name,
   :controller => "people",
