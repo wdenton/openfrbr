@@ -276,6 +276,154 @@ After more fooling around: bugger this, I need net access and I need
 to get it working on a simple test example with no other stuff going
 on.  
 
+* 22 August 2008
+
+I decided to start of simple and made a basic has_many :through
+relation between Work and Person and called it Creation.  
+
+class Creation < ActiveRecord::Base
+  belongs_to :person
+  belongs_to :work
+end
+
+class Work < ActiveRecord::Base
+  has_many :creations
+  has_many :people, :through => :creations
+end
+
+class Person < ActiveRecord::Base
+  has_many :creations
+  has_many :works, :through => :creations
+end
+
+And the migration:
+
+class CreateCreations < ActiveRecord::Migration
+  def self.up
+    create_table :creations do |t|
+      t.column :person_id, :integer
+      t.column :work_id, :integer
+      t.column :relation, :string
+    end
+  end
+
+  def self.down
+    drop_table :creations
+  end
+end
+
+That lets me do this:
+
+buff:eee:~/src/openfrbr$ ./script/console 
+Loading development environment (Rails 2.1.0)
+>> w = Work.find(1)
+=> #<Work id: 1, created_at: "2008-08-22 18:29:58", updated_at: "2008-08-22 18:29:58", title: "Harry Potter and the Philosopher's Stone", form: "novel", date: "1997", comment: "First book">
+>> p = Person.find(1)
+=> #<Person id: 1, created_at: "2008-08-22 18:29:57", updated_at: "2008-08-22 18:29:57", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>
+>> c = Creation.new(:relation => 'isAuthorOf')
+=> #<Creation id: nil, person_id: nil, work_id: nil, relation: "isAuthorOf">
+>> p.creations << c
+=> [#<Creation id: 1, person_id: 1, work_id: nil, relation: "isAuthorOf">]
+>> w.creations << c
+=> [#<Creation id: 1, person_id: 1, work_id: 1, relation: "isAuthorOf">]
+>> c.save
+=> true
+>> p.creations
+=> [#<Creation id: 1, person_id: 1, work_id: nil, relation: "isAuthorOf">]
+>> p.works
+=> [#<Work id: 1, created_at: "2008-08-22 18:29:58", updated_at: "2008-08-22 18:29:58", title: "Harry Potter and the Philosopher's Stone", form: "novel", date: "1997", comment: "First book">]
+>> w.creations
+=> [#<Creation id: 1, person_id: 1, work_id: 1, relation: "isAuthorOf">]
+>> w.people
+=> [#<Person id: 1, created_at: "2008-08-22 18:29:57", updated_at: "2008-08-22 18:29:57", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>]
+>> 
+
+Good.
+
+So that's a many-to-many relationship done, with an attribute on the
+relation.  One Work can be created by many People, and one Person can
+create many Works.
+
+What I want to say is that Work is in a many-to-many Creation
+relationship with all of People, Families, and Corporate Bodies.
+That's a many-to-many polymorphic relation.  I'll use
+has_many_polymorphs for that, but first, I think I'll get used to a
+basic polymorphic relationship by setting up a one-to-many polymorphic
+Realization relation between Expression and Person, Family, and
+Corporate Body.  Then I'll have a many-to-many and a one-to-many
+polymorphic and it should be easier to set up has_many_polymorphs with
+that knowledge.
+
+Insight: this is a one-to-many relation, so there's no new model to
+set up.  Aha.  I did this:
+
+class Person < ActiveRecord::Base
+  has_many :expressions, :as => :realizer
+end
+
+class Family < ActiveRecord::Base
+  has_many :expressions, :as => :realizer
+end
+
+class CorporateBody < ActiveRecord::Base
+  has_many :expressions, :as => :realizer
+end
+
+class Expression < ActiveRecord::Base
+  belongs_to :realizer, :polymorphic => true
+end
+
+And this is the migration:
+
+class CreateRealizations < ActiveRecord::Migration
+  def self.up
+    add_column :expressions, :realizer_id, :integer
+    add_column :expressions, :realizer_type, :string
+  end
+
+  def self.down
+    remove_column :expressions, :realizer_id
+    remove_column :expressions, :realizer_type
+  end
+end
+
+$ ./script/console 
+Loading development environment (Rails 2.1.0)
+>> p = Person.find(1)
+=> #<Person id: 1, created_at: "2008-08-22 19:43:37", updated_at: "2008-08-22 19:43:37", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>
+>> e = Expression.find(1)
+=> #<Expression id: 1, created_at: "2008-08-22 19:43:36", updated_at: "2008-08-22 19:43:36", title: "Harry Potter and the Philosopher's Stone", form: "text", date: "1997", language: "English", comment: nil, work_id: 1, realizer_id: nil, realizer_type: nil>
+>> c = CorporateBody.find(1)
+=> #<CorporateBody id: 1, created_at: "2008-08-22 19:43:35", updated_at: "2008-08-22 19:43:35", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>
+>> e2 = Expression.find(2)
+=> #<Expression id: 2, created_at: "2008-08-22 19:43:36", updated_at: "2008-08-22 19:43:36", title: "Harry Potter and the Chamber of Secrets", form: "text", date: "1998", language: "English", comment: nil, work_id: 2, realizer_id: nil, realizer_type: nil>
+>> e.realizer = p
+=> #<Person id: 1, created_at: "2008-08-22 19:43:37", updated_at: "2008-08-22 19:43:37", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>
+>> e2.realizer = c
+=> #<CorporateBody id: 1, created_at: "2008-08-22 19:43:35", updated_at: "2008-08-22 19:43:35", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>
+>> e.save
+=> true
+>> e2.save
+=> true
+
+Then going into ./script/dbconsole and doing
+
+sqlite> .dump expressions
+
+shows that the ID number and type of the realizer have been stored,
+for example:
+
+INSERT INTO "expressions" VALUES(1,'2008-08-22 19:43:36','2008-08-22 19:50:27','Harry Potter and the Philosopher''s Stone','text','1997','English',NULL,1,1,'Person');
+
+So that's how to do a one-to-many polymorphic relation.
+
+I will check this in.
+
+
+
+
+
+
 
 
 
