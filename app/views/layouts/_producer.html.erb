@@ -1,0 +1,14 @@
+<ul>
+
+<% producer.productions.each do |c| %>
+
+<li> <%= link_to Manifestation.find(c.manifestation_id).title,
+  :controller => "manifestations",
+  :action     => "show",
+  :id         => c.manifestation_id %> 
+</li>
+
+<% end %>
+
+</ul>
+

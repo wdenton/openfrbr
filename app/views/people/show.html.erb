@@ -6,27 +6,8 @@
 
 <%= render(:partial => 'attributes', :object => @person) %>
 
-<h2>Works created</h2>
+<%= render(:partial => 'layouts/group_ones', :object => @person) %>
 
-<ul>
-
-<%- @person.creations.each do |c| %>
-
-<li> <%= link_to Work.find(c.work_id).title,
-  :controller => "works",
-  :action     => "show",
-  :id         => c.work_id %> 
-</li>
-
-<%- end %>
-
-</ul>
-
-<h2>Expressions realized</h2>
-
-<h2>Manifestations produced</h2>
-
-<h2>Items owned</h2>
 
 
 

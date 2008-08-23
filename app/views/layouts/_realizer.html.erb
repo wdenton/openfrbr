@@ -1,0 +1,14 @@
+<ul>
+
+<% realizer.realizations.each do |c| %>
+
+<li> <%= link_to Expression.find(c.expression_id).title,
+  :controller => "expressions",
+  :action     => "show",
+  :id         => c.expression_id %> 
+</li>
+
+<% end %>
+
+</ul>
+
