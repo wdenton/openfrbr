@@ -419,8 +419,112 @@ So that's how to do a one-to-many polymorphic relation.
 
 I will check this in.
 
+All righty. For my next move I will try using has_many_polymorphs with
+a Production model to handle the relation between Manifestation and
+Person, Family, and Corporate Body.
 
+Got it working!
 
+class Manifestation < ActiveRecord::Base
+  has_many_polymorphs :producers, :from => [:people, :families,  :corporate_bodies], :through => :productions
+end
+
+class Production < ActiveRecord::Base
+  belongs_to :manifestation
+  belongs_to :producers, :polymorphic => true
+end
+
+Nothing is needed in the Person, Family, and Corporate Body models,
+because of the way that has_many_polymorphs works.
+
+Here's the migration:
+
+class CreateProductions < ActiveRecord::Migration
+  def self.up
+    create_table :productions do |t|
+      t.references :producer, :polymorphic => true
+      t.references :manifestation
+    end
+  end
+
+  def self.down
+    drop_table :productions
+  end
+end
+
+Here are some examples (leaving out some of the output):
+
+>> p1 = Person.find(1); p2 = Person.find(2); c1 = CorporateBody.find(1); c2 = CorporateBody.find(2)
+>> m1 = Manifestation.find(1); m2 = Manifestation.find(2)
+>> m1.producers << p1; m1.producers << c1
+>> m2.producers << p1; m2.producers << p2; m2.producers << c1; m2.producers << c2
+>> m1.producers.each do |p|; puts "#{p.name} (#{p.class})"; end
+J.K. Rowling (Person)
+Raincoast Books (CorporateBody)
+>> m2.producers.each do |p|; puts "#{p.name} (#{p.class})"; end
+J.K. Rowling (Person)
+Raincoast Books (CorporateBody)
+Arthur A. Levine (CorporateBody)
+William Denton (Person)
+
+>> p1.productions
+=> [#<Production id: 1, producer_id: 1, producer_type: "Person", manifestation_id: 1>, #<Production id: 3, producer_id: 1, producer_type: "Person", manifestation_id: 2>]
+>> p1.productions.each do |p|; puts Manifestation.find(p.manifestation_id).title; end
+Harry Potter and the Philosopher's Stone
+Harry Potter and the Chamber of Secrets
+
+So a Manifestation has producers and a Person, Family, or
+CorporateBody has productions. That's perfect.  I will check this in.
+The Production model is done.
+
+There is one small thing I can't get working right, about the test
+fixtures. I put this in test/fixtures/productions.yml:
+
+PhilosopherProducer:
+  manifestation_id: 1
+  producer_id: 1
+  producer_type: CorporateBody
+
+ChamberProducer:
+  manifestation_id: 2
+  producer_id: 1
+  producer_type: CorporateBody
+
+AzkabanProducer:
+  manifestation_id: 3
+  producer_id: 1
+  producer_type: CorporateBody
+
+When I do 
+
+rake db:drop; rake db:migrate; rake db:fixtures:load
+
+then the database looks right and the productions table has the right
+data in it.  But:
+
+>> c = CorporateBody.find(1)
+>> c.productions
+NoMethodError: undefined method `productions' for #<CorporateBody:0xb6df6cac>
+        from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/attribute_methods.rb:256:in `method_missing'
+        from (irb):2
+>> m = Manifestation.find(1)
+>> m.producers
+=> [#<CorporateBody id: 1, created_at: "2008-08-23 02:29:11", updated_at: "2008-08-23 02:29:11", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>]
+>> m.producers << c
+=> [#<CorporateBody id: 1, created_at: "2008-08-23 02:29:11", updated_at: "2008-08-23 02:29:11", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>]
+>> c.productions
+=> [#<Production id: 366820064, producer_id: 1, producer_type: "CorporateBody", manifestation_id: 2>, #<Production id: 564650414, producer_id: 1, producer_type: "CorporateBody", manifestation_id: 3>, #<Production id: 831263640, producer_id: 1, producer_type: "CorporateBody", manifestation_id: 1>]
+
+The productions method for a corporate body doesn't exist right off
+the bat, but if I add it as a producer of a manifestation then all of
+its other prouctions appear as set up in the text fixture.  One side
+of the relation is getting set up right, but not the other.  There may
+be some aspect of test fixtures and has_many_polymorphs that I don't
+know about, but without net access I can't check it. I don't see
+anything in the has_many_polymorphs docs and I can't see anything
+relevant in its test fixtures.
+
+I will leave it for now and check this in.
 
 
 

@@ -1,18 +1,18 @@
-one:
+RaincoastBooks:
   id: 1
   name: Raincoast Books
   dates:
   place: Vancouver, BC
   comment:
 
-two:
+ArthurALevine:
   id: 2
   name: Arthur A. Levine
   dates:
   place: USA
   comment:
 
-three:
+ListeningLibrary:
   id: 3
   name: Listening Library
   dates:

@@ -1,0 +1,16 @@
+PhilosopherProducer:
+  manifestation_id: 1
+  producer_id: 1
+  producer_type: CorporateBody
+
+ChamberProducer:
+  manifestation_id: 2
+  producer_id: 1
+  producer_type: CorporateBody
+
+AzkabanProducer:
+  manifestation_id: 3
+  producer_id: 1
+  producer_type: CorporateBody
+
+
