@@ -1,7 +1,14 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+PhilosopherCreator:
+  work_id: 1
+  creator_id: 1
+  creator_type: Person
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+ChamberCreator:
+  work_id: 2
+  creator_id: 1
+  creator_type: Person
+
+AzkabanCreator:
+  work_id: 3
+  creator_id: 1
+  creator_type: Person

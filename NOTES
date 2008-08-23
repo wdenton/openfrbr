@@ -531,6 +531,9 @@ entities that is otherwise identical to Production.
 
 Check that in.
 
+Now I'll redo the Creation model so it uses has_many_polymorphs.  I
+think i'll do it the wrong way and just edit the migration that I
+created earlier. Oh well.
 
 
 

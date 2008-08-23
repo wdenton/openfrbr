@@ -1,10 +1,11 @@
 class CreateCreations < ActiveRecord::Migration
   def self.up
     create_table :creations do |t|
-      t.column :person_id, :integer
-      t.column :work_id, :integer
-      t.column :relation, :string
+      t.references :creator, :polymorphic => true
+      t.references :work
     end
+    drop_table :works_corporate_bodies
+    drop_table :works_people
   end
 
   def self.down
