@@ -535,6 +535,31 @@ Now I'll redo the Creation model so it uses has_many_polymorphs.  I
 think i'll do it the wrong way and just edit the migration that I
 created earlier. Oh well.
 
+* 23 August 2008
+
+I did Creation and made a Realization model, so now all of the
+relations between the Group 1 entites and Group 2 entities as
+creators, realizers, producers, and owners exist.
+
+The last big data model challenge will be to set up the many-to-many
+Subject relation between Work and every other entity (because a Work
+can have as a subject any Work, Expression, Manifestation, Item,
+Person, Family, Corporate Body, Concept, Event, Object, or Place).
+I'll use has_many_polymorphs for that, but there's the added twist
+that there's a many-to-many Work-to-Work relationship in there, a
+self-referential many-to-many relation, and I'll have to look into how
+to make that work.  Can't remember if that'll require a bit of extra
+configging or not.  If I can't get it to work I can always set up the
+relations to all of the other entities and then add it in later.
+That's one of the nice things about migrations.
+
+Next, though, it's time to make it so that when I view a work I can
+see a list of its creators, and so on for the other Group 1 entities.
+I think a helper to generate the links will do the trick.
+
+
+
+
 
 
 

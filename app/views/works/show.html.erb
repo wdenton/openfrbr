@@ -6,26 +6,11 @@
 
 <p>
 
-Creators:
+<h2>Creators</h2>
 
 </p>
 
-<ul>
-
-<%- @work.people.each do |c| %>
-
-<li> <%= link_to Person.find(c.person_id).name,
-  :controller => "people",
-  :action     => "show",
-  :id         => c.person_id %>
-(<%= c.relation %>)
-</li>
-
-<%- end %>
-
-</ul>
-
-<!-- Put corporate_bodies and families here -->
+<%= generate_group2_entity_link_list(@work.creators) %>
 
 <p>
 

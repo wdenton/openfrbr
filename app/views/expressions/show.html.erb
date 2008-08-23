@@ -1,11 +1,9 @@
 <% @pagetitle = "Expression: #{@expression.title} (#{@expression.language}, #{@expression.form})" %>
 
-<!-- Expression -->
-
 <p>
 
 Work: 
-<%= link_to "#{@expression.work.title}",
+<%= link_to @expression.work.title,
   :controller => "works",
   :action     => "show",
   :id         => @expression.work.id %>
@@ -14,33 +12,9 @@ Work:
 
 <h1>Expression: <%= @expression.title %></h1>
 
-<p>
+<h2>Realizers</h2>
 
-Realized by:
-
-<ul>
-
-<% @expression.people.each do |p| %>
-
-<li> <%= link_to "#{p.name}",
-                 :controller => "people",
-                 :action     => "show",
-                 :id         => p.id %>
-</li>
-
-<% end %>
-
-<% @expression.corporate_bodies.each do |c| %>
-
-<li> <%= link_to "#{c.name}",
-                 :controller => "corporate_bodies",
-                 :action     => "show",
-                 :id         => c.id %>
-</li>
-
-<% end %>
-
-</ul>
+<%= generate_group2_entity_link_list(@expression.realizers) %>
 
 <p>
 

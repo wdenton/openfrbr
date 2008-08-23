@@ -36,23 +36,13 @@ Manifestation:
 
 <h1><%= @item.identifier %></h1>
 
+<h2>Owners</h2>
+
+<%= generate_group2_entity_link_list(@item.owners) %>
+
 <p>
 
-Owned by:
-
-<%= @item.people.map {|person|
-link_to "#{person.name}",
-                 :controller => "people",
-                 :action     => "show",
-                 :id         => person.id
-}.join ", " %>
-
-<%= @item.corporate_bodies.map {|c|
-link_to "#{c.name}",
-                 :controller => "corporate_bodies",
-                 :action     => "show",
-                 :id         => c.id
-}.join ", " %>
+Attributes
 
 </p>
 

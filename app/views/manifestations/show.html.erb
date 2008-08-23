@@ -23,28 +23,17 @@ Expression:
 
 <h1>Manifestation: <%= @manifestation.title %></h1>
 
+<h2>Producers</h2>
+
+<%= generate_group2_entity_link_list(@manifestation.producers) %>
+
 <p>
 
-Produced by:
-
-<%= @manifestation.people.map {|person|
-link_to "#{person.name}",
-                 :controller => "people",
-                 :action     => "show",
-                 :id         => person.id
-}.join ", " %>
-
-<%= @manifestation.corporate_bodies.map {|c|
-link_to "#{c.name}",
-                 :controller => "corporate_bodies",
-                 :action     => "show",
-                 :id         => c.id
-}.join ", " %>
+Attributes
 
 </p>
 
 <%= render(:partial => 'attributes', :object => @manifestation) %>
-
 
 <h2>Items</h2>
 
