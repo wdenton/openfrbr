@@ -1,0 +1,16 @@
+PhilosopherRealizer:
+  expression_id: 1
+  realizer_id: 1
+  realizer_type: Person
+
+ChamberRealizer:
+  expression_id: 2
+  realizer_id: 1
+  realizer_type: Person
+
+AzkabanRealizer:
+  expression_id: 3
+  realizer_id: 1
+  realizer_type: Person
+
+

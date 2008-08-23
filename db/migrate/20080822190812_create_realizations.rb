@@ -1,11 +1,14 @@
 class CreateRealizations < ActiveRecord::Migration
   def self.up
-    add_column :expressions, :realizer_id, :integer
-    add_column :expressions, :realizer_type, :string
+    create_table :realizations do |t|
+      t.references :realizer, :polymorphic => true
+      t.references :expression
+    end
+    drop_table :expressions_corporate_bodies
+    drop_table :expressions_people
   end
 
   def self.down
-    remove_column :expressions, :realizer_id
-    remove_column :expressions, :realizer_type
+    drop_table :realizations
   end
 end
