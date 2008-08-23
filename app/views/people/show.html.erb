@@ -6,17 +6,13 @@
 
 <%= render(:partial => 'attributes', :object => @person) %>
 
-<p>
-
-Creations:
-
-</p>
+<h2>Works created</h2>
 
 <ul>
 
-<%- @person.creators.each do |c| %>
+<%- @person.creations.each do |c| %>
 
-<li> <%= c.relation %> <%= link_to Work.find(c.work_id).title,
+<li> <%= link_to Work.find(c.work_id).title,
   :controller => "works",
   :action     => "show",
   :id         => c.work_id %> 
@@ -25,4 +21,12 @@ Creations:
 <%- end %>
 
 </ul>
+
+<h2>Expressions realized</h2>
+
+<h2>Manifestations produced</h2>
+
+<h2>Items owned</h2>
+
+
 

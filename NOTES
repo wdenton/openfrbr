@@ -557,6 +557,19 @@ Next, though, it's time to make it so that when I view a work I can
 see a list of its creators, and so on for the other Group 1 entities.
 I think a helper to generate the links will do the trick.
 
+The generate_group2_entity_link_list method in
+app/helpers/applications_helpers did that.
+
+TODO: Noticed that when I'd made up the has_many :through relation for
+Works and Group 2 entities I'd added a relation attribute to the
+relation, e.g. "isAuthorOf." That's gone now. I could add in role or
+something like that. Perhaps more appropriate for Expression?
+Translator, conductor, performer, reader, etc.
+
+That helper method I added was wrong. It should have been a partial
+layout. I changed it.
+
+
 
 
 

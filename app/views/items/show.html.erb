@@ -1,4 +1,4 @@
-<% @pagetitle = "Item: #{@item.manifestation.title} (#{@item.identifier})s" %>
+<% @pagetitle = "Item: #{@item.manifestation.title} (#{@item.identifier})" %>
 
 <p>
 
@@ -38,7 +38,8 @@ Manifestation:
 
 <h2>Owners</h2>
 
-<%= generate_group2_entity_link_list(@item.owners) %>
+<%= render(:partial => 'layouts/group2entitylist', 
+  :object => @item.owners) %>
 
 <p>
 

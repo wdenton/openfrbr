@@ -14,7 +14,8 @@ Work:
 
 <h2>Realizers</h2>
 
-<%= generate_group2_entity_link_list(@expression.realizers) %>
+<%= render(:partial => 'layouts/group2entitylist', 
+  :object => @expression.realizers) %>
 
 <p>
 

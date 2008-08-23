@@ -4,13 +4,10 @@
 
 <%= link_to 'Edit this work', edit_work_path(@work) %>
 
-<p>
-
 <h2>Creators</h2>
 
-</p>
-
-<%= generate_group2_entity_link_list(@work.creators) %>
+<%= render(:partial => 'layouts/group2entitylist', 
+  :object => @work.creators) %>
 
 <p>
 
