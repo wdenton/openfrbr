@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
 
   belongs_to :manifestation
-  has_and_belongs_to_many :people, :join_table => "items_people"
-  has_and_belongs_to_many :corporate_bodies, :join_table => "items_corporate_bodies"
+
+  has_many_polymorphs :owners, :from => [:people, :families, :corporate_bodies], :through => :ownerships
 
 end

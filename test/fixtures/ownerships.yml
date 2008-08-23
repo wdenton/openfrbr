@@ -1,0 +1,14 @@
+PhilosopherOwner:
+  item_id: 1
+  owner_id: 2
+  owner_type: Person
+
+ChamberOwner:
+  item_id: 2
+  owner_id: 2
+  owner_type: Person
+
+AzkabanOwner:
+  item_id: 3
+  owner_id: 2
+  owner_type: Person

@@ -526,6 +526,11 @@ relevant in its test fixtures.
 
 I will leave it for now and check this in.
 
+Next, I will set up an Ownership relation between Item and Group 2
+entities that is otherwise identical to Production.
+
+Check that in.
+
 
 
 
