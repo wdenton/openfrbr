@@ -2,10 +2,17 @@
 
 <h1>Expressions</h1>
 
-<dl>
-
 <% for expression in @expressions %>
 <h2> <%= link_to expression.title, expression%> (<%= expression.date %>)</h2>
+
+<p>
+
+Realized by:
+
+</p>
+
+<%= render(:partial => 'layouts/group2entitylist', 
+  :object => expression.realizers) %>
 
 <%= render(:partial => 'attributes', :object => expression) %>
 

@@ -5,6 +5,15 @@
 <% for item in @items %>
 <h1><%= link_to item.manifestation.title, item %> (<%= item.identifier %>)</h1>
 
+<p>
+
+Owned by:
+
+</p>
+
+<%= render(:partial => 'layouts/group2entitylist', 
+  :object => item.owners) %>
+
 <%= render(:partial => 'attributes', :object => item) %>
 
 <% end %>

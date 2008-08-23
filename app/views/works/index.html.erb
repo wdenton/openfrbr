@@ -5,6 +5,15 @@
 <% for work in @works %>
 <h2> <%= link_to work.title, work %> (<%= work.date %>)</h2>
 
+<p>
+
+Created by:
+
+</p>
+
+<%= render(:partial => 'layouts/group2entitylist', 
+  :object => work.creators) %>
+
 <%= render(:partial => 'attributes', :object => work) %>
 
 <% end %>

@@ -5,6 +5,16 @@
 <% for manifestation in @manifestations %>
 <h2><%= link_to manifestation.title, manifestation%> (<%= manifestation.publication_date %>)</h2>
 
+<p>
+
+Produced by:
+
+</p>
+
+<%= render(:partial => 'layouts/group2entitylist', 
+  :object => manifestation.producers) %>
+
+
 <%= render(:partial => 'attributes', :object => manifestation) %>
 
 <% end %>

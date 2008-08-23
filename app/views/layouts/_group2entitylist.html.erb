@@ -2,8 +2,7 @@
 
 <% group2entitylist.each do |e| %>
 
-<li> 
-<% if e.class.to_s == "Person" %>
+<li> <% if e.class.to_s == "Person" %>
 <%= link_to e.name, 
   :controller => "people", 
   :action => "show",
@@ -18,8 +17,7 @@
   :controller => "corporate_bodies", 
   :action => "show",
   :id => e.id %>
-<% end %>
-</li>
+<% end %></li>
 
 <% end %>
 
