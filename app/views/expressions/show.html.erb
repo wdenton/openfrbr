@@ -12,6 +12,14 @@ Work:
 
 <h1>Expression: <%= @expression.title %></h1>
 
+<p>
+
+<%= link_to 'Edit', edit_expression_path(@expression) %> 
+|
+<%= link_to 'Delete', @expression, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
+
 <h2>Realizers</h2>
 
 <%= render(:partial => 'layouts/group2entitylist', 
@@ -50,7 +58,6 @@ Attributes
 <% end %>
 
 </ul>
-
 
 <%= link_to 'Edit', edit_expression_path(@expression) %> |
 <%= link_to 'Back', expressions_path %>

@@ -1,11 +1,21 @@
-<h1>Editing expression</h1>
+<% @pagetitle = "Edit Expression: " + @expression.title %>
+
+<h1>Edit expression: <%= @expression.title %></h1>
+
+<p>
+
+<%= link_to 'Delete', @expression, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
 
 <% form_for(@expression) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<%= render(:partial => 'form', :object => f) %>
+
+<p>
+<%= f.submit "Update" %>
+</p>
 <% end %>
 
 <%= link_to 'Show', @expression %> |

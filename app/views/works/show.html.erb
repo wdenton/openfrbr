@@ -2,7 +2,13 @@
 
 <h1>Work: <%= @work.title %></h1>
 
-<%= link_to 'Edit this work', edit_work_path(@work) %>
+<p>
+
+<%= link_to 'Edit', edit_work_path(@work) %> 
+|
+<%= link_to 'Delete', @work, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
 
 <h2>Creators</h2>
 

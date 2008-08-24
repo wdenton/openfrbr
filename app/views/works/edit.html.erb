@@ -1,10 +1,18 @@
-<h1>Editing <%= @work.title %> (<%= @work.id %>)</h1>
+<% @pagetitle = "Edit Work: " + @work.title %>
+
+<h1>Edit work: <%= @work.title %></h1>
 
 <p>
 
 TODO: Add way of editing creators.
 <br />
 TODO: Add way of editing related works and all other relations.
+
+</p>
+
+<p>
+
+<%= link_to 'Delete', @work, :confirm => 'Are you sure?', :method => :delete %>
 
 </p>
 

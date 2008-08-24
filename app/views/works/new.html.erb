@@ -1,10 +1,17 @@
+<% @pagetitle = "Add a new work" %>
+
 <h1>Add a new work</h1>
 
 <% form_for(@work) do |f| %>
 
 <%= f.error_messages %>
 
+<p>
+
+Creator:
 <%= render(:partial => 'layouts/group2_entity_pick') %>
+
+</p>
 
 <%= render(:partial => 'form', :object => f) %>
 
