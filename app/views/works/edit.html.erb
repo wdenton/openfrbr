@@ -1,11 +1,22 @@
-<h1>Editing work</h1>
+<h1>Editing <%= @work.title %> (<%= @work.id %>)</h1>
+
+<p>
+
+TODO: Add way of editing creators.
+<br />
+TODO: Add way of editing related works and all other relations.
+
+</p>
+
 
 <% form_for(@work) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<%= render(:partial => 'form', :object => f) %>
+
+<p>
+<%= f.submit "Update" %>
+</p>
 <% end %>
 
 <%= link_to 'Show', @work %> |

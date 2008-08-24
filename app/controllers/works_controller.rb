@@ -1,4 +1,5 @@
 class WorksController < ApplicationController
+
   # GET /works
   # GET /works.xml
   def index
@@ -40,10 +41,24 @@ class WorksController < ApplicationController
   # POST /works
   # POST /works.xml
   def create
+
+    creator_name = params[:name]
+    creator_type = params[:entity_type]
+
+    if creator_name.empty?
+      flash[:notice] = "You must enter a creator."
+      redirect_to :action => 'new' and return
+    end
+
     @work = Work.new(params[:work])
+    @creator = creator_type._as_class.find_or_create_by_name(creator_name)
 
     respond_to do |format|
       if @work.save
+        # TODO Better error-checking here
+        @creator.save
+        @work.creators << @creator 
+        @work.save
         flash[:notice] = 'Work was successfully created.'
         format.html { redirect_to(@work) }
         format.xml  { render :xml => @work, :status => :created, :location => @work }

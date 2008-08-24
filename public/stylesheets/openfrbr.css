@@ -41,27 +41,27 @@ table caption {
 table {
   margin-left: 4%;
   margin-right: 4%
-  border-width: 1px 1px 1px 1px;
+  /* border-width: 1px 1px 1px 1px;
   border-spacing: 0px;
   border-style: outset outset outset outset;
   border-color: white white white white;
-  border-collapse: separate;
+  border-collapse: separate; */
   background-color: white;
 }
 
 table th {
-    border-width: 1px 1px 1px 1px;
-    padding: 5px 5px 5px 5px;
+    /* border-width: 1px 1px 1px 1px;
     border-style: inset inset inset inset;
-    border-color: white white white white;
+    border-color: white white white white; */
+    padding: 5px 5px 5px 5px;
     background-color: white;
 }
 
 table td {
-    border-width: 1px 1px 1px 1px;
-    padding: 5px 5px 5px 5px;
+    /* border-width: 1px 1px 1px 1px;
     border-style: inset inset inset inset;
-    border-color: white white white white;
+    border-color: white white white white; */
+    padding: 5px 5px 5px 5px;
     background-color: white;
 }
 

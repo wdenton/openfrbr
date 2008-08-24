@@ -1,5 +1,8 @@
 class Work < ActiveRecord::Base
 
+  validates_length_of :title, :minimum => 1, 
+   :message => "cannot be blank"
+
   has_many :expressions
 
   has_many_polymorphs :creators, :from => [:people, :families, :corporate_bodies], :through => :creations
