@@ -1,0 +1,45 @@
+<ul>
+
+<% @work.expressions.each do |e| %>
+
+<li> <%= link_to e.title,
+  :controller => "expressions",
+  :action     => "show",
+  :id         => e.id %>
+(<%= e.language %>, <%= e.form %>)
+
+<ul>
+<% e.manifestations.each do |m| %>
+
+<li> <%= link_to m.title,
+  :controller => "manifestations",
+  :action     => "show",
+  :id         => m.id %>
+(<%= m.form_of_carrier %>, <%= m.identifier %>)
+
+<ul>
+
+<% m.items.each do |i| %>
+
+<li> <%= link_to i.identifier,
+  :controller => "items",
+  :action     => "show",
+  :id         => i.id %>
+(<%= i.call_number %>)
+</li>
+
+<% end %>
+
+</ul>
+
+</li>
+
+<% end %>
+
+</ul>
+
+</li>
+
+<% end %>
+
+</ul>
