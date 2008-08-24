@@ -553,6 +553,8 @@ configging or not.  If I can't get it to work I can always set up the
 relations to all of the other entities and then add it in later.
 That's one of the nice things about migrations.
 
+TODO: Set up Subject relation between W and all entities.
+
 Next, though, it's time to make it so that when I view a work I can
 see a list of its creators, and so on for the other Group 1 entities.
 I think a helper to generate the links will do the trick.
@@ -568,6 +570,21 @@ Translator, conductor, performer, reader, etc.
 
 That helper method I added was wrong. It should have been a partial
 layout. I changed it.
+
+TODO: Add more expressions for the works, and manifestations and items
+for each, so that the hierarchical tree has enough in it to be
+interesting.
+
+TODO: See how to use Ajax drag and drop to move a manifestation from
+one expression to another in that tree view, and have the connection
+relation updated in the database.
+
+TODO: Add an autocompleting search in the left nav that searches for
+... just works? Or any entity, and it tells you what it is in
+brackets?
+
+TODO: Set up self-referential Work-to-Work relation with attributes
+(hasSequel/isSequelOf etc.) and display that in the work views.
 
 
 
