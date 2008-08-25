@@ -1,11 +1,21 @@
-<h1>Editing corporate_body</h1>
+<% @pagetitle = "Edit Corporate Body: " + @corporate_body.name %>
+
+<h1>Edit corporte body: <%= @corporate_body.name %></h1>
+
+<p>
+
+<%= link_to 'Delete', @corporate_body, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
 
 <% form_for(@corporate_body) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<%= render(:partial => 'form', :object => f) %>
+
+<p>
+<%= f.submit "Update" %>
+</p>
 <% end %>
 
 <%= link_to 'Show', @corporate_body %> |
