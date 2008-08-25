@@ -1,12 +1,21 @@
-<h1>Editing family</h1>
+<% @pagetitle = "Edit Family: " + @family.name %>
+
+<h1>Edit family: <%= @family.name %></h1>
+
+<p>
+
+<%= link_to 'Delete', @family, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
 
 <% form_for(@family) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<%= render(:partial => 'form', :object => f) %>
+
+<p>
+<%= f.submit "Update" %>
+</p>
 <% end %>
 
-<%= link_to 'Show', @family %> |
-<%= link_to 'Back', families_path %>
+<%= link_to 'Show', @family %>

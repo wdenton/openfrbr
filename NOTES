@@ -586,6 +586,24 @@ brackets?
 TODO: Set up self-referential Work-to-Work relation with attributes
 (hasSequel/isSequelOf etc.) and display that in the work views.
 
+* 24 August 2008
+
+TODO: Edit familes, corporate bodies, and Group 3 entities.
+
+TODO: One-button "remove" to drop a link between a G1 entity and a G2
+entity, to go beside a name, to remove it as creator, owner, etc.
+
+p = Person.find(5)
+w = Work.find(1)
+w.creators << p        # Create creation reation
+w.creators.delete(p)   # Delete creation relation
+
+* 25 August 2008
+
+TODO: After deleting an entity, delete all of the associations it has
+with other entities.  If a Person is the realizer of an Expression and
+the Person is deleted, e.realizers will still list the person as a
+realizer.  (Use same function as above.)
 
 
 
