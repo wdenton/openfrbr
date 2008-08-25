@@ -1,12 +1,21 @@
-<h1>Editing person</h1>
+<% @pagetitle = "Edit Person: " + @person.name %>
+
+<h1>Edit person: <%= @person.name %></h1>
+
+<p>
+
+<%= link_to 'Delete', @person, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
 
 <% form_for(@person) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<%= render(:partial => 'form', :object => f) %>
+
+<p>
+<%= f.submit "Update" %>
+</p>
 <% end %>
 
-<%= link_to 'Show', @person %> |
-<%= link_to 'Back', people_path %>
+<%= link_to 'Show', @person %>
