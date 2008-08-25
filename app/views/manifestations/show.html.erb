@@ -23,6 +23,14 @@ Expression:
 
 <h1>Manifestation: <%= @manifestation.title %></h1>
 
+<p>
+
+<%= link_to 'Edit', edit_manifestation_path(@manifestation) %> 
+|
+<%= link_to 'Delete', @manifestation, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
+
 <h2>Producers</h2>
 
 <%= render(:partial => 'layouts/group2entitylist', 
@@ -61,7 +69,3 @@ Attributes
 <% end %>
 
 </ul>
-
-
-<%= link_to 'Edit', edit_manifestation_path(@manifestation) %> |
-<%= link_to 'Back', manifestations_path %>

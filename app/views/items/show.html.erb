@@ -36,6 +36,15 @@ Manifestation:
 
 <h1><%= @item.identifier %></h1>
 
+<p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> 
+|
+<%= link_to 'Delete', @item, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
+
+
 <h2>Owners</h2>
 
 <%= render(:partial => 'layouts/group2entitylist', 
@@ -48,6 +57,3 @@ Attributes
 </p>
 
 <%= render(:partial => 'attributes', :object => @item) %>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>

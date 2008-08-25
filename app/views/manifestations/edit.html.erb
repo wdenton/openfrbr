@@ -1,12 +1,21 @@
-<h1>Editing manifestation</h1>
+<% @pagetitle = "Edit Manifestation: " + @manifestation.title %>
+
+<h1>Edit manifestation: <%= @manifestation.title %></h1>
+
+<p>
+
+<%= link_to 'Delete', @manifestation, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
 
 <% form_for(@manifestation) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<%= render(:partial => 'form', :object => f) %>
+
+<p>
+<%= f.submit "Update" %>
+</p>
 <% end %>
 
-<%= link_to 'Show', @manifestation %> |
-<%= link_to 'Back', manifestations_path %>
+<%= link_to 'Show', @manifestation %>
