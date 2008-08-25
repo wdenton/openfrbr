@@ -98,4 +98,17 @@ class WorksController < ApplicationController
     end
   end
 
+  def remove_creator(work_id, creator_type, creator_id)
+    @work = Work.find(work_id)
+    if @work.creators.delete(creator_type.find(creator_id))
+      flash[:notice] = 'Creator removed.'
+      format.html { redirect_to(@work) }
+      format.xml  { head :ok }
+    else
+      flash[:notice] = 'Error: could not remove creator.'
+      format.html { redirect_to(@work) }
+      format.xml  { render :xml => "Error", :status => :unprocessable_entity }
+    end
+  end    
+
 end

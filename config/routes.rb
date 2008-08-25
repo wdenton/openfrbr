@@ -1,27 +1,20 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :places
 
-  map.resources :events
-
-  map.resources :frbr_objects
-
-  map.resources :concepts
-
-  map.resources :corporate_bodies
-
-  map.resources :families
-
-  map.resources :people
-
-  map.resources :items
-
-  map.resources :manifestations
-
+  map.resources :works, :has_many => :expressions
   map.resources :expressions
+  map.resources :manifestations
+  map.resources :items
+  map.resources :people
+  map.resources :families
+  map.resources :corporate_bodies
+  map.resources :concepts
+  map.resources :events
+  map.resources :frbr_objects
+  map.resources :places
+  map.resources :creations
 
-  map.resources :works
-
-  # The priority is based upon order of creation: first created -> highest priority.
+  # The priority is based upon order of creation: first created ->
+  # highest priority.
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'

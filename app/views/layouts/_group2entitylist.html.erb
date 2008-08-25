@@ -2,22 +2,10 @@
 
 <% group2entitylist.each do |e| %>
 
-<li> <% if e.class.to_s == "Person" %>
-<%= link_to e.name, 
-  :controller => "people", 
-  :action => "show",
-  :id => e.id %>
-<% elsif e.class.to_s == "Family" %>
-<%= link_to e.name, 
-  :controller => "family", 
-  :action => "show",
-  :id => e.id %>
-<% elsif e.class.to_s == "CorporateBody" %>
-<%= link_to e.name, 
-  :controller => "corporate_bodies", 
-  :action => "show",
-  :id => e.id %>
-<% end %></li>
+<li> <%= link_to e.name, e %> 
+</li>
+
+</li>
 
 <% end %>
 
