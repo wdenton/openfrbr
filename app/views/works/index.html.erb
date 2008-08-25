@@ -3,7 +3,16 @@
 <h1>Works</h1>
 
 <% for work in @works %>
-<h2> <%= link_to work.title, work %> (<%= work.date %>)</h2>
+
+<div class="indexlist">
+
+<h2> <%= link_to work.title, work %> (<%= work.form %>, <%= work.date %>)</h2>
+
+<p>
+
+<%= pluralize(work.expressions.size, "expression") %>.
+
+</p>
 
 <p>
 
@@ -14,7 +23,9 @@ Created by:
 <%= render(:partial => 'layouts/group2entitylist', 
   :object => work.creators) %>
 
-<%= render(:partial => 'attributes', :object => work) %>
+<% # render(:partial => 'attributes', :object => work) %>
+
+</div>
 
 <% end %>
 

@@ -40,10 +40,16 @@ class ExpressionsController < ApplicationController
   # POST /expressions
   # POST /expressions.xml
   def create
-    @expression = Expression.new(params[:expression])
+    realizer_name = params[:name]
+    realizer_type = params[:entity_type]
 
+    @expression = Expression.new(params[:expression])
+    @realizer = realizer_type._as_class.find_or_create_by_name(realizer_name)
     respond_to do |format|
       if @expression.save
+        @realizer.save
+        @expression.realizers << @realizer
+        @expression.save
         flash[:notice] = 'Expression was successfully created.'
         format.html { redirect_to(@expression) }
         format.xml  { render :xml => @expression, :status => :created, :location => @expression }

@@ -116,3 +116,8 @@ div.footer {
   text-align: center;
 }
 
+div.indexlist {
+  border: thin solid #cccccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}

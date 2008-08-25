@@ -41,10 +41,17 @@ class ManifestationsController < ApplicationController
   # POST /manifestations
   # POST /manifestations.xml
   def create
+    producer_name = params[:name]
+    producer_type = params[:entity_type]
+
     @manifestation = Manifestation.new(params[:manifestation])
+    @producer = producer_type._as_class.find_or_create_by_name(producer_name)
 
     respond_to do |format|
       if @manifestation.save
+        @producer.save
+        @manifestation.producers << @producer
+        @manifestation.save
         flash[:notice] = 'Manifestation was successfully created.'
         format.html { redirect_to(@manifestation) }
         format.xml  { render :xml => @manifestation, :status => :created, :location => @manifestation }

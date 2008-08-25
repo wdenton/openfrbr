@@ -3,7 +3,17 @@
 <h1>Expressions</h1>
 
 <% for expression in @expressions %>
+
+<div class="indexlist">
+
 <h2> <%= link_to expression.title, expression%> (<%= expression.date %>)</h2>
+
+<p>
+
+<%= pluralize(expression.manifestations.size, "manifestation") %>.
+
+</p>
+
 
 <p>
 
@@ -15,5 +25,7 @@ Realized by:
   :object => expression.realizers) %>
 
 <%= render(:partial => 'attributes', :object => expression) %>
+
+</div>
 
 <% end %>
