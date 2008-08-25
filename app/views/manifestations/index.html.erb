@@ -3,6 +3,9 @@
 <h1>Manifestations</h1>
 
 <% for manifestation in @manifestations %>
+
+<div class="indexlist">
+
 <h2><%= link_to manifestation.title, manifestation%> (<%= manifestation.publication_date %>)</h2>
 
 <p>
@@ -14,8 +17,9 @@ Produced by:
 <%= render(:partial => 'layouts/group2entitylist', 
   :object => manifestation.producers) %>
 
-
 <%= render(:partial => 'attributes', :object => manifestation) %>
+
+</div>
 
 <% end %>
 

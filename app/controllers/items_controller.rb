@@ -40,10 +40,17 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.xml
   def create
+    owner_name = params[:name]
+    owner_type = params[:entity_type]
+
     @item = Item.new(params[:item])
+    @owner = owner_type._as_class.find_or_create_by_name(owner_name)
 
     respond_to do |format|
       if @item.save
+        @owner.save
+        @item.owners << @owner
+        @item.save
         flash[:notice] = 'Item was successfully created.'
         format.html { redirect_to(@item) }
         format.xml  { render :xml => @item, :status => :created, :location => @item }

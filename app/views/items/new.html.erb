@@ -1,11 +1,38 @@
-<h1>New item</h1>
+<% @pagetitle = "Add a new item" %>
+
+<h1>Add a new item</h1>
+
+<p>
+
+Work:
+<%= Work.find(Expression.find(Manifestation.find(params[:manifestation_id]).expression_id).work_id).title %>
+<br />
+Expression:
+<%= Expression.find(Manifestation.find(params[:manifestation_id]).expression_id).title %>
+<br />
+Manifestation:  
+<%= Manifestation.find(params[:manifestation_id]).title %>
+
+</p>
 
 <% form_for(@item) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Create" %>
-  </p>
+<p>
+
+Owner:
+
+<%= render(:partial => 'layouts/group2_entity_pick') %>
+
+</p>
+
+<%= render(:partial => 'form', :object => f) %>
+
+<%= hidden_field (:item, :manifestation_id, :value => params[:manifestation_id]) %>
+
+<p>
+<%= f.submit "Create" %>
+</p>
 <% end %>
 
 <%= link_to 'Back', items_path %>
