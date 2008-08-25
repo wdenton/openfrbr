@@ -1,12 +1,21 @@
-<h1>Editing place</h1>
+<% @pagetitle = "Edit Place: " + @place.term %>
+
+<h1>Edit place: <%= @place.term %></h1>
+
+<p>
+
+<%= link_to 'Delete', @place, :confirm => 'Are you sure?', :method => :delete %>
+
+</p>
 
 <% form_for(@place) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<%= render(:partial => 'form', :object => f) %>
+
+<p>
+<%= f.submit "Update" %>
+</p>
 <% end %>
 
-<%= link_to 'Show', @place %> |
-<%= link_to 'Back', places_path %>
+<%= link_to 'Show', @place %>
