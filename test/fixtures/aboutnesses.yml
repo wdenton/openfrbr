@@ -1,0 +1,45 @@
+PhilosopherSubject1:
+  work_id: 1
+  subject_id: 1
+  subject_type: Concept
+
+ChamberSubject1:
+  work_id: 2
+  subject_id: 1
+  subject_type: Concept
+
+AzkabanSubject1:
+  work_id: 3
+  subject_id: 1
+  subject_type: Concept
+
+PhilosopherSubject2:
+  work_id: 1
+  subject_id: 2
+  subject_type: Concept
+
+ChamberSubject2:
+  work_id: 2
+  subject_id: 2
+  subject_type: Concept
+
+AzkabanSubject2:
+  work_id: 3
+  subject_id: 2
+  subject_type: Concept
+
+PhilosopherSubject3:
+  work_id: 1
+  subject_id: 1
+  subject_type: Place
+
+ChamberSubject3:
+  work_id: 2
+  subject_id: 1
+  subject_type: Place
+
+AzkabanSubject3:
+  work_id: 3
+  subject_id: 1
+  subject_type: Place
+

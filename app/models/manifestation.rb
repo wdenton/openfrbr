@@ -7,4 +7,6 @@ class Manifestation < ActiveRecord::Base
 
   has_many_polymorphs :producers, :from => [:people, :families, :corporate_bodies], :through => :productions
 
+  has_many :works, :as => :subject
+
 end

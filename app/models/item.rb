@@ -6,4 +6,6 @@ class Item < ActiveRecord::Base
 
   has_many_polymorphs :owners, :from => [:people, :families, :corporate_bodies], :through => :ownerships
 
+  has_many :works, :as => :subject
+
 end

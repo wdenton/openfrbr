@@ -7,5 +7,7 @@ class Expression < ActiveRecord::Base
 
   has_many_polymorphs :realizers, :from => [:people, :families, :corporate_bodies], :through => :realizations
 
+  has_many :works, :as => :subject
+
 end
 

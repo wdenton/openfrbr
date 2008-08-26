@@ -7,4 +7,6 @@ class CorporateBody < ActiveRecord::Base
   has_many :manifestations, :as => :producer
   has_many :items,          :as => :owner
 
+  has_many :works,          :as => :subject
+
 end

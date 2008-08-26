@@ -598,12 +598,41 @@ w = Work.find(1)
 w.creators << p        # Create creation reation
 w.creators.delete(p)   # Delete creation relation
 
+Do this in an Ajaxy way so the page doesn't reload, the relation just
+disappears. 
+
 * 25 August 2008
 
 TODO: After deleting an entity, delete all of the associations it has
 with other entities.  If a Person is the realizer of an Expression and
 the Person is deleted, e.realizers will still list the person as a
 realizer.  (Use same function as above.)
+
+Was reading a bit about routes.rb but I don't understand it all, or
+what everything shown in rake routes means
+
+Added  map.resources :creations
+and edited   map.resources :works, :has_many => :expressions
+
+which gives new URLs like /works/1/expressions/new, but a basic GET on
+that just gives an error. I have no idea what's going on here.
+
+Am unsure of the best way to handle remove the creation relation
+between a Work and a G2 entity. Should I do it in a Creation
+controller? If so, how? Or should it be a method in the Work
+controller?  What is the RESTful way to do it?
+
+I added the Aboutnesses model, which defines subject. (Took some
+fiddling because I called it Subject first, which confused things, and
+then I changed it to Aboutness, which is singular so it also confused
+things. Lots of moving stuff around by hand.)
+
+Now for a given work I can say w.subjects, but the name of the subject
+is different in the three entities! Is it title, name, or term?  What
+about item--what's the best way of referring to that on its own?  Hmm.
+
+Maybe I need some sort of helper so if I pass in a class and an id, it
+picks out the proper term to use in the display.
 
 
 
