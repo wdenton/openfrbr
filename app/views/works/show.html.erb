@@ -55,6 +55,32 @@ Attributes:
 
 <h2>Subjects</h2>
 
+<div id="subject_form">
+
+<% form_remote_tag :url => work_subjects_path(@work) do %>
+
+<%= submit_tag "Add" %>
+
+<%= text_field_tag "subject_term" %>
+
+<%= select_tag "subject_type",
+'<option>Work</option>
+<option>Expression</option>
+<option>Manifestation</option>
+<option>Item</option>
+<option>Person</option>
+<option>Family</option>
+<option>CorporateBody</option>
+<option selected="selected">Concept</option>
+<option>Event</option>
+<option>FrbrObject</option>
+<option>Place</option>'
+ %>
+
+<% end %>
+
+</div>
+
 <ul id="subjects">
 
 <% if @work.subjects.empty? %>
@@ -63,7 +89,7 @@ Attributes:
 
 <% else %>
 
-<%= render :partial => 'aboutness/subjects', 
+<%= render :partial => 'subjects/subjects', 
   :collection => @work.subjects %>
 
 <% end %>

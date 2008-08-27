@@ -1,0 +1,3 @@
+page[:subjects].visual_effect :highlight
+page[:subjects].replace_html :partial => 'subjects/subjects', 
+  :collection => @work.subjects

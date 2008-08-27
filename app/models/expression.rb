@@ -21,16 +21,14 @@ class Expression < ActiveRecord::Base
     # For expression e, e.work a Work object representing
     # the first Work for which this Expression is a reification.
     # (And only, if there is just one.) 
-      Work.find(reifications[0].work_id)
+    Work.find(reifications[0].work_id)
   end
 
   def works
     # For expression e, e.works returns an array of all works 
     # for which e is a reification.
     works = []
-    reifications.each do |r|
-      works << Work.find(r.work_id)
-    end
+    reifications.each { |r| works << Work.find(r.work_id) }
     works
   end
 
