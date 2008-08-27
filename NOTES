@@ -654,7 +654,10 @@ expression realizes a work, and a G2 realizes an expression.  Caused
 me confusion--worth pointing out.)
 
 TODO: Set up Embodiment and Exemplification models for E-M and M-I
-relations, with a relation attribute. Then every relation has a model.
+relations, with a relation attribute. Then every relation has a
+model.  On the other hand, I don't think I need a model for M-I,
+because it's a basic one-to-many relation without any attributes.
+Probably good to set up a model just for completeness, though.
 
 TODO: Make a partial layout so if I pass in an object it will tell me
 every work for which the object is a subject (use Aboutness).

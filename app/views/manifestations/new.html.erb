@@ -2,12 +2,14 @@
 
 <h1>Add a manifestation</h1>
 
+<% e = Expression.find(params[:expression_id]) %>
+
 <p>
 
 Work:
-<%= Expression.find(params[:expression_id]).work.anchor_text %>
+<%= link_to e.work.anchor_text, e.work %>
 <br />
-Expression: <%= Expression.find(params[:expression_id]).anchor_text %>
+Expression: <%= link_to e.anchor_text, e %>
 
 </p>
 
@@ -31,5 +33,3 @@ Producer:
 <%= f.submit "Create" %>
 </p>
 <% end %>
-
-<%= link_to 'Back', manifestations_path %>

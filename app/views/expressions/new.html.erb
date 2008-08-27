@@ -4,7 +4,7 @@
 
 <p>
 
-Work: <%= Work.find(params[:work_id]).anchor_text %>
+Adding a new expression to the work <%= link_to Work.find(params[:work_id]).anchor_text, Work.find(params[:work_id]) %>
 
 </p>
 
@@ -33,5 +33,3 @@ Relation: <%= text_field_tag "realization" %>
 <%= f.submit "Create" %>
 </p>
 <% end %>
-
-<%= link_to 'Back', expressions_path %>
