@@ -31,3 +31,13 @@ three:
   comment:
   expression_id: 3
 
+PhilosopherAudiobookManifestation:
+  id: 4
+  title: Harry Potter and the Philosopher's Stone
+  edition:
+  identifier:
+  form_of_carrier: CD
+  publisher: Listening Library
+  publication_date:
+  comment: Audiobook
+  expression_id: 4

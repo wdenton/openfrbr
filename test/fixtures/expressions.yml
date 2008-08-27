@@ -25,3 +25,11 @@ three:
   comment:
   work_id: 3
 
+PhilosopherAudiobookExpression:
+  id: 4
+  title: Harry Potter and the Philosopher's Stone
+  form: audio
+  date:
+  language: English
+  comment:
+  work_id: 1

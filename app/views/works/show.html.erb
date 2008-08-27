@@ -25,7 +25,11 @@ Attributes:
 
 <h2>Tree</h2>
 
-<%= render(:partial => 'tree', :object => @work) %>
+<p>
+
+render(:partial => 'tree', :object => @work)
+
+</p>
 
 
 <h2>Expressions</h2>
@@ -41,13 +45,10 @@ Attributes:
 
 <ul>
 
-<% @work.expressions.each do |expression| %>
+<% @work.reifications.each do |r| %>
+<% e=Expression.find(r.expression_id) %>
 
-<li> <%= link_to expression.title,
-  :controller => "expressions",
-  :action     => "show",
-  :id         => expression.id %>
-(<%= expression.language %>, <%= expression.form %>)
+<li> <%= link_to e.title, e %> (<%= e.language %>, <%= e.form %>)
 </li>
 
 <% end %>
@@ -58,81 +59,6 @@ Attributes:
 
 <p>
 
-Concepts:
+TODO: List subjects, using Aboutness model.
 
 </p>
-
-<ul>
-
-<% @work.concepts.each do |c| %>
-
-<li> <%= link_to "#{c.term}",
-  :controller => "concepts",
-  :action     => "show",
-  :id         => c.id %>
-</li>
-
-<% end %>
-
-</ul>
-
-<p>
-
-Events:
-
-</p>
-
-<ul>
-
-<% @work.events.each do |e| %>
-
-<li> <%= link_to "#{e.term}",
-  :controller => "events",
-  :action     => "show",
-  :id         => e.id %>
-</li>
-
-<% end %>
-
-</ul>
-
-<p>
-
-Objects:
-
-</p>
-
-<ul>
-
-<% @work.frbr_objects.each do |o| %>
-
-<li> <%= link_to "#{o.term}",
-  :controller => "frbr_objects",
-  :action     => "show",
-  :id         => o.id %>
-</li>
-
-<% end %>
-
-</ul>
-
-<p>
-
-Places:
-
-</p>
-
-<ul>
-
-<% @work.places.each do |p| %>
-
-<li> <%= link_to "#{p.term}",
-  :controller => "places",
-  :action     => "show",
-  :id         => p.id %>
-</li>
-
-<% end %>
-
-</ul>
-

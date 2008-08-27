@@ -1,0 +1,19 @@
+PhilosopherReification:
+  work_id: 1
+  expression_id: 1
+  relation: author's final text
+
+ChamberReification:
+  work_id: 2
+  expression_id: 2
+  relation: author's final text
+
+AzkabanReification:
+  work_id: 3
+  expression_id: 3
+  relation: author's final text
+
+PhilosopherAudiobookReification:
+  work_id: 1
+  expression_id: 4
+  relation: audiobook reading

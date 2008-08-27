@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :works, :has_many => :expressions
+  map.resources :works
   map.resources :expressions
   map.resources :manifestations
   map.resources :items
