@@ -48,7 +48,7 @@ render(:partial => 'tree', :object => @work)
 <% @work.reifications.each do |r| %>
 <% e=Expression.find(r.expression_id) %>
 
-<li> <%= link_to e.title, e %> (<%= e.language %>, <%= e.form %>)
+<li> <%= link_to e.title, e %> (<%= e.language %>, <%= e.form %>) (<%= r.relation %>)
 </li>
 
 <% end %>
