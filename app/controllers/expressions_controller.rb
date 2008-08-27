@@ -45,11 +45,14 @@ class ExpressionsController < ApplicationController
 
     @expression = Expression.new(params[:expression])
     @realizer = realizer_type._as_class.find_or_create_by_name(realizer_name)
+    @reification = Reification.new(:work_id => params[:work_id], :expression_id => @expression.id, :relation => params[:relation])
+
     respond_to do |format|
       if @expression.save
         @realizer.save
         @expression.realizers << @realizer
-        @expression.save
+	Work.find(params[:work_id]).reifications << @reification
+	
         flash[:notice] = 'Expression was successfully created.'
         format.html { redirect_to(@expression) }
         format.xml  { render :xml => @expression, :status => :created, :location => @expression }
@@ -81,6 +84,11 @@ class ExpressionsController < ApplicationController
   # DELETE /expressions/1.xml
   def destroy
     @expression = Expression.find(params[:id])
+    # TODO: Move into the expressions model as :after_destroy callback?
+    # TODO: Also need to remove Expression-Manifestation connection
+    @expression.reifications.each do |r|
+      Work.find(r.work_id).reifications.delete(r)
+    end 
     @expression.destroy
 
     respond_to do |format|

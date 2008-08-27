@@ -5,7 +5,6 @@ one:
   date: 1997
   language: English
   comment:
-  work_id: 1
 
 two:
   id: 2
@@ -14,7 +13,6 @@ two:
   date: 1998
   language: English
   comment:
-  work_id: 2
 
 three:
   id: 3
@@ -23,7 +21,6 @@ three:
   date: 1999
   language: English
   comment:
-  work_id: 3
 
 PhilosopherAudiobookExpression:
   id: 4
@@ -32,4 +29,3 @@ PhilosopherAudiobookExpression:
   date:
   language: English
   comment:
-  work_id: 1

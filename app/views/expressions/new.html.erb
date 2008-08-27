@@ -19,9 +19,15 @@ Realizer:
 
 </p>
 
+<p>
+
+Relation: <%= text_field_tag "realization" %>
+
+</p>
+
 <%= render(:partial => 'form', :object => f) %>
 
-<%= hidden_field (:expression, :work_id, :value => params[:work_id]) %>
+<%= hidden_field_tag ('work_id', params[:work_id]) %>
 
 <p>
 <%= f.submit "Create" %>
