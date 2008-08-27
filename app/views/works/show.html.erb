@@ -57,8 +57,13 @@ render(:partial => 'tree', :object => @work)
 
 <h2>Subjects</h2>
 
-<p>
+<ul>
 
-TODO: List subjects, using Aboutness model.
+<% @work.subjects.each do |s| %>
 
-</p>
+<li> <%= link_to subject_name(s), s %> (<%= s.class %>)
+</li>
+
+<% end %>
+
+</ul>

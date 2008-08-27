@@ -43,3 +43,18 @@ AzkabanSubject3:
   subject_id: 1
   subject_type: Place
 
+PhilosopherSubject4:
+  work_id: 1
+  subject_id: 1
+  subject_type: Family
+
+ChamberSubject4:
+  work_id: 2
+  subject_id: 1
+  subject_type: Family
+
+AzkabanSubject4:
+  work_id: 3
+  subject_id: 1
+  subject_type: Family
+
