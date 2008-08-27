@@ -2,15 +2,15 @@
 
 <h1>Manifestations</h1>
 
-<% for manifestation in @manifestations %>
+<% for m in @manifestations %>
 
 <div class="indexlist">
 
-<h2><%= link_to manifestation.title, manifestation%> (<%= manifestation.publication_date %>)</h2>
+<h2><%= link_to m.anchor_text, m %></h2>
 
 <p>
 
-<%= pluralize(manifestation.items.size, "item") %>.
+<%= pluralize(m.items.size, "item") %>.
 
 </p>
 
@@ -21,9 +21,9 @@ Produced by:
 </p>
 
 <%= render(:partial => 'layouts/group2entitylist', 
-  :object => manifestation.producers) %>
+  :object => m.producers) %>
 
-<%= render(:partial => 'attributes', :object => manifestation) %>
+<%= render(:partial => 'attributes', :object => m) %>
 
 </div>
 

@@ -5,10 +5,9 @@
 <p>
 
 Work:
-<%= Work.find(Expression.find(params[:expression_id]).work_id).title
-    %>
+<%= Expression.find(params[:expression_id]).work.anchor_text %>
 <br />
-Expression: <%= Expression.find(params[:expression_id]).title %>
+Expression: <%= Expression.find(params[:expression_id]).anchor_text %>
 
 </p>
 

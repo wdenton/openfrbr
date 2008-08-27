@@ -5,13 +5,13 @@
 <p>
 
 Work:
-<%= Work.find(Expression.find(Manifestation.find(params[:manifestation_id]).expression_id).work_id).title %>
+<%= Expression.find(Manifestation.find(params[:manifestation_id]).expression_id).work.anchor_text %>
 <br />
 Expression:
-<%= Expression.find(Manifestation.find(params[:manifestation_id]).expression_id).title %>
+<%= Expression.find(Manifestation.find(params[:manifestation_id]).expression_id).anchor_text %>
 <br />
 Manifestation:  
-<%= Manifestation.find(params[:manifestation_id]).title %>
+<%= Manifestation.find(params[:manifestation_id]).anchor_text %>
 
 </p>
 
