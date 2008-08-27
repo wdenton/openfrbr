@@ -634,6 +634,37 @@ about item--what's the best way of referring to that on its own?  Hmm.
 Maybe I need some sort of helper so if I pass in a class and an id, it
 picks out the proper term to use in the display.
 
+* 27 August 2008
+
+Yesterday I set up the Aboutness model so I could say that a Work has
+as subject this Concept or this Person or this Expression. The two W-E
+relations confused things, though, and I couldn't get at the basic W-E
+realization relation. I turned that into a model of its own, with an
+attribute, but since Realization was in use (for the relation between
+an Expression and a G2 entity), I called it Reification.  That worked,
+but it required a bunch of cleanup.
+
+TODO: I made Reification a many-to-many relation but it should be
+one-to-many: one Work can have many Expressions.  Fix up.
+
+TODO: Set up Embodiment and Exemplification models for E-M and M-I
+relations, with a relation attribute. Then every relation has a model.
+
+TODO: Make a partial layout so if I pass in an object it will tell me
+every work for which the object is a subject (use Aboutness).
+
+Then I added an anchor_text method to every class so that I can always
+just refer to object.anchor_text and it will return a properly
+formatted name for the object.  Work is title (form), Manifestation is
+title (form_of_carrier, identifier), Person is name, Concept is term,
+etc.  Went through all pages and updated them to use anchor_text.
+
+TODO: Add a work method to EMI so I can say manifestation.work and get
+the object of its work?  Would save looking up things through models.
+
+
+
+
 
 
 

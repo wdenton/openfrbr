@@ -1,6 +1,6 @@
-<% @pagetitle = "Corporate body: #{@corporate_body.name}" %>
+<% @pagetitle = "Corporate body: " + @corporate_body.anchor_text %>
 
-<h1><%= @corporate_body.name %></h1>
+<h1>Corporate body: <%= @corporate_body.anchor_text %></h1>
 
 <%= link_to 'Edit', edit_corporate_body_path(@corporate_body) %>
 

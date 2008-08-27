@@ -2,10 +2,10 @@
 
 <h1>Corporate Bodies</h1>
 
-<% for corporate_body in @corporate_bodies %>
-<h2><%= link_to corporate_body.name, corporate_body %></h2>
+<% for corp in @corporate_bodies %>
+<h2><%= link_to corp.anchor_text, corp %></h2>
 
-<%= render(:partial => 'attributes', :object => corporate_body) %>
+<%= render(:partial => 'attributes', :object => corp) %>
 
 <% end %>
 

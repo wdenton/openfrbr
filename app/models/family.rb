@@ -9,4 +9,8 @@ class Family < ActiveRecord::Base
 
   has_many :works,          :as => :subject
 
+  def anchor_text
+    name
+  end
+
 end

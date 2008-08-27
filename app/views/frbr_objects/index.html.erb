@@ -5,8 +5,7 @@
 <ul>
 
 <% for frbr_object in @frbr_objects %>
-<li> <%= link_to frbr_object.term, frbr_object %> 
-(Comment: <%= frbr_object.comment %>)
+<li> <%= link_to frbr_object.anchor_text, frbr_object %> 
 </li>
 <% end %>
 

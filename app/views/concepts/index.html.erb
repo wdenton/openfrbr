@@ -5,8 +5,7 @@
 <ul>
 
 <% for concept in @concepts %>
-<li> <%= link_to concept.term, concept %> 
-(Comment: <%= concept.comment %>)
+<li> <%= link_to concept.anchor_text, concept %> 
 </li>
 <% end %>
 

@@ -1,21 +1,21 @@
-<% @pagetitle = "Manifestation: #{@manifestation.title} (#{@manifestation.form_of_carrier}, #{@manifestation.identifier})" %>
+<% @pagetitle = "Manifestation: " + @manifestation.anchor_text %>
 
 <p>
 
 Work: 
-<%= link_to @manifestation.expression.work.title, @manifestation.expression.work %>
+TODO: Show work here
                  
 </p>
 
 <p>
  
 Expression: 
-<%= link_to @manifestation.expression.title, @manifestation.expression %>
-(<%= @manifestation.expression.language %>, <%= @manifestation.expression.form %>)
+<%= link_to @manifestation.expression.anchor_text,
+    @manifestation.expression %>
 
 </p>
 
-<h1>Manifestation: <%= @manifestation.title %></h1>
+<h1>Manifestation: <%= @manifestation.anchor_text %></h1>
 
 <p>
 
@@ -51,7 +51,7 @@ Attributes
 
 <% @manifestation.items.each do |i| %>
 
-<li> <%= link_to i.identifier, i %> (<%= i.call_number %>)
+<li> <%= link_to i.anchor_text, i %>
 </li>
 
 <% end %>

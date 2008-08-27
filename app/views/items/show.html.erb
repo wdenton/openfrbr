@@ -1,36 +1,24 @@
-<% @pagetitle = "Item: #{@item.manifestation.title} (#{@item.identifier})" %>
+<% @pagetitle = "Item: " + @item.anchor_text %>
 
 <p>
 
 Work: 
-<%= link_to "#{@item.manifestation.expression.work.title}",
-  :controller => "works",
-  :action     => "show",
-  :id         => @item.manifestation.expression.work.id 
-%>
+TODO: Show work
 
 </p>
 
 <p>
 
 Expression: 
-<%= link_to "#{@item.manifestation.expression.title}",
-  :controller => "expressions",
-  :action     => "show",
-  :id         => @item.manifestation.expression.id %>
-(<%= @item.manifestation.expression.language %>, <%= @item.manifestation.expression.form %>)
+<%= link_to @item.manifestation.expression.anchor_text,
+@item.manifestation.expression %>
 
 </p>
 
 <p>
 
 Manifestation: 
-<%= link_to "#{@item.manifestation.title}",
-  :controller => "manifestations",
-  :action     => "show",
-  :id         => @item.manifestation.id %>
-(<%= @item.manifestation.form_of_carrier %>, 
-<%= @item.manifestation.identifier %>)
+<%= link_to @item.manifestation.anchor_text, @item.manifestation %> 
 
 </p>
 

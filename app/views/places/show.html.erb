@@ -1,6 +1,6 @@
-<% @pagetitle = "Place: #{@place.term}" %>
+<% @pagetitle = "Place: " + @place.anchor_text %>
 
-<h1><%= @place.term %></h1>
+<h1>Place: <%= @place.anchor_text %></h1>
 
 <%= link_to 'Edit', edit_place_path(@place) %>
 
@@ -21,10 +21,7 @@ Works:
 
 <% @place.works.each do |w| %>
 
-<li> <%= link_to "#{w.title}",
-  :controller => "works",
-  :action     => "place",
-  :id         => w.id %>
+<li> <%= link_to w.anchor_text, w %>
 </li>
 
 <% end %>

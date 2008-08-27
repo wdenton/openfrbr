@@ -1,6 +1,6 @@
-<% @pagetitle = "Work: " + @work.title %>
+<% @pagetitle = "Work: " + @work.anchor_text %>
 
-<h1>Work: <%= @work.title %></h1>
+<h1>Work: <%= @work.anchor_text %></h1>
 
 <p>
 
@@ -46,7 +46,7 @@ Attributes:
 <% @work.reifications.each do |r| %>
 <% e=Expression.find(r.expression_id) %>
 
-<li> <%= link_to e.title, e %> (<%= e.language %>, <%= e.form %>) (<%= r.relation %>)
+<li> <%= link_to e.anchor_text, e %> (<%= r.relation %>)
 </li>
 
 <% end %>
@@ -59,7 +59,7 @@ Attributes:
 
 <% @work.subjects.each do |s| %>
 
-<li> <%= link_to subject_name(s), s %> (<%= s.class %>)
+<li> <%= link_to s.anchor_text, s %> (<%= s.class %>)
 </li>
 
 <% end %>

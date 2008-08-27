@@ -2,10 +2,7 @@
 
 <% creator.creations.each do |c| %>
 
-<li> <%= link_to Work.find(c.work_id).title,
-  :controller => "works",
-  :action     => "show",
-  :id         => c.work_id %> 
+<li> <%= link_to Work.find(c.work_id).anchor_text, Work.find(c.work_id) %>
 </li>
 
 <% end %>

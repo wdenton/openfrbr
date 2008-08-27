@@ -1,11 +1,10 @@
 <ul>
 
-<% realizer.realizations.each do |c| %>
+<% realizer.realizations.each do |r| %>
 
-<li> <%= link_to Expression.find(c.expression_id).title,
-  :controller => "expressions",
-  :action     => "show",
-  :id         => c.expression_id %> 
+<li> <%= link_to Expression.find(r.expression_id).anchor_text,
+	 Expression.find(r.expression_id) %>
+
 </li>
 
 <% end %>

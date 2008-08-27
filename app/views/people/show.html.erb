@@ -1,6 +1,6 @@
-<% @pagetitle = "Person: #{@person.name}" %>
+<% @pagetitle = "Person: " + @person.anchor_text %>
 
-<h1><%= @person.name %></h1>
+<h1>Person: <%= @person.anchor_text %></h1>
 
 <%= link_to 'Edit', edit_person_path(@person) %>
 

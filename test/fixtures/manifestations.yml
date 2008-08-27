@@ -35,7 +35,7 @@ PhilosopherAudiobookManifestation:
   id: 4
   title: Harry Potter and the Philosopher's Stone
   edition:
-  identifier:
+  identifier: 12345
   form_of_carrier: CD
   publisher: Listening Library
   publication_date:

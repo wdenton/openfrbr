@@ -2,7 +2,7 @@
 
 <p>
 
-Work: <%= link_to work_for_expression(@expression).title, work_for_expression(@expression) %>
+Work: <%= link_to work_for_expression(@expression).anchor_text, work_for_expression(@expression) %>
 
 </p>
 
@@ -40,10 +40,9 @@ Attributes
 
 <ul>
 
-<% @expression.manifestations.each do |manifestation| %>
+<% @expression.manifestations.each do |m| %>
 
-<li> <%= link_to manifestation.title, manifestation %>
-(<%= manifestation.form_of_carrier %>, <%= manifestation.identifier %>)
+<li> <%= link_to m.anchor_text, m %>
 </li>
 
 <% end %>

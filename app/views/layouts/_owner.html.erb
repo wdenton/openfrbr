@@ -1,12 +1,8 @@
 <ul>
 
-<% owner.ownerships.each do |c| %>
+<% owner.ownerships.each do |o| %>
 
-<li> <%= link_to Item.find(c.item_id).manifestation.title + " (" +
-  Item.find(c.item_id).identifier + ")",
-  :controller => "items",
-  :action     => "show",
-  :id         => c.item_id %> 
+<li> <%= link_to Item.find(o.item_id).anchor_text, Item.find(o.item_id) %>
 </li>
 
 <% end %>

@@ -1,6 +1,6 @@
-<% @pagetitle = "Object: #{@frbr_object.term}" %>
+<% @pagetitle = "Object: " + @frbr_object.anchor_text %>
 
-<h1><%= @frbr_object.term %></h1>
+<h1>Object: <%= @frbr_object.anchor_text %></h1>
 
 <%= link_to 'Edit', edit_frbr_object_path(@frbr_object) %>
 
@@ -21,10 +21,7 @@ Works:
 
 <% @frbr_object.works.each do |w| %>
 
-<li> <%= link_to "#{w.title}",
-  :controller => "works",
-  :action     => "show",
-  :id         => w.id %>
+<li> <%= link_to w.anchor_text, w %>
 </li>
 
 <% end %>

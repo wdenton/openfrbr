@@ -4,4 +4,8 @@ class FrbrObject < ActiveRecord::Base
 
   has_many :works, :as => :subject
 
+  def anchor_text
+    term
+  end
+
 end

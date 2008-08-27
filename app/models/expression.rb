@@ -1,6 +1,8 @@
 class Expression < ActiveRecord::Base
 
   validates_presence_of :title, :message => "cannot be blank"
+  validates_presence_of :language, :message => "cannot be blank"
+  validates_presence_of :form, :message => "cannot be blank"
 
   has_many :reifications
   has_many :works, :through => :reifications
@@ -12,7 +14,7 @@ class Expression < ActiveRecord::Base
   has_many :works, :as => :subject
 
   def anchor_text
-    return title + " (" + language + ", " + form + ")"
+    title + " (" + language + ", " + form + ")"
   end
 
 end

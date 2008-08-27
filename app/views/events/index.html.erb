@@ -5,11 +5,7 @@
 <ul>
 
 <% for event in @events %>
-<li> <%= link_to event.term, event %> 
-<ul>
-<li> Date: <%= event.date %></li>
-<li> Comment: <%= event.comment %></li>
-</ul>
+<li> <%= link_to event.anchor_text, event %> 
 </li>
 <% end %>
 
