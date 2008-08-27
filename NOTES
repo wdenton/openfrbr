@@ -639,13 +639,19 @@ picks out the proper term to use in the display.
 Yesterday I set up the Aboutness model so I could say that a Work has
 as subject this Concept or this Person or this Expression. The two W-E
 relations confused things, though, and I couldn't get at the basic W-E
-realization relation. I turned that into a model of its own, with an
-attribute, but since Realization was in use (for the relation between
-an Expression and a G2 entity), I called it Reification.  That worked,
-but it required a bunch of cleanup.
+realization relation. I set up an aboutness branch in git and moved
+the Aboutness stuff into there an worked on it until I had it figured
+out--very nice.  I branche and then did a git reset --hard HEAD~2 on
+the master branch to set it back to how it had been before I broke
+things.
 
-TODO: I made Reification a many-to-many relation but it should be
-one-to-many: one Work can have many Expressions.  Fix up.
+I turned W-E realization into a model of its own, with an attribute.
+Since Realization was in use (for the relation between an Expression
+and a G2 entity), I called it Reification.  That worked, but it
+required a bunch of cleanup.  (Note that in FRBR all of the WEMI an
+G1-G2 relations are uniquely named except for realization: an
+expression realizes a work, and a G2 realizes an expression.  Caused
+me confusion--worth pointing out.)
 
 TODO: Set up Embodiment and Exemplification models for E-M and M-I
 relations, with a relation attribute. Then every relation has a model.
@@ -659,17 +665,72 @@ formatted name for the object.  Work is title (form), Manifestation is
 title (form_of_carrier, identifier), Person is name, Concept is term,
 etc.  Went through all pages and updated them to use anchor_text.
 
-TODO: Add a work method to EMI so I can say manifestation.work and get
-the object of its work?  Would save looking up things through models.
+----------
 
+A thought about Reification, Embodiment and Exemplification models. I
+made Reification a many-to-many relation but then thought it should be
+one-to-many: one Work can have many Expressions. But that's wrong. An
+expression could be an abridgement of two or more works, for example,
+a Reader's Digest version of The Lord of the Rings. Does that count as
+a new work on Tillett's chart? I don't have it with me so I don't
+know, but I think it would (or could) count as a new expression of
+several works at once.  So Reification should stay a many-to-many
+model, for that reason and just so as not to limit implementattions
+later.  I'm not sure what the FRBR report says about this but I'll
+leave it as is.
 
+----------
 
+TODO: Do not assume that an E has only one W.  Anywhere we list the Ws
+from which an E is reified, make it an array.  Allow one E to be
+associated with multiple Ws with select lists. 
 
+I took a stab at this and thought I had it working but ran into an
+error I can't explain.
 
+To start I defined this in expression.rb:
 
+  def work
+    # For expression e, e.work a Work object representing
+    # the first Work for which this Expression is a reification.
+    # (And only, if there is just one.) 
+      Work.find(reifications[0].work_id)
+  end
 
+and it worked fine.  Then I set up a case in the test fixtures where
+one E is an abridgment of three Ws. I made this method in expression.rb:
 
+  def works
+    # For expression e, e.works returns an array of all works 
+    # for which e is a reification.
+    works = []
+    reifications.each do |r|
+      works << Work.find(r.work_id)
+    end
+    works
+  end
 
+But e.works only works once!  Like so:
+
+>> e=Expression.find(5)
+=> #<Expression id: 5, created_at: "2008-08-27 17:09:44", updated_at: "2008-08-27 17:09:44", title: "Reader's Digest version of first three books", form: "text", date: "2000", language: "English", comment: "Test for one expression with many works.">
+>> e.works
+=> [#<Work id: 1, created_at: "2008-08-27 17:09:46", updated_at: "2008-08-27 17:09:46", title: "Harry Potter and the Philosopher's Stone", form: "novel", date: "1997", comment: "First book">, #<Work id: 2, created_at: "2008-08-27 17:09:46", updated_at: "2008-08-27 17:09:46", title: "Harry Potter and the Chamber of Secrets", form: "novel", date: "1998", comment: "Second book">, #<Work id: 3, created_at: "2008-08-27 17:09:46", updated_at: "2008-08-27 17:09:46", title: "Harry Potter and the Prisoner of Azkaban", form: "novel", date: "1999", comment: "Third book">]
+>> e.works
+=> []
+
+What the hell?
+
+I don't know what's going on here.  For now I'll go back to just
+assuming there is one W for each E.  Have to ask about this.  
+
+----------
+
+TODO: Add methods to all of MI so that for each I can easily get an
+array of an M's Es, an M's Ws, and I's Ws, etc.  Or some other simple
+way of getting at all that.
+
+----------
 
 
 

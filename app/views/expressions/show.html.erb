@@ -2,9 +2,16 @@
 
 <p>
 
-Work: <%= link_to work_for_expression(@expression).anchor_text, work_for_expression(@expression) %>
+TODO: Make this an array of all works reified herein.
 
 </p>
+
+<p>
+
+Work: <%= link_to @expression.work.anchor_text, @expression.work %>
+
+</p>
+
 
 <h1>Expression: <%= @expression.anchor_text %></h1>
 

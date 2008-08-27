@@ -17,3 +17,18 @@ PhilosopherAudiobookReification:
   work_id: 1
   expression_id: 4
   relation: audiobook reading
+
+ReadersDigestReif1:
+  work_id: 1
+  expression_id: 5
+  relation: abridgment
+
+ReadersDigestReif2:
+  work_id: 2
+  expression_id: 5
+  relation: abridgment
+
+ReadersDigestReif3:
+  work_id: 3
+  expression_id: 5
+  relation: abridgment

@@ -29,3 +29,11 @@ PhilosopherAudiobookExpression:
   date:
   language: English
   comment:
+
+Abridgment:
+  id: 5
+  title: Reader's Digest version of first three books
+  form: text
+  date: 2000
+  language: English
+  comment: Test for one expression with many works.
