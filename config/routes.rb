@@ -1,17 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :works
-  map.resources :expressions
-  map.resources :manifestations
-  map.resources :items
-  map.resources :people
-  map.resources :families
-  map.resources :corporate_bodies
-  map.resources :concepts
-  map.resources :events
-  map.resources :frbr_objects
-  map.resources :places
   map.resources :creations
+  map.resources :places
+  map.resources :frbr_objects
+  map.resources :events
+  map.resources :concepts
+  map.resources :corporate_bodies
+  map.resources :families
+  map.resources :people
+  map.resources :items
+  map.resources :manifestations
+  map.resources :expressions
+  map.resources :works
 
   # The priority is based upon order of creation: first created ->
   # highest priority.
