@@ -1,30 +1,21 @@
 <ul>
 
-<% @work.expressions.each do |e| %>
+<% @work.reifications.each do |r| %>
+<% e=Expression.find(r.expression_id) %>
 
-<li> <%= link_to e.title,
-  :controller => "expressions",
-  :action     => "show",
-  :id         => e.id %>
+<li> <%= link_to e.title, e %> 
 (<%= e.language %>, <%= e.form %>)
 
-<ul>
-<% e.manifestations.each do |m| %>
+<ul> <% e.manifestations.each do |m| %>
 
-<li> <%= link_to m.title,
-  :controller => "manifestations",
-  :action     => "show",
-  :id         => m.id %>
+<li> <%= link_to m.title, m %>
 (<%= m.form_of_carrier %>, <%= m.identifier %>)
 
 <ul>
 
 <% m.items.each do |i| %>
 
-<li> <%= link_to i.identifier,
-  :controller => "items",
-  :action     => "show",
-  :id         => i.id %>
+<li> <%= link_to i.identifier, i %>
 (<%= i.call_number %>)
 </li>
 

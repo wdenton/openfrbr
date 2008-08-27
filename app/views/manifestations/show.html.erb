@@ -3,20 +3,14 @@
 <p>
 
 Work: 
-<%= link_to "#{@manifestation.expression.work.title}",
-  :controller => "works",
-  :action     => "show",
-  :id         => @manifestation.expression.work.id %>
+<%= link_to @manifestation.expression.work.title, @manifestation.expression.work %>
                  
 </p>
 
 <p>
  
 Expression: 
-<%= link_to "#{@manifestation.expression.title}",
-  :controller => "expressions",
-  :action     => "show",
-  :id         => @manifestation.expression.id %>
+<%= link_to @manifestation.expression.title, @manifestation.expression %>
 (<%= @manifestation.expression.language %>, <%= @manifestation.expression.form %>)
 
 </p>
@@ -48,22 +42,16 @@ Attributes
 
 <p>
 
-<%= link_to "Add item for this work",
-  :controller => "items",
-  :action     => "new",
-  :manifestation_id    => @manifestation.id %>
+<%= link_to "Add item for this manifestation", 
+    new_item_path(:manifestation_id => @manifestation.id) %>
 
 </p>
 
 <ul>
 
-<% @manifestation.items.each do |item| %>
+<% @manifestation.items.each do |i| %>
 
-<li> <%= link_to "#{item.identifier}",
-                 :controller => "items",
-                 :action     => "show",
-                 :id         => item.id %>
-(<%= item.call_number %>)
+<li> <%= link_to i.identifier, i %> (<%= i.call_number %>)
 </li>
 
 <% end %>

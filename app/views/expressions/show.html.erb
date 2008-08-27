@@ -1,12 +1,12 @@
-<% @pagetitle = "Expression: #{@expression.title} (#{@expression.language}, #{@expression.form})" %>
+<% @pagetitle = "Expression:" + @expression.anchor_text %>
 
 <p>
 
-TODO: Show work here.
+Work: <%= link_to work_for_expression(@expression).title, work_for_expression(@expression) %>
 
 </p>
 
-<h1>Expression: <%= @expression.title %> (<%= @expression.language %>, <%= @expression.form %>)</h1>
+<h1>Expression: <%= @expression.anchor_text %></h1>
 
 <p>
 
@@ -33,10 +33,8 @@ Attributes
 
 <p>
 
-<%= link_to "Add manifestation for this expression",
-  :controller => "manifestations",
-  :action     => "new",
-  :expression_id    => @expression.id %>
+<%= link_to "Add manifestation for this expression", 
+    new_manifestation_path(:expression_id => @expression.id) %>
 
 </p>
 
@@ -44,10 +42,7 @@ Attributes
 
 <% @expression.manifestations.each do |manifestation| %>
 
-<li> <%= link_to manifestation.title,
-   :controller => "manifestations",
-   :action     => "show",
-   :id         => manifestation.id %>
+<li> <%= link_to manifestation.title, manifestation %>
 (<%= manifestation.form_of_carrier %>, <%= manifestation.identifier %>)
 </li>
 

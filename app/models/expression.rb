@@ -11,5 +11,9 @@ class Expression < ActiveRecord::Base
 
   has_many :works, :as => :subject
 
+  def anchor_text
+    return title + " (" + language + ", " + form + ")"
+  end
+
 end
 

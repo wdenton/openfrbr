@@ -27,7 +27,7 @@ Attributes:
 
 <p>
 
-render(:partial => 'tree', :object => @work)
+<%= render(:partial => 'tree', :object => @work) %>
 
 </p>
 
@@ -36,10 +36,8 @@ render(:partial => 'tree', :object => @work)
 
 <p>
 
-<%= link_to "Add expression for this work",
-  :controller => "expressions",
-  :action     => "new",
-  :work_id    => @work.id %>
+<%= link_to "Add expression for this work", 
+    new_expression_path (:work_id => @work.id) %>
 
 </p>
 
