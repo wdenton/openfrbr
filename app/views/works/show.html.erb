@@ -55,12 +55,16 @@ Attributes:
 
 <h2>Subjects</h2>
 
-<ul>
+<ul id="subjects">
 
-<% @work.subjects.each do |s| %>
+<% if @work.subjects.empty? %>
 
-<li> <%= link_to s.anchor_text, s %> (<%= s.class %>)
-</li>
+<li> This work has no subjects. </li>
+
+<% else %>
+
+<%= render :partial => 'aboutness/subjects', 
+  :collection => @work.subjects %>
 
 <% end %>
 
