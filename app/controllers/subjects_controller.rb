@@ -3,8 +3,6 @@ class SubjectsController < ApplicationController
     @work = Work.find(params[:work_id])
     subject_term = params[:subject_term]
     subject_type = params[:subject_type]
-    puts subject_term
-    puts subject_type
     # TODO: Make a generic find_or_create_by_name (title, term)
     # in the various classes so that this can be done in one.
     if %w[Work Expression Manifestation Item].include?(subject_type)
@@ -20,4 +18,11 @@ class SubjectsController < ApplicationController
       format.js
     end
   end
+
+  def destroy
+    # TODO: Add destroy method that can be used with Ajax
+    # to reverse the create method and disconnect a work and
+    # a subject.
+  end
+
 end

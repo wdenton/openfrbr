@@ -741,5 +741,19 @@ Aboutness works.
 $ git checkout master
 $ git merge aboutness
 
+----------
+
+Added a Subject controller and edited the routes and made an Ajaxy
+thing to dynamically add a subject to a work without reloading the
+page.  The new subject disappears if you follow a link and then come
+back, though.  And if a WEMI is the subject of a work then there's a
+problem if it has a non-unique title.
+
+TODO: Add an intelligent autocompletion to the subject entry field
+here so that it help you distinguish between two W or E with the same
+title, tells you what the entity type is, etc.
+
+----------
+
 
 
