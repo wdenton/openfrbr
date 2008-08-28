@@ -1,0 +1,116 @@
+TODO list for OpenFRBR
+
+* Make tests.  There are no tests.  This is not test-driven
+  development.
+
+* There is no error-checking.  Raise exceptions and handle errors
+  wherever something might go wrong.
+
+* Add Work to the Aboutness model so that a Work can have another Work
+  as its subject.
+
+* Add relation (G2-to-Work) attribute to Creation model.
+
+* Add relation (G2-to-Expression) attribute to Realization model
+  (e.g. a Person isTranslatorOf an Expression).
+
+* Add relation (G2-to-Manifestation) attribute to Production model.
+
+* Add relation (G2-to-Item) attribute to Ownership model (e.g. a
+  Person was former owner of an Item, a Person added marginalia to
+  it).
+
+* Set up a many-to-many Work-to-Work relation, with relation
+  attribute.
+
+* Set up an many-to-many Expression-to-Expression relation, with
+  relation attribute.
+
+* Set up a many-to-many Manifestation-to-Manifestation relation, with
+  relation attribute.
+
+* Set up an many-to-many Item-to-Item relation, with relation
+  attribute.
+
+* Create many-to-many Embodiment model between Expression and
+  Manifestation, with relation attribute.
+
+* Create one-to-many Exemplification model between Manifestation and
+  Item, with relation attribute. (I think one-to-many is correct, but
+  check.) 
+
+* In a Work's tree display, use Ajax drag and drop to move a
+  Manifestation from one Expression to another, or an Item from one
+  Manifestation to another.
+
+* Make an intelligent autocompleting textbox, one that knows about
+  either all entities or a subset of them (e.g. just Works or just G2
+  entities or just G3 entities).
+
+  If I want to add a subject to a work, for example, it would be nice
+  if I could start typing and all possible subjects would be suggested
+  as I typed, displaying the anchor_text and telling me what type the
+  entity is (Expression, Maniestation, etc.)
+
+  On every entity page, use this autocompleting textbox on Works to
+  make it easy to add the entity to a Work as a subject.
+
+* Be able to remove the connection between any two entities, e.g. Work
+  and any of its subjects, G2 entity and G1 entity, etc.  (What to do
+  about disconnecting an Expression from a Work, for example?  That
+  would leave an expression hanging. Maybe it should be impossible to
+  disconnect an Item from a Manifestation, a Manifestation from an
+  Expression, or an Expression from a Work. One can either move them
+  to a place under another entity, or delete it if it has no
+  children.)
+
+* If any entity is deleted, destroy all its connections with other
+  entities.  (Can this be done in the model with callbacks?)
+
+* Make a simple way of listing all works for which a given entity is a
+  subject.  
+
+* Add methods to Manifestation and Item so it is easy to tell which
+  Work(s) they represent. (Beware of aggregates later.)
+
+* Two Works, Expressions or Manifestations may have the same title, in
+  which case find_or_create_by_title isn't enough.  Is the anchor_text
+  for these entities (see model files) enough to uniquely identify
+  them (without knowing the ID number from the database)?  If not,
+  what is?  There has to be a reliable way to people to unambiguously
+  identify or find something.  The unambiguous identifier should be
+  used as the anchor_text and displayed everywhere the entity is
+  listed.
+
+* How to make a find_or_create_unambiguously for every entity?  For G1
+  entities find_or_create_by_title does the job but is ambiguous (see
+  above note).  For G2 find_or_create_by_name is also ambiguous, and
+  notice it's name instead of title.  (Aha, we're into authority
+  control here.  Perhaps we can gloss over this for a while until
+  implementing FRAD is necessary, or maybe we can pull in bits from
+  FRAD as needed.)  For G3 entities, find_or_create_by_term is also,
+  sadly, ambiguous, because there could be a Concept with the same
+  term as a Place or Object etc.
+
+  This find_or_create_unambiguously method would be useful for
+  associating subjects with works.
+
+  In the meantime, could work around by requiring a Work to be
+  associated with a subject from the subject's page, i.e. there is a
+  "Make this the subject of work ____" on every page. 
+
+
+Aggregates
+----------
+
+* Keep aggregates in mind for now, but save the implementation for
+  later until the project is further along.  Assume many-to-many
+  relationships everywhere, but do not use them, or just use the
+  :first object returned from a list for now instead of the whole
+  array.
+
+* Use the Work-of-Works model to implement aggregates.
+
+
+
+
