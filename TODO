@@ -6,19 +6,12 @@ TODO list for OpenFRBR
 * There is no error-checking.  Raise exceptions and handle errors
   wherever something might go wrong.
 
+* Add relation attributes to Creation, Realization, Production and
+  Owernship test fixtures, and show the relations on the WEMI pages
+  (e.g. isAuthorOf, isPublisherOf, owned, translated).
+
 * Add Work to the Aboutness model so that a Work can have another Work
   as its subject.
-
-* Add relation (G2-to-Work) attribute to Creation model.
-
-* Add relation (G2-to-Expression) attribute to Realization model
-  (e.g. a Person isTranslatorOf an Expression).
-
-* Add relation (G2-to-Manifestation) attribute to Production model.
-
-* Add relation (G2-to-Item) attribute to Ownership model (e.g. a
-  Person was former owner of an Item, a Person added marginalia to
-  it).
 
 * Set up a many-to-many Work-to-Work relation, with relation
   attribute.
