@@ -763,5 +763,72 @@ subject of a work.  (Use intelligent autocompletion for the works.)
 I have moved the TODOs into a TODO file and will keep this as just
 narrative notes.
 
+* 11 September 2008
+
+Installing Phusion Passenger on anvil.lisforge.net:
+
+See 
+
+    http://www.modrails.com/
+
+# gem install passenger
+# passenger-install-apache2-module
+
+This complained that some Apache development stuff was missing. It
+told me what to do.
+
+# apt-get install apache2-prefork-dev
+
+Then I went back to:
+
+# passenger-install-apache2-module
+
+It finished up and told me what configuration stuff to add to
+Apache. I put this in /etc/apache2/apache2.conf
+
+# Passenger config stuff for Ruby on Rails
+# Added 7 Sep 2008 by wtd
+LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-2.0.3/ext/apache2/mod_passenger.so
+PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-2.0.3
+PassengerRuby /usr/bin/ruby1.8
+
+I set up a virtual host:
+
+<VirtualHost *>
+  # wtd
+  ServerName   openfrbr.org
+  ServerAlias  www.openfrbr.org
+  DocumentRoot /var/www/openfrbr.org/public
+  CustomLog    /var/log/apache2/openfrbr.org-access.log combined
+  ErrorLog     /var/log/apache2/openfrbr.org-error.log
+
+  <Directory /var/www/openfrbr.org/>
+    Options -Indexes FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+</VirtualHost>
+
+I copied all of the files into place.  I ran
+
+$ rake db:schema:dump 
+
+and copied db/schema.db onto anvil and put it in place.
+
+On anvil I ran
+
+$ rake db:schema:load RAILS_ENV=production
+
+but it complained that Rails 2.1.0 was missing.  (I hadn't frozen
+anything.)  It also complained that has_many_polymorphs was missing.
+
+$ sudo gem install -v=2.1.0 rails
+$ sudo gem install has_many_polymorphs
+$ rake db:schema:load RAILS_ENV=production
+$ rake db:fixtures:load RAILS_ENV=production
+
+And it all works.
 
 
