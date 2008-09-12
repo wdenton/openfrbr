@@ -831,4 +831,5 @@ $ rake db:fixtures:load RAILS_ENV=production
 
 And it all works.
 
+Trying a git repository.
 
