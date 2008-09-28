@@ -1,0 +1,854 @@
+NOTES
+
+Notes on what I did while I was doing it.  Some of the time I didn't
+know what I was doing but I still wrote it down.  
+--William Denton <wtd@pobox.com>
+
+
+
+* 20 July 2008
+
+$ rails openfrbr
+
+Used the notes here to put everything under git:
+
+http://toolmantim.com/article/2007/12/5/setting_up_a_new_rails_app_with_git
+
+$ cat .gitignore
+log/*.log
+tmp/**/*
+.DS_Store
+doc/api
+doc/app
+*~
+$ touch log/.gitignore
+$ touch tmp/.gitignore
+
+$ ./script/generate scaffold work
+$ ./script/generate scaffold expression
+$ ./script/generate scaffold manifestation
+$ ./script/generate scaffold item
+$ ./script/generate scaffold person
+$ ./script/generate scaffold family
+$ ./script/generate scaffold corporate_body
+$ ./script/generate scaffold concept
+$ ./script/generate scaffold frbr_object (object is a reserved word)
+$ ./script/generate scaffold event
+$ ./script/generate scaffold place
+
+$ git init
+$ git add .
+$ git commit -m "Initial checkin in; a bit of scaffolding"
+
+On the Eee I ran
+
+$ cd src
+$ git clone buff@10.1.0.9:src/openfrbr 
+
+and it copied everything over.
+
+First database migration
+
+$ ./script/generate migration create_works_table
+      exists  db/migrate
+      create  db/migrate/20080721001523_create_works_table.rb
+
+I edited the file and added basic stuff to make the works table
+
+class CreateWorksTable < ActiveRecord::Migration
+  def self.up
+    create_table :works do |table|
+      table.column :title, :string
+      table.column :form, :string
+      table.column :date, :date
+      table.column :comment, :string
+  end
+
+  def self.down
+    drop_table :works
+  end
+end
+
+$ rake db.migrate
+
+There was a bunch of output about all the various tables.
+
+* 25 July 2008
+
+I'm not using these migrations right.  I wanted to load up the
+development database with some initial data, and I knew that could be
+done in migrations.  (Is this new to Rails 2?  Much of what I found
+about this online seems out of date now.)  I made a new migration file
+to load in the data, but it didn't take.  I then edited an early migration,
+which didn't take either, so I had to do rake:db:migrate VERISON=0 to back to
+the very start and then rake:db:migrate to catch up on everything.  I
+don't know if this is the right way or not, but it works.
+
+When I refreshed things on the Eee and ran script/server and hit
+/works I got some kind of cookie error.  Data copied over by git that
+shouldn't have been?  And then the migration stuff didn't work. Said
+I'd already created the works table!
+
+* 28 July 2008
+
+rake db:drop; rake db:migrate seems to work well for getting around any 
+migration errors. It just drops everything and then you can start over.
+
+Put a bunch of table configuration and test data into the migration files, 
+including setting up the HABTM join tables.  Kept resetting the database 
+and migrating it from scratch. Probably not the best way to do it, but it 
+does sort of keep it tidy and gives me a decent baseline to work with for 
+later, when I add attributes to the relationships between things.
+
+* 31 July 2008
+
+Did some more setting up of the entities and defining some test
+data.  Didn't set up any relationships between PHILOSOPHER'S STONE
+and Platform 9 3/4 as a place, though, or anything like that.
+
+I had a look at the entity-relationship diagram I did that shows all of 
+the FRBR entities and relationships, and realized my data model was wrong. 
+I need to have attributes on the relationships, so instead of 
+has_and_belongs_to_many I need to use has_many :through, and then set up 
+the join with attributes.  A work can be created by Person A and also have 
+Person B as a subject.  I don't want to clutter it all up with tons of 
+different tables for all those joins.
+
+Looked at a polymorphism plug-in but I don't feel like tackling that.
+
+Since sqlite won't work on the Eee I tried to get it going with 
+Postgresql, but I don't think I was running the daemon right because it 
+couldn't connect.  I'd better tackle fixing sqlite again, before messing 
+about with anything more serious.
+
+* 2 August 2008
+
+Checked FRBR and FRAD and updated the attributes on the entities.  Thought
+about how to connect them all with has_many :through but haven't done
+that yet.  Should use these expressions of FRBR in RDF:
+
+  http://vocab.org/frbr/core
+  http://vocab.org/frbr/extended
+  
+Created app/views/layouts/application.html.erb and then removed all of the
+other layouts.  The application layout will be used by all views now.
+I'll do a bit of CSS and styling to get a left nav going, or something
+like that.
+
+For fun I thought I'd try autocompletion on manifestation titles, just
+to see how that worked.  Followed what is explained here:
+
+  http://codeintensity.blogspot.com/2008/02/auto-complete-text-fields-in-rails-2.html
+  
+After a few minutes of this I decided I was getting ahead of myself, so I stopped.
+
+Fiddled with the CSS so there's a left nav.
+
+Removed public/index.html and added this to routes.rb:
+
+  map.root :controller => "works"
+
+Now the default for http://localhost:3000/ is to list all the works.
+
+* 5 August 2008
+
+I installed Ubuntu on my Eee and now I can use Rails without any
+trouble.  I was getting errors with rake db:migrate on the old OS but
+now all is well.
+
+* 9 August 2008
+
+After some fiddling around so that associated works are listed on the
+subject pages, I'll try setting up has_many :through relations between
+works and people just for starters. What I think I need is a
+polymorphic many-to-many relationship between Group 1 and Group 2
+entities, with attributes on the relationships.  Any Group 1 entity
+can be in a variety of many-to-many relationships with any Group 2
+entity, and if I can have that all in one model, that would be cool. I
+think. I don't know. I'll start small and build up.  Not sure how this
+will all go in migrations.  I think I need to use fixtures to set up
+my test data.
+
+I couldn't think of a word or phrase to sum up all of these different
+relationships, so I just called the model TwoAndOne.
+
+$ ./script/generate model TwoAndOne -g
+      exists  app/models/
+      exists  test/unit/
+      exists  test/fixtures/
+      create  app/models/two_and_one.rb
+add 'app/models/two_and_one.rb'
+      create  test/unit/two_and_one_test.rb
+add 'test/unit/two_and_one_test.rb'
+      create  test/fixtures/two_and_ones.yml
+add 'test/fixtures/two_and_ones.yml'
+      exists  db/migrate
+      create  db/migrate/20080809163307_create_two_and_ones.rb
+add 'db/migrate/20080809163307_create_two_and_ones.rb'
+
+After some time not getting this to work, I decided to make a model
+called Creator, and start by making it so that works and people were
+in a many-to-many relationship this way.  That's more natural.
+That's the way we talk.
+
+./script/destroy model TwoAndOne -g
+
+had a lot of output.
+
+Later: Got this working.  My models look like this:
+
+class Work < ActiveRecord::Base
+  has_many :expressions
+  has_many :people, :through => :creators
+  has_many :creators
+end
+
+class Person < ActiveRecord::Base
+  has_many :works, :through => :creators
+  has_many :creators
+end
+
+class Creator < ActiveRecord::Base
+  belongs_to :work
+  belongs_to :person
+end
+
+I set up creators.yml with
+
+one:
+  work_id: 1
+  person_id: 1
+  relation: isAuthorOf
+
+two:
+  work_id: 2
+  person_id: 1
+  relation: isAuthorOf
+
+three:
+  work_id: 3
+  person_id: 1
+  relation: isAuthorOf
+
+And now this does it in show.html.erb for people:
+
+<ul>
+
+<%- @person.creators.each do |c| %>
+
+<li> <%= c.relation %> <%= link_to Work.find(c.work_id).title,
+  :controller => "works",
+  :action     => "show",
+  :id         => c.work_id %> 
+</li>
+
+<%- end %>
+
+</ul>
+
+That says that she "isAuthorOf Harry Potter and the Philosopher's
+Stone" and two others.
+
+Getting families and corporate bodies into the mix won't be hard, but
+I'm going to commit this now.
+
+Question: How can I change the method name on people so that I can say
+work.creators but person.creations?  I want the name of the
+many-to-many relation to be different depending on which way I look at
+it.  Must be some way to do that.
+
+Later: Installed the has_many_polymorphs gem.
+
+* 16 August 2008
+
+Now I'm on the train back to Toronto.  The Creation and Creator models
+are both broken, but I'm going to leave them that way for now.  To get
+moving along I'm going to do a basic has_many :through polymorphic
+relation to set up the Subject relationship.  Work is in a
+many-to-many relationship with every other entity as a Subject: a Work
+can have any of Work, Expression, Manifestation, Item, Person, Family,
+Corporate Body, Concept, Event, Object, or Place as a subject.
+There's only one relation: hasSubject (inverse isSubjectOf).
+
+./script/generate model Subject -g
+
+Hmm, I think that was stupid.  What I'd be doing there is a has_many
+:through polymorphic association, which is what I was trying to do
+with Creation, but couldn't get to work, so now I three broken and
+incomplete things going on. 
+
+All right, I'm going to revert to the last checkin to just wipe all
+that out.
+
+After more fooling around: bugger this, I need net access and I need
+to get it working on a simple test example with no other stuff going
+on.  
+
+* 22 August 2008
+
+I decided to start of simple and made a basic has_many :through
+relation between Work and Person and called it Creation.  
+
+class Creation < ActiveRecord::Base
+  belongs_to :person
+  belongs_to :work
+end
+
+class Work < ActiveRecord::Base
+  has_many :creations
+  has_many :people, :through => :creations
+end
+
+class Person < ActiveRecord::Base
+  has_many :creations
+  has_many :works, :through => :creations
+end
+
+And the migration:
+
+class CreateCreations < ActiveRecord::Migration
+  def self.up
+    create_table :creations do |t|
+      t.column :person_id, :integer
+      t.column :work_id, :integer
+      t.column :relation, :string
+    end
+  end
+
+  def self.down
+    drop_table :creations
+  end
+end
+
+That lets me do this:
+
+buff:eee:~/src/openfrbr$ ./script/console 
+Loading development environment (Rails 2.1.0)
+>> w = Work.find(1)
+=> #<Work id: 1, created_at: "2008-08-22 18:29:58", updated_at: "2008-08-22 18:29:58", title: "Harry Potter and the Philosopher's Stone", form: "novel", date: "1997", comment: "First book">
+>> p = Person.find(1)
+=> #<Person id: 1, created_at: "2008-08-22 18:29:57", updated_at: "2008-08-22 18:29:57", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>
+>> c = Creation.new(:relation => 'isAuthorOf')
+=> #<Creation id: nil, person_id: nil, work_id: nil, relation: "isAuthorOf">
+>> p.creations << c
+=> [#<Creation id: 1, person_id: 1, work_id: nil, relation: "isAuthorOf">]
+>> w.creations << c
+=> [#<Creation id: 1, person_id: 1, work_id: 1, relation: "isAuthorOf">]
+>> c.save
+=> true
+>> p.creations
+=> [#<Creation id: 1, person_id: 1, work_id: nil, relation: "isAuthorOf">]
+>> p.works
+=> [#<Work id: 1, created_at: "2008-08-22 18:29:58", updated_at: "2008-08-22 18:29:58", title: "Harry Potter and the Philosopher's Stone", form: "novel", date: "1997", comment: "First book">]
+>> w.creations
+=> [#<Creation id: 1, person_id: 1, work_id: 1, relation: "isAuthorOf">]
+>> w.people
+=> [#<Person id: 1, created_at: "2008-08-22 18:29:57", updated_at: "2008-08-22 18:29:57", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>]
+>> 
+
+Good.
+
+So that's a many-to-many relationship done, with an attribute on the
+relation.  One Work can be created by many People, and one Person can
+create many Works.
+
+What I want to say is that Work is in a many-to-many Creation
+relationship with all of People, Families, and Corporate Bodies.
+That's a many-to-many polymorphic relation.  I'll use
+has_many_polymorphs for that, but first, I think I'll get used to a
+basic polymorphic relationship by setting up a one-to-many polymorphic
+Realization relation between Expression and Person, Family, and
+Corporate Body.  Then I'll have a many-to-many and a one-to-many
+polymorphic and it should be easier to set up has_many_polymorphs with
+that knowledge.
+
+Insight: this is a one-to-many relation, so there's no new model to
+set up.  Aha.  I did this:
+
+class Person < ActiveRecord::Base
+  has_many :expressions, :as => :realizer
+end
+
+class Family < ActiveRecord::Base
+  has_many :expressions, :as => :realizer
+end
+
+class CorporateBody < ActiveRecord::Base
+  has_many :expressions, :as => :realizer
+end
+
+class Expression < ActiveRecord::Base
+  belongs_to :realizer, :polymorphic => true
+end
+
+And this is the migration:
+
+class CreateRealizations < ActiveRecord::Migration
+  def self.up
+    add_column :expressions, :realizer_id, :integer
+    add_column :expressions, :realizer_type, :string
+  end
+
+  def self.down
+    remove_column :expressions, :realizer_id
+    remove_column :expressions, :realizer_type
+  end
+end
+
+$ ./script/console 
+Loading development environment (Rails 2.1.0)
+>> p = Person.find(1)
+=> #<Person id: 1, created_at: "2008-08-22 19:43:37", updated_at: "2008-08-22 19:43:37", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>
+>> e = Expression.find(1)
+=> #<Expression id: 1, created_at: "2008-08-22 19:43:36", updated_at: "2008-08-22 19:43:36", title: "Harry Potter and the Philosopher's Stone", form: "text", date: "1997", language: "English", comment: nil, work_id: 1, realizer_id: nil, realizer_type: nil>
+>> c = CorporateBody.find(1)
+=> #<CorporateBody id: 1, created_at: "2008-08-22 19:43:35", updated_at: "2008-08-22 19:43:35", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>
+>> e2 = Expression.find(2)
+=> #<Expression id: 2, created_at: "2008-08-22 19:43:36", updated_at: "2008-08-22 19:43:36", title: "Harry Potter and the Chamber of Secrets", form: "text", date: "1998", language: "English", comment: nil, work_id: 2, realizer_id: nil, realizer_type: nil>
+>> e.realizer = p
+=> #<Person id: 1, created_at: "2008-08-22 19:43:37", updated_at: "2008-08-22 19:43:37", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>
+>> e2.realizer = c
+=> #<CorporateBody id: 1, created_at: "2008-08-22 19:43:35", updated_at: "2008-08-22 19:43:35", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>
+>> e.save
+=> true
+>> e2.save
+=> true
+
+Then going into ./script/dbconsole and doing
+
+sqlite> .dump expressions
+
+shows that the ID number and type of the realizer have been stored,
+for example:
+
+INSERT INTO "expressions" VALUES(1,'2008-08-22 19:43:36','2008-08-22 19:50:27','Harry Potter and the Philosopher''s Stone','text','1997','English',NULL,1,1,'Person');
+
+So that's how to do a one-to-many polymorphic relation.
+
+I will check this in.
+
+All righty. For my next move I will try using has_many_polymorphs with
+a Production model to handle the relation between Manifestation and
+Person, Family, and Corporate Body.
+
+Got it working!
+
+class Manifestation < ActiveRecord::Base
+  has_many_polymorphs :producers, :from => [:people, :families,  :corporate_bodies], :through => :productions
+end
+
+class Production < ActiveRecord::Base
+  belongs_to :manifestation
+  belongs_to :producers, :polymorphic => true
+end
+
+Nothing is needed in the Person, Family, and Corporate Body models,
+because of the way that has_many_polymorphs works.
+
+Here's the migration:
+
+class CreateProductions < ActiveRecord::Migration
+  def self.up
+    create_table :productions do |t|
+      t.references :producer, :polymorphic => true
+      t.references :manifestation
+    end
+  end
+
+  def self.down
+    drop_table :productions
+  end
+end
+
+Here are some examples (leaving out some of the output):
+
+>> p1 = Person.find(1); p2 = Person.find(2); c1 = CorporateBody.find(1); c2 = CorporateBody.find(2)
+>> m1 = Manifestation.find(1); m2 = Manifestation.find(2)
+>> m1.producers << p1; m1.producers << c1
+>> m2.producers << p1; m2.producers << p2; m2.producers << c1; m2.producers << c2
+>> m1.producers.each do |p|; puts "#{p.name} (#{p.class})"; end
+J.K. Rowling (Person)
+Raincoast Books (CorporateBody)
+>> m2.producers.each do |p|; puts "#{p.name} (#{p.class})"; end
+J.K. Rowling (Person)
+Raincoast Books (CorporateBody)
+Arthur A. Levine (CorporateBody)
+William Denton (Person)
+
+>> p1.productions
+=> [#<Production id: 1, producer_id: 1, producer_type: "Person", manifestation_id: 1>, #<Production id: 3, producer_id: 1, producer_type: "Person", manifestation_id: 2>]
+>> p1.productions.each do |p|; puts Manifestation.find(p.manifestation_id).title; end
+Harry Potter and the Philosopher's Stone
+Harry Potter and the Chamber of Secrets
+
+So a Manifestation has producers and a Person, Family, or
+CorporateBody has productions. That's perfect.  I will check this in.
+The Production model is done.
+
+There is one small thing I can't get working right, about the test
+fixtures. I put this in test/fixtures/productions.yml:
+
+PhilosopherProducer:
+  manifestation_id: 1
+  producer_id: 1
+  producer_type: CorporateBody
+
+ChamberProducer:
+  manifestation_id: 2
+  producer_id: 1
+  producer_type: CorporateBody
+
+AzkabanProducer:
+  manifestation_id: 3
+  producer_id: 1
+  producer_type: CorporateBody
+
+When I do 
+
+rake db:drop; rake db:migrate; rake db:fixtures:load
+
+then the database looks right and the productions table has the right
+data in it.  But:
+
+>> c = CorporateBody.find(1)
+>> c.productions
+NoMethodError: undefined method `productions' for #<CorporateBody:0xb6df6cac>
+        from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/attribute_methods.rb:256:in `method_missing'
+        from (irb):2
+>> m = Manifestation.find(1)
+>> m.producers
+=> [#<CorporateBody id: 1, created_at: "2008-08-23 02:29:11", updated_at: "2008-08-23 02:29:11", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>]
+>> m.producers << c
+=> [#<CorporateBody id: 1, created_at: "2008-08-23 02:29:11", updated_at: "2008-08-23 02:29:11", name: "Raincoast Books", dates: nil, other_designation: nil, place: "Vancouver, BC", comment: nil>]
+>> c.productions
+=> [#<Production id: 366820064, producer_id: 1, producer_type: "CorporateBody", manifestation_id: 2>, #<Production id: 564650414, producer_id: 1, producer_type: "CorporateBody", manifestation_id: 3>, #<Production id: 831263640, producer_id: 1, producer_type: "CorporateBody", manifestation_id: 1>]
+
+The productions method for a corporate body doesn't exist right off
+the bat, but if I add it as a producer of a manifestation then all of
+its other prouctions appear as set up in the text fixture.  One side
+of the relation is getting set up right, but not the other.  There may
+be some aspect of test fixtures and has_many_polymorphs that I don't
+know about, but without net access I can't check it. I don't see
+anything in the has_many_polymorphs docs and I can't see anything
+relevant in its test fixtures.
+
+I will leave it for now and check this in.
+
+Next, I will set up an Ownership relation between Item and Group 2
+entities that is otherwise identical to Production.
+
+Check that in.
+
+Now I'll redo the Creation model so it uses has_many_polymorphs.  I
+think i'll do it the wrong way and just edit the migration that I
+created earlier. Oh well.
+
+* 23 August 2008
+
+I did Creation and made a Realization model, so now all of the
+relations between the Group 1 entites and Group 2 entities as
+creators, realizers, producers, and owners exist.
+
+The last big data model challenge will be to set up the many-to-many
+Subject relation between Work and every other entity (because a Work
+can have as a subject any Work, Expression, Manifestation, Item,
+Person, Family, Corporate Body, Concept, Event, Object, or Place).
+I'll use has_many_polymorphs for that, but there's the added twist
+that there's a many-to-many Work-to-Work relationship in there, a
+self-referential many-to-many relation, and I'll have to look into how
+to make that work.  Can't remember if that'll require a bit of extra
+configging or not.  If I can't get it to work I can always set up the
+relations to all of the other entities and then add it in later.
+That's one of the nice things about migrations.
+
+TODO: Set up Subject relation between W and all entities.
+
+Next, though, it's time to make it so that when I view a work I can
+see a list of its creators, and so on for the other Group 1 entities.
+I think a helper to generate the links will do the trick.
+
+The generate_group2_entity_link_list method in
+app/helpers/applications_helpers did that.
+
+TODO: Noticed that when I'd made up the has_many :through relation for
+Works and Group 2 entities I'd added a relation attribute to the
+relation, e.g. "isAuthorOf." That's gone now. I could add in role or
+something like that. Perhaps more appropriate for Expression?
+Translator, conductor, performer, reader, etc.
+
+That helper method I added was wrong. It should have been a partial
+layout. I changed it.
+
+TODO: Add more expressions for the works, and manifestations and items
+for each, so that the hierarchical tree has enough in it to be
+interesting.
+
+TODO: See how to use Ajax drag and drop to move a manifestation from
+one expression to another in that tree view, and have the connection
+relation updated in the database.
+
+TODO: Add an autocompleting search in the left nav that searches for
+... just works? Or any entity, and it tells you what it is in
+brackets?
+
+TODO: Set up self-referential Work-to-Work relation with attributes
+(hasSequel/isSequelOf etc.) and display that in the work views.
+
+* 24 August 2008
+
+Done: Edit familes, corporate bodies, and Group 3 entities.
+
+TODO: One-button "remove" to drop a link between a G1 entity and a G2
+entity, to go beside a name, to remove it as creator, owner, etc.
+
+p = Person.find(5)
+w = Work.find(1)
+w.creators << p        # Create creation reation
+w.creators.delete(p)   # Delete creation relation
+
+Do this in an Ajaxy way so the page doesn't reload, the relation just
+disappears. 
+
+* 25 August 2008
+
+TODO: After deleting an entity, delete all of the associations it has
+with other entities.  If a Person is the realizer of an Expression and
+the Person is deleted, e.realizers will still list the person as a
+realizer.  (Use same function as above.)
+
+Was reading a bit about routes.rb but I don't understand it all, or
+what everything shown in rake routes means
+
+Added  map.resources :creations
+and edited   map.resources :works, :has_many => :expressions
+
+which gives new URLs like /works/1/expressions/new, but a basic GET on
+that just gives an error. I have no idea what's going on here.
+
+Am unsure of the best way to handle remove the creation relation
+between a Work and a G2 entity. Should I do it in a Creation
+controller? If so, how? Or should it be a method in the Work
+controller?  What is the RESTful way to do it?
+
+I added the Aboutnesses model, which defines subject. (Took some
+fiddling because I called it Subject first, which confused things, and
+then I changed it to Aboutness, which is singular so it also confused
+things. Lots of moving stuff around by hand.)
+
+Now for a given work I can say w.subjects, but the name of the subject
+is different in the three entities! Is it title, name, or term?  What
+about item--what's the best way of referring to that on its own?  Hmm.
+
+Maybe I need some sort of helper so if I pass in a class and an id, it
+picks out the proper term to use in the display.
+
+* 27 August 2008
+
+Yesterday I set up the Aboutness model so I could say that a Work has
+as subject this Concept or this Person or this Expression. The two W-E
+relations confused things, though, and I couldn't get at the basic W-E
+realization relation. I set up an aboutness branch in git and moved
+the Aboutness stuff into there an worked on it until I had it figured
+out--very nice.  I branche and then did a git reset --hard HEAD~2 on
+the master branch to set it back to how it had been before I broke
+things.
+
+I turned W-E realization into a model of its own, with an attribute.
+Since Realization was in use (for the relation between an Expression
+and a G2 entity), I called it Reification.  That worked, but it
+required a bunch of cleanup.  (Note that in FRBR all of the WEMI an
+G1-G2 relations are uniquely named except for realization: an
+expression realizes a work, and a G2 realizes an expression.  Caused
+me confusion--worth pointing out.)
+
+TODO: Set up Embodiment and Exemplification models for E-M and M-I
+relations, with a relation attribute. Then every relation has a
+model.  On the other hand, I don't think I need a model for M-I,
+because it's a basic one-to-many relation without any attributes.
+Probably good to set up a model just for completeness, though.
+
+TODO: Make a partial layout so if I pass in an object it will tell me
+every work for which the object is a subject (use Aboutness).
+
+Then I added an anchor_text method to every class so that I can always
+just refer to object.anchor_text and it will return a properly
+formatted name for the object.  Work is title (form), Manifestation is
+title (form_of_carrier, identifier), Person is name, Concept is term,
+etc.  Went through all pages and updated them to use anchor_text.
+
+----------
+
+A thought about Reification, Embodiment and Exemplification models. I
+made Reification a many-to-many relation but then thought it should be
+one-to-many: one Work can have many Expressions. But that's wrong. An
+expression could be an abridgement of two or more works, for example,
+a Reader's Digest version of The Lord of the Rings. Does that count as
+a new work on Tillett's chart? I don't have it with me so I don't
+know, but I think it would (or could) count as a new expression of
+several works at once.  So Reification should stay a many-to-many
+model, for that reason and just so as not to limit implementattions
+later.  I'm not sure what the FRBR report says about this but I'll
+leave it as is.
+
+----------
+
+TODO: Do not assume that an E has only one W.  Anywhere we list the Ws
+from which an E is reified, make it an array.  Allow one E to be
+associated with multiple Ws with select lists. 
+
+I took a stab at this and thought I had it working but ran into an
+error I can't explain.
+
+To start I defined this in expression.rb:
+
+  def work
+    # For expression e, e.work a Work object representing
+    # the first Work for which this Expression is a reification.
+    # (And only, if there is just one.) 
+      Work.find(reifications[0].work_id)
+  end
+
+and it worked fine.  Then I set up a case in the test fixtures where
+one E is an abridgment of three Ws. I made this method in expression.rb:
+
+  def works
+    # For expression e, e.works returns an array of all works 
+    # for which e is a reification.
+    works = []
+    reifications.each do |r|
+      works << Work.find(r.work_id)
+    end
+    works
+  end
+
+But e.works only works once!  Like so:
+
+>> e=Expression.find(5)
+=> #<Expression id: 5, created_at: "2008-08-27 17:09:44", updated_at: "2008-08-27 17:09:44", title: "Reader's Digest version of first three books", form: "text", date: "2000", language: "English", comment: "Test for one expression with many works.">
+>> e.works
+=> [#<Work id: 1, created_at: "2008-08-27 17:09:46", updated_at: "2008-08-27 17:09:46", title: "Harry Potter and the Philosopher's Stone", form: "novel", date: "1997", comment: "First book">, #<Work id: 2, created_at: "2008-08-27 17:09:46", updated_at: "2008-08-27 17:09:46", title: "Harry Potter and the Chamber of Secrets", form: "novel", date: "1998", comment: "Second book">, #<Work id: 3, created_at: "2008-08-27 17:09:46", updated_at: "2008-08-27 17:09:46", title: "Harry Potter and the Prisoner of Azkaban", form: "novel", date: "1999", comment: "Third book">]
+>> e.works
+=> []
+
+What the hell?
+
+I don't know what's going on here.  For now I'll go back to just
+assuming there is one W for each E.  Have to ask about this.  
+
+----------
+
+TODO: Add methods to all of MI so that for each I can easily get an
+array of an M's Es, an M's Ws, and I's Ws, etc.  Or some other simple
+way of getting at all that.
+
+----------
+
+I will now merge this aboutness branch back into the master because
+Aboutness works.
+
+$ git checkout master
+$ git merge aboutness
+
+----------
+
+Added a Subject controller and edited the routes and made an Ajaxy
+thing to dynamically add a subject to a work without reloading the
+page.  The new subject disappears if you follow a link and then come
+back, though.  And if a WEMI is the subject of a work then there's a
+problem if it has a non-unique title.
+
+TODO: Add an intelligent autocompletion to the subject entry field
+here so that it help you distinguish between two W or E with the same
+title, tells you what the entity type is, etc.
+
+----------
+
+TODO:  On every entity page, add the ability to make that entity the
+subject of a work.  (Use intelligent autocompletion for the works.)
+
+----------
+
+I have moved the TODOs into a TODO file and will keep this as just
+narrative notes.
+
+* 11 September 2008
+
+Installing Phusion Passenger on anvil.lisforge.net:
+
+See 
+
+    http://www.modrails.com/
+
+# gem install passenger
+# passenger-install-apache2-module
+
+This complained that some Apache development stuff was missing. It
+told me what to do.
+
+# apt-get install apache2-prefork-dev
+
+Then I went back to:
+
+# passenger-install-apache2-module
+
+It finished up and told me what configuration stuff to add to
+Apache. I put this in /etc/apache2/apache2.conf
+
+# Passenger config stuff for Ruby on Rails
+# Added 7 Sep 2008 by wtd
+LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-2.0.3/ext/apache2/mod_passenger.so
+PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-2.0.3
+PassengerRuby /usr/bin/ruby1.8
+
+I set up a virtual host:
+
+<VirtualHost *>
+  # wtd
+  ServerName   openfrbr.org
+  ServerAlias  www.openfrbr.org
+  DocumentRoot /var/www/openfrbr.org/public
+  CustomLog    /var/log/apache2/openfrbr.org-access.log combined
+  ErrorLog     /var/log/apache2/openfrbr.org-error.log
+
+  <Directory /var/www/openfrbr.org/>
+    Options -Indexes FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+</VirtualHost>
+
+I copied all of the files into place.  I ran
+
+$ rake db:schema:dump 
+
+and copied db/schema.db onto anvil and put it in place.
+
+On anvil I ran
+
+$ rake db:schema:load RAILS_ENV=production
+
+but it complained that Rails 2.1.0 was missing.  (I hadn't frozen
+anything.)  It also complained that has_many_polymorphs was missing.
+
+$ sudo gem install -v=2.1.0 rails
+$ sudo gem install has_many_polymorphs
+$ rake db:schema:load RAILS_ENV=production
+$ rake db:fixtures:load RAILS_ENV=production
+
+And it all works.
+
+Trying a git repository.
+
+And another.
+
+* 26 September 2008
+
+Rolling this up again before I announce it.  OpenFRBR went out as
+version 1 in 2006, so this will have to be version 2.
+
+$ git tag v2.0
+$ git archive --prefix=openfrbr-2.0/ v2.0 | gzip > openfrbr-2.0.tar.gz
+
+
