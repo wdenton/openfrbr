@@ -1,10 +1,10 @@
 #!/usr/local/bin/ruby -w
 
 # William Denton <wtd@pobox.com>
-# April 2007
+# April 2007 - October 2008
 # Released under the MIT License.
 
-# Copyright (c) 2007  William Denton
+# Copyright (c) 2008  William Denton
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -47,12 +47,32 @@
 
 # USAGE
 #
-# ./zmarc.rb 0195024028
+# isbn2marc [-q] [-d] 0195024028
+#
+# -q Run quietly, don't list servers queried and don't dump MARC to STDOUT
+#    default: off
+#
+# -d Dump MARC record to #{isbn}.marc file
+#    default: off
+#
+# This will find a MARC record but then not tell you about it or store it
+#   isbn2marc -q 0195024028
+# So you'd be a bit silly to run that often, wouldn't you?
 
+require 'optparse'
 require 'zoom'
 
 require 'rubygems'
 require 'marc'
+
+options = {}
+options[:quiet] = false
+options[:dump]  = false
+OptionParser.new do |opts|
+  opts.banner = "Usage: isbn2marc [-q] [-d] isbn"
+  opts.on("-q", "--quiet", "Run silently")           { options[:quiet] = true }
+  opts.on("-d", "--dump",  "Dump MARC to isbn.marc") { options[:dump]  = true }
+end.parse!
 
 if ARGV.length == 0
   puts "Please specify an ISBN"
@@ -152,7 +172,7 @@ end
 # and query it about the ISBN until one answers or we run out of servers
 
 servers.each do |server|
-  puts "#{server[0]} ..."
+  puts "#{server[0]} ..." unless options[:quiet] == true
   marcxml = z3950query(isbn, server[0], server[1], server[2])
   if marcxml.nil?
     next
@@ -164,7 +184,12 @@ servers.each do |server|
       # possibly less interesting fields such as 9xx (local information).
       # Some libraries have lots of 852 (holdings) fields which 
       # fill up the screen.
-      puts record
+      puts record unless options[:quiet] == true
+      if options[:dump] == true
+        writer = MARC::Writer.new("#{isbn}.marc")
+        writer.write(record)
+        writer.close()
+      end
     end
     exit 1
   end
