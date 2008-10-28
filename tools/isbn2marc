@@ -1,0 +1,174 @@
+#!/usr/local/bin/ruby -w
+
+# William Denton <wtd@pobox.com>
+# April 2007
+# Released under the MIT License.
+
+# Copyright (c) 2007  William Denton
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
+# INSTALLATION NOTES
+#
+# Requires the ruby-zoom package and the ruby-marc gem.
+#
+# ruby-zoom: http://ruby-zoom.rubyforge.org/
+#
+# ruby-marc: http://www.textualize.com/ruby_marc
+# You can install ruby-marc by running
+# # gem install marc
+#
+# NOTE ruby-zoom installs its own marc.rb file that will conflict with
+# ruby-marc! You will need to delete ruby-zoom's marc.rb or rename it 
+# for ruby-marc to work.
+# 
+# On my system it was installed in
+#   /usr/local/lib/ruby/site_ruby/1.8/marc.rb
+# but you'll have to look for it wherever your system put it.
+
+# USAGE
+#
+# ./zmarc.rb 0195024028
+
+require 'zoom'
+
+require 'rubygems'
+require 'marc'
+
+if ARGV.length == 0
+  puts "Please specify an ISBN"
+  exit 0
+end
+
+isbn = ARGV[0]
+isbn = isbn.gsub(/[^0-9X]/, '')
+
+if (! /(978)*\d{9}[0-9X]/.match(isbn))
+  puts "This is not a valid ISBN" # Not a true validity check!
+  exit 0
+end
+
+# Two lists of open Z39.50 servers:
+#   http://targettest.indexdata.com/
+#   http://staff.library.mun.ca/staff/toolbox/z3950hosts.htm
+
+servers = [
+  # Reorder these so that your preferred servers are first
+  # North America
+  ['sirsi.library.utoronto.ca',  2200, 'unicorn'     ], # U Toronto
+  ['amicus.collectionscanada.ca', 210, 'NL'          ], # Lib & Archives Canada
+  ['aleph.mcgill.ca',             210, 'MUSE'        ], # McGill
+# ['ualapp.library.ualberta.ca', 2200, 'unicorn',    ], # U Alberta
+  ['portage.library.ubc.ca',     7090, 'voyager'     ], # UBC
+  ['z3950.loc.gov',              7090, 'Voyager'     ], # Library of Congress
+  ['catnyp.nypl.org',             210, 'INNOPAC'     ], # New York Pub Lib
+  ['library.mit.edu',            9909, 'mit01pub'    ], # MIT
+  ['prodorbis.library.yale.edu', 7090, 'voyager'     ], # Yale
+  ['catalog.princeton.edu',      7090, 'voyager'     ], # Princeton
+  ['ipac.lib.uchicago.edu',       210, 'usmarc'      ], # Chicago
+  ['www.saclibrarycatalog.org',   210, 'INNOPAC'     ], # Sacramento Pub Lib
+  ['library.bu.edu',              210, 'INNOPAC'     ], # Boston U
+  ['voyager.wrlc.org',           7090, 'voyager'     ], # Wash Res Lib Consor
+  ['catalog.lib.jhu.edu',         210, 'horizon'     ], # Johns Hopkins
+  ['z3950.lib.umich.edu',         210, 'miu01_pub'   ], # U Michigan
+  ['catalog.library.cornell.edu',7090, 'voyager'     ], # Cornell
+  # UK and Ireland
+  ['library.ucc.ie',              210, 'INNOPAC'     ], # U College Cork
+  ['library.ox.ac.uk',            210, 'MAIN*BIBMAST'], # Oxford
+  ['z3950.nls.uk',               7290, 'voyager'     ], # Scottish Nat Lib
+  ['lib-15.lse.ac.uk',           7090, 'voyager'     ], # LSE
+  ['libsys.lib.hull.ac.uk',       210, 'INNOPAC'     ], # Hull
+  # Europe (non-English)
+  ['sigma.nkp.cz',               9909, 'NKC'         ], # Nat Lib Czech R
+  ['lib.mpib-berlin.mpg.de',     2020, 'opac'        ], # Max Planck Inst
+  ['ubsun02.biblio.etc.tu-bs.de',2020, 'bac'         ], # Bibliotheken Berlins
+  ['z3950.kb.dk',                2100, 'KGL01'       ], # Kongelige Bibliothek
+  ['www.bne.es',                 2210, 'BIMO'        ], # Nat Lib Spain
+  ['roble.unizar.es',             210, 'INNOPAC'     ], # U Zaragoza
+  ['www.helmet.fi',               210, 'INNOPAC'     ], # Helsinki Lib
+  ['carmin.sudoc.abes.fr',        210, 'ABES-Z39-PUBLIC' ], # France
+  ['gofor.bibli.ens-cachan.fr', 21210, 'ADVANCE'     ], # French school
+  ['gofor.bibli.ens-cachan.fr', 21210, 'MAIN*BIBMAST'], # French school
+  ['isis.cilea.it',              2100, 'usmarc'      ], # U Brescia
+  ['aleph.library.tudelft.nl',   9909, 'tud01'       ], # # Techn U Delft
+  ['z3950.bibsys.no',            2100, 'BIBSYS'      ], # Nat Lib Norway
+  ['z3950.nb.no',                2100, 'norbok'      ], # Nat Lib Norway
+  ['alpha.bn.org.pl',             210, 'INNOPAC'     ], # Nat Lib Poland
+  ['z3950.btj.se',                210, 'BURK'        ], # Sweden
+# ['lbsihol.unimaas.nl',         7190, 'lbs'         ], # U Maastricht
+  # Australia and New Zealand
+  ['catalogue.nla.gov.au',       7090, 'voyager'     ], # Nat Lib Australia
+  ['nlnzcat.natlib.govt.nz',     7190, 'voyager'     ], # Nat Lib New Zealand
+  # Asia
+  ['library.cuhk.edu.hk',         210, 'INNOPAC'     ], # Chinesse U HK
+  ['linc.nus.edu.sg',             210, 'INNOPAC'     ], # Nat U Singapore
+  ['nbinet.ncl.edu.tw',           210, 'INNOPAC'     ], # Nat Cent Lib Taiwan
+# ['wine.wul.waseda.ac.jp',       210, 'INNOPAC'     ], # Waseda U
+  # Africa
+  ['explore.up.ac.za',            210, 'INNOPAC'     ], # U Pretoria
+# ['natlib1.unisa.ac.za',         210, 'INNOPAC'     ], # Nat Lib South Africa
+  
+]
+
+# Given an ISBN and some Z39.50 information, return MARCXML.  Why
+# MARCXML?  Because (now) the ruby-zoom module can't return a
+# ruby-marc MARC object. It can, however, return MARCXML, which
+# ruby-marc can grok, so we translate it into XML and then back.
+
+def z3950query (isbn, host, port, db)
+  begin
+    ZOOM::Connection.open(host, port) do |conn|
+      conn.database_name = db
+      conn.preferred_record_syntax = 'MARC21'
+      rset = conn.search("@attr 1=7 #{isbn}")
+      return rset[0].xml
+    end
+  rescue Exception => e
+    # puts e # Uncomment to see any server erorrs
+    return nil
+  end
+end
+
+# Now the real business.  Loop through all the servers listed above
+# and query it about the ISBN until one answers or we run out of servers
+
+servers.each do |server|
+  puts "#{server[0]} ..."
+  marcxml = z3950query(isbn, server[0], server[1], server[2])
+  if marcxml.nil?
+    next
+  else
+    reader = MARC::XMLReader.new(StringIO.new(marcxml))
+    reader.each do |record|
+      # Would be good to have an option or something so that people
+      # wouldn't have to see the leader and other early fields and
+      # possibly less interesting fields such as 9xx (local information).
+      # Some libraries have lots of 852 (holdings) fields which 
+      # fill up the screen.
+      puts record
+    end
+    exit 1
+  end
+end  
+
+puts "Sorry, nothing found"
+exit 0

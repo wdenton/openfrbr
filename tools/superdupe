@@ -1,0 +1,254 @@
+#!/usr/local/bin/ruby -w
+
+# TO DO
+# - Add a check so that if the results sets are equal at the start
+#   (or at any point in the middle, I guess) then we just finish up.
+#
+# - Use the new unknownId attribute, instead of double-checking, to
+#   know that an ISBN is valid but unknown 
+
+require 'net/http'
+
+require 'rubygems'
+require 'xisbn'
+include XISBN
+require 'xmlsimple'
+
+if ARGV.length == 0
+  puts "Please specify an ISBN"
+  exit 0
+end
+
+isbn = ARGV[0]
+isbn = isbn.gsub(/[^0-9X]/,'')
+
+if (! /\d{9}[0-9X]/.match(isbn))
+  puts "This is not a valid ISBN" # Not a true validity check!
+  exit 0
+end
+
+def identifyISBN (isbn)
+  xISBNURL = "http://xisbn.worldcat.org/webservices/xid/isbn/::ISBN::?method=getMetadata&format=xml&fl=*"
+  begin
+    xurl = xISBNURL.gsub(/::ISBN::/, isbn)
+    xml_data = Net::HTTP.get_response(URI.parse(xurl)).body
+    data = XmlSimple.xml_in(xml_data)
+    title = data['isbn'][0]['title'] ? data['isbn'][0]['title'] : "Unknown"    
+    lang  = data['isbn'][0]['lang']  ? data['isbn'][0]['lang']  : ""
+    ed    = data['isbn'][0]['ed']    ? data['isbn'][0]['ed']    : ""
+    form  = data['isbn'][0]['form']  ? data['isbn'][0]['form']  : ""
+    return data['isbn'][0]['title'] + " (#{form}; #{lang}) (#{ed})" 
+  rescue
+    return "?"
+  end
+end
+
+def my_xisbn (isbn)
+  xISBNURL = "http://xisbn.worldcat.org/webservices/xid/isbn/::ISBN::?method=getEditions&format=xml&fl=*"
+  begin
+    xurl = xISBNURL.gsub(/::ISBN::/, isbn)
+    xml_data = Net::HTTP.get_response(URI.parse(xurl)).body
+    data = XmlSimple.xml_in(xml_data, { 'ForceContent' => true })
+    isbns = []
+#     if data['isbn'].size == 1
+#       if data['isbn'][0]['title'].nil?
+#         # It's unknown
+#       else
+#         isbns << data['isbn'][0]['content']
+#       end
+#     else
+#       data['isbn'].each do |j|
+#         isbns << j['content']
+#       end
+#     end
+    if (data['isbn'].size == 1) and (data['isbn'][0]['title'].nil?)
+        # It's unknown
+    else 
+      data['isbn'].each do |j|
+        isbns << j['content']
+      end
+    end
+  rescue
+  end
+  return isbns
+end
+
+def isSingleton (isbn)
+  # If ISBN is a singleton at xISBN: return 1
+  # if ISBN is unknown to WorldCat:  return 0
+  xISBNURL = "http://xisbn.worldcat.org/webservices/xid/isbn/::ISBN::?method=getMetadata&format=xml&fl=*"
+  begin
+    xurl = xISBNURL.gsub(/::ISBN::/, isbn)
+    xml_data = Net::HTTP.get_response(URI.parse(xurl)).body
+    data = XmlSimple.xml_in(xml_data)
+    if data['isbn'][0]['title'].nil?
+      return 0
+    else
+      return 1
+    end
+  rescue
+    return "?"
+  end
+end
+
+# ts = list of ISBNs returned from thingISBN that we need to look
+#      up at xISBN so we can discover what xISBN has clustered with it
+ts = thing_isbn(isbn, :timeout => 20)
+# This will eventually dwindle to nothing while superdupe grows
+
+# xs = list of ISBNs returned from xISBN that we need to look
+#      up at thingISBN so we can discover what thingISBN has clustered with it
+xs = xisbn(isbn, :timeout => 20)
+# This will eventually dwindle to nothing while superdupe grows
+
+# superdupe = list of ISBNs that we have checked at both xISBN and
+#             thingISBN; it will gradually build up to contain the ISBNs
+#             of all known clusters at both services
+superdupe = [] 
+
+thingFacts = {
+  'start' => ts.size,
+  'calls' => 1, # How many calls to the service
+  'zeros' => 0, # How often an ISBN is unknown
+  'added' => 0, # Total number of ISBNs returned
+}
+
+xFacts = {
+  'start' => xs.size,
+  'calls' => 1,
+  'zeros' => 0,
+  'added' => 0,
+}
+
+# Basic combining and deduping, for comparison later
+dedupe = (ts + xs).uniq
+
+puts identifyISBN(isbn)
+puts "Start: thingISBN = #{thingFacts['start']}; xISBN = #{xFacts['start']}"
+
+puts "Super\tSource\tISBN\t\tts\txs\tTitle"
+
+loop do 
+
+  # We're going to run through ts (the thingISBN ISBNs) first, and 
+  # if we find one that hasn't been looked up at xISBN, we'll push it
+  # onto the list of ISBNs to be checked there.  Whenever we find an
+  # ISBN that has been checked at both places, we push it onto the
+  # superdupe list and will never look at it again.
+
+  ts.sort.each do |j|
+    next if superdupe.nil? # Weird error, but it'll loop around again
+    print "#{superdupe.size}\tT\t#{j}"
+    # This if block isn't actually needed, but one never knows, does one?
+    if superdupe.include?(j) 
+      # ISBN has already been superduped, so delete it from the T list
+      # and move on; we should never see it again
+      puts " superduped; next"
+      ts.delete(j)
+      xs.delete(j)
+      next
+    end
+
+    if ! xs.include?(j)
+      # The ISBN is in ts (because we're looping through it) 
+      # but has not yet been checked at xISBN (because it isn't in
+      # xs or superdupe).  Ergo, we know all of the ISBNs that thingISBN
+      # has clustered with it, but not what ISBNs have been clustered
+      # with it at xISBN.  Look it up at xISBN and push the results onto
+      # xs, the list of known xISBN ISBNs that are to be checked at 
+      # thingISBN.  That is, find the other ISBNs that xISBN clusters
+      # with this ISBN, and run through them all at thingISBN, in order
+      # to group together all possible clusters.
+      begin 
+        newxs = my_xisbn(j)
+      rescue Exception => e
+        puts "\t(Error '#{e}'; will retry later)"
+        next # Redo this ISBN
+      end
+      xFacts['calls'] += 1
+      xFacts['zeros'] += 1 if newxs.nil? || newxs.size == 0
+      xFacts['added'] += newxs.size
+      print "\t#{ts.size}"
+      print "\t#{xs.size} + #{newxs.size}\t"
+      xs.push(newxs).flatten!.uniq!
+    else
+      print "\t\t\t" 
+    end
+    puts identifyISBN(j).to_s
+    # We don't need to do anything special if xs.include?(j) is true,
+    # because that just means that we'd push the ISBN onto superdupe
+    # and delete it from ts and xs (because it's known to both
+    # places).
+    superdupe << j
+    ts.delete(j)
+    xs.delete(j)
+
+    sleep 1
+  end
+
+  # Now we do the same as before, but the other way around.  Run through
+  # all of the ISBNs we know from xISBN but haven't checked at thingISBN,
+  # and check them there.
+
+  xs.sort.each do |j|
+    next if superdupe.nil? # Weird error, but it'll loop around again
+    print "#{superdupe.size}\tX\t#{j}"
+    if superdupe.include?(j)
+      puts " superduped; next"
+      ts.delete(j)
+      xs.delete(j)
+      next
+    end
+    if ! ts.include?(j)
+      begin 
+        newts = thing_isbn(j)
+      rescue Exception => e
+        puts "\t(Error '#{e}'; will retry later)"
+        next # Redo this ISBN
+      end
+      thingFacts['calls'] += 1
+      thingFacts['zeros'] += 1 if newts.size == 0
+      thingFacts['added'] += newts.size
+      print "\t#{ts.size} + #{newts.size}"
+      print "\t#{xs.size}\t"
+      ts.push(newts).flatten!.uniq!
+    else
+      print "\t\t\t" 
+    end
+    puts identifyISBN(j).to_s
+    superdupe << j
+    ts.delete(j)
+    xs.delete(j)
+
+  sleep 1
+
+  end
+
+  # Run through both loops above again, checking ISBNs and pushing
+  # more onto ts or xs as need be, and from there deleting them and
+  # pushing them onto superdupe, until both ts and xs are empty (ie
+  # we have checked all ISBNs at both places) and superdupe is as full
+  # as it can get.
+  break if (ts.size == 0 and xs.size == 0)
+
+end
+
+puts "\nISBN #{isbn}"
+
+puts "Combining and deduping: #{dedupe.size}"
+
+#dedupe.sort.each do |j|
+#  puts j
+#end
+
+puts "Superduping: #{superdupe.size} ISBNs"
+
+puts "thingISBN: #{thingFacts['start']} at start; #{thingFacts['calls']} calls; #{thingFacts['added']} ISBNs added; #{thingFacts['zeros']} unknown"
+puts "    xISBN: #{xFacts['start']} at start; #{xFacts['calls']} calls; #{xFacts['added']} ISBNs added; #{xFacts['zeros']} unknown"
+
+# Write out all ISBNs to a file, for possible feeding into isbn2marc
+fh = File.new("#{isbn}.txt", "w")
+superdupe.sort.each do |j|
+  fh.write "#{j}\n"
+end
+fh.close
