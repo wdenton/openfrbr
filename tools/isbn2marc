@@ -52,7 +52,10 @@
 # -q Run quietly, don't list servers queried and don't dump MARC to STDOUT
 #    default: off
 #
-# -d Dump MARC record to #{isbn}.marc file
+# -d Dump MARC record to results.marc file
+#    default: off
+#
+# -x Dump MARCXML record to results.xml file
 #    default: off
 #
 # This will find a MARC record but then not tell you about it or store it
@@ -67,25 +70,50 @@ require 'marc'
 
 options = {}
 options[:quiet] = false
-options[:dump]  = false
+options[:file]  = ''
+options[:dump] = false
+options[:dumpxml] = false
 OptionParser.new do |opts|
   opts.banner = "Usage: isbn2marc [-q] [-d] isbn"
-  opts.on("-q", "--quiet", "Run silently")           { options[:quiet] = true }
-  opts.on("-d", "--dump",  "Dump MARC to isbn.marc") { options[:dump]  = true }
+  opts.on("-q", "--quiet", "Run silently") { options[:quiet] = true }
+  opts.on("-d", "--dump", "Dump MARC to d.marc") do |d|
+    options[:dump]  = true
+  end
+  opts.on("-x", "--dumpxml", "Dump MARCXML to x.xml") do |x| 
+    options[:dumpxml]  = true
+  end
+  opts.on("-f", "--file f",  String, "Read ISBNs from file") do |f|
+    options[:file] = f 
+  end
 end.parse!
 
-if ARGV.length == 0
-  puts "Please specify an ISBN"
-  exit 0
+isbns = []
+
+if options[:file].empty?
+  if ARGV.empty?
+    puts "Please specify an ISBN"
+    exit 0
+  end
+else
+  file = File.new(options[:file], "r")
+  while (line = file.gets)
+    line.chomp!
+    # TODO Proper ISBN validity check
+    next unless /(978)*\d{9}[0-9X]/.match(line)
+    # puts "'#{line}'"
+    isbns << line.gsub(/[^0-9X]/, '')
+  end
+  file.close
 end
 
-isbn = ARGV[0]
-isbn = isbn.gsub(/[^0-9X]/, '')
-
-if (! /(978)*\d{9}[0-9X]/.match(isbn))
-  puts "This is not a valid ISBN" # Not a true validity check!
-  exit 0
+if ! ARGV.empty?
+  isbns << ARGV[0].to_s.gsub(/[^0-9X]/, '')
 end
+
+#if (! /(978)*\d{9}[0-9X]/.match(isbn))
+#  puts "This is not a valid ISBN" # Not a true validity check!
+#  exit 0
+#end
 
 # Two lists of open Z39.50 servers:
 #   http://targettest.indexdata.com/
@@ -171,29 +199,42 @@ end
 # Now the real business.  Loop through all the servers listed above
 # and query it about the ISBN until one answers or we run out of servers
 
-servers.each do |server|
-  puts "#{server[0]} ..." unless options[:quiet] == true
-  marcxml = z3950query(isbn, server[0], server[1], server[2])
-  if marcxml.nil?
-    next
-  else
-    reader = MARC::XMLReader.new(StringIO.new(marcxml))
-    reader.each do |record|
-      # Would be good to have an option or something so that people
-      # wouldn't have to see the leader and other early fields and
-      # possibly less interesting fields such as 9xx (local information).
-      # Some libraries have lots of 852 (holdings) fields which 
-      # fill up the screen.
-      puts record unless options[:quiet] == true
-      if options[:dump] == true
-        writer = MARC::Writer.new("#{isbn}.marc")
-        writer.write(record)
-        writer.close()
-      end
-    end
-    exit 1
-  end
-end  
+if options[:dump] == true
+  writer = MARC::Writer.new("results.marc")
+end
 
-puts "Sorry, nothing found"
-exit 0
+if options[:dumpxml] == true
+  writer = MARC::XMLWriter.new("results.xml")
+end
+
+isbns.each do |isbn| 
+  STDERR.puts "** Searching for #{isbn} ..."
+  servers.each do |server|
+    STDERR.puts "#{server[0]} ..." unless options[:quiet] == true
+    marcxml = z3950query(isbn, server[0], server[1], server[2])
+    if marcxml.nil?
+      next
+    else
+      reader = MARC::XMLReader.new(StringIO.new(marcxml))
+      reader.each do |record|
+        # Would be good to have an option or something so that people
+        # wouldn't have to see the leader and other early fields and
+        # possibly less interesting fields such as 9xx (local information).
+        # Some libraries have lots of 852 (holdings) fields which 
+        # fill up the screen.
+        puts record['245'] unless options[:quiet] == true
+        if options[:dump] == true or options[:dumpxml] == true
+          #writer = MARC::Writer.new("results.marc")
+          #writer = MARC::Writer.new("#{isbn}.marc")
+          writer.write(record)
+          #writer.close()
+        end
+      end
+      break
+    end
+  end  
+end
+
+if options[:dump] == true or options[:dumpxml] == true
+  writer.close
+end
