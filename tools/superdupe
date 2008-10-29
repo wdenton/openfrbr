@@ -247,7 +247,7 @@ puts "thingISBN: #{thingFacts['start']} at start; #{thingFacts['calls']} calls; 
 puts "    xISBN: #{xFacts['start']} at start; #{xFacts['calls']} calls; #{xFacts['added']} ISBNs added; #{xFacts['zeros']} unknown"
 
 # Write out all ISBNs to a file, for possible feeding into isbn2marc
-fh = File.new("#{isbn}.txt", "w")
+fh = File.new("superdupe-#{isbn}.txt", "w")
 superdupe.sort.each do |j|
   fh.write "#{j}\n"
 end
