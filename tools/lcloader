@@ -1,0 +1,10 @@
+#!/usr/local/bin/ruby
+
+# Take the XML that the LC FRBRization tool generates
+# and load it up into OpenFRBR.
+
+works = Work.find(:all)
+
+works.each do |w|	
+  puts w.title
+end
