@@ -3,6 +3,17 @@
 # Take the XML that the LC FRBRization tool generates
 # and load it up into OpenFRBR.
 
+require 'xmlsimple'
+
+lcxml = ARGV[0]
+
+if lcxml.nil?
+  puts "No XML file specified"
+  exit 0
+end
+
+data = XmlSimple.xml_in(xml_data)
+
 works = Work.find(:all)
 
 works.each do |w|	

@@ -63,24 +63,24 @@
 # So you'd be a bit silly to run that often, wouldn't you?
 
 require 'optparse'
-require 'zoom'
 
 require 'rubygems'
 require 'marc'
+require 'zoom'
 
 options = {}
 options[:quiet] = false
 options[:file]  = ''
-options[:dump] = false
-options[:dumpxml] = false
+options[:dump] = ''
+options[:dumpxml] = ''
 OptionParser.new do |opts|
   opts.banner = "Usage: isbn2marc [-q] [-d] isbn"
   opts.on("-q", "--quiet", "Run silently") { options[:quiet] = true }
-  opts.on("-d", "--dump", "Dump MARC to d.marc") do |d|
+  opts.on("-d", "--dump d", "Dump MARC to d.marc") do |d|
     options[:dump]  = true
   end
-  opts.on("-x", "--dumpxml", "Dump MARCXML to x.xml") do |x| 
-    options[:dumpxml]  = true
+  opts.on("-x", "--dumpxml d", "Dump MARCXML to x.xml") do |x| 
+    options[:dumpxml]  = d
   end
   opts.on("-f", "--file f",  String, "Read ISBNs from file") do |f|
     options[:file] = f 
@@ -95,7 +95,7 @@ if options[:file].empty?
     exit 0
   end
 else
-  file = File.new(options[:file], "r")
+  file = File.open(options[:file], "r")
   while (line = file.gets)
     line.chomp!
     # TODO Proper ISBN validity check
@@ -199,12 +199,15 @@ end
 # Now the real business.  Loop through all the servers listed above
 # and query it about the ISBN until one answers or we run out of servers
 
-if options[:dump] == true
-  writer = MARC::Writer.new("results.marc")
+if ! options[:dump].empty?
+  # TODO check for error
+  puts options[:dump]
+  writer = MARC::Writer.new(options[:dump])
 end
 
-if options[:dumpxml] == true
-  writer = MARC::XMLWriter.new("results.xml")
+if ! options[:dumpxml].empty?
+  # TODO check for error
+  xmlwriter = MARC::XMLWriter.new(options[:dumpxml])
 end
 
 isbns.each do |isbn| 
@@ -223,18 +226,23 @@ isbns.each do |isbn|
         # Some libraries have lots of 852 (holdings) fields which 
         # fill up the screen.
         puts record['245'] unless options[:quiet] == true
-        if options[:dump] == true or options[:dumpxml] == true
+	writer.write(record) if writer.writable?
+	xmlwrite.write(record) if xmlwriter.writable?
+#        if options[:dump] == true or options[:dumpxml] == true
           #writer = MARC::Writer.new("results.marc")
           #writer = MARC::Writer.new("#{isbn}.marc")
-          writer.write(record)
+#          writer.write(record)
           #writer.close()
-        end
+#        end
       end
       break
     end
   end  
 end
 
-if options[:dump] == true or options[:dumpxml] == true
-  writer.close
-end
+writer.close    if writer.writable?
+xmlwriter.close if xmlwriter.writable?
+
+#if options[:dump] == true or options[:dumpxml] == true
+#  writer.close
+#end
