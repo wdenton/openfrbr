@@ -1,10 +1,12 @@
 #!/usr/local/bin/ruby -w
 
+# isbn2marc - find MARC records for one or more ISBNs
+#
 # William Denton <wtd@pobox.com>
 # April 2007 - October 2008
 # Released under the MIT License.
 
-# Copyright (c) 2008  William Denton
+# Copyright (c) 2008 William Denton
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -29,17 +31,17 @@
 
 # INSTALLATION NOTES
 #
-# Requires the ruby-zoom package and the ruby-marc gem.
+# Requires the ruby-zoom package (which requires YAZ) and the marc gem.
 #
 # ruby-zoom: http://ruby-zoom.rubyforge.org/
+# See the installation instructions there
 #
-# ruby-marc: http://www.textualize.com/ruby_marc
-# You can install ruby-marc by running
-# # gem install marc
+# marc gem: http://rubyforge.org/projects/marc/
+# $ sudo gem install marc
 #
 # NOTE ruby-zoom installs its own marc.rb file that will conflict with
-# ruby-marc! You will need to delete ruby-zoom's marc.rb or rename it 
-# for ruby-marc to work.
+# marc! You will need to delete ruby-zoom's marc.rb or rename it 
+# for the marc gem to work.
 # 
 # On my system it was installed in
 #   /usr/local/lib/ruby/site_ruby/1.8/marc.rb
@@ -47,20 +49,55 @@
 
 # USAGE
 #
-# isbn2marc [-q] [-d] 0195024028
+# isbn2marc [-q] [-d marcfile] [-x xmlfile] ISBN
 #
-# -q Run quietly, don't list servers queried and don't dump MARC to STDOUT
-#    default: off
+# -q          Run quietly, don't list servers queried and don't 
+#             dump MARC to STDOUT
+#             By default isbn2marc tells STDOUT what it's doing
 #
-# -d Dump MARC record to results.marc file
-#    default: off
+# -d marcfile Dump MARC record to file
 #
-# -x Dump MARCXML record to results.xml file
-#    default: off
+# -x xmlfile  Dump MARCXML record to file
+
+# EXAMPLES
 #
-# This will find a MARC record but then not tell you about it or store it
-#   isbn2marc -q 0195024028
-# So you'd be a bit silly to run that often, wouldn't you?
+# Find a MARC record for the first volume of Casanova's HISTORY OF
+# MY LIFE and pretty print it:
+#
+# $ isbn2marc 0801856620 
+#
+# Find a MARC record for Terry Pratchett's THIEF OF TIME and write
+# a binary MARC file to disk as well as pretty printing it:
+#
+# $ isbn2marc -d thief.marc 0552148407
+#
+# Find a MARC record for the first omnibus volume of the University of
+# Chicago Press's edition of Anthony Powell's A DANCE TO THE MUSIC OF TIME,
+# but don't show the record on the screen:
+#
+# $ isbn2marc -q -d stringham.marc -x templer.xml 0226677141
+#
+# Find MARC records for all ISBNs in a file and save them on disk:
+#
+# $ cat isbns.txt
+# 0439064864
+# 0439064872
+# 0439136350
+# 0439136369
+# 0439139600
+# 059035342X
+# 0736646736
+# $ isbn2marc -f isbns.txt -d philosophers-stone.marc
+#
+# Find a MARC record but don't display it or save it:
+#
+# $ isbn2marc -q 0195024028
+#
+# You'd be a bit silly to run that often.
+
+# TO DO
+#
+# Proper ISBN validity check.
 
 require 'optparse'
 
@@ -70,17 +107,17 @@ require 'zoom'
 
 options = {}
 options[:quiet] = false
-options[:file]  = ''
-options[:dump] = ''
-options[:dumpxml] = ''
+options[:file]  = nil
+options[:dump] = nil
+options[:dumpxml] = nil
 OptionParser.new do |opts|
-  opts.banner = "Usage: isbn2marc [-q] [-d] isbn"
+  opts.banner = "Usage: isbn2marc [-q] [-d marcfile] [-x xmlfile] isbn"
   opts.on("-q", "--quiet", "Run silently") { options[:quiet] = true }
-  opts.on("-d", "--dump d", "Dump MARC to d.marc") do |d|
-    options[:dump]  = true
+  opts.on("-d", "--dump d", "Dump MARC to d") do |d|
+    options[:dump]  = d
   end
-  opts.on("-x", "--dumpxml d", "Dump MARCXML to x.xml") do |x| 
-    options[:dumpxml]  = d
+  opts.on("-x", "--dumpxml x", "Dump MARCXML to x") do |x| 
+    options[:dumpxml] = x
   end
   opts.on("-f", "--file f",  String, "Read ISBNs from file") do |f|
     options[:file] = f 
@@ -89,31 +126,48 @@ end.parse!
 
 isbns = []
 
-if options[:file].empty?
+if options[:file].nil?
   if ARGV.empty?
-    puts "Please specify an ISBN"
+    STDERR.puts "No ISBN specified"
     exit 0
   end
 else
-  file = File.open(options[:file], "r")
-  while (line = file.gets)
-    line.chomp!
-    # TODO Proper ISBN validity check
-    next unless /(978)*\d{9}[0-9X]/.match(line)
-    # puts "'#{line}'"
-    isbns << line.gsub(/[^0-9X]/, '')
+  begin
+    file = File.open(options[:file], "r")
+    while (line = file.gets)
+      line.chomp!
+      # TODO Proper ISBN validity check
+      next unless /(978)*\d{9}[0-9X]/.match(line)
+      # puts "'#{line}'"
+      isbns << line.gsub(/[^0-9X]/, '')
+    end
+    file.close
+  rescue Exception => e
+    STDERR.puts "ERROR '#{e}'"
   end
-  file.close
 end
 
 if ! ARGV.empty?
   isbns << ARGV[0].to_s.gsub(/[^0-9X]/, '')
 end
 
-#if (! /(978)*\d{9}[0-9X]/.match(isbn))
-#  puts "This is not a valid ISBN" # Not a true validity check!
-#  exit 0
-#end
+if options[:dump]
+  begin
+    writer = MARC::Writer.new(options[:dump])
+  rescue Exception => e
+    STDERR.puts "ERROR Cannot write to #{options[:dump]}: '#{e}'"
+    exit 0
+  end
+end
+
+if options[:dumpxml]
+  begin
+    xmlwriter = MARC::XMLWriter.new(options[:dumpxml])
+  rescue Exception => e
+    STDERR.puts "ERROR Cannot write to #{options[:dumpxml]}: '#{e}'"
+    exit 0
+  end
+end
 
 # Two lists of open Z39.50 servers:
 #   http://targettest.indexdata.com/
@@ -124,10 +178,10 @@ servers = [
   # North America
   ['sirsi.library.utoronto.ca',  2200, 'unicorn'     ], # U Toronto
   ['amicus.collectionscanada.ca', 210, 'NL'          ], # Lib & Archives Canada
+  ['z3950.loc.gov',              7090, 'Voyager'     ], # Library of Congress
   ['aleph.mcgill.ca',             210, 'MUSE'        ], # McGill
 # ['ualapp.library.ualberta.ca', 2200, 'unicorn',    ], # U Alberta
   ['portage.library.ubc.ca',     7090, 'voyager'     ], # UBC
-  ['z3950.loc.gov',              7090, 'Voyager'     ], # Library of Congress
   ['catnyp.nypl.org',             210, 'INNOPAC'     ], # New York Pub Lib
   ['library.mit.edu',            9909, 'mit01pub'    ], # MIT
   ['prodorbis.library.yale.edu', 7090, 'voyager'     ], # Yale
@@ -178,9 +232,9 @@ servers = [
 ]
 
 # Given an ISBN and some Z39.50 information, return MARCXML.  Why
-# MARCXML?  Because (now) the ruby-zoom module can't return a
-# ruby-marc MARC object. It can, however, return MARCXML, which
-# ruby-marc can grok, so we translate it into XML and then back.
+# MARCXML?  Because (now) the ruby-zoom module can't return a marc
+# MARC object. It can, however, return MARCXML, which marc can grok,
+# so we translate it into XML and then back.
 
 def z3950query (isbn, host, port, db)
   begin
@@ -197,21 +251,11 @@ def z3950query (isbn, host, port, db)
 end
 
 # Now the real business.  Loop through all the servers listed above
-# and query it about the ISBN until one answers or we run out of servers
-
-if ! options[:dump].empty?
-  # TODO check for error
-  puts options[:dump]
-  writer = MARC::Writer.new(options[:dump])
-end
-
-if ! options[:dumpxml].empty?
-  # TODO check for error
-  xmlwriter = MARC::XMLWriter.new(options[:dumpxml])
-end
+# and query it about the ISBNs until one answers or we run out of
+# servers
 
 isbns.each do |isbn| 
-  STDERR.puts "** Searching for #{isbn} ..."
+  STDERR.puts "#{isbn} ..." unless options[:quiet] == true
   servers.each do |server|
     STDERR.puts "#{server[0]} ..." unless options[:quiet] == true
     marcxml = z3950query(isbn, server[0], server[1], server[2])
@@ -225,24 +269,15 @@ isbns.each do |isbn|
         # possibly less interesting fields such as 9xx (local information).
         # Some libraries have lots of 852 (holdings) fields which 
         # fill up the screen.
-        puts record['245'] unless options[:quiet] == true
-	writer.write(record) if writer.writable?
-	xmlwrite.write(record) if xmlwriter.writable?
-#        if options[:dump] == true or options[:dumpxml] == true
-          #writer = MARC::Writer.new("results.marc")
-          #writer = MARC::Writer.new("#{isbn}.marc")
-#          writer.write(record)
-          #writer.close()
-#        end
+        # puts record['245'] unless options[:quiet] == true
+        puts record unless options[:quiet] == true
+	writer.write(record) if options[:dump]
+	xmlwriter.write(record) if options[:dumpxml]
       end
       break
     end
   end  
 end
 
-writer.close    if writer.writable?
-xmlwriter.close if xmlwriter.writable?
-
-#if options[:dump] == true or options[:dumpxml] == true
-#  writer.close
-#end
+writer.close if options[:dump]
+xmlwriter.close if options[:dumpxml]
