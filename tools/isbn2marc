@@ -53,7 +53,7 @@
 #
 # -q          Run quietly, don't list servers queried and don't 
 #             dump MARC to STDOUT
-#             By default isbn2marc tells STDOUT what it's doing
+#             By default isbn2marc tells STDERR what it's doing
 #
 # -d marcfile Dump MARC record to file
 #
@@ -87,7 +87,7 @@
 # 0439139600
 # 059035342X
 # 0736646736
-# $ isbn2marc -f isbns.txt -d philosophers-stone.marc
+# $ isbn2marc -f isbns.txt -d harry-potter.marc
 #
 # Find a MARC record but don't display it or save it:
 #
