@@ -1,9 +1,45 @@
-#!/usr/local/bin/ruby
+#!/usr/local/bin/ruby -w
 
-# Take the XML that the LC FRBRization tool generates
+# lcloader - Take the XML that the LC FRBRization tool generates
 # and load it up into OpenFRBR.
+#
+# William Denton <wtd@pobox.com>
+# Released under the MIT License.
 
-require 'xmlsimple'
+# Copyright (c) 2008 William Denton
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
+# INSTALLATION
+#
+# Requires the xml-simple gem.
+#
+# $ sudo gem install xml-simple
+
+#require 'rubygems'
+#require 'xmlsimple'
+
+require "rexml/document"
+include REXML
 
 lcxml = ARGV[0]
 
@@ -12,10 +48,83 @@ if lcxml.nil?
   exit 0
 end
 
-data = XmlSimple.xml_in(xml_data)
+file = File.open(lcxml)
+doc = REXML::Document.new file
 
-works = Work.find(:all)
+# data = XmlSimple.xml_in(lcxml)
 
-works.each do |w|	
-  puts w.title
+# works = Work.find(:all)
+
+#works.each do |w|	
+#  puts w.title
+#end
+
+# p data
+
+# puts XPath.first(doc, "//work")
+
+
+#doc.each_child do |c|
+#  puts c
+#end
+
+doc.elements.each('frbr/work') do |w|
+
+  # Work attributes we know from the LC tool:
+  #  title
+  # Don't know
+  #  form
+  #  date
+
+  puts "W Title: " + w.elements['mods:titleInfo/mods:title'].text
+
+  # We will assume that all of the names associated with a
+  # work are Person entities.
+  # TODO: Make a way to change a Group 2 entity from one type
+  # to another.
+
+  # Person attributes we know:
+  #  name
+  # Don't know
+  #  dates
+  #  title
+  #  other_designation
+  #  affiliation
+  #  country
+
+  w.elements.each('mods:name') do |n|
+    puts "W Person: " + n.elements['mods:namePart'].text
+    puts "W Role: " + n.elements['mods:role/mods:text'].text
+  end
+
+  # Expression attributes we know:
+  #  title (assume same as work)
+  #  form (expression/mods:typeOfResource)
+  #  language (expression/mods:language) (uses ISO639-2B)
+  # Don't know
+  #  date
+
+  w.elements.each('expression') do |e|
+    puts "  E Type: " + e.elements['mods:typeOfResource'].text
+    lang = e.elements['mods:language'].nil? ? "" : e.elements['mods:language'].text
+    puts "  E Language: #{lang}"
+    e.elements.each('manifestation') do |m|
+      # I'm going to treat each imprint as a manifestation.
+      # Not sure what LC's doing with manifestations and imprints.
+      m.elements.each('imprint') do |i|
+        puts "    M Title: " + i.elements['mods:titleInfo/mods:title'].text
+        puts "    M Statement of responsibility: " + i.elements['mods:note'].text
+    end
+    end
+  end
+  puts
 end
+
+#doc.write ($stdout, 2)
+#output = "" 
+#doc.write output
+
+
+
+
+
