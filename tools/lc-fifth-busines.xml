@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.loc.gov/standards/marcxml/frbr/frbr2html.xsl"?><frbr xmlns:mods="http://www.loc.gov/mods/"
+      xmlns:fm="http://www.loc.gov/MARC21/frbr/match"
+      xmlns="http://www.loc.gov/MARC21/frbr">
+   <work>
+      <mods:name type="personal">
+         <mods:namePart>Davies, Robertson</mods:namePart>
+         <mods:role>
+            <mods:text>creator</mods:text>
+         </mods:role>
+      </mods:name>
+      <mods:titleInfo>
+         <mods:title>Deptford-trilogin</mods:title>
+      </mods:titleInfo>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">swe</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Deptford-trilogin</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; ?vers?ttning av Sonja Bergvall.</mods:note>
+               <mods:originInfo>
+                  <mods:edition>[Ny utg.]</mods:edition>
+                  <mods:publisher>Wahlstr?m &amp; Widstrand</mods:publisher>
+                  <mods:dateIssued>1998</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>[2], 263, [5] s., s. 7-260, 323, [1] s. ; 23 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">91-46-17260-2 (hft.)</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+   </work>
+   <work>
+      <mods:name type="personal">
+         <mods:namePart>Davies, Robertson</mods:namePart>
+         <mods:role>
+            <mods:text>creator</mods:text>
+         </mods:role>
+      </mods:name>
+      <mods:titleInfo>
+         <mods:title>World of wonders</mods:title>
+      </mods:titleInfo>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Penguin books</mods:publisher>
+                  <mods:dateIssued>1977</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>315 p ; 20 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0-14-016796-X (pbk)</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+   </work>
+   <work>
+      <mods:name type="personal">
+         <mods:namePart>Davies, Robertson, 1913</mods:namePart>
+         <mods:role>
+            <mods:text>creator</mods:text>
+         </mods:role>
+      </mods:name>
+      <mods:titleInfo>
+         <mods:title>Cinquième emploi</mods:title>
+      </mods:titleInfo>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">fre</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Cinquième emploi</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Traduit de l'anglais par Arlette Francière.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Cercle du Livre de France</mods:publisher>
+                  <mods:dateIssued>[1975]</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>351, [1] p.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0775300586</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+   </work>
+   <work>
+      <mods:name type="personal">
+         <mods:namePart>Davies, Robertson, 1913</mods:namePart>
+         <mods:role>
+            <mods:text>creator</mods:text>
+         </mods:role>
+      </mods:name>
+      <mods:titleInfo>
+         <mods:title>World of wonders</mods:title>
+      </mods:titleInfo>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">eng</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; introduction by Wayne Johnston.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Penguin Books</mods:publisher>
+                  <mods:dateIssued>2006</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>xx, [1], 324 p. ; 20 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0143039148</mods:identifier>
+               <mods:identifier type="lccn">2005044534</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; with an introduction by M.G. Vassanji.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Penguin</mods:publisher>
+                  <mods:dateIssued>2005</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>xiv, 310 p. ; 20 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0143051407</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Penguin</mods:publisher>
+                  <mods:dateIssued>1996, c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>328 p. ; 21 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0140260471</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Penguin Books</mods:publisher>
+                  <mods:publisher>Penguin Books Canada</mods:publisher>
+                  <mods:dateIssued>1980, c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>315, [5] p. (p.[2-5] at end ads.) ; 18 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0140043896</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Star Books</mods:publisher>
+                  <mods:dateIssued>1979</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>[4], 358 p. ; 18 cm</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0352397748 (pbk)</mods:identifier>
+               <mods:identifier type="lccn">GB80-3842</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>W.H. Allen</mods:publisher>
+                  <mods:dateIssued>1977, c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>[8], 358 p. ; 23 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">049102200X : £4.50</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Viking Press</mods:publisher>
+                  <mods:dateIssued>1976, c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>[9], 358 p.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0670788120 : $8.95</mods:identifier>
+               <mods:identifier type="lccn">75038778</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Macmillan of Canada</mods:publisher>
+                  <mods:dateIssued>c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>358 p.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0770513190 : $10.95</mods:identifier>
+               <mods:identifier type="ISBN">0770513182</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>World of wonders</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Macmillan of Canada</mods:publisher>
+                  <mods:dateIssued>c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>[8], 358 p. ; 23 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">0770513190</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">fre</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Le monde des merveilles</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; roman traduit de l'anglais (Canada) par Lisa Rosenbaum.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Rivages</mods:publisher>
+                  <mods:dateIssued>1999</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>417, [15] p. ; 17 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">2743605219</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Le monde des merveilles</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; traduit de l'anglais (Canada) par Lisa Rosenbaum.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Rivages</mods:publisher>
+                  <mods:dateIssued>1994</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>417 p. ; 22 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">2869307322</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Le monde des merveilles</mods:title>
+                  <mods:subTitle>roman</mods:subTitle>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; traduit de l'anglais par Lisa Rosenbaum.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Éditions Payot</mods:publisher>
+                  <mods:dateIssued>1991, c1990</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>417, [31] p. (p.[4-31] at end ads.) ; 18 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">2020123428</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">ger</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Welt der Wunder</mods:title>
+                  <mods:subTitle>Roman</mods:subTitle>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>P. Zsolnay</mods:publisher>
+                  <mods:dateIssued>c1986</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>391, [1] p. ; 21 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">3552038035</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">pol</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Świat czarów</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; przełożyły Maria Skibniewska i Zofia Zinserling.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Państwowy Instytut Wydawniczy</mods:publisher>
+                  <mods:dateIssued>c1989</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>327, [2] p. ; 20 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">8306017544</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">rus</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Mirchudes</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Dėvis.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Azbuka-klassika</mods:publisher>
+                  <mods:dateIssued>2003</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>442, [6] p. ; 21 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">5352003221</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">spa</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Mundo de maravillas</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Javier Vergara</mods:publisher>
+                  <mods:dateIssued>c1985</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>369, [2] p. ; 22 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">9501504697</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">swe</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>En undrens v?rld</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; ?vers?ttning av Sonja Bergvall.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Wahlstr?m &amp; Widstrand</mods:publisher>
+                  <mods:dateIssued>1986, c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>323 p. ; 22 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">9146152873 (bound)</mods:identifier>
+               <mods:identifier type="ISBN">9146154892 (pbk.)</mods:identifier>
+            </imprint>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>En undrens v?rld</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Robertson Davies ; ?vers?ttning av Sonja Bergvall.</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>Wahlstr?m &amp; Widstrand</mods:publisher>
+                  <mods:dateIssued>1986, c1975</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>323 p. ; 22 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">9146152873 (bound)</mods:identifier>
+               <mods:identifier type="ISBN">9146154892 (pbk.)</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+   </work>
+   <work>
+      <mods:name type="personal">
+         <mods:namePart>L'Espine, Dominique de</mods:namePart>
+         <mods:role>
+            <mods:text>creator</mods:text>
+         </mods:role>
+      </mods:name>
+      <mods:titleInfo>
+         <mods:title>Gaspard de la nuit et des étoiles</mods:title>
+      </mods:titleInfo>
+      <expression>
+         <mods:typeOfResource>text</mods:typeOfResource>
+         <mods:language authority="iso639-2b">fre</mods:language>
+         <manifestation>
+            <imprint>
+               <mods:titleInfo>
+                  <mods:title>Gaspard de la nuit et des étoiles</mods:title>
+               </mods:titleInfo>
+               <mods:note type="statement of responsiblity">Dominique Levey-Chedeville [i.e. D. de l'Espine].</mods:note>
+               <mods:originInfo>
+                  <mods:publisher>P. Tisseyre</mods:publisher>
+                  <mods:dateIssued>c1979</mods:dateIssued>
+               </mods:originInfo>
+               <mods:physicalDescription>
+                  <mods:extent>187 p. ; 21 cm.</mods:extent>
+               </mods:physicalDescription>
+               <mods:identifier type="ISBN">2890510204 $8.95</mods:identifier>
+            </imprint>
+         </manifestation>
+      </expression>
+   </work>
+</frbr>

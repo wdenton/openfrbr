@@ -851,4 +851,24 @@ version 1 in 2006, so this will have to be version 2.
 $ git tag v2.0
 $ git archive --prefix=openfrbr-2.0/ v2.0 | gzip > openfrbr-2.0.tar.gz
 
+* 6 November
+
+Announced isbn2marc, which I've been working on for a few days.  It's
+a new and improved version of zmarc.rb.  Given one or more ISBNs it
+will look up MARC records in open Z39.50 servers and then pretty print
+them on screen and save them in binary or MARCXML formats.  I need
+this to gather test MARC records to process with the LC FRBRization
+tool, which I've been fooling around with the last couple of weeks.
+
+* 10 November
+
+Working on lcloader, which will take the LC XML file and load it up
+into OpenFRBR.  Lots of attributes are missing.  Some can be copied
+from one entity to another, but we'll need an easy way to edit
+attributes (perhaps en masse).
+
+
+
+
+
 
