@@ -110,10 +110,32 @@ doc.elements.each('frbr/work') do |w|
     puts "  E Language: #{lang}"
     e.elements.each('manifestation') do |m|
       # I'm going to treat each imprint as a manifestation.
-      # Not sure what LC's doing with manifestations and imprints.
+      # Not sure what LC's doing here with manifestations and imprints.
+
+      # Manifestation attributes we know:
+      #  title (manifestation/imprint/mods:titleInfo/mods:title)
+      #  statement_of_responsibility (manifestation/imprint/mods:note["statement of responsibility"]
+      #  edition (manifestation/imprint/mods:originInfo/mods:edition)
+      #  identifier (manifestation/imprint/mods:identifier["ISBN"])
+      #  publisher (manifestation/imprint/mods:originInfo/mods:publisher)
+      #  publication_date (manifestation/imprint/mods:originInfo/mods:publicationDate)
+      # Don't know:
+      #  form_of_carrier
+      #  publication_place
+      #  series_statement
+      #
+      # Don't use:
+      #  manifestation/imprint/mods:physicalDescription/mods:extent
+
       m.elements.each('imprint') do |i|
         puts "    M Title: " + i.elements['mods:titleInfo/mods:title'].text
         puts "    M Statement of responsibility: " + i.elements['mods:note'].text
+        edition = i.elements['mods:originInfo/mods:edition'].nil? ? "" : i.elements['mods:originInfo/mods:edition'].text
+        puts "    M Edition: " + edition
+
+        identifier = i.elements['mods:identifier["ISBN"]'].nil? ? "" : i.elements['mods:identifier["ISBN"]'].text
+        puts "    M Identifier: " + identifier
+
     end
     end
   end
