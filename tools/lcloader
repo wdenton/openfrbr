@@ -76,7 +76,16 @@ doc.elements.each('frbr/work') do |w|
   #  form
   #  date
 
-  puts "W Title: " + w.elements['mods:titleInfo/mods:title'].text
+  # !!! Can we assume the form is always a novel, given
+  # how the tool works and the data we're giving it?  Probably.
+
+  title = w.elements['mods:titleInfo/mods:title'].text
+  form  = "novel?"
+
+  puts "W Title: " + title
+
+  work = Work.new(:title => title, :form => form);
+  work.save
 
   # We will assume that all of the names associated with a
   # work are Person entities.
@@ -95,6 +104,14 @@ doc.elements.each('frbr/work') do |w|
   w.elements.each('mods:name') do |n|
     puts "W Person: " + n.elements['mods:namePart'].text
     puts "W Role: " + n.elements['mods:role/mods:text'].text
+
+    # TODO Add a role attribute to the Creation model so we can
+    # save that.
+
+    person = Person.find_or_create_by_name(:name => n.elements['mods:namePart'].text)
+    person.save
+    work.creators << person
+    work.save
   end
 
   # Expression attributes we know:
@@ -105,9 +122,24 @@ doc.elements.each('frbr/work') do |w|
   #  date
 
   w.elements.each('expression') do |e|
-    puts "  E Type: " + e.elements['mods:typeOfResource'].text
-    lang = e.elements['mods:language'].nil? ? "" : e.elements['mods:language'].text
-    puts "  E Language: #{lang}"
+
+    expression_title = title
+    expression_form = e.elements['mods:typeOfResource'].text
+    expression_language = e.elements['mods:language'].nil? ? "" : e.elements['mods:language'].text
+
+    puts "  E Form: " + expression_form
+    puts "  E Language: " + expression_language
+
+    expression = Expression.new(:title => expression_title, 
+      :form => expression_form, 
+      :language => expression_language) 
+    expression.save
+
+    reification = Reification.new(:work_id => work.id, 
+      :expression_id => expression.id, 
+      :relation => "")
+    reification.save
+
     e.elements.each('manifestation') do |m|
       # I'm going to treat each imprint as a manifestation.
       # Not sure what LC's doing here with manifestations and imprints.
@@ -128,18 +160,29 @@ doc.elements.each('frbr/work') do |w|
       #  manifestation/imprint/mods:physicalDescription/mods:extent
 
       m.elements.each('imprint') do |i|
-        puts "    M Title: " + i.elements['mods:titleInfo/mods:title'].text
-        puts "    M Statement of responsibility: " + i.elements['mods:note'].text
-        edition = i.elements['mods:originInfo/mods:edition'].nil? ? "" : i.elements['mods:originInfo/mods:edition'].text
-        puts "    M Edition: " + edition
+        manifestation_title = i.elements['mods:titleInfo/mods:title'].text
+	manifestation_statement_of_responsibility = i.elements['mods:note'].text
+	manifestation_edition = i.elements['mods:originInfo/mods:edition'].nil? ? "" : i.elements['mods:originInfo/mods:edition'].text
+	manifestation_identifier = i.elements['mods:identifier["ISBN"]'].nil? ? "" : i.elements['mods:identifier["ISBN"]'].text
 
-        identifier = i.elements['mods:identifier["ISBN"]'].nil? ? "" : i.elements['mods:identifier["ISBN"]'].text
-        puts "    M Identifier: " + identifier
+	manifestation_form_of_carrier = "book?"
 
-    end
+        puts "    M Title: " + manifestation_title
+        puts "    M Statement of responsibility: " + manifestation_statement_of_responsibility
+        puts "    M Edition: " + manifestation_edition
+        puts "    M Identifier: " + manifestation_identifier
+
+	manifestation = Manifestation.new(:title => manifestation_title,
+          :statement_of_responsibility => manifestation_statement_of_responsibility,
+	  :edition => manifestation_edition,
+	  :identifier => manifestation_identifier,
+	  :form_of_carrier => manifestation_form_of_carrier,
+	  :expression_id => expression.id)
+	manifestation.save
+
+      end
     end
   end
-  puts
 end
 
 #doc.write ($stdout, 2)
