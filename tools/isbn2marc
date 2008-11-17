@@ -176,8 +176,9 @@ end
 servers = [
   # Reorder these so that your preferred servers are first
   # North America
+  ['theta.library.yorku.ca',     2200, 'unicorn'     ], # York
   ['sirsi.library.utoronto.ca',  2200, 'unicorn'     ], # U Toronto
-  ['amicus.collectionscanada.ca', 210, 'NL'          ], # Lib & Archives Canada
+  ['amicus.collectionscanada.gc.ca', 210, 'NL'       ], # Lib & Archives Canada
   ['z3950.loc.gov',              7090, 'Voyager'     ], # Library of Congress
   ['aleph.mcgill.ca',             210, 'MUSE'        ], # McGill
 # ['ualapp.library.ualberta.ca', 2200, 'unicorn',    ], # U Alberta
@@ -255,24 +256,28 @@ end
 # servers
 
 isbns.each do |isbn| 
-  STDERR.puts "#{isbn} ..." unless options[:quiet] == true
+  # STDERR.print "#{isbn} " unless options[:quiet] == true
   servers.each do |server|
-    STDERR.puts "#{server[0]} ..." unless options[:quiet] == true
+    STDERR.print "\r#{isbn} #{server[0]}" + " "*25 unless options[:quiet] == true
     marcxml = z3950query(isbn, server[0], server[1], server[2])
     if marcxml.nil?
       next
     else
-      reader = MARC::XMLReader.new(StringIO.new(marcxml))
-      reader.each do |record|
-        # Would be good to have an option or something so that people
-        # wouldn't have to see the leader and other early fields and
-        # possibly less interesting fields such as 9xx (local information).
-        # Some libraries have lots of 852 (holdings) fields which 
-        # fill up the screen.
-        # puts record['245'] unless options[:quiet] == true
-        puts record unless options[:quiet] == true
-	writer.write(record) if options[:dump]
-	xmlwriter.write(record) if options[:dumpxml]
+      begin
+        reader = MARC::XMLReader.new(StringIO.new(marcxml))
+        reader.each do |record|
+          # Would be good to have an option or something so that people
+          # wouldn't have to see the leader and other early fields and
+          # possibly less interesting fields such as 9xx (local information).
+          # Some libraries have lots of 852 (holdings) fields which 
+          # fill up the screen.
+          # puts record['245'] unless options[:quiet] == true
+          puts record unless options[:quiet] == true
+          writer.write(record) if options[:dump]
+          xmlwriter.write(record) if options[:dumpxml]
+        end
+      rescue Exception => e
+        STDERR.puts "\nERROR Record not written: '#{e}'"
       end
       break
     end
@@ -281,3 +286,7 @@ end
 
 writer.close if options[:dump]
 xmlwriter.close if options[:dumpxml]
+
+
+# 1551923769
+# in WorldCat but can't find a MARC record in my Z39.50 list
