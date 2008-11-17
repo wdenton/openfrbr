@@ -110,19 +110,30 @@ options[:quiet] = false
 options[:file]  = nil
 options[:dump] = nil
 options[:dumpxml] = nil
+
+# Enter your WorldCat API key here.
+# It can also be specified on the command line but that's tiresome.
+options[:worldcat] = ''
+
 OptionParser.new do |opts|
   opts.banner = "Usage: isbn2marc [-q] [-d marcfile] [-x xmlfile] isbn"
   opts.on("-q", "--quiet", "Run silently") { options[:quiet] = true }
-  opts.on("-d", "--dump d", "Dump MARC to d") do |d|
+  opts.on("-d", "--dump d", "Dump MARC to file d") do |d|
     options[:dump]  = d
   end
   opts.on("-x", "--dumpxml x", "Dump MARCXML to x") do |x| 
     options[:dumpxml] = x
   end
-  opts.on("-f", "--file f",  String, "Read ISBNs from file") do |f|
+  opts.on("-f", "--file f",  String, "Read ISBNs from file f") do |f|
     options[:file] = f 
   end
+  opts.on("-w", "--worldcat apikey", String, "WorldCat API key") do |w|
+    options[:worldcat] = w
+  end
 end.parse!
+
+# WorldCat API URL format
+worldcatURL = "http://www.worldcat.org/webservices/catalog/content/isbn/::ISBN::?wskey=::KEY::"
 
 isbns = []
 
@@ -257,6 +268,9 @@ end
 
 isbns.each do |isbn| 
   # STDERR.print "#{isbn} " unless options[:quiet] == true
+  if options[:worldcat].length > 0
+    STDERR.print "\r#{isbn} WorldCat" + " "*25 unless options[:quiet] == true
+  end
   servers.each do |server|
     STDERR.print "\r#{isbn} #{server[0]}" + " "*25 unless options[:quiet] == true
     marcxml = z3950query(isbn, server[0], server[1], server[2])
