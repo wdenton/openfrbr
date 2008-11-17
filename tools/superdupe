@@ -1,5 +1,34 @@
 #!/usr/local/bin/ruby -w
 
+# superdupe - given one ISBN, find lots more
+#
+# William Denton <wtd@pobox.com>
+# November 2008
+# Released under the MIT License.
+
+# Copyright (c) 2008 William Denton
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
 # TO DO
 # - Add a check so that if the results sets are equal at the start
 #   (or at any point in the middle, I guess) then we just finish up.
@@ -8,11 +37,23 @@
 #   know that an ISBN is valid but unknown 
 
 require 'net/http'
+require 'optparse'
 
 require 'rubygems'
 require 'xisbn'
 include XISBN
 require 'xmlsimple'
+
+options = {}
+options[:limit] = 0
+options[:nosuper] = false
+OptionParser.new do |opts|
+  opts.banner = "Usage: superdupe [--limit n] isbn"
+  opts.on("--limit n", Integer, "Stop after n ISBNs are found") do |n| 
+    options[:limit] = n
+  end
+  opts.on("-n", "--nosuper", "Only dedupe, don't superdupe") { options[:nosuper] = true }
+end.parse!
 
 if ARGV.length == 0
   puts "Please specify an ISBN"
@@ -128,7 +169,9 @@ puts "Start: thingISBN = #{thingFacts['start']}; xISBN = #{xFacts['start']}"
 
 puts "Super\tSource\tISBN\t\tts\txs\tTitle"
 
-loop do 
+loop do
+
+  break if options[:nosuper]
 
   # We're going to run through ts (the thingISBN ISBNs) first, and 
   # if we find one that hasn't been looked up at xISBN, we'll push it
@@ -183,6 +226,8 @@ loop do
     ts.delete(j)
     xs.delete(j)
 
+    break if options[:limit] > 0 && superdupe.size >= options[:limit]
+
     sleep 1
   end
 
@@ -220,6 +265,8 @@ loop do
     ts.delete(j)
     xs.delete(j)
 
+    break if options[:limit] > 0 && superdupe.size >= options[:limit]
+
   sleep 1
 
   end
@@ -229,6 +276,7 @@ loop do
   # pushing them onto superdupe, until both ts and xs are empty (ie
   # we have checked all ISBNs at both places) and superdupe is as full
   # as it can get.
+  break if options[:limit] > 0 && superdupe.size >= options[:limit]
   break if (ts.size == 0 and xs.size == 0)
 
 end
@@ -241,14 +289,18 @@ puts "Combining and deduping: #{dedupe.size}"
 #  puts j
 #end
 
-puts "Superduping: #{superdupe.size} ISBNs"
+if options[:nosuper]
+  superdupe = dedupe
+end
+
+puts "Superduping: #{superdupe.size} ISBNs" # + (" (enforced limit)" if options[:limit] > 0)
 
 puts "thingISBN: #{thingFacts['start']} at start; #{thingFacts['calls']} calls; #{thingFacts['added']} ISBNs added; #{thingFacts['zeros']} unknown"
 puts "    xISBN: #{xFacts['start']} at start; #{xFacts['calls']} calls; #{xFacts['added']} ISBNs added; #{xFacts['zeros']} unknown"
 
 # Write out all ISBNs to a file, for possible feeding into isbn2marc
 fh = File.new("superdupe-#{isbn}.txt", "w")
-superdupe.sort.each do |j|
+superdupe.each do |j|
   fh.write "#{j}\n"
 end
 fh.close
