@@ -1,0 +1,43 @@
+#!/usr/local/bin/ruby -w
+
+require 'rubygems'
+require 'marc'
+
+marcin  = ARGV[0]
+marcout = ARGV[1]
+
+reader = MARC::Reader.new(marcin)
+
+writer = MARC::Writer.new(marcout)
+
+reader.each do |record|
+  next if record['245'].nil?
+
+  if ! record['240'].nil?
+    unless record['240'].indicator1.to_s =~ /[01]/
+      record['240'].indicator1 = '1'
+    end
+    unless record['240'].indicator2.to_s =~ /\d/
+      record['240'].indicator2 = '0'
+    end
+  end
+
+  if ! record['243'].nil?
+    unless record['243'].indicator1.to_s =~ /[01]/
+      record['243'].indicator1 = '1'
+    end
+    unless record['243'].indicator2.to_s =~ /\d/
+      record['243'].indicator2 = '0'
+    end
+  end
+
+  unless record['245'].indicator1.to_s =~ /[01]/
+    record['245'].indicator1 = '1'
+  end
+  unless record['245'].indicator2.to_s =~ /\d/
+    record['245'].indicator2 = '0'
+  end
+  writer.write(record)
+end
+
+writer.close
