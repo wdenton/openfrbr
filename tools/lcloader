@@ -150,7 +150,7 @@ doc.elements.each('frbr/work') do |w|
       #  edition (manifestation/imprint/mods:originInfo/mods:edition)
       #  identifier (manifestation/imprint/mods:identifier["ISBN"])
       #  publisher (manifestation/imprint/mods:originInfo/mods:publisher)
-      #  publication_date (manifestation/imprint/mods:originInfo/mods:publicationDate)
+      #  publication_date (manifestation/imprint/mods:originInfo/mods:dateIssued)
       # Don't know:
       #  form_of_carrier
       #  publication_place
@@ -161,8 +161,11 @@ doc.elements.each('frbr/work') do |w|
 
       m.elements.each('imprint') do |i|
         manifestation_title = i.elements['mods:titleInfo/mods:title'].text
-	manifestation_statement_of_responsibility = i.elements['mods:note'].text
-	manifestation_edition = i.elements['mods:originInfo/mods:edition'].nil? ? "" : i.elements['mods:originInfo/mods:edition'].text
+	manifestation_statement_of_responsibility = i.elements['mods:note["statement of responsibility"]'].nil? ? "" : i.elements['mods:note["statement of responsibility"]'].text 
+        # Found a case where there's a <mods:edition/> empty element, so || "" handles it
+	manifestation_edition = i.elements['mods:originInfo/mods:edition'].nil? ? "" : i.elements['mods:originInfo/mods:edition'].text || ""
+	manifestation_publisher = i.elements['mods:originInfo/mods:publisher'].nil? ? "" : i.elements['mods:originInfo/mods:publisher'].text
+	manifestation_publication_date = i.elements['mods:originInfo/mods:dateIssued'].nil? ? "" : i.elements['mods:originInfo/mods:dateIssued'].text
 	manifestation_identifier = i.elements['mods:identifier["ISBN"]'].nil? ? "" : i.elements['mods:identifier["ISBN"]'].text
 
 	manifestation_form_of_carrier = "book?"
@@ -170,15 +173,22 @@ doc.elements.each('frbr/work') do |w|
         puts "    M Title: " + manifestation_title
         puts "    M Statement of responsibility: " + manifestation_statement_of_responsibility
         puts "    M Edition: " + manifestation_edition
+        puts "    M Publisher: " + manifestation_publisher
+        puts "    M Publication date: " + manifestation_publication_date
         puts "    M Identifier: " + manifestation_identifier
 
 	manifestation = Manifestation.new(:title => manifestation_title,
           :statement_of_responsibility => manifestation_statement_of_responsibility,
 	  :edition => manifestation_edition,
+          :publisher => manifestation_publisher,
+          :publication_date => manifestation_publication_date,
 	  :identifier => manifestation_identifier,
 	  :form_of_carrier => manifestation_form_of_carrier,
 	  :expression_id => expression.id)
 	manifestation.save
+
+        # Connect the manifestation to the publisher, which we will assume
+        # is a CorporateBody.
 
       end
     end
