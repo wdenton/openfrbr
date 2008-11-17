@@ -80,7 +80,7 @@ doc.elements.each('frbr/work') do |w|
   # how the tool works and the data we're giving it?  Probably.
 
   title = w.elements['mods:titleInfo/mods:title'].text
-  form  = "novel?"
+  form  = "[novel?]"
 
   puts "W Title: " + title
 
@@ -156,7 +156,7 @@ doc.elements.each('frbr/work') do |w|
       #  publication_place
       #  series_statement
       #
-      # Don't use:
+      # Not used:
       #  manifestation/imprint/mods:physicalDescription/mods:extent
 
       m.elements.each('imprint') do |i|
@@ -164,31 +164,59 @@ doc.elements.each('frbr/work') do |w|
 	manifestation_statement_of_responsibility = i.elements['mods:note["statement of responsibility"]'].nil? ? "" : i.elements['mods:note["statement of responsibility"]'].text 
         # Found a case where there's a <mods:edition/> empty element, so || "" handles it
 	manifestation_edition = i.elements['mods:originInfo/mods:edition'].nil? ? "" : i.elements['mods:originInfo/mods:edition'].text || ""
-	manifestation_publisher = i.elements['mods:originInfo/mods:publisher'].nil? ? "" : i.elements['mods:originInfo/mods:publisher'].text
-	manifestation_publication_date = i.elements['mods:originInfo/mods:dateIssued'].nil? ? "" : i.elements['mods:originInfo/mods:dateIssued'].text
-	manifestation_identifier = i.elements['mods:identifier["ISBN"]'].nil? ? "" : i.elements['mods:identifier["ISBN"]'].text
 
-	manifestation_form_of_carrier = "book?"
+	manifestation_publisher = i.elements['mods:originInfo/mods:publisher'].nil? ? "" : i.elements['mods:originInfo/mods:publisher'].text
+        manifestation_publisher = "[unknown]" if manifestation_publisher.length == 0
+
+	manifestation_publication_date = i.elements['mods:originInfo/mods:dateIssued'].nil? ? "" : i.elements['mods:originInfo/mods:dateIssued'].text
+
+        # TODO Handle instances of multiple ISBN lines, like
+        # <mods:identifier type="ISBN">(kass. 1-6)</mods:identifier>
+        # <mods:identifier type="ISBN">91-7951-057-4 (kass. 1-10)</mods:identifier>
+
+	identifier = i.elements['mods:identifier["ISBN"]'].nil? ? "" : i.elements['mods:identifier["ISBN"]'].text
+        (manifestation_isbn, identifier_qualifiers) = identifier.split(" ", 2)
+        manifestation_isbn.gsub!(/[^0-9X]/, '')
+        manifestation_isbn = "[]" if manifestation_isbn.length == 0
+
+	manifestation_form_of_carrier = "[book?]"
+        manifestation_form_of_carrier = "hardcover" if /\((hardcover|hc)/.match(identifier_qualifiers)
+        manifestation_form_of_carrier = "paperback" if /paperback/.match(identifier_qualifiers)
 
         puts "    M Title: " + manifestation_title
         puts "    M Statement of responsibility: " + manifestation_statement_of_responsibility
         puts "    M Edition: " + manifestation_edition
+        puts "    M Form of carrier: " + manifestation_form_of_carrier
         puts "    M Publisher: " + manifestation_publisher
         puts "    M Publication date: " + manifestation_publication_date
-        puts "    M Identifier: " + manifestation_identifier
+        puts "    M Identifier: " + manifestation_isbn
 
 	manifestation = Manifestation.new(:title => manifestation_title,
           :statement_of_responsibility => manifestation_statement_of_responsibility,
 	  :edition => manifestation_edition,
           :publisher => manifestation_publisher,
           :publication_date => manifestation_publication_date,
-	  :identifier => manifestation_identifier,
+	  :identifier => manifestation_isbn,
 	  :form_of_carrier => manifestation_form_of_carrier,
 	  :expression_id => expression.id)
-	manifestation.save
+        
+        begin
+          manifestation.save 
+        rescue Exception => error
+          puts "*** ERROR Manifestation save failed: '#{error}'"
+        end
 
         # Connect the manifestation to the publisher, which we will assume
         # is a CorporateBody.
+        # TODO: Handle case of multiple publishers.
+
+        publisher = CorporateBody.find_or_create_by_name(manifestation_publisher)
+        begin
+          publisher.save 
+          manifestation.producers << publisher
+        rescue Exception => error
+          puts "*** ERROR Publisher association/save failed: '#{error}'"
+        end
 
       end
     end
