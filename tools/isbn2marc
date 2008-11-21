@@ -99,6 +99,7 @@
 #
 # Proper ISBN validity check.
 
+require 'net/http'
 require 'optparse'
 
 require 'rubygems'
@@ -114,6 +115,7 @@ options[:dumpxml] = nil
 # Enter your WorldCat API key here.
 # It can also be specified on the command line but that's tiresome.
 options[:worldcat] = ''
+options[:worldcatlevel]= 'default' # Or full
 
 OptionParser.new do |opts|
   opts.banner = "Usage: isbn2marc [-q] [-d marcfile] [-x xmlfile] isbn"
@@ -130,10 +132,13 @@ OptionParser.new do |opts|
   opts.on("-w", "--worldcat apikey", String, "WorldCat API key") do |w|
     options[:worldcat] = w
   end
+  opts.on("--worldcatlevel level", String, "WorldCat service level (default or full)") do |wl|
+    options[:worldcatlevel] = wl
+  end
 end.parse!
 
 # WorldCat API URL format
-worldcatURL = "http://www.worldcat.org/webservices/catalog/content/isbn/::ISBN::?wskey=::KEY::"
+worldcatAPIURL = "http://www.worldcat.org/webservices/catalog/content/isbn/::ISBN::?servicelevel=::LEVEL::&wskey=::KEY::"
 
 isbns = []
 
@@ -270,6 +275,23 @@ isbns.each do |isbn|
   # STDERR.print "#{isbn} " unless options[:quiet] == true
   if options[:worldcat].length > 0
     STDERR.print "\r#{isbn} WorldCat" + " "*25 unless options[:quiet] == true
+    worldcatURL = worldcatAPIURL.gsub(/::ISBN::/, isbn)
+    worldcatURL = worldcatURL.gsub(/::KEY::/, options[:worldcat])
+    worldcatURL = worldcatURL.gsub(/::LEVEL::/, options[:worldcatlevel])
+    STDERR.print "\nGetting #{worldcatURL}"
+    worldcat_xml = Net::HTTP.get_response(URI.parse(worldcatURL)).body
+    begin
+      reader = MARC::XMLReader.new(StringIO.new(worldcat_xml))    
+      # Repitition!!
+      reader.each do |record|
+        puts record unless options[:quiet] == true
+        writer.write(record) if options[:dump]
+        xmlwriter.write(record) if options[:dumpxml]
+      end
+      next
+    rescue Exception => e
+      STDERR.puts "\nERROR Record not read from WorldCat: '#{e}'"
+    end
   end
   servers.each do |server|
     STDERR.print "\r#{isbn} #{server[0]}" + " "*25 unless options[:quiet] == true
