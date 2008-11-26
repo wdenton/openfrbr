@@ -101,6 +101,8 @@
 
 require 'net/http'
 require 'optparse'
+require "rexml/document"
+include REXML
 
 require 'rubygems'
 require 'marc'
@@ -278,8 +280,16 @@ isbns.each do |isbn|
     worldcatURL = worldcatAPIURL.gsub(/::ISBN::/, isbn)
     worldcatURL = worldcatURL.gsub(/::KEY::/, options[:worldcat])
     worldcatURL = worldcatURL.gsub(/::LEVEL::/, options[:worldcatlevel])
-    STDERR.print "\nGetting #{worldcatURL}"
+    STDERR.print "\n** #{worldcatURL}"
     worldcat_xml = Net::HTTP.get_response(URI.parse(worldcatURL)).body
+    puts worldcat_xml
+    doc = REXML::Document.new worldcat_xml
+    puts "-----"
+    puts doc
+    # if doc.elements.each('/diagnostic')
+      puts "ERROR " + doc.elements['//diagnostics/diagnostic/message'].text
+    #end
+    puts "-----"
     begin
       reader = MARC::XMLReader.new(StringIO.new(worldcat_xml))    
       # Repitition!!
