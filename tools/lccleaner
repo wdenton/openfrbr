@@ -1,14 +1,66 @@
 #!/usr/local/bin/ruby -w
 
+# lccleaner - clean MARC records before loading into LC FRBR Display Tool
+#
+# William Denton <wtd@pobox.com>
+# November 2008
+# Released under the MIT License.
+
+# Copyright (c) 2008 William Denton
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
+# The LC FRBRization tool has a few requirements about certain
+# things being in certain fields, and if it's given a bad MARC
+# record then it might choke.  As those kinds of problems are
+# found when running MARC records through it, brute-force fix them
+# here.
+#
+# Fast 'n' nasty.
+
 require 'rubygems'
 require 'marc'
 
 marcin  = ARGV[0]
 marcout = ARGV[1]
 
-reader = MARC::Reader.new(marcin)
+if marcin.nil? or marcout.nil?
+  puts "Usage: lccleaner infile outfile"
+  exit 0
+end
 
-writer = MARC::Writer.new(marcout)
+begin
+  reader = MARC::Reader.new(marcin)
+rescue Exception => e
+  puts "Could not open #{marcin} to read: #{e}"
+  exit 0
+end
+
+begin
+  writer = MARC::Writer.new(marcout)
+rescue Exception => e
+  puts "Could not open #{marcout} to write: #{e}"
+  exit 0
+end
 
 reader.each do |record|
   next if record['245'].nil?
