@@ -101,6 +101,8 @@
 
 require 'net/http'
 require 'optparse'
+require "rexml/document"
+include REXML
 
 require 'rubygems'
 require 'marc'
