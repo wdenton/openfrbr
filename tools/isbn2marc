@@ -106,34 +106,34 @@ require 'rubygems'
 require 'marc'
 require 'zoom'
 
-options = {}
-options[:quiet] = false
-options[:file]  = nil
-options[:dump] = nil
-options[:dumpxml] = nil
+$options = {}
+$options[:quiet] = false
+$options[:file]  = nil
+$options[:dump] = nil
+$options[:dumpxml] = nil
 
 # Enter your WorldCat API key here.
 # It can also be specified on the command line but that's tiresome.
-options[:worldcat] = ''
-options[:worldcatlevel]= 'default' # Or full
+$options[:worldcat] = ''
+$options[:worldcatlevel]= 'default' # Or full
 
 OptionParser.new do |opts|
   opts.banner = "Usage: isbn2marc [-q] [-d marcfile] [-x xmlfile] isbn"
-  opts.on("-q", "--quiet", "Run silently") { options[:quiet] = true }
+  opts.on("-q", "--quiet", "Run silently") { $options[:quiet] = true }
   opts.on("-d", "--dump d", "Dump MARC to file d") do |d|
-    options[:dump]  = d
+    $options[:dump]  = d
   end
-  opts.on("-x", "--dumpxml x", "Dump MARCXML to x") do |x| 
-    options[:dumpxml] = x
+  opts.on("-x", "--dumpxml x", "Dump MARCXML to file x") do |x| 
+    $options[:dumpxml] = x
   end
-  opts.on("-f", "--file f",  String, "Read ISBNs from file f") do |f|
-    options[:file] = f 
+  opts.on("-f", "--file f",  String, "Read ISBNs from file f (one per line)") do |f|
+    $options[:file] = f 
   end
   opts.on("-w", "--worldcat apikey", String, "WorldCat API key") do |w|
-    options[:worldcat] = w
+    $options[:worldcat] = w
   end
   opts.on("--worldcatlevel level", String, "WorldCat service level (default or full)") do |wl|
-    options[:worldcatlevel] = wl
+    $options[:worldcatlevel] = wl
   end
 end.parse!
 
@@ -142,14 +142,14 @@ worldcatAPIURL = "http://www.worldcat.org/webservices/catalog/content/isbn/::ISB
 
 isbns = []
 
-if options[:file].nil?
+if $options[:file].nil?
   if ARGV.empty?
     STDERR.puts "No ISBN specified"
     exit 0
   end
 else
   begin
-    file = File.open(options[:file], "r")
+    file = File.open($options[:file], "r")
     while (line = file.gets)
       line.chomp!
       # TODO Proper ISBN validity check
@@ -167,20 +167,20 @@ if ! ARGV.empty?
   isbns << ARGV[0].to_s.gsub(/[^0-9X]/, '')
 end
 
-if options[:dump]
+if $options[:dump]
   begin
-    writer = MARC::Writer.new(options[:dump])
+    writer = MARC::Writer.new($options[:dump])
   rescue Exception => e
-    STDERR.puts "ERROR Cannot write to #{options[:dump]}: '#{e}'"
+    STDERR.puts "ERROR Cannot write to #{$options[:dump]}: '#{e}'"
     exit 0
   end
 end
 
-if options[:dumpxml]
+if $options[:dumpxml]
   begin
-    xmlwriter = MARC::XMLWriter.new(options[:dumpxml])
+    xmlwriter = MARC::XMLWriter.new($options[:dumpxml])
   rescue Exception => e
-    STDERR.puts "ERROR Cannot write to #{options[:dumpxml]}: '#{e}'"
+    STDERR.puts "ERROR Cannot write to #{$options[:dumpxml]}: '#{e}'"
     exit 0
   end
 end
@@ -228,7 +228,7 @@ servers = [
   ['gofor.bibli.ens-cachan.fr', 21210, 'ADVANCE'     ], # French school
   ['gofor.bibli.ens-cachan.fr', 21210, 'MAIN*BIBMAST'], # French school
   ['isis.cilea.it',              2100, 'usmarc'      ], # U Brescia
-  ['aleph.library.tudelft.nl',   9909, 'tud01'       ], # # Techn U Delft
+  ['aleph.library.tudelft.nl',   9909, 'tud01'       ], # Techn U Delft
   ['z3950.bibsys.no',            2100, 'BIBSYS'      ], # Nat Lib Norway
   ['z3950.nb.no',                2100, 'norbok'      ], # Nat Lib Norway
   ['alpha.bn.org.pl',             210, 'INNOPAC'     ], # Nat Lib Poland
@@ -248,80 +248,74 @@ servers = [
   
 ]
 
-# Given an ISBN and some Z39.50 information, return MARCXML.  Why
-# MARCXML?  Because (now) the ruby-zoom module can't return a marc
-# MARC object. It can, however, return MARCXML, which marc can grok,
-# so we translate it into XML and then back.
-
 def z3950query (isbn, host, port, db)
+  # Given an ISBN and some Z39.50 server information, return MARCXML.
+  # Why MARCXML?  Because (now) the ruby-zoom module can't return a
+  # marc MARC object. It can, however, return MARCXML, which marc can
+  # grok.
   begin
     ZOOM::Connection.open(host, port) do |conn|
       conn.database_name = db
       conn.preferred_record_syntax = 'MARC21'
       rset = conn.search("@attr 1=7 #{isbn}")
-      return rset[0].xml
+      return rset[0].xml 
     end
   rescue Exception => e
-    # puts e # Uncomment to see any server erorrs
+    STDERR.puts "\nERROR Z39.50 query: '#{e}'" if /failed/.match(e)
     return nil
   end
 end
 
-# Now the real business.  Loop through all the servers listed above
-# and query it about the ISBNs until one answers or we run out of
-# servers
+def write_record (marcxml)
+  # Given a MARC reader object, write out the records therein, to
+  # STDOUT or disk, in the desired format.
+  # TODO Write out only the *first* one. (Why?)
+  reader = MARC::XMLReader.new(StringIO.new(marcxml))
+  begin
+    reader.each do |record|
+      puts record unless $options[:quiet] == true
+      writer.write(record) if $options[:dump]
+      xmlwriter.write(record) if $options[:dumpxml]
+    end
+  rescue Exception => e
+    STDERR.puts "\nERROR Record not read: '#{e}'"
+  end
+end
+
+# Now the real business.  If we can check WorldCat, do so, because
+# it's the best source.  If we can't, or if it fails, loop through all
+# the servers listed above and ask about the ISBN(s).
 
 isbns.each do |isbn| 
-  # STDERR.print "#{isbn} " unless options[:quiet] == true
-  if options[:worldcat].length > 0
-    STDERR.print "\r#{isbn} WorldCat" + " "*25 unless options[:quiet] == true
+  if $options[:worldcat].length > 0
+    STDERR.print "\r#{isbn} WorldCat" + " "*25 unless $options[:quiet] == true
     worldcatURL = worldcatAPIURL.gsub(/::ISBN::/, isbn)
-    worldcatURL = worldcatURL.gsub(/::KEY::/, options[:worldcat])
-    worldcatURL = worldcatURL.gsub(/::LEVEL::/, options[:worldcatlevel])
+    worldcatURL = worldcatURL.gsub(/::KEY::/, $options[:worldcat])
+    worldcatURL = worldcatURL.gsub(/::LEVEL::/, $options[:worldcatlevel])
     STDERR.print "\nGetting #{worldcatURL}"
     worldcat_xml = Net::HTTP.get_response(URI.parse(worldcatURL)).body
-    begin
-      reader = MARC::XMLReader.new(StringIO.new(worldcat_xml))    
-      # Repitition!!
-      reader.each do |record|
-        puts record unless options[:quiet] == true
-        writer.write(record) if options[:dump]
-        xmlwriter.write(record) if options[:dumpxml]
-      end
-      next
-    rescue Exception => e
-      STDERR.puts "\nERROR Record not read from WorldCat: '#{e}'"
-    end
+    puts worldcat_xml
+    doc = REXML::Document.new worldcat_xml
+    puts "-----"
+    puts doc
+    # if doc.elements.each('/diagnostic')
+      puts "ERROR " + doc.elements['//diagnostics/diagnostic/message'].text
+    #end
+    puts "-----"
+    write_record(worldcat_xml)
+    break
   end
   servers.each do |server|
-    STDERR.print "\r#{isbn} #{server[0]}" + " "*25 unless options[:quiet] == true
+    STDERR.print "\r#{isbn} #{server[0]}" + " "*25 unless $options[:quiet] == true
     marcxml = z3950query(isbn, server[0], server[1], server[2])
-    if marcxml.nil?
-      next
-    else
-      begin
-        reader = MARC::XMLReader.new(StringIO.new(marcxml))
-        reader.each do |record|
-          # Would be good to have an option or something so that people
-          # wouldn't have to see the leader and other early fields and
-          # possibly less interesting fields such as 9xx (local information).
-          # Some libraries have lots of 852 (holdings) fields which 
-          # fill up the screen.
-          # puts record['245'] unless options[:quiet] == true
-          puts record unless options[:quiet] == true
-          writer.write(record) if options[:dump]
-          xmlwriter.write(record) if options[:dumpxml]
-        end
-      rescue Exception => e
-        STDERR.puts "\nERROR Record not written: '#{e}'"
-      end
-      break
-    end
+    next if marcxml.nil?
+    write_record(marcxml)
+    break
   end  
 end
 
-writer.close if options[:dump]
-xmlwriter.close if options[:dumpxml]
+writer.close if $options[:dump]
+xmlwriter.close if $options[:dumpxml]
 
 
 # 1551923769
