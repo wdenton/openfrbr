@@ -1,7 +1,7 @@
 #!/usr/local/bin/ruby -w
 
 # isbn2marc - find MARC records for one or more ISBNs
-#
+
 # William Denton <wtd@pobox.com>
 # April 2007 - October 2008
 # Released under the MIT License.
@@ -52,12 +52,20 @@
 # isbn2marc [-q] [-d marcfile] [-x xmlfile] ISBN
 #
 # -q          Run quietly, don't list servers queried and don't 
-#             dump MARC to STDOUT
+# --quiet     dump MARC to STDOUT
 #             By default isbn2marc tells STDERR what it's doing
 #
 # -d marcfile Dump MARC record to file
+# --dump
 #
 # -x xmlfile  Dump MARCXML record to file
+# --dumpxml
+#
+# -w apikey   Query WorldCat using API key
+# --worldcat
+#
+# -l level    WorldCat service level (default or full)
+# --worldcatlevel Default is default
 
 # EXAMPLES
 #
@@ -89,6 +97,10 @@
 # 0736646736
 # $ isbn2marc -f isbns.txt -d harry-potter.marc
 #
+# Try WorldCat first, which will speed things up, and get a full record:
+#
+# $isbn2marc --worldcat yourAPIkeyhere --worldcatlevel full 1551922460
+#
 # Find a MARC record but don't display it or save it:
 #
 # $ isbn2marc -q 0195024028
@@ -108,6 +120,9 @@ require 'rubygems'
 require 'marc'
 require 'zoom'
 
+# I don't know if it's cool to use global variables for these
+# options, or for the MARC writer and xmlwriter thingies, but
+# I am because of the write_record function.  Comments welcome.
 $options = {}
 $options[:quiet] = false
 $options[:file]  = nil
@@ -116,6 +131,10 @@ $options[:dumpxml] = nil
 
 # Enter your WorldCat API key here.
 # It can also be specified on the command line but that's tiresome.
+# To get a key, see
+#  http://worldcat.org/devnet/wiki/SearchAPIWhoCanUse
+# For WorldCat API details see
+#    http://worldcat.org/devnet/wiki/SearchAPIDetails
 $options[:worldcat] = ''
 $options[:worldcatlevel]= 'default' # Or full
 
@@ -134,12 +153,12 @@ OptionParser.new do |opts|
   opts.on("-w", "--worldcat apikey", String, "WorldCat API key") do |w|
     $options[:worldcat] = w
   end
-  opts.on("--worldcatlevel level", String, "WorldCat service level (default or full)") do |wl|
+  opts.on("-l", "--worldcatlevel level", String, "WorldCat service level (default or full)") do |wl|
     $options[:worldcatlevel] = wl
   end
 end.parse!
 
-# WorldCat API URL format
+# Probably won't change, but one never knows.
 worldcatAPIURL = "http://www.worldcat.org/webservices/catalog/content/isbn/::ISBN::?servicelevel=::LEVEL::&wskey=::KEY::"
 
 isbns = []
@@ -171,7 +190,7 @@ end
 
 if $options[:dump]
   begin
-    writer = MARC::Writer.new($options[:dump])
+    $writer = MARC::Writer.new($options[:dump])
   rescue Exception => e
     STDERR.puts "ERROR Cannot write to #{$options[:dump]}: '#{e}'"
     exit 0
@@ -180,7 +199,7 @@ end
 
 if $options[:dumpxml]
   begin
-    xmlwriter = MARC::XMLWriter.new($options[:dumpxml])
+    $xmlwriter = MARC::XMLWriter.new($options[:dumpxml])
   rescue Exception => e
     STDERR.puts "ERROR Cannot write to #{$options[:dumpxml]}: '#{e}'"
     exit 0
@@ -190,6 +209,8 @@ end
 # Two lists of open Z39.50 servers:
 #   http://targettest.indexdata.com/
 #   http://staff.library.mun.ca/staff/toolbox/z3950hosts.htm
+# Could also look at the list in Terry Reese's MarcEdit:
+#   http://oregonstate.edu/~reeset/marcedit/html/downloads.html
 
 servers = [
   # Reorder these so that your preferred servers are first
@@ -223,19 +244,16 @@ servers = [
   ['lib.mpib-berlin.mpg.de',     2020, 'opac'        ], # Max Planck Inst
   ['ubsun02.biblio.etc.tu-bs.de',2020, 'bac'         ], # Bibliotheken Berlins
   ['z3950.kb.dk',                2100, 'KGL01'       ], # Kongelige Bibliothek
-  ['www.bne.es',                 2210, 'BIMO'        ], # Nat Lib Spain
   ['roble.unizar.es',             210, 'INNOPAC'     ], # U Zaragoza
   ['www.helmet.fi',               210, 'INNOPAC'     ], # Helsinki Lib
   ['carmin.sudoc.abes.fr',        210, 'ABES-Z39-PUBLIC' ], # France
   ['gofor.bibli.ens-cachan.fr', 21210, 'ADVANCE'     ], # French school
   ['gofor.bibli.ens-cachan.fr', 21210, 'MAIN*BIBMAST'], # French school
   ['isis.cilea.it',              2100, 'usmarc'      ], # U Brescia
-  ['aleph.library.tudelft.nl',   9909, 'tud01'       ], # Techn U Delft
   ['z3950.bibsys.no',            2100, 'BIBSYS'      ], # Nat Lib Norway
   ['z3950.nb.no',                2100, 'norbok'      ], # Nat Lib Norway
   ['alpha.bn.org.pl',             210, 'INNOPAC'     ], # Nat Lib Poland
   ['z3950.btj.se',                210, 'BURK'        ], # Sweden
-# ['lbsihol.unimaas.nl',         7190, 'lbs'         ], # U Maastricht
   # Australia and New Zealand
   ['catalogue.nla.gov.au',       7090, 'voyager'     ], # Nat Lib Australia
   ['nlnzcat.natlib.govt.nz',     7190, 'voyager'     ], # Nat Lib New Zealand
@@ -243,18 +261,15 @@ servers = [
   ['library.cuhk.edu.hk',         210, 'INNOPAC'     ], # Chinesse U HK
   ['linc.nus.edu.sg',             210, 'INNOPAC'     ], # Nat U Singapore
   ['nbinet.ncl.edu.tw',           210, 'INNOPAC'     ], # Nat Cent Lib Taiwan
-# ['wine.wul.waseda.ac.jp',       210, 'INNOPAC'     ], # Waseda U
   # Africa
-  ['explore.up.ac.za',            210, 'INNOPAC'     ], # U Pretoria
-# ['natlib1.unisa.ac.za',         210, 'INNOPAC'     ], # Nat Lib South Africa
-  
+  ['explore.up.ac.za',            210, 'INNOPAC'     ], # U Pretoria  
 ]
 
+# Given an ISBN and some Z39.50 server information, return MARCXML.
+# Why MARCXML?  Because (now) the ruby-zoom module can't return a
+# marc MARC object. It can, however, return MARCXML, which marc can
+# grok.
 def z3950query (isbn, host, port, db)
-  # Given an ISBN and some Z39.50 server information, return MARCXML.
-  # Why MARCXML?  Because (now) the ruby-zoom module can't return a
-  # marc MARC object. It can, however, return MARCXML, which marc can
-  # grok.
   begin
     ZOOM::Connection.open(host, port) do |conn|
       conn.database_name = db
@@ -268,16 +283,16 @@ def z3950query (isbn, host, port, db)
   end
 end
 
+# Given a MARC reader object, write out the records therein, to
+# STDOUT or disk, in the desired format.
+# TODO Write out only the *first* one. (Why?)
 def write_record (marcxml)
-  # Given a MARC reader object, write out the records therein, to
-  # STDOUT or disk, in the desired format.
-  # TODO Write out only the *first* one. (Why?)
   reader = MARC::XMLReader.new(StringIO.new(marcxml))
   begin
     reader.each do |record|
-      puts record unless $options[:quiet] == true
-      writer.write(record) if $options[:dump]
-      xmlwriter.write(record) if $options[:dumpxml]
+      puts; puts record unless $options[:quiet] == true
+      $writer.write(record) if $options[:dump]
+      $xmlwriter.write(record) if $options[:dumpxml]
     end
   rescue Exception => e
     STDERR.puts "\nERROR Record not read: '#{e}'"
@@ -294,18 +309,16 @@ isbns.each do |isbn|
     worldcatURL = worldcatAPIURL.gsub(/::ISBN::/, isbn)
     worldcatURL = worldcatURL.gsub(/::KEY::/, $options[:worldcat])
     worldcatURL = worldcatURL.gsub(/::LEVEL::/, $options[:worldcatlevel])
-    STDERR.print "\nGetting #{worldcatURL}"
+    # STDERR.print "\nGetting #{worldcatURL}"
     worldcat_xml = Net::HTTP.get_response(URI.parse(worldcatURL)).body
-    puts worldcat_xml
     doc = REXML::Document.new worldcat_xml
-    puts "-----"
-    puts doc
-    # if doc.elements.each('/diagnostic')
-      puts "ERROR " + doc.elements['//diagnostics/diagnostic/message'].text
-    #end
-    puts "-----"
-    write_record(worldcat_xml)
-    break
+    error = doc.elements['//diagnostics/diagnostic/message'].nil? ? nil : doc.elements['//diagnostics/diagnostic/message'].text
+    if error.nil? 
+      write_record(worldcat_xml)
+      next
+    else
+      STDERR.puts "\nERROR from WorldCat: #{error}"
+    end
   end
   servers.each do |server|
     STDERR.print "\r#{isbn} #{server[0]}" + " "*25 unless $options[:quiet] == true
@@ -316,9 +329,5 @@ isbns.each do |isbn|
   end  
 end
 
-writer.close if $options[:dump]
-xmlwriter.close if $options[:dumpxml]
-
-
-# 1551923769
-# in WorldCat but can't find a MARC record in my Z39.50 list
+$writer.close if $options[:dump]
+$xmlwriter.close if $options[:dumpxml]
