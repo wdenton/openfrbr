@@ -4,7 +4,7 @@
 
 Work: 
 
-<%= link_to @manifestation.expression.work.anchor_text,
+<%= link_to "#{@manifestation.expression.work.anchor_text} (#{@manifestation.expression.work.reifications.size} E)", 
 @manifestation.expression.work %>
                  
 </p>
@@ -12,7 +12,7 @@ Work:
 <p>
  
 Expression: 
-<%= link_to @manifestation.expression.anchor_text,
+<%= link_to "#{@manifestation.expression.anchor_text} (#{@manifestation.expression.manifestations.size} M)" ,
     @manifestation.expression %>
 
 </p>

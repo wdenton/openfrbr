@@ -8,9 +8,16 @@ TODO: Make this an array of all works reified herein.
 
 <p>
 
-Work: <%= link_to @expression.work.anchor_text, @expression.work %>
+Work: <%= link_to "#{@expression.work.anchor_text} (#{@expression.work.reifications.size} E)", 
+ @expression.work %>
 
 </p>
+
+<%=
+
+
+
+%>
 
 
 <h1>Expression: <%= @expression.anchor_text %></h1>
