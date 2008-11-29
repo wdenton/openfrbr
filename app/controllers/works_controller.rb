@@ -1,5 +1,13 @@
 class WorksController < ApplicationController
 
+  def edit_in_place
+    @work = Work.find(params[:id])
+    @work.send "#{params[:field]}=", params[:value]
+    @work.save
+    render :text => params[:value]
+  end
+
+
   # GET /works
   # GET /works.xml
   def index
