@@ -2740,5 +2740,56 @@ And this in show.html.erb for works:
 <%= in_place_editor 'edit_date', 
   :url => {:action => 'edit_in_place', :id => @work.id, :field => 'date'}  %>
 
+The if line in the date is to put a dash there if the work field is
+empty, because if it's empty then ir doesn't become clickable because
+there's nothing to click on.  There are other ways to handle
+this--dealing with it is a common question--but this'll do for now.
+
+What's going on is I set an ID on an element and then tell
+in_place_editor which ID I want to make editable.  I tell it to use
+the edit_in_place method in the works controller, and to pass in
+params[:id] = @work.id and params[:field] = 'title' or 'date', the
+names of the fields being edited.  The new text that I edit and save
+will be params[:value].
+
+In the edit_in_place method I find the right work, change the right
+field, save it, and send the text back so it'll display in the page.
+This took me a little while to get right:
+
+    @work.send "#{params[:field]}=", params[:value]
+
+What's going on with the send method is explained here:
+
+  http://www.softiesonrails.com/2007/8/15/ruby-101-methods-and-messages
+
+and demonstrated here:
+
+>> w = Work.find(1)
+=> #<Work id: 1, created_at: "2008-11-28 15:01:51", updated_at: "2008-11-28 22:26:59", title: "Fantastics Beasts and Where to Find them", form: "[novel?]", date: nil, comment: nil>
+>> w.title
+=> "Fantastics Beasts and Where to Find them"
+>> w.send 'title'
+=> "Fantastics Beasts and Where to Find them"
+>> t="title"
+=> "title"
+>> w.t
+NoMethodError: undefined method `t' for #<Work:0x99cf2a8>
+>> w.send(t)
+=> "Fantastics Beasts and Where to Find them"
+>> w.send 'title=', 'Fantastic Beasts and Stuff'
+=> "Fantastic Beasts and Stuff"
+>> w.title
+=> "Fantastic Beasts and Stuff"
+
+By passing in the field I want to change, I can use the one method to
+change any Work attribute.
+
+You can send a string to an object and it'll know to deal with it as
+though you were calling a method of that name, but you can also use
+.to_sym.
+
+
+
+
 
 
