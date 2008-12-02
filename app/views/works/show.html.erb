@@ -15,19 +15,6 @@
 <%= render(:partial => 'layouts/group2entitylist', 
   :object => @work.creators) %>
 
-<p>Title</p>
-
-<p id="edit_title"><%= @work.title %></p>
-<%= in_place_editor 'edit_title', 
-  :size => @work.title.length,
-  :url => {:action => 'edit_in_place', :id => @work.id, :field => 'title'}  %>
-
-<p>Date</p>
-
-<p id="edit_date"><%= @work.date %><%- if @work.date.nil? %>-<%- end %></p>
-<%= in_place_editor 'edit_date', 
-  :url => {:action => 'edit_in_place', :id => @work.id, :field => 'date'}  %>
-
 <p>
 
 Attributes:
@@ -50,7 +37,7 @@ Attributes:
 <p>
 
 <%= link_to "Add expression for this work", 
-    new_expression_path (:work_id => @work.id) %>
+    new_expression_path(:work_id => @work.id) %>
 
 </p>
 

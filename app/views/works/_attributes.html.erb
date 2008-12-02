@@ -1,15 +1,24 @@
 <ul>
 
-<li> Title: <%= attributes.title %>
+<li> Title: <span id="edit_title"><%= attributes.title %></span>
+<%= in_place_editor 'edit_title', 
+  :size => attributes.title.length,
+  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'title'}  %>
 </li>
 
-<li> Form: <%= attributes.form %>
+<li> Form: <span id="edit_form"><%= attributes.form %></span>
+<%= in_place_editor 'edit_form', 
+  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'form'}  %>
 </li>
 
-<li> Date: <%= attributes.date %>
+<li> Date: <span id="edit_date"><%= attributes.date %><%- if attributes.date.nil? %>-<%- end %></span>
+<%= in_place_editor 'edit_date', 
+  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'date'}  %>
 </li>
 
-<li> Comment: <%= attributes.comment %>
+<li> Comment: <span id="edit_comment"><%= attributes.comment %><%- if attributes.comment.nil? %>-<%- end %></span>
+<%= in_place_editor 'edit_comment', 
+  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'comment'}  %>
 </li>
 
 </ul>
