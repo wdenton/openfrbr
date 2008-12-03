@@ -14,13 +14,16 @@ Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
 
 <p>
 
-<span id="expression_work_<%= @expression.id %>_in_place_editor"><%= @expression.work.title %></span>
 
-<% list = Work.all.collect {|w| "[#{w.id}, '#{escape_javascript(w.anchor_text)}']"}.join ",".to_s %> 
-<% list = "[#{list}]" %>
+</p>
 
-<%= in_place_editor_select_field :expression, 'work', {},
-  {:collection => list, } 
+<p>
+
+<% list = Work.all.collect {|w| [w.id, w.anchor_text]}.to_json %> 
+
+<span id="expression_reifications_<%= @expression.id %>_in_place_editor"><%= @expression.work.anchor_text %></span>
+
+<%= in_place_editor_select_field :expression, 'reifications', {}, {:collection => list} 
 %>
 
 </p>

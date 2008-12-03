@@ -1,8 +1,21 @@
 class ExpressionsController < ApplicationController
 
-  def set_expression_work
-    puts params[:id]
-    render :text => "Almost working    "
+  def set_expression_reifications
+    e = Expression.find(params[:id])
+    work_id = params[:value]
+    relation = params[:relation] || '' # TODO Carry over existing relation
+    #render :text => "Setting up reification with work #{work_id}"
+    # TODO Make sure this is all properly restful.
+    # I'm going to ignore many-to-many relations here for now
+    # and remove the existing work-to-expression relation,
+    # just rudely dropping it, before adding a new one.
+    # TODO Handle many-to-many relations properly.  One should be 
+    # able to add a new relation and delete an existing one
+    # indepedently and RESTFULly.
+    e.reifications = []
+    r = Reification.new(:expression_id => e.id, :work_id => work_id, :relation => relation)
+    e.reifications << r
+    render :text => Work.find(work_id).anchor_text
   end
 
   # GET /expressions
