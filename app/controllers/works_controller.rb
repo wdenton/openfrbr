@@ -1,5 +1,7 @@
 class WorksController < ApplicationController
 
+  # in_place_edit_for :work, :title
+
   def edit_in_place
     @work = Work.find(params[:id])
     @work.send "#{params[:field]}=", params[:value]
@@ -7,7 +9,13 @@ class WorksController < ApplicationController
     render :text => params[:value]
   end
 
-
+  def list_works_by_anchor_text
+    @works = Works.all
+    respond_to do |format|
+      format.json {render :json => @works.map{|w| [w.id, w.anchor_text]}}  
+    end
+  end
+  
   # GET /works
   # GET /works.xml
   def index

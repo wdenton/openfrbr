@@ -1,4 +1,10 @@
 class ExpressionsController < ApplicationController
+
+  def set_expression_work
+    puts params[:id]
+    render :text => "Almost working    "
+  end
+
   # GET /expressions
   # GET /expressions.xml
   def index

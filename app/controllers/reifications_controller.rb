@@ -1,0 +1,3 @@
+class ReificationsController < ApplicationController
+
+end

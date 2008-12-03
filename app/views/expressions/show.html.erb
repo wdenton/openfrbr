@@ -8,8 +8,20 @@ TODO: Make this an array of all works reified herein.
 
 <p>
 
-Work: <%= link_to "#{@expression.work.anchor_text} (#{@expression.work.reifications.size} exp)", 
- @expression.work %>
+Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
+
+</p>
+
+<p>
+
+<span id="expression_work_<%= @expression.id %>_in_place_editor"><%= @expression.work.title %></span>
+
+<% list = Work.all.collect {|w| "[#{w.id}, '#{escape_javascript(w.anchor_text)}']"}.join ",".to_s %> 
+<% list = "[#{list}]" %>
+
+<%= in_place_editor_select_field :expression, 'work', {},
+  {:collection => list, } 
+%>
 
 </p>
 
