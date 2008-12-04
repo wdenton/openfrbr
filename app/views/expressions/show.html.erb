@@ -6,14 +6,36 @@ TODO: Make this an array of all works reified herein.
 
 </p>
 
+<hr />
+
 <p>
 
 Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
 
-</p>
+<% @reification = @expression.reifications[0] %>
+
+<% form_for @reification do |f| %>
+<%= f.error_messages %>
+
+<%= hidden_field_tag "expression_id", @expression.id %>
+<%= hidden_field_tag "relation", @reification.relation %>
+
+<%= submit_tag "Reassign to" %>
+
+<%= select_tag "work_id", 
+Work.all.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.to_s
+%>
+
+<% end %>
+
+<hr />
 
 <p>
 
+Here is a bad way of reassigning an expression to a different
+work. I'm leaving this here while I get the better way working.  (It
+works if you use it but you will need to reload the page to see the
+change.)
 
 </p>
 
@@ -27,6 +49,8 @@ Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
 %>
 
 </p>
+
+<hr />
 
 <h1>Expression: <%= @expression.anchor_text %></h1>
 

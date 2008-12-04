@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :manifestations
   map.resources :expressions
   map.resources :works, :has_many => :subjects
+  map.resources :reifications
   #map.resources :expressions, :has_many => :reifications
 
   # The priority is based upon order of creation: first created ->
