@@ -80,7 +80,7 @@ doc.elements.each('frbr/work') do |w|
   # how the tool works and the data we're giving it?  Probably.
 
   title = w.elements['mods:titleInfo/mods:title'].text
-  form  = "[novel?]"
+  form  = "novel?"
 
   puts "W Title: " + title
 
@@ -125,7 +125,7 @@ doc.elements.each('frbr/work') do |w|
 
     expression_title = title
     expression_form = e.elements['mods:typeOfResource'].text
-    expression_language = e.elements['mods:language'].nil? ? "[eng?]" : e.elements['mods:language'].text
+    expression_language = e.elements['mods:language'].nil? ? "eng?" : e.elements['mods:language'].text
 
     puts "  E Form: " + expression_form
     puts "  E Language: " + expression_language
@@ -179,7 +179,7 @@ doc.elements.each('frbr/work') do |w|
         manifestation_isbn.gsub!(/[^0-9X]/, '')
         manifestation_isbn = "[]" if manifestation_isbn.length == 0
 
-	manifestation_form_of_carrier = "[book?]"
+	manifestation_form_of_carrier = "book?"
         manifestation_form_of_carrier = "hardcover" if /\((hardcover|hc)/.match(identifier_qualifiers)
         manifestation_form_of_carrier = "paperback" if /paperback/.match(identifier_qualifiers)
 
