@@ -17,7 +17,7 @@ Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
 <%= submit_tag "Reassign to" %>
 
 <%= select_tag "work_id", 
-Work.all.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.to_s
+Work.all.sort.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.to_s
 %>
 
 <% end %>

@@ -11,12 +11,12 @@
   :url => {:action => 'edit_in_place', :id => attributes.id, :type => attributes.class, :field => 'form'}  %>
 </li>
 
-<li> Date: <span id="edit_date"><%= attributes.date %><%- if attributes.date.length == 0 %>[add]<%- end %></span>
+<li> Date: <span id="edit_date"><%= attributes.date %><%- if attributes.date.nil? || attributes.date.empty? %>[click to edit]<%- end %></span>
 <%= in_place_editor 'edit_date', 
   :url => {:action => 'edit_in_place', :id => attributes.id, :type => attributes.class, :field => 'date'}  %>
 </li>
 
-<li> Comment: <span id="edit_comment"><%= attributes.comment %><%- if attributes.comment.length == 0 %>[add]<%- end %></span>
+<li> Comment: <span id="edit_comment"><%= attributes.comment %><%- if attributes.comment.nil? || attributes.comment.empty? %>[click to edit]<%- end %></span>
 <%= in_place_editor 'edit_comment', 
   :url => {:action => 'edit_in_place', :id => attributes.id, :type => attributes.class, :field => 'comment'}  %>
 </li>

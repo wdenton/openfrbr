@@ -13,4 +13,9 @@ class Work < ActiveRecord::Base
     title + " (" + form + "/" + reifications.size.to_s + ")"
   end
 
+ # Sort Works by anchor text.  Useful for displaying in lists.
+ def <=>(o) 
+   self.anchor_text <=> o.anchor_text
+ end
+
 end

@@ -2,30 +2,19 @@
 
 <h1>Works</h1>
 
+
 <% for work in @works %>
 
-<div class="indexlist">
+<ul>
 
-<h2> <%= link_to work.anchor_text, work %></h2>
-
-<p>
-
-<%= pluralize(work.reifications.size, "expression") %>.
-
-</p>
-
-<p>
-
-Created by:
-
-</p>
-
-<%= render(:partial => 'layouts/group2entitylist', 
+<li> <%= link_to work.anchor_text, work %>
+<br />
+Created by: <%= render(:partial => 'layouts/group2entitylist', 
   :object => work.creators) %>
-
 <% # render(:partial => 'attributes', :object => work) %>
+</li>
 
-</div>
+</ul>
 
 <% end %>
 
