@@ -2,15 +2,9 @@
 
 <p>
 
-TODO: Make this an array of all works reified herein.
+Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
 
 </p>
-
-<hr />
-
-<p>
-
-Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
 
 <% @reification = @expression.reifications[0] %>
 
@@ -27,28 +21,6 @@ Work.all.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.t
 %>
 
 <% end %>
-
-<hr />
-
-<p>
-
-Here is a bad way of reassigning an expression to a different
-work. I'm leaving this here while I get the better way working.  (It
-works if you use it but you will need to reload the page to see the
-change.)
-
-</p>
-
-<p>
-
-<% list = Work.all.collect {|w| [w.id, w.anchor_text]}.to_json %> 
-
-<span id="expression_reifications_<%= @expression.id %>_in_place_editor"><%= @expression.work.anchor_text %></span>
-
-<%= in_place_editor_select_field :expression, 'reifications', {}, {:collection => list} 
-%>
-
-</p>
 
 <hr />
 

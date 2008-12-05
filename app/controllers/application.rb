@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
   # with names like "password").
   # filter_parameter_logging :password
 
+  # def edit_in_place
+  #   @thing_to_edit = params[:type].to_class.find(params[:id])
+  #   @thing_to_edit.send "#{params[:field]}=", params[:value]
+  #   @thing_to_edit.save
+  #   render :text => params[:value]
+  # end
+
 end

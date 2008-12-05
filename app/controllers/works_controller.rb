@@ -1,7 +1,5 @@
 class WorksController < ApplicationController
 
-  # in_place_edit_for :work, :title
-
   def edit_in_place
     @work = Work.find(params[:id])
     @work.send "#{params[:field]}=", params[:value]

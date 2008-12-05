@@ -2788,8 +2788,167 @@ You can send a string to an object and it'll know to deal with it as
 though you were calling a method of that name, but you can also use
 .to_sym.
 
+* 3 December 2008
 
+Inspired by in_place_editor I thought that in_place_collection editor
+would be the best way to handle changing works for an expression,
+expressions for a manifestation, or manifestations for an item.  I
+stayed up to 3:30 AM one night on this and was quite pleased when I
+got it working.  The next day I explaned it to a couple of people and
+realized it was the wrong way to do that job, but that the Ajax
+list-popper-upper could be really useful in other places.  I'll
+explain what I did so it's here for later.
 
+First, docs on the Scriptaculous function:
 
+http://github.com/madrobby/scriptaculous/wikis/ajax-inplacecollectioneditor
+
+There's no plugin that does the collection editor business in Rails
+automatically, so it's the usual situation of things here and there on
+blogs and mailing lists.
+
+http://whynotwiki.com/Rails_/_In-place_editing
+
+This archive of a post on the Pragmatic Programmers web site got me on
+to some good stuff:
+
+When Your In-Place Editor Needs a Drop-Down
+http://web.archive.org/web/*/http://fora.pragprog.com/rails-recipes/write-your-own/post/223
+
+This has a bit of code:
+
+Rails in place editing plugin w/ selection
+http://thetacom.info/2008/03/21/rails-in-place-editing-plugin-w-selection/
+
+And links to some code changes to the plug-in I installed a few days
+ago:
+
+http://pastie.org/169443
+
+I added this to the bottom of 
+vendor/plugins/in_place_editing/lib/in_place_macros_helper.rb
+
+  # ----- Added to make in_place_collection_editor work
+  # See NOTES for more.
+
+  def in_place_collection_editor(field_id, options = {})
+    function =  "new Ajax.InPlaceCollectionEditor("
+    function << "'#{field_id}', "
+    function << "'#{url_for(options[:url])}'"
+
+    if protect_against_forgery? 
+      options[:with] ||= "Form.serialize(form)" 
+      options[:with] += " + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}')" 
+    end 
+
+    js_options = {}
+    js_options['collection'] = %(#{options[:collection]})
+    js_options['cancelText'] = %('#{options[:cancel_text]}') if options[:cancel_text]
+    js_options['okText'] = %('#{options[:save_text]}') if options[:save_text]
+    js_options['loadingText'] = %('#{options[:loading_text]}') if options[:loading_text]
+    js_options['savingText'] = %('#{options[:saving_text]}') if options[:saving_text]
+    js_options['rows'] = options[:rows] if options[:rows]
+    js_options['cols'] = options[:cols] if options[:cols]
+    js_options['size'] = options[:size] if options[:size]
+    js_options['externalControl'] = "'#{options[:external_control]}'" if options[:external_control]
+    js_options['loadTextURL'] = "'#{url_for(options[:load_text_url])}'" if options[:load_text_url]        
+    js_options['ajaxOptions'] = options[:options] if options[:options]
+    js_options['htmlResponse'] = !options[:script] if options[:script]
+    js_options['callback']   = "function(form) { return #{options[:with]} }" if options[:with]
+    js_options['clickToEditText'] = %('#{options[:click_to_edit_text]}') if options[:click_to_edit_text]
+    js_options['textBetweenControls'] = %('#{options[:text_between_controls]}') if options[:text_between_controls]
+    function << (', ' + options_for_javascript(js_options)) unless js_options.empty?
+    function << ')'
+    javascript_tag(function)
+  end
+
+  # Renders the value of the specified object and method with in-place
+  # select capabilities.
+  def in_place_editor_select_field(object, method, tag_options = {}, in_place_editor_options = {})
+    tag = ::ActionView::Helpers::InstanceTag.new(object, method, self)
+    tag_options = {:tag => "span",
+      :id => "#{object}_#{method}_#{tag.object.id}_in_place_editor", 
+      :class => "in_place_editor_field"}.merge!(tag_options)
+    in_place_editor_options[:url] = in_place_editor_options[:url] || url_for({ :action => "set_#{object}_#{method}", :id => tag.object.id })
+    tag.to_content_tag(tag_options.delete(:tag), tag_options) + in_place_collection_editor(tag_options[:id], in_place_editor_options)
+  end
+
+With that in place, I put this in app/views/expression/show.html.erb:
+
+<% list = Work.all.collect {|w| [w.id, w.anchor_text]}.to_json %> 
+
+<span id="expression_reifications_<%= @expression.id %>_in_place_editor"><%= @expression.work.anchor_text %></span>
+
+<%= in_place_editor_select_field :expression, 'reifications', {}, {:collection => list} 
+%>
+
+</p>
+
+This new (ugly but temporary) method went into
+expressions_controller.rb:
+
+  def set_expression_reifications
+    e = Expression.find(params[:id])
+    work_id = params[:value]
+    e.reifications = []
+    r = Reification.new(:expression_id => e.id, :work_id => work_id, :relation => relation)
+    e.reifications << r
+    render :text => Work.find(work_id).anchor_text
+  end
+
+And that was all that was necessary. A # appeared, caused by
+#<Work:0xb707f410> appearing in the HTML, but I couldn't figure out
+where it was coming from.
+
+After getting all that working, and talking about it to a couple of
+people, I realized it was the wrong way to go about it.  I got the
+task working in a RESTful way with a basic form instead, and it made
+more sense and was easy to do.
+
+I put this form in the expression show.html.erb:
+
+<% @reification = @expression.reifications[0] %>
+
+<% form_for @reification do |f| %>
+<%= f.error_messages %>
+
+<%= hidden_field_tag "expression_id", @expression.id %>
+<%= hidden_field_tag "relation", @reification.relation %>
+
+<%= submit_tag "Reassign to" %>
+
+<%= select_tag "work_id", 
+Work.all.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.to_s
+%>
+
+<% end %>
+
+I made reifications_controller.rb and made an update method:
+
+  def update
+    @reification=Reification.find(params[:id])
+    @reification.work_id=params[:work_id]
+    @reification.expression_id=params[:expression_id]
+    @reification.relation = params[:relation] # TODO Unhide in form
+
+    respond_to do |format|
+      if @reification.save
+        flash[:notice] = 'Reification was successfully updated.'
+        format.html { redirect_to(Expression.find(@reification.expression_id)) }
+        format.xml  { render :xml => @reification, :status => :created, :location => @reification }
+      else
+        flash[:notice] = 'Could not update reification.'
+        format.html { redirect_to(Expression.find(@reification.expression_id)) }
+        format.xml  { render :xml => @reification.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+I'm not sure all the XML stuff works, but you can reassign an
+expression to a different work, and you're directed back to the
+expression's page when you're done.  The Reification model will
+eventually get a delete method.  When I get Embodiment going between
+Expression and Manifestation it'll have all the methods because that's
+many-to-many.
 
 

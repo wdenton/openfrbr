@@ -3,22 +3,22 @@
 <li> Title: <span id="edit_title"><%= attributes.title %></span>
 <%= in_place_editor 'edit_title', 
   :size => attributes.title.length,
-  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'title'}  %>
+  :url => {:action => 'edit_in_place', :id => attributes.id, :type => attributes.class, :field => 'title'}  %>
 </li>
 
 <li> Form: <span id="edit_form"><%= attributes.form %></span>
 <%= in_place_editor 'edit_form', 
-  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'form'}  %>
+  :url => {:action => 'edit_in_place', :id => attributes.id, :type => attributes.class, :field => 'form'}  %>
 </li>
 
-<li> Date: <span id="edit_date"><%= attributes.date %><%- if attributes.date.nil? %>-<%- end %></span>
+<li> Date: <span id="edit_date"><%= attributes.date %><%- if attributes.date.length == 0 %>[add]<%- end %></span>
 <%= in_place_editor 'edit_date', 
-  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'date'}  %>
+  :url => {:action => 'edit_in_place', :id => attributes.id, :type => attributes.class, :field => 'date'}  %>
 </li>
 
-<li> Comment: <span id="edit_comment"><%= attributes.comment %><%- if attributes.comment.nil? %>-<%- end %></span>
+<li> Comment: <span id="edit_comment"><%= attributes.comment %><%- if attributes.comment.length == 0 %>[add]<%- end %></span>
 <%= in_place_editor 'edit_comment', 
-  :url => {:action => 'edit_in_place', :id => attributes.id, :field => 'comment'}  %>
+  :url => {:action => 'edit_in_place', :id => attributes.id, :type => attributes.class, :field => 'comment'}  %>
 </li>
 
 </ul>

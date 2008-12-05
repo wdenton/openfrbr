@@ -1,5 +1,17 @@
 class ExpressionsController < ApplicationController
 
+  # Needlessly duplicated from works_controller. Should
+  # be in application.rb but I had some weird problem getting
+  # that working right so I'll let it ride
+  def edit_in_place
+    @expression = Expression.find(params[:id])
+    @expression.send "#{params[:field]}=", params[:value]
+    @expression.save
+    render :text => params[:value]
+  end
+
+  # Used for in_place_collection_editor, waiting to be cleaned
+  # up and moved to some proper home where it will be used.
   def set_expression_reifications
     e = Expression.find(params[:id])
     work_id = params[:value]
