@@ -1,5 +1,9 @@
 TODO list for OpenFRBR
 
+* Make a universal edit_in_place function instead of duplicating it in
+  the work and expression controllers.  (Tried but got funny stuff
+  about an & sneaking in somewhere that messed things up.)
+
 * Make tests.  There are no tests.  This is not test-driven
   development.
 
