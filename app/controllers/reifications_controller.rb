@@ -10,7 +10,7 @@ class ReificationsController < ApplicationController
 
     respond_to do |format|
       if @reification.save
-        flash[:notice] = Reification was successfully updated.'
+        flash[:notice] = 'Reification was successfully updated.'
         format.html { redirect_to(Expression.find(@reification.expression_id)) }
         format.xml  { render :xml => @reification, :status => :created, :location => @reification }
       else
