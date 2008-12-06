@@ -305,19 +305,24 @@ end
 
 isbns.each do |isbn| 
   if $options[:worldcat].length > 0
-    STDERR.print "\r#{isbn} WorldCat" + " "*25 unless $options[:quiet] == true
+    STDERR.print "\r#{isbn} WorldCat" + " "*20 unless $options[:quiet] == true
     worldcatURL = worldcatAPIURL.gsub(/::ISBN::/, isbn)
     worldcatURL = worldcatURL.gsub(/::KEY::/, $options[:worldcat])
     worldcatURL = worldcatURL.gsub(/::LEVEL::/, $options[:worldcatlevel])
     # STDERR.print "\nGetting #{worldcatURL}"
     worldcat_xml = Net::HTTP.get_response(URI.parse(worldcatURL)).body
-    doc = REXML::Document.new worldcat_xml
-    error = doc.elements['//diagnostics/diagnostic/message'].nil? ? nil : doc.elements['//diagnostics/diagnostic/message'].text
-    if error.nil? 
-      write_record(worldcat_xml)
-      next
-    else
-      STDERR.puts "\nERROR from WorldCat: #{error}"
+    begin
+      doc = REXML::Document.new worldcat_xml
+      error = doc.elements['//diagnostics/diagnostic/message'].nil? ? nil : doc.elements['//diagnostics/diagnostic/message'].text
+      if error.nil? 
+        write_record(worldcat_xml)
+        next
+      else
+        STDERR.puts error
+        # STDERR.puts "\nERROR from WorldCat: #{error}"
+      end
+    rescue Exception => e
+      STDERR.puts "\nERROR with WorldCat XML: '#{e}'"
     end
   end
   servers.each do |server|

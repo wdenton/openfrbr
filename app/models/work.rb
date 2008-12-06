@@ -14,8 +14,9 @@ class Work < ActiveRecord::Base
   end
 
  # Sort Works by anchor text.  Useful for displaying in lists.
+ # Could also sort by title and then number of expressions.  Hmm.
  def <=>(o) 
-   self.anchor_text <=> o.anchor_text
+   self.anchor_text.downcase <=> o.anchor_text.downcase
  end
 
 end
