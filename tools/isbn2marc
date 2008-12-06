@@ -3,7 +3,7 @@
 # isbn2marc - find MARC records for one or more ISBNs
 
 # William Denton <wtd@pobox.com>
-# $Id$
+# April 2007 - November 2008
 # Released under the MIT License.
 
 # Copyright (c) 2008 William Denton
