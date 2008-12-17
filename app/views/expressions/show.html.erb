@@ -22,6 +22,13 @@ Work.all.sort.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>
 
 <% end %>
 
+<p>
+
+Work-to-expression relation: <%= @reification.relation %>
+
+</p>
+
+
 <hr />
 
 <h1>Expression: <%= @expression.anchor_text %></h1>
