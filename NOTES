@@ -2951,4 +2951,9 @@ eventually get a delete method.  When I get Embodiment going between
 Expression and Manifestation it'll have all the methods because that's
 many-to-many.
 
+* 12 February 2009
 
+Moved to GitHub. Easy to set up!  I had a problem getting SSH configured 
+but their guides made it clear what I'd done wrong.
+
+http://github.com/wdenton/openfrbr/tree/master
