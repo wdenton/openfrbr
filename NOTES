@@ -2957,3 +2957,21 @@ Moved to GitHub. Easy to set up!  I had a problem getting SSH configured
 but their guides made it clear what I'd done wrong.
 
 http://github.com/wdenton/openfrbr/tree/master
+
+* 16 February 2009
+
+User authentication is confusing in Rails, partly because of the 
+mish-mash of outdated stuff online, acts_as_authenticated and 
+restful_authentication are out, it seems, and these are in:
+
+  Clearance: http://github.com/thoughtbot/clearance/tree/master
+  Authlogic: http://github.com/binarylogic/authlogic/tree/master
+
+All I want is something to prevent spam, and a one account system where 
+I tell the username and password would do that.  Or a basic CAPTCHA or 
+one of those "What is 2+2?" tests.  Something to look at later.
+
+
+
+
+
