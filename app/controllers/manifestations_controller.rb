@@ -19,6 +19,7 @@ class ManifestationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @manifestation }
+      format.rdf  # show.rdf.builder
     end
   end
 
