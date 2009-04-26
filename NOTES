@@ -3074,6 +3074,34 @@ It worked!  Hours of frustration but somehow it works.  I'm now
 running Rails 2.2.2.  Don't look forward to upgrading on my other box!
 Ugh.  
 
+* 26 April 2009
 
+Added Capistrano support so I can run
+
+$ cap deploy:update
+
+after updating the source code, and a process on anvil will check out
+the latest version and get it in place there.
+
+Then I should be able to run
+
+$ cap deploy:restart
+
+and it'll run the script/spin script I made, except I get some sort of
+error.  Need to get that figured out.  Anyway, now getting the source
+in place is easy.
+
+The bad news is that because OpenFRBR was completely open to edits by
+anyone, it was getting attacked by spammers constantly, to the point
+where it was bringing anvil down to a crawl and Ross Singer had to
+disable it.  Before I get it back up it needs some kind of anti-spam
+protection, with account logins or CAPTCHA or something.
+
+Ross is interested in working on this and moving into a Semantic Web
+design.  We're going to try to get it working using the Talis Platform
+as the place to store the triples, using the Pho gem that Talis's
+Leigh Dodds wrote so Ruby people can talk to it.  That will help, I
+hope, work around the problem that there isn't great RDF support for
+Ruby. 
 
 

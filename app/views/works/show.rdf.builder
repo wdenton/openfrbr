@@ -11,6 +11,7 @@ xml.rdf(:RDF,
     xml.dc(:title, @work.title)
     @work.creators.each do |creator|
       xml.dc(:creator, creator.name)
+      xml.dc(:creator, "rdf:resource" => url_for(creator))
     xml.dc(:form, @work.form)
     xml.dc(:date, @work.date)
     end
