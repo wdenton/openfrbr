@@ -3076,7 +3076,7 @@ Ugh.
 
 * 26 April 2009
 
-Added Capistrano support so I can run
+Added Capistrano support (config/deploy.rb) so I can run
 
 $ cap deploy:update
 
@@ -3090,6 +3090,15 @@ $ cap deploy:restart
 and it'll run the script/spin script I made, except I get some sort of
 error.  Need to get that figured out.  Anyway, now getting the source
 in place is easy.
+
+Capistrano
+  http://www.capify.org/
+
+Capistrano: Basics
+  http://www.capify.org/getting-started/basics/
+
+Capistrano: From the beginning
+  http://www.capify.org/getting-started/from-the-beginning/
 
 The bad news is that because OpenFRBR was completely open to edits by
 anyone, it was getting attacked by spammers constantly, to the point
