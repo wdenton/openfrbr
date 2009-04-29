@@ -14,6 +14,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :works, :has_many => :subjects
   map.resources :reifications
   #map.resources :expressions, :has_many => :reifications
+  map.resource  :account, :controller => "users"
+  map.resources :users
+  map.resource  :user_session
 
   # The priority is based upon order of creation: first created ->
   # highest priority.

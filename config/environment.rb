@@ -26,6 +26,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "has_many_polymorphs"
+  config.gem "authlogic"
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
@@ -69,4 +70,5 @@ end
 
 # Use this gem (had to add by hand after installing gem)
 # require 'has_many_polymorphs'
+
 
