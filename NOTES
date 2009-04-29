@@ -3113,4 +3113,37 @@ Leigh Dodds wrote so Ruby people can talk to it.  That will help, I
 hope, work around the problem that there isn't great RDF support for
 Ruby. 
 
+* 28 April 2009
+
+Added AuthLogic support, which will mean the spam can be stopped.
+
+  http://github.com/binarylogic/authlogic/tree/master
+
+I started a new branch:
+
+$ git branch authlogic
+$ git checkout authlogic
+
+And then did the work set out here, in some great docs:
+
+  http://github.com/binarylogic/authlogic_example/tree/master
+
+It all went fine, but then I got a bit confused about how to push the
+branch to the remote repository at GitHub.
+
+Some links:
+
+  http://www.zorched.net/2008/04/14/start-a-new-branch-on-your-remote-git-repository/
+  http://djwonk.com/blog/2009/04/18/tracking-remote-git-branches/
+
+Turns out all I had to do was
+
+$ git push origin authlogic
+
+Tracking multiple branches would probably mean I'd want to edit my
+config file, but I just want this there while I get this working; when
+I know it works I'll merge it and remove the branch, so it's no big
+thing.
+
+
 
