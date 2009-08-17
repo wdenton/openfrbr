@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Start script used by Capistrano
+# This runs when cap deploy:start is run
+
+cp ~/azkaban-20081203.sqlite3 ~/openfrbr.org/current/db/production.sqlite3
+touch ~/openfrbr.org/current/tmp/restart.txt
+curl -s http://openfrbr.org/ > /dev/null
