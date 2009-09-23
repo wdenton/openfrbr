@@ -3187,6 +3187,8 @@ $ rake db:fixtures:load
 
 and I was back in action.
 
+... though not having looked at this in a while I had no idea where I 
+was at with the authlogic branch.
 
 
 
