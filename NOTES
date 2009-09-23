@@ -3145,5 +3145,33 @@ config file, but I just want this there while I get this working; when
 I know it works I'll merge it and remove the branch, so it's no big
 thing.
 
+* 22 September 2009
+
+Trying things on my new laptop which has Rails 2.2.3.
+
+Had to rename application.rb to application_controller.rb.
+
+When running rake db:migrate I got 
+
+rake aborted!
+undefined method `reenable' for <Rake::Task db:schema:dump => [environment]>:Rake::Task
+
+$ sudo apt-get remove rake
+$ sudo gem install rake
+$ rake db:migrate
+-bash: /usr/bin/rake: No such file or directory
+$ # sigh
+$ sudo ln -s /var/lib/gems/1.8/bin/rake /usr/bin/rake
+
+Then all these worked:
+
+$ rake db:reset
+$ rake db:migrate
+$ rake db:fixtures:load
+
+and I was back in action.
+
+
+
 
 
