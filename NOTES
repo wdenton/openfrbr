@@ -3074,6 +3074,22 @@ It worked!  Hours of frustration but somehow it works.  I'm now
 running Rails 2.2.2.  Don't look forward to upgrading on my other box!
 Ugh.  
 
+* 11 March 2009
+
+Had Rails 2.2 already installed on jenkins, so that wasn't a problem.  
+When I ran ./script/server I got
+
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require': no such file to load -- iconv (LoadError)
+
+Installing /usr/ports/converters/ruby-iconv/, which is 
+ruby18-iconv-1.8.7.72 right now, fixed that.
+
+Then I got some error about activerdf!  Cripes.  
+
+# gem uninstall activerdf
+
+fixed that.  I'll figure it out if I need to reinstall it.
+
 * 26 April 2009
 
 Added Capistrano support (config/deploy.rb) so I can run
