@@ -3074,6 +3074,22 @@ It worked!  Hours of frustration but somehow it works.  I'm now
 running Rails 2.2.2.  Don't look forward to upgrading on my other box!
 Ugh.  
 
+* 11 March 2009
+
+Had Rails 2.2 already installed on jenkins, so that wasn't a problem.  
+When I ran ./script/server I got
+
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require': no such file to load -- iconv (LoadError)
+
+Installing /usr/ports/converters/ruby-iconv/, which is 
+ruby18-iconv-1.8.7.72 right now, fixed that.
+
+Then I got some error about activerdf!  Cripes.  
+
+# gem uninstall activerdf
+
+fixed that.  I'll figure it out if I need to reinstall it.
+
 * 26 April 2009
 
 Added Capistrano support (config/deploy.rb) so I can run
@@ -3144,6 +3160,50 @@ Tracking multiple branches would probably mean I'd want to edit my
 config file, but I just want this there while I get this working; when
 I know it works I'll merge it and remove the branch, so it's no big
 thing.
+
+* 22 September 2009
+
+Trying things on my new laptop which has Rails 2.2.3.
+
+Had to rename application.rb to application_controller.rb.
+
+When running rake db:migrate I got 
+
+rake aborted!
+undefined method `reenable' for <Rake::Task db:schema:dump => [environment]>:Rake::Task
+
+$ sudo apt-get remove rake
+$ sudo gem install rake
+$ rake db:migrate
+-bash: /usr/bin/rake: No such file or directory
+$ # sigh
+$ sudo ln -s /var/lib/gems/1.8/bin/rake /usr/bin/rake
+
+Then all these worked:
+
+$ rake db:reset
+$ rake db:migrate
+$ rake db:fixtures:load
+
+and I was back in action.
+
+... though not having looked at this in a while I had no idea where I 
+was at with the authlogic branch.
+
+* 29 September 2009
+
+Got confused about which branch I'm on.  Renamed application.rb and
+took out the RAILS_VERSION specification in config/environment.rb and
+now the authlogic branch works OK.  I'll get this finished off and
+then merge it back, which will be a good test of my memory.
+
+Fiddled with various things and watched Railscast #160 which was a
+great help in getting all of this working:
+      http://railscasts.com/episodes/160-authlogic
+
+Got it so that user can create an account, log in, edit the account,
+and log out.
+
 
 
 
