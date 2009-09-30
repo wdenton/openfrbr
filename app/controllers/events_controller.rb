@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
+
   # GET /events
   # GET /events.xml
   def index

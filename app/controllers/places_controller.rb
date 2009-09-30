@@ -1,4 +1,7 @@
 class PlacesController < ApplicationController
+
+  before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
+
   # GET /places
   # GET /places.xml
   def index

@@ -1,5 +1,8 @@
 class WorksController < ApplicationController
 
+  # before_filter :require_no_user, :only => [:index, :show]
+  before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
+
   def edit_in_place
     @work = Work.find(params[:id])
     @work.send "#{params[:field]}=", params[:value]

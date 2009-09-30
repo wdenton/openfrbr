@@ -3204,6 +3204,18 @@ great help in getting all of this working:
 Got it so that user can create an account, log in, edit the account,
 and log out.
 
+Then added lines this like to all the controllers:
+
+  before_filter :require_user, :only => [:create, :new, :edit, :update, :destroy]
+
+and now it requires the user to be logged in before doing any of those
+actions.
+
+TODO: Redirect people back to the page they want to edit after they've
+successfully logged in.
+
+
+
 
 
 

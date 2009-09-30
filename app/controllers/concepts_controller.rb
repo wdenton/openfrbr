@@ -1,4 +1,7 @@
 class ConceptsController < ApplicationController
+
+  before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
+
   # GET /concepts
   # GET /concepts.xml
   def index
