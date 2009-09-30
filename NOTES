@@ -3181,7 +3181,7 @@ $ sudo ln -s /var/lib/gems/1.8/bin/rake /usr/bin/rake
 
 Then all these worked:
 
-$ rake db:reset
+$ rake db:drop
 $ rake db:migrate
 $ rake db:fixtures:load
 
@@ -3214,7 +3214,13 @@ actions.
 TODO: Redirect people back to the page they want to edit after they've
 successfully logged in.
 
+TODO: Add OpenID.  See
+      http://railscasts.com/episodes/170-openid-with-authlogic
+for example.
 
+Note to self: installed Capistrano on my new Ubuntu box with
+     sudo gem install capistrano
+and then had to add /var/lib/gems/1.8/bin to my $PATH
 
 
 

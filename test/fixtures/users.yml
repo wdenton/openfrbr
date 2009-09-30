@@ -1,7 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+generic_account:
+  id: 1
+  email: frbr@example.com
+  crypted_password: d48f10a86eb82a26d58e0368509fafdc5aed403f7b28782d94f1cfcc9373bb0ada09bfd909f80bb0537b920832411e564dd15019f608441b382f450d3ae1d7df
+  password_salt: U7cyjuya677CXZ6XQq87
+  persistence_token: 02276dfe7765850f7fd115fae6982c4ac50ae406b88ef302f4576a3750388677ebbcbe626691d9701ca49fe3ecb8873822ba07adb2a045b42c1615f328990103
