@@ -1,5 +1,7 @@
 class ReificationsController < ApplicationController
 
+  before_filter :require_user, :only => [:update]
+
   # POST /reifications/1
   # POST /reifications/1.xml
   def update
