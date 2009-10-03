@@ -2,11 +2,18 @@
 
 <h1>Corporate Bodies</h1>
 
-<% for corp in @corporate_bodies %>
-<h2><%= link_to corp.anchor_text, corp %></h2>
+<div class="indexlist">
 
-<%= render(:partial => 'attributes', :object => corp) %>
+<ul>
+
+<% for corp in @corporate_bodies %>
+
+<li><%= link_to corp.anchor_text, corp %></li>
 
 <% end %>
+
+</ul>
+
+</div>
 
 <%= link_to 'New corporate body', new_corporate_body_path %>

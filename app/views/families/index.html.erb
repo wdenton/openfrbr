@@ -2,12 +2,19 @@
 
 <h1>Families</h1>
 
+<div class="indexlixt">
+
+<ul>
+
 <% for family in @families %>
 
-<h2><%= link_to family.name, family %></h2>
-
-<%= render(:partial => 'attributes', :object => family) %>
+<li><%= link_to family.name, family %>
+</li>
 
 <% end %>
+
+</ul>
+
+</div>
 
 <%= link_to 'New family', new_family_path %>

@@ -561,7 +561,7 @@ configging or not.  If I can't get it to work I can always set up the
 relations to all of the other entities and then add it in later.
 That's one of the nice things about migrations.
 
-TODO: Set up Subject relation between W and all entities.
+DONE: Set up Subject relation between W and all entities.
 
 Next, though, it's time to make it so that when I view a work I can
 see a list of its creators, and so on for the other Group 1 entities.
@@ -3222,6 +3222,28 @@ Note to self: installed Capistrano on my new Ubuntu box with
      sudo gem install capistrano
 and then had to add /var/lib/gems/1.8/bin to my $PATH
 
+* 30 September 2009
 
+At Hackfest I finally figured out how to use the Redland Ruby bindings
+to grok RDF. 
 
+TODO: Get list out of that Google Doc.
+
+TODO: Try Ross Singer's http://github.com/rsinger/RDFObjects
+
+* 3 October 2009
+
+Couldn't get the Capsitrano deployment working right last night so
+I'll try doing it by hand.
+
+$ git tag v2.2
+$ git archive --prefix=openfrbr-2.2/ v2.2 | gzip > openfrbr-2.2.tar.gz
+
+I had to symlink application_controller.rb to application.rb, because
+Rails is older on anvil, but after that it worked.  This isn't using
+Capistrano, which I'll try to get working next.
+
+Later, cleaned up and simplified all of the index.html.erb views so
+that they have less on them, and made everything valid HTML.  Changed
+the doctype so it's HTML5, too, just for fun.
 

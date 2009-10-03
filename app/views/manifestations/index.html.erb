@@ -2,33 +2,22 @@
 
 <h1>Manifestations</h1>
 
-<% for m in @manifestations %>
-
 <div class="indexlist">
 
-<h2><%= link_to m.anchor_text, m %></h2>
+<ul>
 
-<p>
+<% for m in @manifestations %>
 
-<%= pluralize(m.items.size, "item") %>.
-
-</p>
-
-<p>
-
-Produced by:
-
-</p>
-
-<%= render(:partial => 'layouts/group2entitylist', 
-  :object => m.producers) %>
-
-<%= render(:partial => 'attributes', :object => m) %>
-
-</div>
+<li> <%= link_to m.anchor_text, m %>
+<br />
+Produced by: 
+<%= render(:partial => 'layouts/group2entitylist', :object => m.producers) %>
+</li>
 
 <% end %>
 
-</dl>
+</ul>
+
+</div>
 
 <%= link_to 'New manifestation', new_manifestation_path %>

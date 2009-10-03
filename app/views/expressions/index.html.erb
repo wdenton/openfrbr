@@ -2,30 +2,21 @@
 
 <h1>Expressions</h1>
 
-<% for expression in @expressions %>
-
 <div class="indexlist">
 
-<h2> <%= link_to expression.anchor_text, expression %></h2>
+<% for e in @expressions %>
 
-<p>
+<ul> 
+<li> <%= link_to e.anchor_text, e %>
+<br />
+Realized by: 
+<%= render(:partial => 'layouts/group2entitylist', :object => e.realizers) %>
+</li>
 
-<%= pluralize(expression.manifestations.size, "manifestation") %>.
+</ul>
 
-</p>
-
-
-<p>
-
-Realized by:
-
-</p>
-
-<%= render(:partial => 'layouts/group2entitylist', 
-  :object => expression.realizers) %>
-
-<%= render(:partial => 'attributes', :object => expression) %>
+<% end %>
 
 </div>
 
-<% end %>
+<%= link_to 'New expression', new_expression_path %>

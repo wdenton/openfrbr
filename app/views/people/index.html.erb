@@ -2,16 +2,19 @@
 
 <h1>People</h1>
 
-<% for person in @people %>
-
 <div class="indexlist">
 
-<h2><%= link_to person.anchor_text, person %></h2>
+<ul>
 
-<%= render(:partial => 'attributes', :object => person) %>
+<% for person in @people %>
 
-</div>
+<li><%= link_to person.anchor_text, person %>
+</li>
 
 <% end %>
+
+</ul>
+
+</div>
 
 <%= link_to 'New person', new_person_path %>
