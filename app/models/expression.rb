@@ -7,7 +7,8 @@ class Expression < ActiveRecord::Base
   has_many :reifications
   has_many :works, :through => :reifications
 
-  has_many :manifestations
+  has_many :embodiments
+  has_many :manifestations, :through => :embodiments
 
   has_many_polymorphs :realizers, :from => [:people, :families, :corporate_bodies], :through => :realizations
 

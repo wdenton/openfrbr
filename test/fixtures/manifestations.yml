@@ -7,7 +7,7 @@ one:
   publisher: Raincoast Books
   publication_date: 2000
   comment: 
-  expression_id: 1
+#  expression_id: 1
 
 two:
   id: 2
@@ -18,7 +18,7 @@ two:
   publisher: Raincoast Books
   publication_date: 1999
   comment:
-  expression_id: 2
+#  expression_id: 2
 
 three:
   id: 3
@@ -29,7 +29,7 @@ three:
   publisher: Raincoast Books
   publication_date: 1999
   comment:
-  expression_id: 3
+#  expression_id: 3
 
 PhilosopherAudiobookManifestation:
   id: 4
@@ -40,7 +40,7 @@ PhilosopherAudiobookManifestation:
   publisher: Listening Library
   publication_date:
   comment: Audiobook
-  expression_id: 4
+#  expression_id: 4
 
 EndOfHarryPotter:
   id: 5
@@ -51,5 +51,5 @@ EndOfHarryPotter:
   publisher: Tor
   publication_date: 2007
   comment:
-  expression_id: 6
+#  expression_id: 6
 

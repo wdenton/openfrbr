@@ -4,18 +4,26 @@
 
 Work: 
 
-<%= link_to "#{@manifestation.expression.work.anchor_text}", 
-@manifestation.expression.work %>
+link_to "#{@manifestation.expression.work.anchor_text}", @manifestation.expression.work
                  
 </p>
 
 <p>
- 
-Expression: 
-<%= link_to "#{@manifestation.expression.anchor_text}" ,
-    @manifestation.expression %>
+
+Expression(s):
 
 </p>
+
+<ul>
+
+<% @manifestation.embodiments.each do |e| %>
+<% expression=Expression.find(e.expression_id) %>
+<li> <%= link_to expression.anchor_text, expression %> (<%= e.relation %>)
+</li>
+
+<% end %>
+
+</ul>
 
 <h1>Manifestation: <%= @manifestation.anchor_text %></h1>
 

@@ -6,6 +6,14 @@ Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
 
 </p>
 
+<p>
+
+TODO: Handle case of many-to-many Reification model, where an
+expression can have more than one Work associated with it.  Will make
+reassignment more difficult. Maybe handle that elsewhere?
+
+</p>
+
 <% @reification = @expression.reifications[0] %>
 
 <% form_for @reification do |f| %>
@@ -65,11 +73,12 @@ Attributes
 
 <ul>
 
-<% @expression.manifestations.each do |m| %>
-
-<li> <%= link_to m.anchor_text, m %>
+<% @expression.embodiments.each do |e| %>
+<% m=Manifestation.find(e.manifestation_id) %>
+<li> <%= link_to m.anchor_text, m %> (<%= e.relation %>)
 </li>
 
 <% end %>
 
 </ul>
+

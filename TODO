@@ -29,6 +29,10 @@ TODO list for OpenFRBR
 * Set up an many-to-many Item-to-Item relation, with relation
   attribute.
 
+* Make the many-to-many Reification model show on the Work and
+  Expression pages.  The test data, an imaginary Reader' Digest
+  abridged version of all three, is there.
+
 * Create many-to-many Embodiment model between Expression and
   Manifestation, with relation attribute.
 
