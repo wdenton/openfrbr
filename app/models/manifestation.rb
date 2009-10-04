@@ -12,7 +12,7 @@ class Manifestation < ActiveRecord::Base
   has_many :works, :as => :subject
 
   def anchor_text
-    title + " (" + form_of_carrier + ", " + identifier + ")"
+    title + " (" + form_of_carrier + ", " + identifier + ", " + items.size.to_s + ")"
   end
 
 end

@@ -96,6 +96,19 @@ TODO list for OpenFRBR
   associated with a subject from the subject's page, i.e. there is a
   "Make this the subject of work ____" on every page. 
 
+* Redirect people back to the page they want to edit after they've
+  successfully logged in.
+
+* Add OpenID.  See
+  http://railscasts.com/episodes/170-openid-with-authlogic
+  for example.
+
+* Try Ross Singer's http://github.com/rsinger/RDFObjects
+
+* Upgrade Rails on anvil.
+
+* Get Capistrano deployment working so I can just cap deploy it up to
+  the server.
 
 Aggregates
 ----------

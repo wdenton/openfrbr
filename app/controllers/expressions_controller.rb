@@ -1,5 +1,7 @@
 class ExpressionsController < ApplicationController
 
+  before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
+
   # Needlessly duplicated from works_controller. Should
   # be in application.rb but I had some weird problem getting
   # that working right so I'll let it ride

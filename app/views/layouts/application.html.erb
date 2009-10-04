@@ -1,6 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -72,6 +70,18 @@ Contact: <a href="http://www.miskatonic.org/">William Denton</a>
 <div class="right">
 
 <p style="color: green"><%= flash[:notice] %></p>
+
+<div id="user_nav">
+<% if current_user %>
+  <%= link_to "Logout", logout_path %> |
+  <%= link_to "Edit profile", edit_user_path(:current) %>
+<% else %>
+  <%= link_to "Login", login_path %> |
+  <%= link_to "Create account", new_user_path %>
+  <br />
+  (or use frbr@example.com, password frbr)
+<% end %>
+</div>
 
 <%= yield  %>
 

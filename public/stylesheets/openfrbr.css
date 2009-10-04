@@ -106,6 +106,12 @@ div.left {
   padding: 10px;
 }
 
+div#user_nav {
+  float: right;
+  padding: 1em;
+  background: #cccccc;
+}
+
 div.right {
   margin-left: 200px;
   padding: 1%;
@@ -117,7 +123,7 @@ div.footer {
 }
 
 div.indexlist {
-  border: thin solid #cccccc;
-  padding: 10px;
-  margin-bottom: 10px;
+  /* border: thin solid #cccccc; */
+  /* padding: 10px; */
+  /* margin-bottom: 10px; */
 }

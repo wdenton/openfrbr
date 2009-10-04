@@ -18,3 +18,7 @@ PhilosopherAudiobookRealizer:
   realizer_id: 3
   realizer_type: Person
 
+EndOfRealizer:
+  expression_id: 6
+  realizer_id: 4
+  realizer_type: Person

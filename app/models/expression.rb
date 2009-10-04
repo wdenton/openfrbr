@@ -14,7 +14,8 @@ class Expression < ActiveRecord::Base
   has_many :works, :as => :subject
 
   def anchor_text
-    title + " (" + language + ", " + form + "/" + manifestations.size.to_s + ")"
+    title + " (" + language + ", " + form + ", " + manifestations.size.to_s + " m)"
+    # title + " (" + language + ", " + form + "/" + manifestations.size.to_s + ")"
   end
 
   def work

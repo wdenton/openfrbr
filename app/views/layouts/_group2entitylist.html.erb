@@ -1,12 +1,9 @@
 <ul>
-
 <% group2entitylist.each do |e| %>
-
-<li> <%= link_to e.name, e %> 
-</li>
-
-</li>
-
+  <li> <%= link_to e.name, e %> </li>
 <% end %>
-
+<% if group2entitylist.empty? %>
+  <li> </li>
+<% end %>
 </ul>
+

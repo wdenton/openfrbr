@@ -1,4 +1,7 @@
 class CorporateBodiesController < ApplicationController
+
+  before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
+
   # GET /corporate_bodies
   # GET /corporate_bodies.xml
   def index

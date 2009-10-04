@@ -3,7 +3,7 @@ one:
   title: Harry Potter and the Philosopher's Stone
   form: text
   date: 1997
-  language: English
+  language: en
   comment:
 
 two:
@@ -11,7 +11,7 @@ two:
   title: Harry Potter and the Chamber of Secrets
   form: text
   date: 1998
-  language: English
+  language: en
   comment:
 
 three:
@@ -19,7 +19,7 @@ three:
   title: Harry Potter and the Prisoner of Azkaban
   form: text
   date: 1999
-  language: English
+  language: en
   comment:
 
 PhilosopherAudiobookExpression:
@@ -27,7 +27,7 @@ PhilosopherAudiobookExpression:
   title: Harry Potter and the Philosopher's Stone
   form: audio
   date:
-  language: English
+  language: en
   comment:
 
 Abridgment:
@@ -35,5 +35,12 @@ Abridgment:
   title: Reader's Digest version of first three books
   form: text
   date: 2000
-  language: English
+  language: en
   comment: Test for one expression with many works.
+
+EndOfHarryPotter:
+  id: 6
+  title: The End of Harry Potter?
+  form: text
+  date: 2007
+  language: en

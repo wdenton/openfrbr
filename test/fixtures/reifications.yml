@@ -32,3 +32,9 @@ ReadersDigestReif3:
   work_id: 3
   expression_id: 5
   relation: abridgment
+
+EndOfHarryPotter:
+  work_id: 4
+  expression_id: 6
+  relation: author's final text
+

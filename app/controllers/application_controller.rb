@@ -6,12 +6,6 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '89f94784438a58c11b23195990acead5'
   
-  # See ActionController::Base for details 
-  # Uncomment this to filter the contents of submitted sensitive data
-  # parameters from your application log (in this case, all fields
-  # with names like "password").
-  # filter_parameter_logging :password
-
   # AuthLogic
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
@@ -24,14 +18,16 @@ class ApplicationController < ActionController::Base
 
     def current_user
       return @current_user if defined?(@current_user)
-      @current_user = current_user_session && current_user_session.user
+      @current_user = current_user_session && current_user_session.record
+      # @current_user = current_user_session && current_user_session.user
     end
 
     def require_user
       unless current_user
         store_location
         flash[:notice] = "You must be logged in to access this page"
-        redirect_to new_user_session_url
+        redirect_to login_url
+        #redirect_to new_user_session_url
         return false
       end
     end
@@ -40,7 +36,7 @@ class ApplicationController < ActionController::Base
       if current_user
         store_location
         flash[:notice] = "You must be logged out to access this page"
-        redirect_to account_url
+        redirect_to logout_url
         return false
       end
     end

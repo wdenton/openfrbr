@@ -2,6 +2,7 @@
 
 <h1>Works</h1>
 
+<div class="indexlist">
 
 <% for work in @works.sort %>
 
@@ -9,13 +10,14 @@
 
 <li> <%= link_to work.anchor_text, work %>
 <br />
-Created by: <%= render(:partial => 'layouts/group2entitylist', 
-  :object => work.creators) %>
-<% # render(:partial => 'attributes', :object => work) %>
+Created by: 
+<%= render(:partial => 'layouts/group2entitylist', :object => work.creators) %>
 </li>
 
 </ul>
 
 <% end %>
+
+</div>
 
 <%= link_to 'New work', new_work_path %>

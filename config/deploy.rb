@@ -14,3 +14,4 @@ set :scm, :git
 server "anvil.lisforge.net", :app, :web, :db, :primary => true
 
 set :user, "wtd"
+set :runner, "wtd"

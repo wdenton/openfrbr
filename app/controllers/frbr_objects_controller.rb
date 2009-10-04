@@ -1,4 +1,7 @@
 class FrbrObjectsController < ApplicationController
+
+  before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
+
   # GET /frbr_objects
   # GET /frbr_objects.xml
   def index
