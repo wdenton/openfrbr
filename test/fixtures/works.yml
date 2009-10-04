@@ -21,4 +21,9 @@ three:
   date: 1999
   comment: Third book
   
- 
+four:
+  id: 4
+  title: The End of Harry Potter?
+  form: nonfiction
+  date: 2007
+  comment: A work about a work, which is why it's test data.
