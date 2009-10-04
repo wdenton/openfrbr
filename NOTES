@@ -1447,3 +1447,28 @@ Later, cleaned up and simplified all of the index.html.erb views so
 that they have less on them, and made everything valid HTML.  Changed
 the doctype so it's HTML5, too, just for fun.
 
+cap deploy was giving me this error:
+
+  * executing "sudo -p 'sudo password: ' -u wtd /var/www/openfrbr.org/current/script/process/reaper"
+    servers: ["anvil.lisforge.net"]
+    [anvil.lisforge.net] executing command
+ *** [err :: anvil.lisforge.net] /usr/local/lib/site_ruby/1.8/rubygems.rb:149:in `activate': can't activate rails (= 2.1.0, runtime), already activated rails-2.3.2 (
+ *** [err :: anvil.lisforge.net] Gem::Exception)
+ *** [err :: anvil.lisforge.net] from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:35:in `require'
+ *** [err :: anvil.lisforge.net] from /var/www/openfrbr.org/current/script/process/reaper:3
+    command finished
+failed: "sh -c 'sudo -p '\\''sudo password: '\\'' -u wtd /var/www/openfrbr.org/current/script/process/reaper'" on anvil.lisforge.net
+
+I like Rails but man, it's filled with annoying problems like this
+when you upgrade or don't upgrade.  Why is it filled with such small
+annoyances that turn out to be so hard to find fixes for?
+
+Ran
+
+$ ./script/plugin install git://github.com/rails/irs_process_scripts.git
+
+which was recommended on a couple of mailing lists I, but that didn't
+do the job.  Maybe it's because Rails on my box and anvil are out of
+synch.  I'll upgrade anvil later.
+
+

@@ -105,6 +105,8 @@ TODO list for OpenFRBR
 
 * Try Ross Singer's http://github.com/rsinger/RDFObjects
 
+* Upgrade Rails on anvil.
+
 * Get Capistrano deployment working so I can just cap deploy it up to
   the server.
 
