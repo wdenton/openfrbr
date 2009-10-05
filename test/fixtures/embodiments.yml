@@ -1,0 +1,29 @@
+one:
+  id: 1
+  expression_id: 1
+  manifestation_id: 1
+  relation:
+
+two:
+  expression_id: 2
+  manifestation_id: 2
+  relation:
+
+Azkaban:
+  id: 3
+  expression_id: 3
+  manifestation_id: 3
+  relation: Raincoast, first edition
+
+PhilosopherAudiobookManifestation:
+  id: 4
+  expression_id: 4
+  manifestation_id: 4
+  relation: CD
+
+EndOfHarryPotter:
+  id: 5
+  expression_id: 6
+  manifestation_id: 5
+  relation: Tor, first edition
+
