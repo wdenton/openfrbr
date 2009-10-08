@@ -12,7 +12,8 @@ TODO list for OpenFRBR
 
 * Add relation attributes to Creation, Realization, Production and
   Owernship test fixtures, and show the relations on the WEMI pages
-  (e.g. isAuthorOf, isPublisherOf, owned, translated).
+  (e.g. isAuthorOf, isPublisherOf, owned, translated).  Use the RDA
+  roles? 
 
 * Add Work to the Aboutness model so that a Work can have another Work
   as its subject.
