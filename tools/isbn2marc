@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby -w
+#!/usr/bin/ruby -w
 
 # isbn2marc - find MARC records for one or more ISBNs
 
@@ -34,7 +34,12 @@
 # Requires the ruby-zoom package (which requires YAZ) and the marc gem.
 #
 # ruby-zoom: http://ruby-zoom.rubyforge.org/
-# See the installation instructions there
+# See the installation instructions there.
+# 
+# To install on Ubuntu, run
+# $ sudo apt-get install yaz libyaz3 libyaz3-dev
+# $ sudo gem install zoom
+#
 #
 # marc gem: http://rubyforge.org/projects/marc/
 # $ sudo gem install marc
