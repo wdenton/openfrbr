@@ -76,15 +76,14 @@ class ExpressionsController < ApplicationController
   def create
     realizer_name = params[:name]
     realizer_type = params[:entity_type]
-    @expression = Expression.new(params[:expression])
 
+    @expression = Expression.new(params[:expression])
     @realizer = realizer_type._as_class.find_or_create_by_name(realizer_name)
+    @reification = Reification.new(:work_id => params[:work_id], :expression_id => @expression.id, :relation => params[:relation])
 
     respond_to do |format|
       if @expression.save
-        @reification = Reification.new(:work_id => params[:work_id], :expression_id => @expression.id, :relation => params[:relation])
         @realizer.save
-        @reification.save
         @expression.realizers << @realizer
 	Work.find(params[:work_id]).reifications << @reification
 	
