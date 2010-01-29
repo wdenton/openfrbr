@@ -1526,8 +1526,18 @@ been saved.  I moved a line of code to after I do the save and then it
 worked.  Got the tip from a guy in #rubyonrails---first time I asked a
 question there and got an instant answer.
 
+* 29 January 2010
 
+Fixed up some bugs in the display of Manifestations and Items.
 
+Added pluralize_without_count helper which is like pluralize but
+doesn't insert the number before, it just gives the proper plural if
+necessary.
+
+Removed this from the Expression view, because an Expression can only
+have one Work, so this reassignment isn't needed.  Might be useful
+when I make it so one can reassign a Manifesatation to different
+Embodiments and Expressions, though.
 
 <% @reification = @expression.reifications[0] %>
 

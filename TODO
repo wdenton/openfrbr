@@ -21,17 +21,13 @@ TODO list for OpenFRBR
 * Set up a many-to-many Work-to-Work relation, with relation
   attribute.
 
-* Set up an many-to-many Expression-to-Expression relation, with
-  relation attribute.
-
-* Set up a many-to-many Manifestation-to-Manifestation relation, with
-  relation attribute.
-
-* Set up an many-to-many Item-to-Item relation, with relation
-  attribute.
-
-* Create many-to-many Embodiment model between Expression and
-  Manifestation, with relation attribute.
+* Do I need these?  Not sure any more.
+  * Set up an many-to-many Expression-to-Expression relation, with
+    relation attribute.
+  * Set up a many-to-many Manifestation-to-Manifestation relation, with
+    relation attribute.
+  * Set up an many-to-many Item-to-Item relation, with relation
+    attribute.
 
 * Create one-to-many Exemplification model between Manifestation and
   Item, with relation attribute.
