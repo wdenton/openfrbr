@@ -2,31 +2,41 @@
 
 <p>
 
-Work: 
-TODO: Show work
+<%= pluralize_without_count @item.manifestation.embodiments.count, "Expression" %>:
 
 </p>
+
+<ul>
+
+<% @item.manifestation.embodiments.each do |e| %>
+<% expression=Expression.find(e.expression_id) %>
+<li> <%= link_to expression.anchor_text, expression %>
+(<%= e.relation %>)
+<br />
+(Work: <%= link_to expression.reification.work.anchor_text, expression.reification.work %>)
+</li>
+
+<% end %>
+
+</ul>
 
 <p>
 
-Expression: 
-<%= link_to @item.manifestation.expression.anchor_text,
-@item.manifestation.expression %>
+Manifestation:
 
 </p>
 
-<p>
+<ul>
+<li> <%= link_to @item.manifestation.anchor_text, @item.manifestation %>
 
-Manifestation: 
-<%= link_to @item.manifestation.anchor_text, @item.manifestation %> 
 
-</p>
+</ul>
 
 <h1><%= @item.anchor_text %></h1>
 
 <p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> 
+<%= link_to 'Edit', edit_item_path(@item) %>
 |
 <%= link_to 'Delete', @item, :confirm => 'Are you sure?', :method => :delete %>
 
@@ -35,7 +45,7 @@ Manifestation:
 
 <h2>Owners</h2>
 
-<%= render(:partial => 'layouts/group2entitylist', 
+<%= render(:partial => 'layouts/group2entitylist',
   :object => @item.owners) %>
 
 <p>
