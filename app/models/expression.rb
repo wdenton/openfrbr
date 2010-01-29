@@ -4,8 +4,8 @@ class Expression < ActiveRecord::Base
   validates_presence_of :language, :message => "cannot be blank"
   validates_presence_of :form, :message => "cannot be blank"
 
-  has_many :reifications
-  has_many :works, :through => :reifications
+  has_one :reification
+  has_one :work, :through => :reifications
 
   has_many :embodiments
   has_many :manifestations, :through => :embodiments
@@ -22,12 +22,12 @@ class Expression < ActiveRecord::Base
   def work
     # For expression e, e.work a Work object representing
     # the first Work for which this Expression is a reification.
-    # (And only, if there is just one.) 
+    # (And only, if there is just one.)
     Work.find(reifications[0].work_id)
   end
 
   def works
-    # For expression e, e.works returns an array of all works 
+    # For expression e, e.works returns an array of all works
     # for which e is a reification.
     works = []
     reifications.each { |r| works << Work.find(r.work_id) }

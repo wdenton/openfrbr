@@ -2,37 +2,13 @@
 
 <p>
 
-Work: <%= link_to "#{@expression.work.anchor_text}",  @expression.work %>
+Work: <%= link_to "#{@expression.reification.work.anchor_text}",  @expression.reification.work %>
 
 </p>
 
 <p>
 
-TODO: Handle case of many-to-many Reification model, where an
-expression can have more than one Work associated with it.  Will make
-reassignment more difficult. Maybe handle that elsewhere?
-
-</p>
-
-<% @reification = @expression.reifications[0] %>
-
-<% form_for @reification do |f| %>
-<%= f.error_messages %>
-
-<%= hidden_field_tag "expression_id", @expression.id %>
-<%= hidden_field_tag "relation", @reification.relation %>
-
-<%= submit_tag "Reassign to" %>
-
-<%= select_tag "work_id", 
-Work.all.sort.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.to_s
-%>
-
-<% end %>
-
-<p>
-
-Work-to-expression relation: <%= @reification.relation %>
+Work-to-expression relation: <%= @expression.reification.relation %>
 
 </p>
 
@@ -43,7 +19,7 @@ Work-to-expression relation: <%= @reification.relation %>
 
 <p>
 
-<%= link_to 'Edit', edit_expression_path(@expression) %> 
+<%= link_to 'Edit', edit_expression_path(@expression) %>
 |
 <%= link_to 'Delete', @expression, :confirm => 'Are you sure?', :method => :delete %>
 
@@ -51,7 +27,7 @@ Work-to-expression relation: <%= @reification.relation %>
 
 <h2>Realizers</h2>
 
-<%= render(:partial => 'layouts/group2entitylist', 
+<%= render(:partial => 'layouts/group2entitylist',
   :object => @expression.realizers) %>
 
 <p>
@@ -66,7 +42,7 @@ Attributes
 
 <p>
 
-<%= link_to "Add manifestation for this expression", 
+<%= link_to "Add manifestation for this expression",
     new_manifestation_path(:expression_id => @expression.id) %>
 
 </p>
