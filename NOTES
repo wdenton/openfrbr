@@ -1498,6 +1498,34 @@ did it.
 Noticed that I have the Reification model in place but don't use the
 many-to-manyness of it, so I added that to the TODO list.
 
+* 26 January 2010
+
+Made a new work.  Tried to add an expression.  Error!  In
+works/show.html.erb I have
+
+<%= link_to "Add expression for this work", 
+    new_expression_path(:work_id => @work.id) %>
+
+But I don't want to make a new expression, I want to make a new
+reification.  I didn't notice this before because I'd been doing all
+of this in text fixtures, by hand, and not using the web interface.
+
+What is the best way to handle this RESTfully, when I have a Work and
+I want to create an Expression and the Reification that connects it to
+the Work?  Should I get all the necessary information at once and then
+do both creations and then redirect the user to the new Expression
+page?  I'm not sure what the theoretically ideal way of doing this is.
+
+* 28 January 2010
+
+On further investigation I found all this was actually set up right,
+but I'd forgotten how I'd done it.  There was a small bug, which I
+fixed.  I did @expression = Expression.new and then tried to read
+@expression.id, but that didn't work because the new Expression hadn't
+been saved.  I moved a line of code to after I do the save and then it
+worked.  Got the tip from a guy in #rubyonrails---first time I asked a
+question there and got an instant answer.
+
 
 
 
