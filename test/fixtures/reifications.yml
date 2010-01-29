@@ -1,39 +1,47 @@
 PhilosopherReification:
+  id: 1
   work_id: 1
   expression_id: 1
   relation: author's final text
 
 ChamberReification:
+  id: 2
   work_id: 2
   expression_id: 2
   relation: author's final text
 
 AzkabanReification:
+  id: 3
   work_id: 3
   expression_id: 3
   relation: author's final text
 
 PhilosopherAudiobookReification:
+  id: 4
   work_id: 1
   expression_id: 4
   relation: audiobook reading
 
 ReadersDigestReif1:
+  id: 5
   work_id: 1
   expression_id: 5
   relation: abridgment
 
 ReadersDigestReif2:
+  id: 6
   work_id: 2
   expression_id: 5
   relation: abridgment
 
 ReadersDigestReif3:
+  id: 7
   work_id: 3
   expression_id: 5
   relation: abridgment
 
 EndOfHarryPotter:
+  id: 8
   work_id: 4
   expression_id: 6
   relation: author's final text
