@@ -2,15 +2,7 @@
 
 <p>
 
-Work: 
-
-link_to "#{@manifestation.expression.work.anchor_text}", @manifestation.expression.work
-                 
-</p>
-
-<p>
-
-Expression(s):
+<%= pluralize_without_count @manifestation.embodiments.count, "Expression" %>:
 
 </p>
 
@@ -18,7 +10,10 @@ Expression(s):
 
 <% @manifestation.embodiments.each do |e| %>
 <% expression=Expression.find(e.expression_id) %>
-<li> <%= link_to expression.anchor_text, expression %> (<%= e.relation %>)
+<li> <%= link_to expression.anchor_text, expression %>
+(<%= e.relation %>)
+<br />
+(Work: <%= link_to expression.reification.work.anchor_text, expression.reification.work %>)
 </li>
 
 <% end %>
@@ -29,7 +24,7 @@ Expression(s):
 
 <p>
 
-<%= link_to 'Edit', edit_manifestation_path(@manifestation) %> 
+<%= link_to 'Edit', edit_manifestation_path(@manifestation) %>
 |
 <%= link_to 'Delete', @manifestation, :confirm => 'Are you sure?', :method => :delete %>
 
@@ -37,7 +32,7 @@ Expression(s):
 
 <h2>Producers</h2>
 
-<%= render(:partial => 'layouts/group2entitylist', 
+<%= render(:partial => 'layouts/group2entitylist',
   :object => @manifestation.producers) %>
 
 <p>
@@ -52,7 +47,7 @@ Attributes
 
 <p>
 
-<%= link_to "Add item for this manifestation", 
+<%= link_to "Add item for this manifestation",
     new_item_path(:manifestation_id => @manifestation.id) %>
 
 </p>

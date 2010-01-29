@@ -23,7 +23,7 @@ class ExpressionsController < ApplicationController
     # I'm going to ignore many-to-many relations here for now
     # and remove the existing work-to-expression relation,
     # just rudely dropping it, before adding a new one.
-    # TODO Handle many-to-many relations properly.  One should be 
+    # TODO Handle many-to-many relations properly.  One should be
     # able to add a new relation and delete an existing one
     # indepedently and RESTFULly.
     e.reifications = []
@@ -87,7 +87,7 @@ class ExpressionsController < ApplicationController
         @reification.save
         @expression.realizers << @realizer
 	Work.find(params[:work_id]).reifications << @reification
-	
+
         flash[:notice] = 'Expression was successfully created.'
         format.html { redirect_to(@expression) }
         format.xml  { render :xml => @expression, :status => :created, :location => @expression }
@@ -123,7 +123,7 @@ class ExpressionsController < ApplicationController
     # TODO: Also need to remove Expression-Manifestation connection
     @expression.reifications.each do |r|
       Work.find(r.work_id).reifications.delete(r)
-    end 
+    end
     @expression.destroy
 
     respond_to do |format|

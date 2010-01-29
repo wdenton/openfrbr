@@ -13,7 +13,7 @@ TODO list for OpenFRBR
 * Add relation attributes to Creation, Realization, Production and
   Owernship test fixtures, and show the relations on the WEMI pages
   (e.g. isAuthorOf, isPublisherOf, owned, translated).  Use the RDA
-  roles? 
+  roles?
 
 * Add Work to the Aboutness model so that a Work can have another Work
   as its subject.
@@ -30,16 +30,12 @@ TODO list for OpenFRBR
 * Set up an many-to-many Item-to-Item relation, with relation
   attribute.
 
-* Make the many-to-many Reification model show on the Work and
-  Expression pages.  The test data, an imaginary Reader' Digest
-  abridged version of all three, is there.
-
 * Create many-to-many Embodiment model between Expression and
   Manifestation, with relation attribute.
 
 * Create one-to-many Exemplification model between Manifestation and
   Item, with relation attribute. (I think one-to-many is correct, but
-  check.) 
+  check.)
 
 * In a Work's tree display, use Ajax drag and drop to move a
   Manifestation from one Expression to another, or an Item from one
@@ -67,10 +63,11 @@ TODO list for OpenFRBR
   children.)
 
 * If any entity is deleted, destroy all its connections with other
-  entities.  (Can this be done in the model with callbacks?)
+  entities.  (Can this be done in the model with callbacks?)  Or is
+  this done automatically by what's set up in the models?
 
 * Make a simple way of listing all works for which a given entity is a
-  subject.  
+  subject.
 
 * Add methods to Manifestation and Item so it is easy to tell which
   Work(s) they represent. (Beware of aggregates later.)
@@ -99,7 +96,7 @@ TODO list for OpenFRBR
 
   In the meantime, could work around by requiring a Work to be
   associated with a subject from the subject's page, i.e. there is a
-  "Make this the subject of work ____" on every page. 
+  "Make this the subject of work ____" on every page.
 
 * Redirect people back to the page they want to edit after they've
   successfully logged in.
@@ -114,6 +111,11 @@ TODO list for OpenFRBR
 
 * Get Capistrano deployment working so I can just cap deploy it up to
   the server.
+
+* Let user add/remove a Creator on a work page, a Realizer on an
+  Expression page, a Producer on an Manifestation page, and an Owner
+  on an Item page.
+
 
 Aggregates
 ----------

@@ -1,7 +1,7 @@
 NOTES
 
 Notes on what I did while I was doing it.  Some of the time I didn't
-know what I was doing but I still wrote it down.  
+know what I was doing but I still wrote it down.
 --William Denton <wtd@pobox.com>
 
 * 20 July 2008
@@ -41,7 +41,7 @@ $ git commit -m "Initial checkin in; a bit of scaffolding"
 On the Eee I ran
 
 $ cd src
-$ git clone buff@10.1.0.9:src/openfrbr 
+$ git clone buff@10.1.0.9:src/openfrbr
 
 and it copied everything over.
 
@@ -89,13 +89,13 @@ I'd already created the works table!
 
 * 28 July 2008
 
-rake db:drop; rake db:migrate seems to work well for getting around any 
+rake db:drop; rake db:migrate seems to work well for getting around any
 migration errors. It just drops everything and then you can start over.
 
-Put a bunch of table configuration and test data into the migration files, 
-including setting up the HABTM join tables.  Kept resetting the database 
-and migrating it from scratch. Probably not the best way to do it, but it 
-does sort of keep it tidy and gives me a decent baseline to work with for 
+Put a bunch of table configuration and test data into the migration files,
+including setting up the HABTM join tables.  Kept resetting the database
+and migrating it from scratch. Probably not the best way to do it, but it
+does sort of keep it tidy and gives me a decent baseline to work with for
 later, when I add attributes to the relationships between things.
 
 * 31 July 2008
@@ -104,19 +104,19 @@ Did some more setting up of the entities and defining some test
 data.  Didn't set up any relationships between PHILOSOPHER'S STONE
 and Platform 9 3/4 as a place, though, or anything like that.
 
-I had a look at the entity-relationship diagram I did that shows all of 
-the FRBR entities and relationships, and realized my data model was wrong. 
-I need to have attributes on the relationships, so instead of 
-has_and_belongs_to_many I need to use has_many :through, and then set up 
-the join with attributes.  A work can be created by Person A and also have 
-Person B as a subject.  I don't want to clutter it all up with tons of 
+I had a look at the entity-relationship diagram I did that shows all of
+the FRBR entities and relationships, and realized my data model was wrong.
+I need to have attributes on the relationships, so instead of
+has_and_belongs_to_many I need to use has_many :through, and then set up
+the join with attributes.  A work can be created by Person A and also have
+Person B as a subject.  I don't want to clutter it all up with tons of
 different tables for all those joins.
 
 Looked at a polymorphism plug-in but I don't feel like tackling that.
 
-Since sqlite won't work on the Eee I tried to get it going with 
-Postgresql, but I don't think I was running the daemon right because it 
-couldn't connect.  I'd better tackle fixing sqlite again, before messing 
+Since sqlite won't work on the Eee I tried to get it going with
+Postgresql, but I don't think I was running the daemon right because it
+couldn't connect.  I'd better tackle fixing sqlite again, before messing
 about with anything more serious.
 
 * 2 August 2008
@@ -127,7 +127,7 @@ that yet.  Should use these expressions of FRBR in RDF:
 
   http://vocab.org/frbr/core
   http://vocab.org/frbr/extended
-  
+
 Created app/views/layouts/application.html.erb and then removed all of the
 other layouts.  The application layout will be used by all views now.
 I'll do a bit of CSS and styling to get a left nav going, or something
@@ -137,7 +137,7 @@ For fun I thought I'd try autocompletion on manifestation titles, just
 to see how that worked.  Followed what is explained here:
 
   http://codeintensity.blogspot.com/2008/02/auto-complete-text-fields-in-rails-2.html
-  
+
 After a few minutes of this I decided I was getting ahead of myself, so I stopped.
 
 Fiddled with the CSS so there's a left nav.
@@ -237,7 +237,7 @@ And now this does it in show.html.erb for people:
 <li> <%= c.relation %> <%= link_to Work.find(c.work_id).title,
   :controller => "works",
   :action     => "show",
-  :id         => c.work_id %> 
+  :id         => c.work_id %>
 </li>
 
 <%- end %>
@@ -273,19 +273,19 @@ There's only one relation: hasSubject (inverse isSubjectOf).
 Hmm, I think that was stupid.  What I'd be doing there is a has_many
 :through polymorphic association, which is what I was trying to do
 with Creation, but couldn't get to work, so now I three broken and
-incomplete things going on. 
+incomplete things going on.
 
 All right, I'm going to revert to the last checkin to just wipe all
 that out.
 
 After more fooling around: bugger this, I need net access and I need
 to get it working on a simple test example with no other stuff going
-on.  
+on.
 
 * 22 August 2008
 
 I decided to start of simple and made a basic has_many :through
-relation between Work and Person and called it Creation.  
+relation between Work and Person and called it Creation.
 
 class Creation < ActiveRecord::Base
   belongs_to :person
@@ -320,7 +320,7 @@ end
 
 That lets me do this:
 
-buff:eee:~/src/openfrbr$ ./script/console 
+buff:eee:~/src/openfrbr$ ./script/console
 Loading development environment (Rails 2.1.0)
 >> w = Work.find(1)
 => #<Work id: 1, created_at: "2008-08-22 18:29:58", updated_at: "2008-08-22 18:29:58", title: "Harry Potter and the Philosopher's Stone", form: "novel", date: "1997", comment: "First book">
@@ -342,7 +342,7 @@ Loading development environment (Rails 2.1.0)
 => [#<Creation id: 1, person_id: 1, work_id: 1, relation: "isAuthorOf">]
 >> w.people
 => [#<Person id: 1, created_at: "2008-08-22 18:29:57", updated_at: "2008-08-22 18:29:57", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>]
->> 
+>>
 
 Good.
 
@@ -393,7 +393,7 @@ class CreateRealizations < ActiveRecord::Migration
   end
 end
 
-$ ./script/console 
+$ ./script/console
 Loading development environment (Rails 2.1.0)
 >> p = Person.find(1)
 => #<Person id: 1, created_at: "2008-08-22 19:43:37", updated_at: "2008-08-22 19:43:37", name: "J.K. Rowling", dates: "31 July 1965", title: nil, other_designation: nil, affiliation: nil, country: nil, comment: nil>
@@ -501,7 +501,7 @@ AzkabanProducer:
   producer_id: 1
   producer_type: CorporateBody
 
-When I do 
+When I do
 
 rake db:drop; rake db:migrate; rake db:fixtures:load
 
@@ -605,7 +605,7 @@ w.creators << p        # Create creation reation
 w.creators.delete(p)   # Delete creation relation
 
 Do this in an Ajaxy way so the page doesn't reload, the relation just
-disappears. 
+disappears.
 
 * 25 August 2008
 
@@ -692,7 +692,7 @@ leave it as is.
 
 TODO: Do not assume that an E has only one W.  Anywhere we list the Ws
 from which an E is reified, make it an array.  Allow one E to be
-associated with multiple Ws with select lists. 
+associated with multiple Ws with select lists.
 
 I took a stab at this and thought I had it working but ran into an
 error I can't explain.
@@ -702,7 +702,7 @@ To start I defined this in expression.rb:
   def work
     # For expression e, e.work a Work object representing
     # the first Work for which this Expression is a reification.
-    # (And only, if there is just one.) 
+    # (And only, if there is just one.)
       Work.find(reifications[0].work_id)
   end
 
@@ -710,7 +710,7 @@ and it worked fine.  Then I set up a case in the test fixtures where
 one E is an abridgment of three Ws. I made this method in expression.rb:
 
   def works
-    # For expression e, e.works returns an array of all works 
+    # For expression e, e.works returns an array of all works
     # for which e is a reification.
     works = []
     reifications.each do |r|
@@ -731,7 +731,7 @@ But e.works only works once!  Like so:
 What the hell?
 
 I don't know what's going on here.  For now I'll go back to just
-assuming there is one W for each E.  Have to ask about this.  
+assuming there is one W for each E.  Have to ask about this.
 
 ----------
 
@@ -773,7 +773,7 @@ narrative notes.
 
 Installing Phusion Passenger on anvil.lisforge.net:
 
-See 
+See
 
     http://www.modrails.com/
 
@@ -819,7 +819,7 @@ I set up a virtual host:
 
 I copied all of the files into place.  I ran
 
-$ rake db:schema:dump 
+$ rake db:schema:dump
 
 and copied db/schema.db onto anvil and put it in place.
 
@@ -888,7 +888,7 @@ I loaded up 160 manifestations just now.  Having that much in the
 system makes it more obvious where easy editing and reorganizing is
 necessary, so I'm going to try some in-place editing.  The
 documentation on that is pretty hard to find.  I wish Rails's
-documentation was as rich as Perl's.  
+documentation was as rich as Perl's.
 
 First, need to install this plugin, though you'd never know this from
 the docs online:
@@ -930,14 +930,14 @@ And this in show.html.erb for works:
 <p>Title</p>
 
 <p id="edit_title"><%= @work.title %></p>
-<%= in_place_editor 'edit_title', 
+<%= in_place_editor 'edit_title',
   :size => @work.title.length,
   :url => {:action => 'edit_in_place', :id => @work.id, :field => 'title'}  %>
 
 <p>Date</p>
 
 <p id="edit_date"><%= @work.date %><%- if @work.date.nil? %>-<%- end %></p>
-<%= in_place_editor 'edit_date', 
+<%= in_place_editor 'edit_date',
   :url => {:action => 'edit_in_place', :id => @work.id, :field => 'date'}  %>
 
 The if line in the date is to put a dash there if the work field is
@@ -1025,7 +1025,7 @@ ago:
 
 http://pastie.org/169443
 
-I added this to the bottom of 
+I added this to the bottom of
 vendor/plugins/in_place_editing/lib/in_place_macros_helper.rb
 
   # ----- Added to make in_place_collection_editor work
@@ -1036,10 +1036,10 @@ vendor/plugins/in_place_editing/lib/in_place_macros_helper.rb
     function << "'#{field_id}', "
     function << "'#{url_for(options[:url])}'"
 
-    if protect_against_forgery? 
-      options[:with] ||= "Form.serialize(form)" 
-      options[:with] += " + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}')" 
-    end 
+    if protect_against_forgery?
+      options[:with] ||= "Form.serialize(form)"
+      options[:with] += " + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}')"
+    end
 
     js_options = {}
     js_options['collection'] = %(#{options[:collection]})
@@ -1051,7 +1051,7 @@ vendor/plugins/in_place_editing/lib/in_place_macros_helper.rb
     js_options['cols'] = options[:cols] if options[:cols]
     js_options['size'] = options[:size] if options[:size]
     js_options['externalControl'] = "'#{options[:external_control]}'" if options[:external_control]
-    js_options['loadTextURL'] = "'#{url_for(options[:load_text_url])}'" if options[:load_text_url]        
+    js_options['loadTextURL'] = "'#{url_for(options[:load_text_url])}'" if options[:load_text_url]
     js_options['ajaxOptions'] = options[:options] if options[:options]
     js_options['htmlResponse'] = !options[:script] if options[:script]
     js_options['callback']   = "function(form) { return #{options[:with]} }" if options[:with]
@@ -1067,7 +1067,7 @@ vendor/plugins/in_place_editing/lib/in_place_macros_helper.rb
   def in_place_editor_select_field(object, method, tag_options = {}, in_place_editor_options = {})
     tag = ::ActionView::Helpers::InstanceTag.new(object, method, self)
     tag_options = {:tag => "span",
-      :id => "#{object}_#{method}_#{tag.object.id}_in_place_editor", 
+      :id => "#{object}_#{method}_#{tag.object.id}_in_place_editor",
       :class => "in_place_editor_field"}.merge!(tag_options)
     in_place_editor_options[:url] = in_place_editor_options[:url] || url_for({ :action => "set_#{object}_#{method}", :id => tag.object.id })
     tag.to_content_tag(tag_options.delete(:tag), tag_options) + in_place_collection_editor(tag_options[:id], in_place_editor_options)
@@ -1075,11 +1075,11 @@ vendor/plugins/in_place_editing/lib/in_place_macros_helper.rb
 
 With that in place, I put this in app/views/expression/show.html.erb:
 
-<% list = Work.all.collect {|w| [w.id, w.anchor_text]}.to_json %> 
+<% list = Work.all.collect {|w| [w.id, w.anchor_text]}.to_json %>
 
 <span id="expression_reifications_<%= @expression.id %>_in_place_editor"><%= @expression.work.anchor_text %></span>
 
-<%= in_place_editor_select_field :expression, 'reifications', {}, {:collection => list} 
+<%= in_place_editor_select_field :expression, 'reifications', {}, {:collection => list}
 %>
 
 </p>
@@ -1117,7 +1117,7 @@ I put this form in the expression show.html.erb:
 
 <%= submit_tag "Reassign to" %>
 
-<%= select_tag "work_id", 
+<%= select_tag "work_id",
 Work.all.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.to_s
 %>
 
@@ -1153,22 +1153,22 @@ many-to-many.
 
 * 12 February 2009
 
-Moved to GitHub. Easy to set up!  I had a problem getting SSH configured 
+Moved to GitHub. Easy to set up!  I had a problem getting SSH configured
 but their guides made it clear what I'd done wrong.
 
 http://github.com/wdenton/openfrbr/tree/master
 
 * 16 February 2009
 
-User authentication is confusing in Rails, partly because of the 
-mish-mash of outdated stuff online, acts_as_authenticated and 
+User authentication is confusing in Rails, partly because of the
+mish-mash of outdated stuff online, acts_as_authenticated and
 restful_authentication are out, it seems, and these are in:
 
   Clearance: http://github.com/thoughtbot/clearance/tree/master
   Authlogic: http://github.com/binarylogic/authlogic/tree/master
 
-All I want is something to prevent spam, and a one account system where 
-I tell the username and password would do that.  Or a basic CAPTCHA or 
+All I want is something to prevent spam, and a one account system where
+I tell the username and password would do that.  Or a basic CAPTCHA or
 one of those "What is 2+2?" tests.  Something to look at later.
 
 * 23 February 2009
@@ -1202,7 +1202,7 @@ specify a different output directory name (using the
 
 I ran
 
-# gem uninstall actionmailer 
+# gem uninstall actionmailer
 
 and told it I wanted to remove 2.2.2.  Then I did the install again,
 and it worked.
@@ -1227,7 +1227,7 @@ mess.
 
 But then
 
-$ ./script/server 
+$ ./script/server
  => Booting Mongrel (use 'script/server webrick' to force WEBrick)
  => Rails 2.2.2 application starting on http://0.0.0.0:3000
  => Call with -d to detach
@@ -1272,19 +1272,19 @@ rake db:drop; rake db:migrate; rake db:fixtures:load
 
 It worked!  Hours of frustration but somehow it works.  I'm now
 running Rails 2.2.2.  Don't look forward to upgrading on my other box!
-Ugh.  
+Ugh.
 
 * 11 March 2009
 
-Had Rails 2.2 already installed on jenkins, so that wasn't a problem.  
+Had Rails 2.2 already installed on jenkins, so that wasn't a problem.
 When I ran ./script/server I got
 
 /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require': no such file to load -- iconv (LoadError)
 
-Installing /usr/ports/converters/ruby-iconv/, which is 
+Installing /usr/ports/converters/ruby-iconv/, which is
 ruby18-iconv-1.8.7.72 right now, fixed that.
 
-Then I got some error about activerdf!  Cripes.  
+Then I got some error about activerdf!  Cripes.
 
 # gem uninstall activerdf
 
@@ -1327,7 +1327,7 @@ design.  We're going to try to get it working using the Talis Platform
 as the place to store the triples, using the Pho gem that Talis's
 Leigh Dodds wrote so Ruby people can talk to it.  That will help, I
 hope, work around the problem that there isn't great RDF support for
-Ruby. 
+Ruby.
 
 * 28 April 2009
 
@@ -1367,7 +1367,7 @@ Trying things on my new laptop which has Rails 2.2.3.
 
 Had to rename application.rb to application_controller.rb.
 
-When running rake db:migrate I got 
+When running rake db:migrate I got
 
 rake aborted!
 undefined method `reenable' for <Rake::Task db:schema:dump => [environment]>:Rake::Task
@@ -1387,7 +1387,7 @@ $ rake db:fixtures:load
 
 and I was back in action.
 
-... though not having looked at this in a while I had no idea where I 
+... though not having looked at this in a while I had no idea where I
 was at with the authlogic branch.
 
 * 29 September 2009
@@ -1425,7 +1425,7 @@ and then had to add /var/lib/gems/1.8/bin to my $PATH
 * 30 September 2009
 
 At Hackfest I finally figured out how to use the Redland Ruby bindings
-to grok RDF. 
+to grok RDF.
 
 TODO: Get list out of that Google Doc.
 
@@ -1493,7 +1493,7 @@ $ rake db:migrate
 $ rake db:fixtures:load
 
 Edited the Expression and Manifestation show methods and that about
-did it.  
+did it.
 
 Noticed that I have the Reification model in place but don't use the
 many-to-manyness of it, so I added that to the TODO list.
@@ -1503,7 +1503,7 @@ many-to-manyness of it, so I added that to the TODO list.
 Made a new work.  Tried to add an expression.  Error!  In
 works/show.html.erb I have
 
-<%= link_to "Add expression for this work", 
+<%= link_to "Add expression for this work",
     new_expression_path(:work_id => @work.id) %>
 
 But I don't want to make a new expression, I want to make a new
@@ -1528,4 +1528,20 @@ question there and got an instant answer.
 
 
 
+
+<% @reification = @expression.reifications[0] %>
+
+<% form_for @reification do |f| %>
+<%= f.error_messages %>
+
+<%= hidden_field_tag "expression_id", @expression.id %>
+<%= hidden_field_tag "relation", @reification.relation %>
+
+<%= submit_tag "Reassign to" %>
+
+<%= select_tag "work_id",
+Work.all.sort.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>" }.to_s
+%>
+
+<% end %>
 
