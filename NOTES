@@ -1526,8 +1526,18 @@ been saved.  I moved a line of code to after I do the save and then it
 worked.  Got the tip from a guy in #rubyonrails---first time I asked a
 question there and got an instant answer.
 
+* 29 January 2010
 
+Fixed up some bugs in the display of Manifestations and Items.
 
+Added pluralize_without_count helper which is like pluralize but
+doesn't insert the number before, it just gives the proper plural if
+necessary.
+
+Removed this from the Expression view, because an Expression can only
+have one Work, so this reassignment isn't needed.  Might be useful
+when I make it so one can reassign a Manifesatation to different
+Embodiments and Expressions, though.
 
 <% @reification = @expression.reifications[0] %>
 
@@ -1544,4 +1554,23 @@ Work.all.sort.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>
 %>
 
 <% end %>
+
+$ ./script/generate model Exemplification
+      exists  app/models/
+      exists  test/unit/
+      exists  test/fixtures/
+      create  app/models/exemplification.rb
+      create  test/unit/exemplification_test.rb
+      create  test/fixtures/exemplifications.yml
+      exists  db/migrate
+      create  db/migrate/20100129204001_create_exemplifications.rb
+
+Edited the models.  Edited the migration, removed manifestation_id
+from items.  Edited test data to fit new model, added new test data.
+Changed anchor_text method on manifestations.  Couple of other things
+here and there before it was all working, but now there's an
+Exemplification model with a relation attribute, so that's ready to be
+expanded when necessary.  And Manifestation to Item is one to many.
+
+
 

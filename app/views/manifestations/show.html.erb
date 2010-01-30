@@ -54,9 +54,9 @@ Attributes
 
 <ul>
 
-<% @manifestation.items.each do |i| %>
+<% @manifestation.exemplifications.each do |ex| %>
 
-<li> <%= link_to i.anchor_text, i %>
+<li> <%= link_to ex.item.anchor_text, ex.item %>
 </li>
 
 <% end %>

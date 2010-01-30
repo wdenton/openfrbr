@@ -1,27 +1,23 @@
-one:
+PhilosophersStone:
   id: 1
   call_number: FIC ROW
-  identifier: My copy
+  identifier: wdenton_001
   comment:
-  manifestation_id: 1
 
-two:
+ChamberOfSecrets:
   id: 2
   call_number: YA ROWLING
-  identifier: My copy
-  comment: 
-  manifestation_id: 2
+  identifier: wdenton_002
+  comment:
 
-three:
+PrisonerOfAzkaban:
   id: 3
   call_number: PR 6068 O93 H322 1999
-  identifier: My copy
+  identifier: wdenton_003
   comment:
-  manifestation_id: 3
 
 EndOfHarryPotter:
   id: 4
   call_number: 	PR 6068.O93 Z7555 2007
-  identifier: My copy
+  identifier: wdenton_004
   comment:
-  manifestation_id: 5

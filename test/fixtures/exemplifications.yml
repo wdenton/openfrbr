@@ -1,0 +1,24 @@
+MyPhilosophersStone:
+  id: 1
+  item_id: 1
+  manifestation_id: 1
+  relation:
+
+MyChamberOfSecrets:
+  id: 2
+  item_id: 2
+  manifestation_id: 2
+  relation:
+
+MyAzkaban:
+  id: 3
+  item_id: 3
+  manifestation_id: 3
+  relation:
+
+MyEndOfHarryPotter:
+  id: 4
+  item_id: 4
+  manifestation_id: 5
+  relation:
+

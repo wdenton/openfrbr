@@ -19,20 +19,20 @@ class Expression < ActiveRecord::Base
     # title + " (" + language + ", " + form + "/" + manifestations.size.to_s + ")"
   end
 
-  def work
-    # For expression e, e.work a Work object representing
-    # the first Work for which this Expression is a reification.
-    # (And only, if there is just one.)
-    Work.find(reifications[0].work_id)
-  end
+  # def work
+  #   # For expression e, e.work a Work object representing
+  #   # the first Work for which this Expression is a reification.
+  #   # (And only, if there is just one.)
+  #   Work.find(reifications[0].work_id)
+  # end
 
-  def works
-    # For expression e, e.works returns an array of all works
-    # for which e is a reification.
-    works = []
-    reifications.each { |r| works << Work.find(r.work_id) }
-    works
-  end
+  # def works
+  #   # For expression e, e.works returns an array of all works
+  #   # for which e is a reification.
+  #   works = []
+  #   reifications.each { |r| works << Work.find(r.work_id) }
+  #   works
+  # end
 
   def has_relation_to_work(work_id)
     # Return relation of expression to work with given ID.
