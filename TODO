@@ -29,9 +29,6 @@ TODO list for OpenFRBR
   * Set up an many-to-many Item-to-Item relation, with relation
     attribute.
 
-* Create one-to-many Exemplification model between Manifestation and
-  Item, with relation attribute.
-
 * In a Work's tree display, use Ajax drag and drop to move a
   Manifestation from one Expression to another, or an Item from one
   Manifestation to another.
