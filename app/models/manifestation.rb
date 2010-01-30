@@ -7,14 +7,15 @@ class Manifestation < ActiveRecord::Base
   has_many :embodiments
   has_many :expressions, :through => :embodiments
 
-  has_many :items
+  has_many :exemplifications
+  has_many :items, :through => :exemplifications
 
   has_many_polymorphs :producers, :from => [:people, :families, :corporate_bodies], :through => :productions
 
   has_many :works, :as => :subject
 
   def anchor_text
-    title + " (" + form_of_carrier + ", " + identifier + ", " + items.size.to_s + ")"
+    title + " (" + form_of_carrier + ", " + identifier + ", " + exemplifications.size.to_s + ")"
   end
 
 end

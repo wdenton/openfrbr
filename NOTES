@@ -1555,3 +1555,22 @@ Work.all.sort.collect { |w| "<option value=\"#{w.id}\">#{w.anchor_text}</option>
 
 <% end %>
 
+$ ./script/generate model Exemplification
+      exists  app/models/
+      exists  test/unit/
+      exists  test/fixtures/
+      create  app/models/exemplification.rb
+      create  test/unit/exemplification_test.rb
+      create  test/fixtures/exemplifications.yml
+      exists  db/migrate
+      create  db/migrate/20100129204001_create_exemplifications.rb
+
+Edited the models.  Edited the migration, removed manifestation_id
+from items.  Edited test data to fit new model, added new test data.
+Changed anchor_text method on manifestations.  Couple of other things
+here and there before it was all working, but now there's an
+Exemplification model with a relation attribute, so that's ready to be
+expanded when necessary.  And Manifestation to Item is one to many.
+
+
+
