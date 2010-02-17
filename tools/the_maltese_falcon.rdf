@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:cc='http://creativecommons.org/ns#'
+  xmlns:owl='http://www.w3.org/2002/07/owl#'
+  xmlns:fb='http://rdf.freebase.com/ns/'
+  xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+  xmlns:xhtml='http://www.w3.org/1999/xhtml/vocab#'
+>
+  <fb:book.book rdf:about="http://rdf.freebase.com/ns/en.the_maltese_falcon">
+    <fb:book.written_work.date_of_first_publication>1930</fb:book.written_work.date_of_first_publication>
+    <cc:attributionName>Source: Freebase - The World's database</cc:attributionName>
+    <fb:common.topic.article rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f8000000000072e89"/>
+    <fb:common.topic.image rdf:resource="http://rdf.freebase.com/ns/wikipedia.images.en_id.5913624"/>
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Maltese_Falcon_(novel)"/>
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Maltese_Falcon_(book)"/>
+    <fb:book.book_subject.works rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000bf202c5"/>
+    <fb:type.object.key>
+      <rdf:Description>
+        <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/user.avh.ellerdale"/>
+        <fb:type.value.value>0080-dbd4</fb:type.value.value>
+      </rdf:Description>
+    </fb:type.object.key>
+    <fb:type.object.key>
+      <rdf:Description>
+        <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/en"/>
+        <fb:type.value.value>the_maltese_falcon</fb:type.value.value>
+      </rdf:Description>
+    </fb:type.object.key>
+    <fb:type.object.key>
+      <rdf:Description>
+        <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en_id"/>
+        <fb:type.value.value>60161</fb:type.value.value>
+      </rdf:Description>
+    </fb:type.object.key>
+    <fb:type.object.key>
+      <rdf:Description>
+        <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+        <fb:type.value.value>The_Maltese_Falcon_$0028book$0029</fb:type.value.value>
+      </rdf:Description>
+    </fb:type.object.key>
+    <fb:type.object.key>
+      <rdf:Description>
+        <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+        <fb:type.value.value>The_Maltese_Falcon_$0028novel$0029</fb:type.value.value>
+      </rdf:Description>
+    </fb:type.object.key>
+    <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.california"/>
+    <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.san_francisco"/>
+    <fb:media_common.adapted_work.adaptations rdf:resource="http://rdf.freebase.com/ns/en.the_maltese_falcon_1931"/>
+    <fb:media_common.adapted_work.adaptations rdf:resource="http://rdf.freebase.com/ns/en.satan_met_a_lady"/>
+    <fb:media_common.adapted_work.adaptations rdf:resource="http://rdf.freebase.com/ns/en.the_maltese_falcon_1941"/>
+    <fb:type.object.name xml:lang="he">הנץ ממלטה (ספר)</fb:type.object.name>
+    <fb:type.object.name xml:lang="en">The Maltese Falcon</fb:type.object.name>
+    <fb:type.object.name xml:lang="sv">Riddarfalken från Malta</fb:type.object.name>
+    <fb:type.object.name xml:lang="ru">Мальтийский сокол (фильм, 1941)</fb:type.object.name>
+    <fb:type.object.name xml:lang="es">El halcón maltés (1941)</fb:type.object.name>
+    <fb:type.object.name xml:lang="ro">Şoimul maltez (roman)</fb:type.object.name>
+    <fb:type.object.name xml:lang="nl">The Maltese Falcon (1941)</fb:type.object.name>
+    <fb:type.object.name xml:lang="zh">梟巢喋血戰</fb:type.object.name>
+    <fb:type.object.name xml:lang="it">Il mistero del falco</fb:type.object.name>
+    <fb:type.object.name xml:lang="ja">マルタの鷹</fb:type.object.name>
+    <fb:type.object.name xml:lang="pl">Sokół maltański</fb:type.object.name>
+    <fb:type.object.name xml:lang="de">Der Malteser Falke</fb:type.object.name>
+    <fb:type.object.name xml:lang="fr">Le Faucon maltais (film, 1941)</fb:type.object.name>
+    <fb:book.written_work.original_language rdf:resource="http://rdf.freebase.com/ns/en.english"/>
+    <fb:book.written_work.author rdf:resource="http://rdf.freebase.com/ns/en.dashiell_hammett"/>
+    <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.fiction"/>
+    <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.mystery"/>
+    <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.hardboiled"/>
+    <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.suspense_fiction"/>
+    <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.detective_fiction"/>
+    <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.crime_fiction"/>
+    <fb:freebase.apps.hosts.z.acre.juggle.juggle.juggleid xml:lang="en">The-Maltese-Falcon</fb:freebase.apps.hosts.z.acre.juggle.juggle.juggleid>
+    <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.sam_spade"/>
+    <cc:attributionURL rdf:resource="http://www.freebase.com/view/en/the_maltese_falcon"/>
+    <rdf:type rdf:resource="http://rdf.freebase.com/ns/media_common.adapted_work"/>
+    <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.book_subject"/>
+    <rdf:type rdf:resource="http://rdf.freebase.com/ns/freebase.apps.hosts.com.acre.juggle.juggle"/>
+    <rdf:type rdf:resource="http://rdf.freebase.com/ns/fictional_universe.work_of_fiction"/>
+    <rdf:type rdf:resource="http://rdf.freebase.com/ns/common.topic"/>
+    <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.written_work"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780890640449.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780910457019.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780792735908.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780330242615.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781856957960.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780783894591.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/en.the_maltese_falcon_read_a_great_movie"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/en.the_maltese_falcon_bbc_radio_collection"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780865471573.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781850180289.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780679740940.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/en.the_maltese_falcon_mystery_masters_series"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780865471566.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780679722649.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/en.the_maltese_falcon_everyman_39_s_library_classics"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780893403300.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780671030742.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/en.the_maltese_falcon_crime_masterworks"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780754046431.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781572703636.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780752847641.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f8000000009a134dd"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780754046448.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780394717722.best"/>
+    <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780762188673.best"/>
+    <xhtml:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+  </fb:book.book>
+</rdf:RDF>

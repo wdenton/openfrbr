@@ -30,8 +30,8 @@ end
 puts OLUrl
 
 begin
-  # response = Net::HTTP.get_response(URI.parse(OLUrl)).body
-  response = File.new("ol-azkaban.json").read
+  response = Net::HTTP.get_response(URI.parse(OLUrl)).body
+  # response = File.new("ol-azkaban.json").read
   # Querying for an ISBN should give us just one result so we
   # can use the first result in the array response and ignore
   # anything else. (Or so I hope.)

@@ -28,6 +28,9 @@ begin
 rescue
 end
 
+  foo = Manifestation.find(1)
+puts foo
+
 doc = REXML::Document.new(xml_data)
 doc.root.each_element('/rsp/isbn') do |i|
 #  puts i
@@ -35,18 +38,33 @@ doc.root.each_element('/rsp/isbn') do |i|
 #    puts a[0]
 #    puts a[1]
 #  end
+
   title = i.attributes["title"]
-  # puts "  City: " + i.attributes["city"]
   publisher = i.attributes["publisher"] || nil
+  publication_place = i.attributes["city"] || nil
   edition = i.attributes["ed"]
   form = i.attributes["form"]
   language = i.attributes["lang"]
   originalLang = i.attributes["originalLang"]
+  year = i.attributes["year"]
+  statement_of_responsibility = i.attributes["author"] || nil # Not creator
+  form_of_carrier = i.attributes["form"] || nil # AA, BA, etc. TODO Decode
+  identifier = i.text # ISBN
+  puts identifier
 
-
-  puts title
-  puts "  " + form
-  m = Manifestation.new(:title => i.attributes["title"])
+  begin
+    m = Manifestation.new(:title => title,
+                          :publisher => publisher,
+                          :publication_date => year,
+                          :edition => edition,
+                          :identifier => identifier,
+                          :form_of_carrier => form_of_carrier
+                          )
+    puts "Saving #{title} now"
+    m.save
+  rescue Exception => e
+    puts "There was an error: {#e}"
+  end
 
 end
 

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:cc='http://creativecommons.org/ns#'
+  xmlns:owl='http://www.w3.org/2002/07/owl#'
+  xmlns:fb='http://rdf.freebase.com/ns/'
+  xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+  xmlns:xhtml='http://www.w3.org/1999/xhtml/vocab#'
+>
+  <rdf:Description rdf:nodeID="kEfMPsnk550">
+    <fb:type.value.value>The_Philosophers_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk551">
+    <fb:type.value.value>19763</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/authority.isfdb.title_id"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk538">
+    <fb:type.value.value>Harry_potter_and_the_philosophers_stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk534">
+    <fb:type.value.value>Harry_potter_and_philosopher$0027s_stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk524">
+    <fb:type.value.value>HP1</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk515">
+    <fb:type.value.value>48648</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en_id"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk541">
+    <fb:type.value.value>First_harry_potter_book</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk552">
+    <fb:type.value.value>Harry_Potter_and_The_Philosopher$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk520">
+    <fb:type.value.value>Harry_Potter_and_the_Sorcerer$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk519">
+    <fb:type.value.value>Harry_Potter_and_the_Sorceror$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk537">
+    <fb:type.value.value>Harry_Potter_and_the_philosopher$0027s_stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk521">
+    <fb:type.value.value>Harry_Potter_and_the_Philosopher$0027s_Stone_$0028book$0029</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk542">
+    <fb:type.value.value>Harry_Potter_and_the_Philosophers_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk532">
+    <fb:type.value.value>Harry_Potter_and_The_Sorcerer$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk553">
+    <fb:type.value.value>Harry_Potter_And_The_Philosopher$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk518">
+    <fb:type.value.value>Harry_Potter_and_the_Philospher$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk516">
+    <fb:type.value.value>Harry_Potter_and_the_Philosopher$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk523">
+    <fb:type.value.value>Harry_Potter_and_the_Philosphers_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk530">
+    <fb:type.value.value>Harry_Potter_and_the_Philosopher$2019s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk539">
+    <fb:type.value.value>Differences_between_the_book_and_film_versions_of_Harry_Potter_and_the_Philosopher$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <fb:award.award_nomination rdf:about="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000001287239d">
+    <fb:award.award_nomination.year>1999</fb:award.award_nomination.year>
+    <fb:award.award_nomination.award rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000c2ffa94"/>
+    <fb:award.award_nomination.award_nominee rdf:resource="http://rdf.freebase.com/ns/en.j_k_rowling"/>
+    <fb:award.award_nomination.nominated_for>
+      <fb:freebase.apps.hosts.com.acre.juggle.juggle rdf:about="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000005ff51">
+        <cc:attributionName>Source: Freebase - The World's database</cc:attributionName>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f80000000003310fc"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.charlie_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.lord_voldemort"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.petunia_dursley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.quirinus_quirrell"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5b8b7f"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.percy_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.seamus_finnigan"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000eb50ec9"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.pomona_sprout"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.poppy_pomfrey"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f8000000004ffb6ff"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.bill_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.george_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.severus_snape"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.fred_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.neville_longbottom"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.filius_flitwick"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.arthur_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f80000000124cd4d4"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.molly_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f80000000114a633d"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f8000000004ffb6ec"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.hermione_granger"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.vernon_dursley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.albus_dumbledore"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.gregory_goyle"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.draco_malfoy"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f8000000012e1bbc8"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.minerva_mcgonagall"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5b7722"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5bd3b0"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.ron_weasley"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781582348285.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780685284520.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478887590.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747532743.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478886128.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781551923963.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780439203524.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_philosopher_39_s_stone"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781582348278.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747558194.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478888566.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_philosopher_39_s_stone_latin"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788877827029.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f8000000009a08556"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478886548.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747532699.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780320048418.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747543350.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747560975.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9785353003083.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478889020.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780553669633.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781582346816.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780320037801.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478888610.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478886111.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781582348261.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780828839983.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780439294829.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9782070518425.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747545729.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781582348254.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781551923987.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9789986029199.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780590353427.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780439362139.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780590353403.best"/>
+        <fb:common.topic.alias xml:lang="en">Harry Potter and the Sorcerer's Stone</fb:common.topic.alias>
+        <fb:book.written_work.copyright_date>1997-07</fb:book.written_work.copyright_date>
+        <fb:book.written_work.next_in_series rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_chamber_of_secrets"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/common.topic"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/award.award_nominated_work"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/base.harrypotter.topic"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/media_common.adapted_work"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.book"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.written_work"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/fictional_universe.work_of_fiction"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/media_common.quotation_source"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.translated_work"/>
+        <fb:type.object.name xml:lang="pl">Harry Potter i kamień filozoficzny</fb:type.object.name>
+        <fb:type.object.name xml:lang="tr">Harry Potter ve Felsefe Taşı (kitap)</fb:type.object.name>
+        <fb:type.object.name xml:lang="cs">Harry Potter a Kámen mudrců</fb:type.object.name>
+        <fb:type.object.name xml:lang="en">Harry Potter and the Philosopher's Stone</fb:type.object.name>
+        <fb:type.object.name xml:lang="bg">Хари Потър и Философският камък</fb:type.object.name>
+        <fb:type.object.name xml:lang="de">Harry Potter und der Stein der Weisen</fb:type.object.name>
+        <fb:type.object.name xml:lang="he">הארי פוטר ואבן החכמים</fb:type.object.name>
+        <fb:type.object.name xml:lang="ru">Гарри Поттер и философский камень</fb:type.object.name>
+        <fb:type.object.name xml:lang="sk">Harry Potter a Kameň mudrcov (kniha)</fb:type.object.name>
+        <fb:type.object.name xml:lang="zh">哈利·波特与魔法石</fb:type.object.name>
+        <fb:type.object.name xml:lang="sr">Хари Потер и Камен мудрости</fb:type.object.name>
+        <fb:type.object.name xml:lang="ca">Harry Potter i la pedra filosofal</fb:type.object.name>
+        <fb:type.object.name xml:lang="eo">Hari Poter kaj la Ŝtono de la Saĝuloj</fb:type.object.name>
+        <fb:type.object.name xml:lang="ro">Harry Potter şi piatra filozofală</fb:type.object.name>
+        <fb:type.object.name xml:lang="id">Harry Potter dan Batu Bertuah</fb:type.object.name>
+        <fb:type.object.name xml:lang="sl">Harry Potter in kamen modrosti</fb:type.object.name>
+        <fb:type.object.name xml:lang="ko">해리 포터와 마법사의 돌</fb:type.object.name>
+        <fb:type.object.name xml:lang="th">แฮร์รี่ พอตเตอร์กับศิลาอาถรรพ์</fb:type.object.name>
+        <fb:type.object.name xml:lang="nl">Harry Potter en de Steen der Wijzen</fb:type.object.name>
+        <fb:type.object.name xml:lang="da">Harry Potter og De Vises Sten</fb:type.object.name>
+        <fb:type.object.name xml:lang="fi">Harry Potter ja viisasten kivi</fb:type.object.name>
+        <fb:type.object.name xml:lang="it">Harry Potter e la pietra filosofale</fb:type.object.name>
+        <fb:type.object.name xml:lang="pt">Harry Potter e a Pedra Filosofal</fb:type.object.name>
+        <fb:type.object.name xml:lang="lt">Haris Poteris ir išminties akmuo</fb:type.object.name>
+        <fb:type.object.name xml:lang="no">Harry Potter og De vises stein</fb:type.object.name>
+        <fb:type.object.name xml:lang="ja">ハリー・ポッターと賢者の石</fb:type.object.name>
+        <fb:type.object.name xml:lang="hu">Harry Potter és a bölcsek köve</fb:type.object.name>
+        <fb:type.object.name xml:lang="sv">Harry Potter och De vises sten</fb:type.object.name>
+        <fb:type.object.name xml:lang="uk">Гаррі Поттер і філософський камінь</fb:type.object.name>
+        <fb:type.object.name xml:lang="es">Harry Potter y la piedra filosofal</fb:type.object.name>
+        <fb:type.object.name xml:lang="fr">Harry Potter à l'école des sorciers</fb:type.object.name>
+        <xhtml:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <fb:award.award_nominated_work.award_nominations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000001287239d"/>
+        <fb:fictional_universe.work_of_fiction.part_of_these_fictional_universes rdf:resource="http://rdf.freebase.com/ns/en.harry_potter"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.schools"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.england"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.adventure"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.alchemy"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000506bc81"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/quotationsbook.subject.education"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.friendship"/>
+        <fb:freebase.apps.hosts.z.acre.juggle.juggle.juggleid xml:lang="en">Harry-Potter-And-The-Philosophers-Stone</fb:freebase.apps.hosts.z.acre.juggle.juggle.juggleid>
+        <fb:book.written_work.original_language rdf:resource="http://rdf.freebase.com/ns/en.english"/>
+        <fb:media_common.adapted_work.adaptations rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_philosophers_stone"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk550"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk551"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk538"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk534"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk524"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk515"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk541"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk552"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk520"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk519"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk537"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk521"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk542"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk532"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk553"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk518"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk516"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk523"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk530"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk539"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk526"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk544"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk525"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk533"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk522"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk531"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk554"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk545"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk517"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk548"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk547"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk543"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk536"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk529"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk549"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk540"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk535"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk546"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk527"/>
+        <fb:type.object.key rdf:nodeID="kEfMPsnk528"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_first_book"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Philosopher’s_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Philosphers_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Differences_between_the_book_and_film_versions_of_Harry_Potter_and_the_Philosopher's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/First_harry_potter_book"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_and_the_philosophers_stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_I"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_and_the_sorcerer's_stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Wanker_and_the_Philosopher's_Gay"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HP1"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Philosophers_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Sorceror's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Philosopher's_stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Philospher's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_and_philosopher's_stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Sorcerers_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HP!"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_The_Philosopher's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Philosopher's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HP_1"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Philosophers_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Differences_between_book_and_film_versions_of_Harry_Potter_and_the_Sorcerer's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_1"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Sorcerors_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_and_the_sorceror's_stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Sorceror's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_philosopher's_stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Sorcerers'_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Philosopher's_Stone_(book)"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/PS/SS"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Sorcerer's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_and_the_philosophers"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_The_Sorcerer's_Stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_and_the_philosopher's_stone"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HPPS"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/1st_harry_potter_book"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_And_The_Philosopher's_Stone"/>
+        <fb:book.translated_work.translations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000c14588b"/>
+        <fb:common.topic.image rdf:resource="http://rdf.freebase.com/ns/wikipedia.images.en_id.883442"/>
+        <fb:common.topic.article rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000005ff5b"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c51a1"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c51a4"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c51a7"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c5195"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c52fe"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000faa70a7"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c519e"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000faa70aa"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c5198"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c51aa"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f800000000e5c519b"/>
+        <cc:attributionURL rdf:resource="http://www.freebase.com/view/guid/9202a8c04000641f800000000005ff51"/>
+        <fb:book.written_work.author rdf:resource="http://rdf.freebase.com/ns/en.j_k_rowling"/>
+        <fb:fictional_universe.work_of_fiction.setting rdf:resource="http://rdf.freebase.com/ns/en.wizarding_world"/>
+        <fb:fictional_universe.work_of_fiction.setting rdf:resource="http://rdf.freebase.com/ns/en.diagon_alley"/>
+        <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.fiction"/>
+        <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.speculative_fiction"/>
+        <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.fantasy"/>
+        <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.childrens_literature"/>
+        <fb:book.written_work.part_of_series rdf:resource="http://rdf.freebase.com/ns/guid.9202a8c04000641f8000000004639a64"/>
+      </fb:freebase.apps.hosts.com.acre.juggle.juggle>
+    </fb:award.award_nomination.nominated_for>
+  </fb:award.award_nomination>
+  <rdf:Description rdf:nodeID="kEfMPsnk526">
+    <fb:type.value.value>Harry_Potter_and_the_Sorcerers$0027_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk544">
+    <fb:type.value.value>Harry_Potter_and_the_Sorcerors_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk525">
+    <fb:type.value.value>HP_1</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk533">
+    <fb:type.value.value>Harry_potter_and_the_sorceror$0027s_stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk522">
+    <fb:type.value.value>Harry_Potter_1</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk531">
+    <fb:type.value.value>Differences_between_book_and_film_versions_of_Harry_Potter_and_the_Sorcerer$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk554">
+    <fb:type.value.value>0080-0e23</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/user.avh.ellerdale"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk545">
+    <fb:type.value.value>Harry_Wanker_and_the_Philosopher$0027s_Gay</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk517">
+    <fb:type.value.value>Harry_Potter_and_the_Sorcerers_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk548">
+    <fb:type.value.value>Harry_potter_and_the_philosophers</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk547">
+    <fb:type.value.value>Sorceror$0027s_Stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk543">
+    <fb:type.value.value>HPPS</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk536">
+    <fb:type.value.value>Harry_Potter_and_the_Philosopher$0027s_stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk529">
+    <fb:type.value.value>Harry_potter_and_the_sorcerer$0027s_stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk549">
+    <fb:type.value.value>HP$0021</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk540">
+    <fb:type.value.value>Harry_potter_and_the_philosopher$0027s_stone</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk535">
+    <fb:type.value.value>1st_harry_potter_book</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk546">
+    <fb:type.value.value>PS$002FSS</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk527">
+    <fb:type.value.value>Harry_Potter_I</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="kEfMPsnk528">
+    <fb:type.value.value>Harry_potter_first_book</fb:type.value.value>
+    <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+  </rdf:Description>
+</rdf:RDF>
