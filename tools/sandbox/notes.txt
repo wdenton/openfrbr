@@ -1,0 +1,15 @@
+
+
+To run under OpenFRBR and be ready to inject xISBN results in
+../../script/runner xisbn-injection.rb 0439136350
+
+To get details from the Open Library
+./ol-details.rb 0439136350
+
+Note that it returns the Work ID.  As does LT's WhatWork, so there is
+a mapping between them.
+
+To get details from the Open Library about all of the related
+manifestations known to LibraryThing:
+for I in `./new-thingISBN.rb 0439136350`; do ./ol-details.rb $I; sleep 2; done
+

@@ -1,0 +1,43 @@
+{
+  "subject_places": [
+    "England"
+  ],
+  "title": "Harry Potter and the prisoner of Azkaban",
+  "first_publish_date": "1999",
+  "id": 48883846,
+  "type": {
+    "key": "/type/work"
+  },
+  "revision": 3,
+  "authors": [
+    {
+      "author": {
+        "key": "/a/OL23919A"
+      },
+      "type": {
+        "key": "/type/author_role"
+      }
+    }
+  ],
+  "subjects": [
+    "Juvenile fiction",
+    "Fiction",
+    "Magic",
+    "Wizards",
+    "Schools",
+    "Hogwarts School of Witchcraft and Wizardry (Imaginary place)",
+    "Harry Potter (Fictitious character)",
+    "Translations from English",
+    "Chinese fiction"
+  ],
+  "last_modified": {
+    "value": "2010-01-29T17:55:24.201769",
+    "type": "/type/datetime"
+  },
+  "key": "/works/OL13716956W",
+  "latest_revision": 3,
+  "created": {
+    "value": "2009-12-11T10:24:54.711653",
+    "type": "/type/datetime"
+  }
+}

@@ -1,0 +1,185 @@
+[
+  {
+    "isbn_10": [
+      "0439136350",
+      "0439136369"
+    ],
+    "dewey_decimal_class": [
+      "[Fic]"
+    ],
+    "source_records": [
+      "marc:CollingswoodLibraryMarcDump10-27-2008/Collingswood.out:77305097:1832",
+      "marc:marc_ithaca_college/ic_marc.mrc:166575295:1037",
+      "marc:marc_loc_updates/v37.i38.records.utf8:13471851:1318",
+      "marc:marc_loc_updates/v37.i51.records.utf8:2175273:1325"
+    ],
+    "title": "Harry Potter and the prisoner of Azkaban",
+    "notes": {
+      "value": "\"Year 3\"--Spine.\n\nSequel to: Harry Potter and the Chamber of Secrets.\n\n880  Lexile.\n\nAccelerated Reader AR MG 6.7 18.0 32082.",
+      "type": "/type/text"
+    },
+    "publishers": [
+      "Arthur A. Levine Books"
+    ],
+    "edition_name": "1st American ed.",
+    "id": 34095440,
+    "contributions": [
+      "GrandPr\u00e9, Mary."
+    ],
+    "works": [
+      {
+        "key": "/works/OL13716956W"
+      }
+    ],
+    "lccn": [
+      "99023982"
+    ],
+    "pagination": "ix, 435 p. :",
+    "type": {
+      "key": "/type/edition"
+    },
+    "publish_country": "nyu",
+    "revision": 8,
+    "by_statement": "by J.K. Rowling ; illustrations by Mary Grandpr\u00e9.",
+    "languages": [
+      {
+        "key": "/l/eng"
+      }
+    ],
+    "publish_date": "1999",
+    "publish_places": [
+      "New York"
+    ],
+    "authors": [
+      {
+        "key": "/a/OL23919A"
+      }
+    ],
+    "description": {
+      "value": "During his third year at Hogwarts School for Witchcraft and Wizardry, Harry Potter must confront the devious and dangerous wizard responsible for his parents' deaths.",
+      "type": "/type/text"
+    },
+    "number_of_pages": 435,
+    "key": "/b/OL23277538M",
+    "last_modified": {
+      "value": "2010-01-01T02:57:49.009418",
+      "type": "/type/datetime"
+    },
+    "subjects": [
+      "Wizards -- Juvenile fiction",
+      "Magic -- Juvenile fiction",
+      "Hogwarts School of Witchcraft and Wizardry (Imaginary place) -- Juvenile fiction",
+      "Schools -- Juvenile fiction",
+      "England -- Juvenile fiction"
+    ],
+    "genres": [
+      "Juvenile fiction"
+    ],
+    "lc_classifications": [
+      "PZ7.R79835 Ham 1999"
+    ],
+    "created": {
+      "value": "2009-05-29T22:27:30.112461",
+      "type": "/type/datetime"
+    },
+    "latest_revision": 8
+  },
+  {
+    "subject_place": [
+      "England"
+    ],
+    "isbn_10": [
+      "0439136350",
+      "0439136369"
+    ],
+    "dewey_decimal_class": [
+      "[Fic]"
+    ],
+    "source_records": [
+      "marc:marc_records_scriblio_net/part28.dat:6236976:1257"
+    ],
+    "title": "Harry Potter and the prisoner of Azkaban",
+    "notes": {
+      "value": "\"Year 3\"--Spine.\r\nSequel to: Harry Potter and the Chamber of Secrets.",
+      "type": "/type/text"
+    },
+    "publishers": [
+      "Arthur A. Levine Books"
+    ],
+    "id": 61215,
+    "works": [
+      {
+        "key": "/works/OL82590W"
+      }
+    ],
+    "lccn": [
+      "99023982"
+    ],
+    "pagination": "ix, 435 p. :",
+    "type": {
+      "key": "/type/edition"
+    },
+    "publish_country": "nyu",
+    "revision": 3,
+    "by_statement": "by J.K. Rowling.",
+    "languages": [
+      {
+        "key": "/l/eng"
+      }
+    ],
+    "publish_date": "1999",
+    "publish_places": [
+      "New York"
+    ],
+    "authors": [
+      {
+        "key": "/a/OL23919A"
+      }
+    ],
+    "description": {
+      "value": "During his third year at Hogwarts School for Witchcraft and Wizardry, Harry Potter must confront the devious and dangerous wizard responsible for his parents' deaths.",
+      "type": "/type/text"
+    },
+    "table_of_contents": [
+      {
+        "title": "Owl post -- Aunt Marge's big mistake -- The Knight bus -- The Leaky Cauldron -- Talons and tea leaves -- The boggart in the wardrobe -- Flight of the fat lady -- Grim defeat -- The marauder's map -- The Firebolt -- The Patronus -- Gryffindor versus Ravenclaw -- Snape's grudge -- The quidditch final -- Professor Trelawney's prediction -- Cat, rat, and dog -- Moony, Wormtail, Padfoot, and Prongs -- The servant of Lord Voldemort -- The dementor's kiss -- Hermione's secret -- Owl post again.",
+        "type": {
+          "key": "/type/toc_item"
+        }
+      }
+    ],
+    "first_sentence": {
+      "value": "Harry Potter was a highly unusual boy in many ways.",
+      "type": "/type/text"
+    },
+    "number_of_pages": 435,
+    "key": "/b/OL37202M",
+    "last_modified": {
+      "value": "2009-10-17T13:51:08.655960",
+      "type": "/type/datetime"
+    },
+    "subjects": [
+      "Wizards -- Juvenile fiction",
+      "Magic -- Juvenile fiction",
+      "Hogwarts School of Witchcraft and Wizardry (Imaginary place) -- Juvenile fiction",
+      "Schools -- Juvenile fiction",
+      "Wizards -- Fiction",
+      "Magic -- Fiction",
+      "Schools -- Fiction",
+      "England -- Juvenile fiction",
+      "England -- Fiction"
+    ],
+    "genres": [
+      "Juvenile fiction.",
+      "Fiction."
+    ],
+    "lc_classifications": [
+      "PZ7.R79835 Ham 1999"
+    ],
+    "created": {
+      "value": "2008-04-01T03:28:50.625462",
+      "type": "/type/datetime"
+    },
+    "latest_revision": 3
+  }
+]

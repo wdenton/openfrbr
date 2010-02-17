@@ -23,7 +23,7 @@ xISBNURL = "http://xisbn.worldcat.org/webservices/xid/isbn/::ISBN::?method=getEd
 begin
   xurl = xISBNURL.gsub(/::ISBN::/, isbn)
 #  xml_data = Net::HTTP.get_response(URI.parse(xurl)).body
-  xml_data = File.open("goblet.xml").read
+  xml_data = File.open("/home/buff/src/openfrbr/tools/sandbox/goblet.xml").read
 #  puts xml_data
 rescue
 end
@@ -35,13 +35,19 @@ doc.root.each_element('/rsp/isbn') do |i|
 #    puts a[0]
 #    puts a[1]
 #  end
-  puts "title: " + i.attributes["title"] || ""
+  title = i.attributes["title"]
   # puts "  City: " + i.attributes["city"]
-  puts "  publisher: #{i.attributes["publisher"]}"
-  puts "    edition: #{i.attributes["ed"]}"
-  puts "       form: #{i.attributes["form"]}"
-  puts "       lang: #{i.attributes["lang"]}"
-  puts "  orig lang: #{i.attributes["originalLang"]}"
+  publisher = i.attributes["publisher"] || nil
+  edition = i.attributes["ed"]
+  form = i.attributes["form"]
+  language = i.attributes["lang"]
+  originalLang = i.attributes["originalLang"]
+
+
+  puts title
+  puts "  " + form
+  m = Manifestation.new(:title => i.attributes["title"])
+
 end
 
 
