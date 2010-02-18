@@ -1,11 +1,9 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/ruby -w
 
 # Use thingISBN and xISBN and put their answers together so as to get
-# the most possible number of ISBNs of other manifestations of the same
-# work as represented by the ISBN of one manifestation of said work.
-# Eliminate duplicates.
-
-# Change the ISBN to anything you want.  This one is for 
+# the most possible number of ISBNs of other manifestations of the
+# same work as represented by the ISBN of one manifestation of said
+# work.  Eliminate duplicates.
 
 # Richard Pevear's new translation of THE THREE MUSKETEERS by Alexandre Dumas.
 # isbn = '0670037796'
@@ -22,25 +20,24 @@ isbn = '0887390250'
 require 'net/http'
 
 require 'rubygems'
-require 'xmlsimple'
-
-puts "Finding manifestations of #{isbn} ..."
+require 'rexml/document'
+include REXML
 
 # First, get data from thingISBN at LibraryThing
 
 thingURL = "http://www.librarything.com/api/thingISBN/"
 
 url = thingURL + isbn
-puts url
+# STDERR.puts url
 xml_data = Net::HTTP.get_response(URI.parse(url)).body
 
-data = XmlSimple.xml_in(xml_data)
+doc = REXML::Document.new(xml_data)
 
 thingISBNs = []
 
-data['isbn'].each do |i|
-  thingISBNs << i
-  # puts "thingISBN: #{i}"
+doc.root.each_element('/idlist/isbn') do |i|
+  thingISBNs << i.text
+  # STDERR.puts "thingISBN: #{i.text}"
 end
 
 # Next, get data from xISBN at OCLC
@@ -49,16 +46,16 @@ xISBNURL = "http://xisbn.worldcat.org/webservices/xid/isbn/"
 
 # url = xISBNURL + isbn + "?method=getEditions&format=xml&fl=*"
 url = xISBNURL + isbn + "?method=getEditions&format=xml"
-puts url
+# STDERR.puts url
 xml_data = Net::HTTP.get_response(URI.parse(url)).body
 
-data = XmlSimple.xml_in(xml_data)
+doc = REXML::Document.new(xml_data)
 
 xISBNs = []
 
-data['isbn'].each do |i|
-  xISBNs << i
-  # puts "xISBN: #{i}"
+doc.root.each_element('/rsp/isbn') do |i|
+  xISBNs << i.text
+  # STDERR.puts "    xISBN: #{i.text}"
 end
 
 allISBNs = (thingISBNs + xISBNs).uniq
@@ -66,15 +63,16 @@ allISBNs = (thingISBNs + xISBNs).uniq
 xNotThing = []
 thingNotX = []
 
-allISBNs.each do |isbn|
+allISBNs.sort.each do |isbn|
    xNotThing << isbn if xISBNs.include?(isbn) and not thingISBNs.include?(isbn)
    thingNotX << isbn if thingISBNs.include?(isbn) and not xISBNs.include?(isbn)
+  puts isbn
 end
 
-puts " Known to thingISBN: #{thingISBNs.size} (#{thingNotX.size} of which not known to xISBN)"
-puts " Known to     xISBN: #{xISBNs.size} (#{xNotThing.size} of which not known to thingISBN)"
+# STDERR.puts " Known to thingISBN: #{thingISBNs.size} (#{thingNotX.size} of which not known to xISBN)"
+# STDERR.puts " Known to     xISBN: #{xISBNs.size} (#{xNotThing.size} of which not known to thingISBN)"
 
-puts "              Total: #{allISBNs.size}"
+# STDERR.puts "              Total: #{allISBNs.size}"
 
 # Print ISBNs known to LibraryThing but not xISBN.
 # thingNotX.sort.each do |isbn|
