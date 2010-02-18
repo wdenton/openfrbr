@@ -23,7 +23,6 @@ isbn = '0006130879'
 # isbn = '0887390250'
 
 require 'net/http'
-
 require 'rexml/document'
 include REXML
 
