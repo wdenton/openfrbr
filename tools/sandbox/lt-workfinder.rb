@@ -13,7 +13,8 @@
 # make wild guesses, but it makes sensible ones."
 
 require 'net/http'
-require 'xmlsimple'
+require 'rexml/document'
+include REXML
 
 require 'isbncheck'
 
@@ -35,7 +36,6 @@ begin
   xml_data = Net::HTTP.get_response(URI.parse(thingWorkUrl)).body
   doc = REXML::Document.new(xml_data)
   puts doc.elements["titleauthor/work"].text
-
 rescue Exception => error
   puts "Got an error: #{error}"
 end
