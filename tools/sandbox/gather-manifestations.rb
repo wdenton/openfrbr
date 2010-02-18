@@ -4,22 +4,26 @@
 # the most possible number of ISBNs of other manifestations of the
 # same work as represented by the ISBN of one manifestation of said
 # work.  Eliminate duplicates.
+#
+# TODO: Output non-ISBN ID numbers so that manifestations without
+# ISBNs are also included.  When that is done then URIs like
+# isbn:0670037796 or lccn:foo could be used.  Those would be ready to
+# be pulled into a linked data set-up.
 
 # Richard Pevear's new translation of THE THREE MUSKETEERS by Alexandre Dumas.
 # isbn = '0670037796'
 
-# Oxford Classics edition that WorldCat has only one other manifestation for
+# Oxford Classics edition of same
 # isbn = '0192835750'
 
 # Anthony Powell, BOOKS DO FURNISH A ROOM, Fontana pb
-# isbn = '0006130879'
+isbn = '0006130879'
 
 # Charles Willeford, THE BURNT ORANGE HERESY, Black Lizard
-isbn = '0887390250'
+# isbn = '0887390250'
 
 require 'net/http'
 
-require 'rubygems'
 require 'rexml/document'
 include REXML
 
@@ -57,6 +61,10 @@ doc.root.each_element('/rsp/isbn') do |i|
   xISBNs << i.text
   # STDERR.puts "    xISBN: #{i.text}"
 end
+
+# Useful later? The intersection of a set of sets (from Ruby Quicktips)
+# a = [[1,2,3],[2,3,4],[3,4,5]]
+# a.inject(a.first) { |f,x| f = f | x } # => [1, 2, 3, 4, 5]
 
 allISBNs = (thingISBNs + xISBNs).uniq
 
