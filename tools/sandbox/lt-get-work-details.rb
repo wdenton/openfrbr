@@ -11,11 +11,11 @@
 # http://www.librarything.com/services/rest/1.0/?method=librarything.ck.getwork&id=113&apikey=d231aa37c9b4f5d304a60a3d0ad1dad4
 
 # Parameters you can pass in:
-# id (optional): The LibraryThing work ID.
-# isbn (optional): An ISBN for any edition of the work
-# lccn (optional): An LCCN number for an edition of the work
-# oclc (optional): The OCLC number for the work
-# name (optional): The name of the work
+#   id: LibraryThing work ID
+# isbn: ISBN for any edition of the work
+# lccn: LCCN number for an edition of the work
+# oclc: OCLC number for the work
+# name: Name of the work
 
 require 'net/http'
 require 'rexml/document'
@@ -27,23 +27,34 @@ if ARGV.length < 2
 end
 
 # TODO Make it accept ISBNs or other IDs, as user wishes.
-# But I think for what I need, work IDs are what I need.
+# But I think for what I need, work IDs are fine for now.
 workId = ARGV[0]
 apiKey = ARGV[1]
 
-ltWorkUrl = "http://www.librarything.com/services/rest/1.0/?method=librarything.ck.getwork&id=::ID::&apikey=::APIKEY::"
+# Interlude to get the title of the work.  The canonicalTitle field in
+# the Common Knowledge is probably better, but it's not always there.
+# I think it's entered by LibraryThing users, so it can be relied on
+# to be unencumbered knowledge.  The title of the work might be drawn
+# from Amazon, Tim Spalding said, so they couldn't share it.  "Find it
+# yourself," he said.  So we will.
 
-ltWorkURL = ltWorkUrl.gsub!(/::ID::/, workId)
-ltWorkURL = ltWorkUrl.gsub!(/::APIKEY::/, apiKey)
+ltWorkUrl = "http://www.librarything.com/work/" + workId
+workPageHtml = Net::HTTP.get_response(URI.parse(ltWorkUrl)).body
 
-puts ltWorkURL
+# Now back to gathering the Common Knowledge about the work.
+
+ltCkWorkUrl = "http://www.librarything.com/services/rest/1.0/?method=librarything.ck.getwork&id=::ID::&apikey=::APIKEY::"
+
+ltCkWorkURL = ltCkWorkUrl.gsub!(/::ID::/, workId)
+ltCkWorkURL = ltCkWorkUrl.gsub!(/::APIKEY::/, apiKey)
+
+# STDERR.puts ltCkWorkURL
 
 begin
-  xml_data = Net::HTTP.get_response(URI.parse(ltWorkUrl)).body
-  # puts xml_data
+  xml_data = Net::HTTP.get_response(URI.parse(ltCkWorkUrl)).body
   doc = REXML::Document.new(xml_data)
 rescue Exception => error
-  puts "Got an error: #{error}"
+  STDERR.puts "Error: #{error}"
 end
 
 # Fields to use
@@ -63,9 +74,19 @@ end
 
 canonicalTitle = doc.elements["response/ltml/item/commonknowledge/fieldList/field[@type='21']/versionList/version/factList/fact"].text
 
-fields = {"2" => "Places",
-  "3" => "People",
-  "34" => "Events" }
+originalPublicationDate = doc.elements["response/ltml/item/commonknowledge/fieldList/field[@type='16']/versionList/version/factList/fact"].text
+
+puts "Canonical title: " + canonicalTitle
+puts "Original publication date: " + originalPublicationDate
+
+fields = {
+  "2"  => "Place",
+  "3"  => "Person",
+  "34" => "Event"
+}
+
+# TODO Use series information to connect related works
+# "Harry Potter (4)" is easy enough to grok.
 
 fields.each {|number, entity|
   puts entity
@@ -73,11 +94,4 @@ fields.each {|number, entity|
     puts "  " + e.text
   end
 }
-
-exit
-
-# puts fields
-
-# response/ltml/item/commonknowledge/fieldlist/field type="34"
-
 

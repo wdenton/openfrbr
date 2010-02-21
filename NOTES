@@ -1572,5 +1572,28 @@ here and there before it was all working, but now there's an
 Exemplification model with a relation attribute, so that's ready to be
 expanded when necessary.  And Manifestation to Item is one to many.
 
+* 18 February 2010
+
+Been working on some small scripts to gather information from
+LibraryThing, OCLC, and the Open Library.  Then I'll assemble the bits
+into an order so that I can:
+
+- enter an ISBN
+- get a list of ISBNs of related manifestations (thingISBN, xISBN)
+- get information about each one:
+  - the work it embodies (LT What Work)
+    - subjects of the work
+    - characters, events, places in the work
+    - canonical title of work
+  - author
+  - publisher and publishing information
+  - language
+  - title of manifestation
+- figure out what expression it might represent
+  - guess by language if not original language
+  - assume for now (since this is Harry Potter) that the original
+    language of all works is English
+- construct the Work / Expression / Manifestation relations and inject
+  into the database
 
 
