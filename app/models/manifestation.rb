@@ -1,7 +1,7 @@
 class Manifestation < ActiveRecord::Base
 
   validates_presence_of :title, :message => "cannot be blank"
-  validates_presence_of :form_of_carrier, :message => "cannot be blank"
+  # validates_presence_of :form_of_carrier, :message => "cannot be blank"
   validates_presence_of :identifier, :message => "cannot be blank"
 
   has_many :embodiments

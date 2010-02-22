@@ -1,10 +1,16 @@
-<% @pagetitle = "Work: " + @work.anchor_text %>
+<% @pagetitle = "Work: " + @work.title %>
 
-<h1>Work: <%= @work.anchor_text %></h1>
+<h1>Work: <%= @work.title %></h1>
 
 <p>
 
-<%= link_to 'Edit', edit_work_path(@work) %> 
+TODO: Change title, h1 to anchor_text, not title
+
+</p>
+
+<p>
+
+<%= link_to 'Edit', edit_work_path(@work) %>
 |
 <%= link_to 'Delete', @work, :confirm => 'Are you sure?', :method => :delete %>
 
@@ -12,7 +18,7 @@
 
 <h2>Creators</h2>
 
-<%= render(:partial => 'layouts/group2entitylist', 
+<%= render(:partial => 'layouts/group2entitylist',
   :object => @work.creators) %>
 
 <p>
@@ -36,7 +42,7 @@ Attributes:
 
 <p>
 
-<%= link_to "Add expression for this work", 
+<%= link_to "Add expression for this work",
     new_expression_path(:work_id => @work.id) %>
 
 </p>
@@ -95,7 +101,7 @@ TODO: Add Ajax 'remove' link to each subject to disconnect.
 
 <% else %>
 
-<%= render :partial => 'subjects/subjects', 
+<%= render :partial => 'subjects/subjects',
   :collection => @work.subjects %>
 
 <% end %>

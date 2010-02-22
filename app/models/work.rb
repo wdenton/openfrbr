@@ -1,7 +1,7 @@
 class Work < ActiveRecord::Base
 
   validates_presence_of :title, :message => "cannot be blank"
-  validates_presence_of :form, :message => "cannot be blank"
+  # validates_presence_of :form, :message => "cannot be blank"
 
   has_many :reifications
   has_many :expressions, :through => :reifications
@@ -16,7 +16,7 @@ class Work < ActiveRecord::Base
 
  # Sort Works by anchor text.  Useful for displaying in lists.
  # Could also sort by title and then number of expressions.  Hmm.
- def <=>(o) 
+ def <=>(o)
    self.anchor_text.downcase <=> o.anchor_text.downcase
  end
 

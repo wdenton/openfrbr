@@ -1596,4 +1596,43 @@ into an order so that I can:
 - construct the Work / Expression / Manifestation relations and inject
   into the database
 
+* 21 February 2010
+
+Some notes on what's in Freebase that could be used.
+
+Freebase URLs for ISBNs:
+
+Page about an ISBN it knows about (for Deathly Hallows):
+  http://www.freebase.com/view/soft/isbn/9780545010221
+  JSON: http://www.freebase.com/experimental/topic/standard/soft/isbn/9780545010221
+  RDF: http://rdf.freebase.com/rdf/soft.isbn.9780545010221
+
+This is a page about the Manifestation, which has information about
+the title, binding, number of pages, much else possibly:
+  http://www.freebase.com/view/soft/isbn/9780545010221/best
+  JSON: http://www.freebase.com/experimental/topic/standard/soft/isbn/9780545010221/best
+  RDF: http://rdf.freebase.com/rdf/soft.isbn.9780545010221.best
+
+It says it is an "Edition of"
+http://www.freebase.com/view/en/harry_potter_7
+
+Harry Potter and the Deathly Hallows:
+http://www.freebase.com/view/en/harry_potter_7
+
+This is a Book, with a lot of Editions, and it knows Characters,
+Subjects, the Series, Genre, Author, and more.
+
+Details in JSON:
+http://www.freebase.com/experimental/topic/standard/en/harry_potter_7
+
+Details in RDF:
+http://rdf.freebase.com/rdf/en.harry_potter_7
+
+* 22 February 2010
+
+$ ./script/generate migration add_libraryThingId_to_works libraryThingId:int
+      exists  db/migrate
+      create  db/migrate/20100222205327_add_library_thing_id_to_works.rb
+
+
 

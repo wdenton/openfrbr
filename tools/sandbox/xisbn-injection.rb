@@ -28,7 +28,7 @@ begin
 rescue
 end
 
-  foo = Manifestation.find(1)
+foo = Manifestation.find(1)
 puts foo
 
 doc = REXML::Document.new(xml_data)

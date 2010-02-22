@@ -18,6 +18,7 @@
 # name: Name of the work
 
 require 'net/http'
+# require 'nokogiri' # For some HTML parsing.
 require 'rexml/document'
 include REXML
 
@@ -37,9 +38,16 @@ apiKey = ARGV[1]
 # to be unencumbered knowledge.  The title of the work might be drawn
 # from Amazon, Tim Spalding said, so they couldn't share it.  "Find it
 # yourself," he said.  So we will.
+#
+# The <title> of the work page will be something like
+# <title>Harry Potter and the Goblet of Fire by J.R. Rowling | LibraryThing</title>
 
 ltWorkUrl = "http://www.librarything.com/work/" + workId
 workPageHtml = Net::HTTP.get_response(URI.parse(ltWorkUrl)).body
+
+titleRegex = /<title>(.*) by.*<\/title>/xi
+titleRegex.match(workPageHtml)
+title = $1
 
 # Now back to gathering the Common Knowledge about the work.
 
@@ -70,14 +78,20 @@ end
 
 # TODO Find out why only one author is ever listed
 # Eg Good Omens, 5794, lists Neil Gaiman but not Terry Pratchett
-# puts doc.elements["response/ltml/item/author"].text
+doc.each_element("response/ltml/item/author") do |a|
+  puts "Author: " + a.text
+end
 
 canonicalTitle = doc.elements["response/ltml/item/commonknowledge/fieldList/field[@type='21']/versionList/version/factList/fact"].text
 
 originalPublicationDate = doc.elements["response/ltml/item/commonknowledge/fieldList/field[@type='16']/versionList/version/factList/fact"].text
 
+puts "Title: " + title
 puts "Canonical title: " + canonicalTitle
 puts "Original publication date: " + originalPublicationDate
+
+exit
+
 
 fields = {
   "2"  => "Place",
