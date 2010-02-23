@@ -10,8 +10,8 @@ class Work < ActiveRecord::Base
   has_many_polymorphs :subjects, :from => [:expressions, :manifestations, :items, :people, :families, :corporate_bodies, :concepts, :events, :frbr_objects, :places], :through => :aboutnesses
 
   def anchor_text
-    # title + " (" + form + "/" + reifications.size.to_s + ")"
-    title # + " (" + form + ", " + reifications.size.to_s + " e)"
+    # Had form in here but removed it when it wasn't mandat
+    title + " (" + reifications.size.to_s + " e)"
   end
 
  # Sort Works by anchor text.  Useful for displaying in lists.

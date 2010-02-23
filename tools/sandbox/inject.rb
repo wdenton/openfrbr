@@ -61,11 +61,11 @@ end
 
 def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
 
-  # First, do we know this work from the LibraryThing ID?
+  # First, do we know this work already from the LibraryThing ID?
 
   knownWork = Work.find_by_libraryThing_id(ltWorkId)
   if ! knownWork.nil?
-    puts "  LibraryThing ID is known"
+    puts "  Work is known: #{knownWork.id}"
     return knownWork.id
   end
 
@@ -214,14 +214,12 @@ doc = REXML::Document.new(xml_data)
 
 xISBNs = []
 
-manifestationToWork = {}
-
 doc.root.each_element('/rsp/isbn') do |i|
 
   isbn = i.text
   xISBNs << isbn
 
-  puts "-----" + isbn
+  puts isbn
 
   # While we're doing our pass through the ISBNs, let's grab
   # whatever Work information we can from LibraryThing's What Work
@@ -230,8 +228,10 @@ doc.root.each_element('/rsp/isbn') do |i|
   ltWorkId = whatWork(isbn)
 
   if ltWorkId.nil?
-    puts "  ** There is no LT work for this ISBN"
+    puts "  Skipping: There is no LibraryThing work for this ISBN"
     next
+  else
+    puts "  LibraryThing work #{ltWorkId}"
   end
 
   work_id = find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
@@ -252,13 +252,15 @@ doc.root.each_element('/rsp/isbn') do |i|
 
   # puts "ISBN: #{isbn}"
   # puts "Title: #{title}"
-  puts "  Language: #{language}"
-  puts "  Original language: #{originalLanguage}"
-  puts "  Edition: #{edition}"
-  puts "  Form of carrier: #{form_of_carrier}"
+  # puts "  Language: #{language}"
+  # puts "  Original language: #{originalLanguage}"
+  # puts "  Edition: #{edition}"
+  # puts "  Form of carrier: #{form_of_carrier}"
+
+  # TODO Find if this Manifestation exists already.
+  # If so, use it.  If not, create it.
 
   begin
-    puts " Saving manifestation"
     m = Manifestation.new(:title => title,
                           :publisher => publisher,
                           :publication_date => year,
@@ -268,8 +270,7 @@ doc.root.each_element('/rsp/isbn') do |i|
                           :statement_of_responsibility => statement_of_responsibility
                           )
     m.save
-    puts "--> M: #{m.id}, W: #{work_id}"
-    manifestationToWork[m.id] = work_id
+    puts "  Created Manifestation: #{m.id}"
   rescue Exception => e
     puts "There was an error: #{e}"
   end
