@@ -4,17 +4,11 @@
 
 <div class="indexlist">
 
-<p>
-
-TODO: Put back to in @works.sort, link_to work.anchor_text
-
-</p>
-
-<% for work in @works %>
+<% for work in @works.sort %>
 
 <ul>
 
-<li> <%= link_to work.title, work %>
+<li> <%= link_to work.anchor_text, work %>
 <br />
 Created by:
 <%= render(:partial => 'layouts/group2entitylist', :object => work.creators) %>

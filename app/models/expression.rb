@@ -2,7 +2,7 @@ class Expression < ActiveRecord::Base
 
   validates_presence_of :title, :message => "cannot be blank"
   validates_presence_of :language, :message => "cannot be blank"
-  validates_presence_of :form, :message => "cannot be blank"
+  # validates_presence_of :form, :message => "cannot be blank"
 
   has_one :reification
   has_one :work, :through => :reifications
@@ -15,7 +15,8 @@ class Expression < ActiveRecord::Base
   has_many :works, :as => :subject
 
   def anchor_text
-    title + " (" + language + ", " + form + ", " + manifestations.size.to_s + " m)"
+    # Used to have form in here too, to disambiguate
+    title + " (" + language + ", " + manifestations.size.to_s + " m)"
     # title + " (" + language + ", " + form + "/" + manifestations.size.to_s + ")"
   end
 

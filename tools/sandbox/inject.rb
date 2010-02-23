@@ -63,9 +63,9 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
 
   # First, do we know this work from the LibraryThing ID?
 
-  knownWork = Work.find_by_libraryThingId(ltWorkId)
+  knownWork = Work.find_by_libraryThing_id(ltWorkId)
   if ! knownWork.nil?
-    puts "Known already by LT ID, going no further"
+    puts "  LibraryThing ID is known"
     return knownWork.id
   end
 
@@ -106,7 +106,7 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
   # TODO Find out why only one author is ever listed
   # Eg Good Omens, 5794, lists Neil Gaiman but not Terry Pratchett
   doc.each_element("response/ltml/item/author") do |a|
-    puts "Author: " + a.text
+    puts "  Author: " + a.text
   end
 
   canonicalTitle = ''
@@ -119,13 +119,11 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
     originalPublicationDate = doc.elements["response/ltml/item/commonknowledge/fieldList/field[@type='16']/versionList/version/factList/fact"].text
   end
 
-  puts "  Title: " + title
-  puts "  Canonical title: " + canonicalTitle
-  puts "  Original publication date: " + originalPublicationDate
+  puts "  Work title: " + title
+  puts "  Work canonical title: " + canonicalTitle
+  puts "  Work original publication date: " + originalPublicationDate
 
   title = canonicalTitle if canonicalTitle.length > 0
-
-  puts "Does this work exist?  If not, create it"
 
   knownWork = Work.find(:first,
                           :conditions => {
@@ -137,8 +135,6 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
     puts "Work is known: #{knownWork.id}"
     return knownWork.id
   end
-
-  puts "This work is not known, so we must create it"
 
   fields = {
     "2"  => "Place",
@@ -156,12 +152,12 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
     end
   }
 
-  puts " -> creating Work with #{title} and #{originalPublicationDate}"
+  puts " creating Work with #{title} and #{originalPublicationDate}"
 
   begin
     w = Work.new(:title => title,
                  :date => originalPublicationDate,
-                 :libraryThingId => ltWorkId)
+                 :libraryThing_id => ltWorkId)
     w.save
   rescue Exception => error
     STDERR.puts "Error saving Work #{title}: #{error}"
@@ -238,15 +234,13 @@ doc.root.each_element('/rsp/isbn') do |i|
     next
   end
 
-  puts "-> find_or_create_work_from_common_knowledge(#{ltWorkId}, #{ltApiKey}"
-  workid = find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
+  work_id = find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
 
   # Required by the Manifestation model.
   title = i.attributes["title"]
   # Also identifier (= isbn)
 
   # Not required.
-  form = i.attributes["form"]
   publisher = i.attributes["publisher"]
   publication_place = i.attributes["city"]
   edition = i.attributes["ed"]
@@ -258,32 +252,104 @@ doc.root.each_element('/rsp/isbn') do |i|
 
   # puts "ISBN: #{isbn}"
   # puts "Title: #{title}"
-  # # puts language
-  # # puts originalLanguage
-  # puts "Edition: #{edition}"
-  # puts "Form of carrier: #{form_of_carrier}"
+  puts "  Language: #{language}"
+  puts "  Original language: #{originalLanguage}"
+  puts "  Edition: #{edition}"
+  puts "  Form of carrier: #{form_of_carrier}"
 
   begin
     puts " Saving manifestation"
     m = Manifestation.new(:title => title,
-                          #:publisher => publisher,
-                          #:publication_date => year,
+                          :publisher => publisher,
+                          :publication_date => year,
                           :edition => edition,
                           :identifier => isbn,
-                          :form_of_carrier => form_of_carrier
+                          :form_of_carrier => form_of_carrier,
+                          :statement_of_responsibility => statement_of_responsibility
                           )
     m.save
-    puts "--> M: #{m.id}, W: #{workid}"
-    manifestationToWork[m.id] = workid
-
+    puts "--> M: #{m.id}, W: #{work_id}"
+    manifestationToWork[m.id] = work_id
   rescue Exception => e
     puts "There was an error: #{e}"
   end
 
   # Now we have a bunch of Manifestations entities stored away.
   # We have a bunch of Works stored away.
-  # We have them connected by manifestationsToLTWorks hash.
+  # We have them connected by manifestationToWork hash.
   # Next, distinguish Expressions and make all the connections.
+
+  # Expression-level details:
+  #   originalLanguage
+  #   edition (or not: "large print" is Manifestation-level)
+  # For now, let's decide Expressions based on language and
+  # originalLanguage.
+  #
+  # Fields we need to know for Expression:
+  #   title
+  #   language
+  #   # form (I commented that out in the model)
+  #
+  # Expression.title = Manifestation.title
+  # Expression.language = xISBN language
+
+  e = Expression.find(:first,
+                      :conditions => {
+                        :title => title,
+                        :language => language
+                      })
+
+  unless e.nil?
+    puts "  Expression is known: #{e.id}"
+  else
+    e = Expression.new(:title => title,
+                           :language => language)
+    e.save
+    puts "  Created Expression: #{e.id}"
+  end
+
+  # Create, if necessary, the Reification to connect the Work and
+  # Expression
+
+  r = Reification.find(:first,
+                       :conditions => {
+                         :work_id => work_id,
+                         :expression_id => e.id
+                      })
+
+  unless r.nil?
+    puts "  Reification is known: #{r.id}"
+  else
+    new_r = Reification.new(:work_id => work_id,
+                           :expression_id => e.id)
+    new_r.save
+    puts "  Created Reification: #{new_r.id}"
+  end
+
+  # Create, if necessary, the Embodiment to connect the Expression and
+  # Manifestation
+
+  b = Embodiment.find(:first,
+                       :conditions => {
+                         :expression_id => e.id,
+                         :manifestation_id => m.id
+                      })
+
+  unless b.nil?
+    puts "  Embodiment is known: #{b.id}"
+  else
+    if language != originalLanguage
+      relation = "Translation from #{originalLanguage} to #{language}"
+    else
+      relation = "[unknown]"
+    end
+
+    new_b = Embodiment.new(:expression_id => e.id,
+                           :manifestation_id => m.id,
+                           :relation => relation)
+    new_b.save
+    puts "  Created Embodiment: #{new_b.id}"
+  end
 
 end
 

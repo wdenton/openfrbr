@@ -3,7 +3,7 @@
 <% @work.reifications.each do |r| %>
 <% e=Expression.find(r.expression_id) %>
 
-<li> <%= link_to e.title, e %> 
+<li> <%= link_to e.title, e %>
 (<%= e.language %>, <%= e.form %>)
 
 <ul> <% e.manifestations.each do |m| %>
@@ -13,7 +13,8 @@
 
 <ul>
 
-<% m.items.each do |i| %>
+<% m.exemplifications.each do |ex| %>
+<% i = Item.find(ex.item_id) %>
 
 <li> <%= link_to i.identifier, i %>
 (<%= i.call_number %>)

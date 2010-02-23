@@ -15,7 +15,8 @@ class Manifestation < ActiveRecord::Base
   has_many :works, :as => :subject
 
   def anchor_text
-    title + " (" + form_of_carrier + ", " + identifier + ", " + exemplifications.size.to_s + ")"
+    # Used to have form_of_carrier in here, to disambiguate
+    title + " (" + identifier + ", " + exemplifications.size.to_s + ")"
   end
 
 end
