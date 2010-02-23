@@ -108,6 +108,22 @@ TODO list for OpenFRBR
   Expression page, a Producer on an Manifestation page, and an Owner
   on an Item page.
 
+* Move from REXML to Nokogiri (http://nokogiri.org/)
+
+* Investigate fuzzy matching tools in Ruby (or something else) to
+  help with matching text strings.
+
+* Try getting xISBN results in native Ruby format.
+
+* Investigate connecting ISTC to Expressions, though it may not match
+  well.  Maybe Works.
+  http://www.myidentifiers.com/multimedia/pdfs/ISTC_overview_ISQv21no3.pdf
+
+* Investigate Open Library work ID.
+
+* Investigate OCLC work ID.
+
+
 
 Aggregates
 ----------

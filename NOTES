@@ -1634,5 +1634,24 @@ $ ./script/generate migration add_libraryThingId_to_works libraryThingId:int
       exists  db/migrate
       create  db/migrate/20100222205327_add_library_thing_id_to_works.rb
 
+* 23 February 2010
+
+OCLC work ID is available through the xOCLCNUM service, but not
+xISBN.  Would have to make two calls to get it and match up ISBN to
+work ID, but that's OK.  Given one I can get others and LCCN and OCLCnum.  But
+given a work ID I can't get back work-level information from these
+APIs.
+
+xOCLCNUM API: http://xisbn.worldcat.org/xisbnadmin/xoclcnum/api.htm
+
+"When the request is about a known OCLC workid, the xOCLCNUM service
+endpoint URL is: http://xisbn.worldcat.org/webservices/xid/owi/"
+
+Example:
+
+http://xisbn.worldcat.org/webservices/xid/owi/owi718389?method=getEditions&format=xml&fl=lccn,isbn,owi
+
+
+
 
 
