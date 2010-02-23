@@ -6,6 +6,20 @@
 
 <%= render(:partial => 'attributes', :object => @person) %>
 
+<h2>Subject of</h2>
+
+<ul>
+
+<% @person.aboutnesses.each do |abo| %>
+
+<li> <%= link_to Work.find(abo.work_id).anchor_text, Work.find(abo.work_id) %>
+</li>
+
+<% end %>
+
+</ul>
+
+
 <%= render(:partial => 'layouts/group_ones', :object => @person) %>
 
 

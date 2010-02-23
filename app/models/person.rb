@@ -10,7 +10,7 @@ class Person < ActiveRecord::Base
   has_many :works,          :as => :subject
 
   def anchor_text
-    name + " (" + creations.size.to_s + " w)"
+    name # + " (" + creations.size.to_s + " w)"
   end
 
 end
