@@ -16,7 +16,7 @@ class Expression < ActiveRecord::Base
 
   def anchor_text
     # Used to have form in here too, to disambiguate
-    title + " (" + language + ", " + manifestations.size.to_s + " m)"
+    title + " (" + language + ", " + embodiments.size.to_s + " m)"
     # title + " (" + language + ", " + form + "/" + manifestations.size.to_s + ")"
   end
 

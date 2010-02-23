@@ -3,13 +3,12 @@
 <% @work.reifications.each do |r| %>
 <% e=Expression.find(r.expression_id) %>
 
-<li> <%= link_to e.title, e %>
-(<%= e.language %>, <%= e.form %>)
+<li> <%= link_to e.anchor_text, e %>
 
 <ul> <% e.manifestations.each do |m| %>
 
-<li> <%= link_to m.title, m %>
-(<%= m.form_of_carrier %>, <%= m.identifier %>)
+<li> <%= link_to m.anchor_text, m %>
+(<%= m.form_of_carrier %>)
 
 <ul>
 

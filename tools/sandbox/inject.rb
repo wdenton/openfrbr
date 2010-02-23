@@ -103,12 +103,6 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
   # Relations to other works
   #  23 name="series" displayName="Series"
 
-  # TODO Find out why only one author is ever listed
-  # Eg Good Omens, 5794, lists Neil Gaiman but not Terry Pratchett
-  doc.each_element("response/ltml/item/author") do |a|
-    puts "  Author: " + a.text
-  end
-
   canonicalTitle = ''
   unless doc.elements["response/ltml/item/commonknowledge/fieldList/field[@type='21']/versionList/version/factList/fact"].nil?
     canonicalTitle = doc.elements["response/ltml/item/commonknowledge/fieldList/field[@type='21']/versionList/version/factList/fact"].text
@@ -136,6 +130,47 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
     return knownWork.id
   end
 
+  puts "  Creating Work with #{title} and #{originalPublicationDate}"
+
+  begin
+    w = Work.new(:title => title,
+                 :date => originalPublicationDate,
+                 :libraryThing_id => ltWorkId)
+    w.save
+  rescue Exception => error
+    STDERR.puts "Error saving Work #{title}: #{error}"
+  end
+
+  # TODO Find out why only one author is ever listed
+  # Eg Good Omens, 5794, lists Neil Gaiman but not Terry Pratchett
+  doc.each_element("response/ltml/item/author") do |a|
+
+    # Assume that the author is a Person, not a Corporate
+    # Body or Family.
+    creator_name = a.text || "[unknown]"
+
+    per = Person.find_or_create_by_name(creator_name)
+    puts "  Creator: #{creator_name}, Person: #{per.id}"
+
+    cre = Creation.find(:first,
+                       :conditions => {
+                          :work_id => w.id,
+                          :creator_id => per.id,
+                          :creator_type => "Person"
+                      })
+
+    unless cre.nil?
+      puts "  Creation is known: #{cre.id}"
+    else
+      cre = Creation.new(:work_id => w.id,
+                         :creator_id => per.id,
+                         :creator_type => "Person")
+      cre.save
+      puts "  Created Creation: #{cre.id}"
+    end
+
+  end
+
   fields = {
     "2"  => "Place",
     "3"  => "Person",
@@ -146,22 +181,34 @@ def find_or_create_work_from_common_knowledge(ltWorkId, ltApiKey)
   # "Harry Potter (4)" is easy enough to grok.
 
   fields.each {|number, entity|
-    # puts entity
     doc.each_element("response/ltml/item/commonknowledge/fieldList/field[@type='#{number}']/versionList/version/factList/fact") do |e|
-      # puts "  " + e.text
+      if entity == "Person"
+        ent = entity.constantize.find_or_create_by_name(e.text)
+      else
+        ent = entity.constantize.find_or_create_by_term(e.text)
+      end
+      puts "  #{entity} #{e.text}: #{ent.id}"
+
+      abo = Aboutness.find(:first,
+                           :conditions => {
+                             :work_id => w.id,
+                             :subject_id => ent.id,
+                             :subject_type => entity
+                      })
+
+      unless abo.nil?
+        puts "  Aboutmess is known: #{abo.id}"
+      else
+        abo = Aboutness.new(:work_id => w.id,
+                            :subject_id => ent.id,
+                            :subject_type => entity)
+        abo.save
+        puts "  Created Aboutness: #{abo.id}"
+      end
+
     end
   }
 
-  puts " creating Work with #{title} and #{originalPublicationDate}"
-
-  begin
-    w = Work.new(:title => title,
-                 :date => originalPublicationDate,
-                 :libraryThing_id => ltWorkId)
-    w.save
-  rescue Exception => error
-    STDERR.puts "Error saving Work #{title}: #{error}"
-  end
   return w.id
 
 end
@@ -275,10 +322,37 @@ doc.root.each_element('/rsp/isbn') do |i|
     puts "There was an error: #{e}"
   end
 
+  # Make the Manifestation's publisher a Corporate Body
+  # and create a Production relation.
+
+    # Assume that the author is a Person, not a Corporate
+    # Body or Family.
+
+    cor = CorporateBody.find_or_create_by_name(publisher)
+    puts "  Creator: #{publisher}, Corporate Body: #{cor.id}"
+
+    pro = Production.find(:first,
+                          :conditions => {
+                            :manifestation_id => m.id,
+                            :producer_id => cor.id,
+                            :producer_type => "CorporateBody"
+                      })
+
+    unless pro.nil?
+      puts "  Production is known: #{pro.id}"
+    else
+      pro = Production.new(:manifestation_id => m.id,
+                           :producer_id => cor.id,
+                           :producer_type => "CorporateBody")
+      pro.save
+      puts "  Created Production: #{pro.id}"
+    end
+
+
   # Now we have a bunch of Manifestations entities stored away.
   # We have a bunch of Works stored away.
-  # We have them connected by manifestationToWork hash.
-  # Next, distinguish Expressions and make all the connections.
+  # Next, distinguish Expressions, create Expressions,
+  # and create Reifications and Embodiments.
 
   # Expression-level details:
   #   originalLanguage
@@ -321,8 +395,14 @@ doc.root.each_element('/rsp/isbn') do |i|
   unless r.nil?
     puts "  Reification is known: #{r.id}"
   else
+    if language != originalLanguage
+      relation = "translation from #{originalLanguage} to #{language}"
+    else
+      relation = "[unknown]"
+    end
     new_r = Reification.new(:work_id => work_id,
-                           :expression_id => e.id)
+                            :expression_id => e.id,
+                            :relation => relation)
     new_r.save
     puts "  Created Reification: #{new_r.id}"
   end
@@ -331,23 +411,17 @@ doc.root.each_element('/rsp/isbn') do |i|
   # Manifestation
 
   b = Embodiment.find(:first,
-                       :conditions => {
-                         :expression_id => e.id,
-                         :manifestation_id => m.id
+                      :conditions => {
+                        :expression_id => e.id,
+                        :manifestation_id => m.id
                       })
 
   unless b.nil?
     puts "  Embodiment is known: #{b.id}"
   else
-    if language != originalLanguage
-      relation = "Translation from #{originalLanguage} to #{language}"
-    else
-      relation = "[unknown]"
-    end
-
     new_b = Embodiment.new(:expression_id => e.id,
                            :manifestation_id => m.id,
-                           :relation => relation)
+                           :relation => edition)
     new_b.save
     puts "  Created Embodiment: #{new_b.id}"
   end
