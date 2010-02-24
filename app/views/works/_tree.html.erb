@@ -1,36 +1,41 @@
-<ul>
+<ul id="work_tree">
 
-<% @work.reifications.each do |r| %>
-<% e=Expression.find(r.expression_id) %>
+  <% @work.reifications.each do |r| %>
 
-<li> <%= link_to e.anchor_text, e %>
+  <% e=Expression.find(r.expression_id) %>
 
-<ul> <% e.manifestations.each do |m| %>
+  <li class="expression" id="expression_<%= r.expression_id %>"> <%= link_to e.anchor_text, e %>
 
-<li> <%= link_to m.anchor_text, m %>
-(<%= m.form_of_carrier %>)
+    <ul> <% e.manifestations.each do |m| %>
 
-<ul>
+      <li class="manifestation" id="manifestation_<%= m.id %>"> <%= link_to m.anchor_text, m %>
+	(<%= m.form_of_carrier %>)
 
-<% m.exemplifications.each do |ex| %>
-<% i = Item.find(ex.item_id) %>
+	<ul>
 
-<li> <%= link_to i.identifier, i %>
-(<%= i.call_number %>)
-</li>
+	  <% m.exemplifications.each do |ex| %>
+	  <% i = Item.find(ex.item_id) %>
 
-<% end %>
+	  <li> <%= link_to i.identifier, i %>
+	    (<%= i.call_number %>)
+	  </li>
+
+	  <% end %>
+
+	</ul>
+
+      </li>
+
+      <% end %>
+
+    </ul>
+
+  </li>
+
+  <% end %>
 
 </ul>
 
-</li>
+<%= sortable_element("work_tree", :url => { :action => "order" },
+:tree => true) %>
 
-<% end %>
-
-</ul>
-
-</li>
-
-<% end %>
-
-</ul>
