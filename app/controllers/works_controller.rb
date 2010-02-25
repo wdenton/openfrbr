@@ -13,10 +13,10 @@ class WorksController < ApplicationController
   def list_works_by_anchor_text
     @works = Works.all
     respond_to do |format|
-      format.json {render :json => @works.map{|w| [w.id, w.anchor_text]}}  
+      format.json {render :json => @works.map{|w| [w.id, w.anchor_text]}}
     end
   end
-  
+
   # GET /works
   # GET /works.xml
   def index
@@ -75,7 +75,7 @@ class WorksController < ApplicationController
       if @work.save
         # TODO Better error-checking here
         @creator.save
-        @work.creators << @creator 
+        @work.creators << @creator
         @work.save
         flash[:notice] = 'Work was successfully created.'
         format.html { redirect_to(@work) }
@@ -127,6 +127,14 @@ class WorksController < ApplicationController
       format.html { redirect_to(@work) }
       format.xml  { render :xml => "Error", :status => :unprocessable_entity }
     end
-  end    
+  end
+
+  def order
+    params[:work_tree].each do |id|
+      puts "work_tree id = " + id
+    end
+    render :text => :params.inspect
+    #render :nothing => true
+  end
 
 end

@@ -6,7 +6,7 @@
 
   <li class="expression" id="expression_<%= r.expression_id %>"> <%= link_to e.anchor_text, e %>
 
-    <ul> <% e.manifestations.each do |m| %>
+    <ul class="expression_tree_<%= r.expression.id %>"> <% e.manifestations.each do |m| %>
 
       <li class="manifestation" id="manifestation_<%= m.id %>"> <%= link_to m.anchor_text, m %>
 	(<%= m.form_of_carrier %>)
@@ -36,6 +36,13 @@
 
 </ul>
 
-<%= sortable_element("work_tree", :url => { :action => "order" },
-:tree => true) %>
+<% @work.reifications.each do |r| %>
+
+<% e=Expression.find(r.expression_id) %>
+
+<%= sortable_element("expression_tree_#{r.expression.id}", :url => { :action => "order" })
+%>
+
+<% end %>
+
 
