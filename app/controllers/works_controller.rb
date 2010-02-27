@@ -129,12 +129,11 @@ class WorksController < ApplicationController
     end
   end
 
-  def order
-    params[:work_tree].each do |id|
-      puts "work_tree id = " + id
+  def reorder_expressions
+    params[:outside].each do |id|
+      puts "outside id = " + id
     end
-    render :text => :params.inspect
-    #render :nothing => true
+    render :nothing => true
   end
 
 end

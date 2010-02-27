@@ -1,15 +1,14 @@
-<ul id="work_tree">
+<ul>
 
   <% @work.reifications.each do |r| %>
 
   <% e=Expression.find(r.expression_id) %>
 
-  <li class="expression" id="expression_<%= r.expression_id %>"> <%= link_to e.anchor_text, e %>
+  <li><%= link_to e.anchor_text, e %>
 
-    <ul class="expression_tree_<%= r.expression.id %>"> <% e.manifestations.each do |m| %>
+    <ul> <% e.manifestations.each do |m| %>
 
-      <li class="manifestation" id="manifestation_<%= m.id %>"> <%= link_to m.anchor_text, m %>
-	(<%= m.form_of_carrier %>)
+      <li> <%= link_to m.anchor_text, m %> (<%= m.form_of_carrier %>)
 
 	<ul>
 
@@ -36,13 +35,60 @@
 
 </ul>
 
-<% @work.reifications.each do |r| %>
+<ul id="outside">
 
-<% e=Expression.find(r.expression_id) %>
+  <li id="o_1"> Saskatchewan
+    <ul id="inside_1">
+      <li id="i_1"> Regina</li>
+      <li id="i_2"> Saskatoon</li>
+    </ul>
+  </li>
 
-<%= sortable_element("expression_tree_#{r.expression.id}", :url => { :action => "order" })
+  <li id="o_2"> Manitoba
+    <ul id="inside_2">
+      <li id="i_3"> Brandon</li>
+      <li id="i_4"> Winnipeg</li>
+    </ul>
+  </li>
+
+  <li id="o_3"> Ontario
+    <ul id="inside_3">
+      <li id="i_5"> Toronto</li>
+      <li id="i_6"> Peterborough</li>
+    </ul>
+  </li>
+
+  <li id="o_4"> Quebec
+    <ul id="inside_4">
+      <li id="i_7"> Montreal</li>
+      <li id="i_8"> Sherbrooke</li>
+    </ul>
+  </li>
+
+</ul>
+
+<% containment = [:inside_1, :inside_2, :inside_3, :inside_4] %>
+
+<%= sortable_element("inside_1",
+    :tree => true, :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "order" })
 %>
 
-<% end %>
+<%= sortable_element("inside_2",
+    :tree => true, :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "order" })
+%>
 
+<%= sortable_element("inside_3",
+    :tree => true, :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "order" })
+%>
 
+<%= sortable_element("inside_4",
+    :tree => true, :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "order" })
+%>
