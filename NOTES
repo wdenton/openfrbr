@@ -1651,7 +1651,105 @@ Example:
 
 http://xisbn.worldcat.org/webservices/xid/owi/owi718389?method=getEditions&format=xml&fl=lccn,isbn,owi
 
+* 1 May 2010
 
+I want to make it so that on the Work view you can drag and drop Manifestations between Expressions to correct mistaken relationships.  I can't get it completely working, though.  I think it's because of the containers in the HTML lists, or the :onUpdate setting, or something.
+
+I had this in the Work _tree.html.erb partial as a test (dragging
+cities between provinces):
+
+<ul id="works">
+
+  <li> Saskatchewan
+    <ul id="work_1">
+      <li id="e_1"> Regina</li>
+      <li id="e_2"> Saskatoon</li>
+    </ul>
+  </li>
+
+  <li> Manitoba
+    <ul id="work_2">
+      <li id="e_3"> Brandon</li>
+      <li id="e_4"> Winnipeg</li>
+      </ul>
+  </li>
+
+  <li> Ontario
+    <ul id="work_3">
+      <li id="e_5"> Toronto</li>
+      <li id="e_6"> Peterborough</li>
+    </ul>
+  </li>
+
+  <li> Quebec
+    <ul id="work_4">
+      <li id="e_7"> Montreal</li>
+      <li id="e_8"> Sherbrooke</li>
+    </ul>
+  </li>
+
+</ul>
+
+<% containment = [:work_1, :work_2, :work_3, :work_4] %>
+
+<%= sortable_element("work_1",
+    # :tree => true,
+    :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "reorder_expression" })
+%>
+
+<%= sortable_element("work_2",
+    # :tree => true,
+    :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "reorder_expression" })
+%>
+
+<%= sortable_element("work_3",
+    # :tree => true,
+    :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "reorder_expression" })
+%>
+
+<%= sortable_element("work_4",
+    # :tree => true,
+    :dropOnEmpty => true,
+    :containment => containment,
+    :url => { :action => "reorder_expression" })
+%>
+
+In works_controller.rb I had
+
+  def reorder_expression
+    # Rails.logger.info("PARAMS: #{params.inspect}")
+    render :nothing => true
+  end
+
+If you drag a city (Regina 1) to BETWEEN two other cities (Peterborough 5,
+Toronto 6) in another province, you get this:
+
+Parameters: {"action"=>"reorder_expression",
+"authenticity_token"=>"f8hpA92uK6AuO4pwUMAxyeq2nxexXd99K8IzSuodExU=",
+"work_3"=>[{"5"=>nil}, {"1"=>nil}, {"6"=>nil}], "controller"=>"works"}
+
+That tells you that cities 5, 1, and 6 (in that order) are now in
+province 3.  That's fine.  With that you know enough to reassociate
+city 1 with province 3.
+
+But if you drag city 1 to the top of the list in some other province, you get this:
+
+Parameters: {"action"=>"reorder_expression",
+"authenticity_token"=>"f8hpA92uK6AuO4pwUMAxyeq2nxexXd99K8IzSuodExU=",
+"work_1"=>[{"2"=>nil}], "controller"=>"works"}
+
+That tells you that city 2 is in province 1, from which you can deduce
+that any other cities (1) you knew were in province 1 are gone, but
+you don't know to where.
+
+I fiddled with this for a while without much success and then decided
+to leave it for now, and ask.
 
 
 

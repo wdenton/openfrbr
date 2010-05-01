@@ -129,10 +129,8 @@ class WorksController < ApplicationController
     end
   end
 
-  def reorder_expressions
-    params[:outside].each do |id|
-      puts "outside id = " + id
-    end
+  def reorder_expression
+    Rails.logger.info("PARAMS: #{params.inspect}")
     render :nothing => true
   end
 
