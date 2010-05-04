@@ -1,5 +1,14 @@
 #!/usr/bin/ruby -w
 
+# Given an ISBN (and using a Library Thing API key), do the following:
+# # - use thingISBN to get ISBNs of related Manifestations, from LibraryThing
+# - use xISBN to get ISBNs of related Manifestations, from WorldCat
+# - for each isbn
+#   use LT's What Work to find out what this Manifestation's Work is
+#   find the Work if it's known; create it if it's not (and Creator and Aboutnesses)
+#   create Manifestation (and Producer)
+#   create Expression by guesswork (and Reification and Embodiment)
+
 require 'net/http'
 require 'rexml/document'
 include REXML
