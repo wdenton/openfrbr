@@ -2,20 +2,34 @@
 
 <h1>Add a new item</h1>
 
+<% @m = Manifestation.find(params[:manifestation_id]) %>
+
 <p>
 
-<% m = Manifestation.find(params[:manifestation_id]) %>
-
-Work:
-<%= link_to Expression.find(m.expression_id).work.anchor_text, Expression.find(m.expression_id).work %>
-<br />
-Expression:
-<%= link_to Expression.find(m.expression_id).anchor_text, Expression.find(m.expression_id) %>
-<br />
-Manifestation:  
-<%= link_to m.anchor_text, m %>
+Manifestation: <%= link_to @m.anchor_text, @m %>
 
 </p>
+
+<p>
+
+<%= pluralize_without_count @m.embodiments.count, "Embodiment" %>:
+
+</p>
+
+<ul>
+
+<% @m.embodiments.each do |emb| %>
+
+<% @e = Expression.find(emb.expression_id) %>
+
+<li> <%= link_to @e.anchor_text, @e %>
+<br />
+(Work: <%= link_to @e.reification.work.anchor_text, @e.reification.work %>)
+</li>
+
+<% end %>
+
+</ul>
 
 <% form_for(@item) do |f| %>
 <%= f.error_messages %>
