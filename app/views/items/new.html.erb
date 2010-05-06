@@ -42,9 +42,15 @@ Owner:
 
 </p>
 
+<p>
+
+Relation: <%= text_field_tag "relation" %>
+
+</p>
+
 <%= render(:partial => 'form', :object => f) %>
 
-<%= hidden_field (:item, :manifestation_id, :value => params[:manifestation_id]) %>
+<%= hidden_field_tag ('manifestation_id', params[:manifestation_id]) %>
 
 <p>
 <%= f.submit "Create" %>

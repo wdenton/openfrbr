@@ -8,10 +8,10 @@
 
 <% for item in @items %>
 
-<li><%= link_to item.manifestation.anchor_text, item %> 
+<li><%= link_to item.manifestation.anchor_text, item %>
 (<%= item.identifier %>)
 <br />
-Owned by: 
+Owned by:
 <%= render(:partial => 'layouts/group2entitylist', :object => item.owners) %>
 </li>
 

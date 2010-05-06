@@ -88,7 +88,7 @@ class ExpressionsController < ApplicationController
         @realizer.save
         @reification.save
         @expression.realizers << @realizer
-	Work.find(params[:work_id]).reifications << @reification
+	# Work.find(params[:work_id]).reifications << @reification
 
         flash[:notice] = 'Expression was successfully created.'
         format.html { redirect_to(@expression) }

@@ -56,7 +56,7 @@ Attributes
 
 <% @manifestation.exemplifications.each do |ex| %>
 
-<li> <%= link_to ex.item.anchor_text, ex.item %>
+<li> <%= link_to Item.find(ex.item_id).anchor_text, Item.find(ex.item_id) %>
 </li>
 
 <% end %>

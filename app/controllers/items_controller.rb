@@ -52,6 +52,12 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        @exemplification = Exemplification.new(:manifestation_id => params[:manifestation_id],
+                                               :item_id => @item.id,
+                                               :relation => params[:relation])
+        @exemplification.save
+        # Manifestation.find(params[:manifestation_id]).exemplifications << @exemplification
+
         @owner.save
         @item.owners << @owner
         @item.save
