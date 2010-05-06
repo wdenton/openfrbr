@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 # Given an ISBN (and using a Library Thing API key), do the following:
-# # - use thingISBN to get ISBNs of related Manifestations, from LibraryThing
+# # TODO use thingISBN to get ISBNs of related Manifestations, from LibraryThing
 # - use xISBN to get ISBNs of related Manifestations, from WorldCat
 # - for each isbn
 #   use LT's What Work to find out what this Manifestation's Work is
@@ -381,6 +381,11 @@ doc.root.each_element('/rsp/isbn') do |i|
                         :title => title,
                         :language => language
                       })
+
+  # TODO Make this case-insensitive in the title.
+  # The Hound of the Baskervilles and The hound of the Baskervilles
+  # are the same. (Except when they're not, but disambiguating
+  # Works and Expressions that have the same title is for another day.)
 
   unless e.nil?
     puts "  Expression is known: #{e.id}"
