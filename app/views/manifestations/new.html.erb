@@ -25,9 +25,15 @@ Producer:
 
 </p>
 
+<p>
+
+Relation: <%= text_field_tag "relation" %>
+
+</p>
+
 <%= render(:partial => 'form', :object => f) %>
 
-<%= hidden_field_tag ('expression_id', :value => params[:expression_id]) %>
+<%= hidden_field_tag ('expression_id', params[:expression_id]) %>
 
 <p>
 <%= f.submit "Create" %>

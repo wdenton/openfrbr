@@ -1,5 +1,5 @@
 class ManifestationsController < ApplicationController
-  
+
   before_filter :require_user, :only => [:create, :new, :edit, :edit_in_place, :update, :destroy]
 
   # GET /manifestations
@@ -52,9 +52,13 @@ class ManifestationsController < ApplicationController
 
     respond_to do |format|
       if @manifestation.save
+        @embodiment = Embodiment.new(:expression_id => params[:expression_id],
+                                     :manifestation_id => @manifestation.id,
+                                     :relation => params[:relation])
+        @embodiment.save
         @producer.save
         @manifestation.producers << @producer
-        @manifestation.save
+        # @manifestation.save
         flash[:notice] = 'Manifestation was successfully created.'
         format.html { redirect_to(@manifestation) }
         format.xml  { render :xml => @manifestation, :status => :created, :location => @manifestation }
