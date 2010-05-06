@@ -4,11 +4,15 @@
 
 <p>
 
-Adding a new expression to the work <%= link_to Work.find(params[:work_id]).anchor_text, Work.find(params[:work_id]) %>
+<% @work = Work.find(params[:work_id]) %>
+
+Adding a new expression to the work
+<%= link_to @work.anchor_text, @work %>
 
 </p>
 
 <% form_for(@expression) do |f| %>
+
 <%= f.error_messages %>
 
 <p>
@@ -32,4 +36,5 @@ Relation: <%= text_field_tag "relation" %>
 <p>
 <%= f.submit "Create" %>
 </p>
+
 <% end %>

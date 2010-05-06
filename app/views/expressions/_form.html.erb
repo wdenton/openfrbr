@@ -2,7 +2,7 @@
 
 <tr>
 <td>Title</td>
-<td><%= form.text_field :title, :size => 50 %><td>
+<td><%= form.text_field :title, :size => 50, :value => @work.title %><td>
 </tr>
 
 <tr>
@@ -12,12 +12,12 @@
 
 <tr>
 <td>Form</td>
-<td><%= form.text_field :form, :size => 25 %><td>
+<td><%= form.text_field :form, :size => 25, :value => @work.form %><td>
 </tr>
 
 <tr>
 <td>Date</td>
-<td><%= form.text_field :date, :size => 10 %><td>
+<td><%= form.text_field :date, :size => 10, :value => @work.date %><td>
 </tr>
 
 <tr>

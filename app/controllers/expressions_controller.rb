@@ -82,7 +82,9 @@ class ExpressionsController < ApplicationController
 
     respond_to do |format|
       if @expression.save
-        @reification = Reification.new(:work_id => params[:work_id], :expression_id => @expression.id, :relation => params[:relation])
+        @reification = Reification.new(:work_id => params[:work_id],
+                                       :expression_id => @expression.id,
+                                       :relation => params[:relation])
         @realizer.save
         @reification.save
         @expression.realizers << @realizer

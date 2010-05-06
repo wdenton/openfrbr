@@ -331,32 +331,31 @@ doc.root.each_element('/rsp/isbn') do |i|
     puts "There was an error: #{e}"
   end
 
-  # Make the Manifestation's publisher a Corporate Body
-  # and create a Production relation.
+  # Make the Manifestation's publisher a Corporate Body and create a
+  # Production relation.
 
-    # Assume that the author is a Person, not a Corporate
-    # Body or Family.
+  # Assume that the author is a Person, not a Corporate Body or
+  # Family.
 
-    cor = CorporateBody.find_or_create_by_name(publisher)
-    puts "  Creator: #{publisher}, Corporate Body: #{cor.id}"
+  cor = CorporateBody.find_or_create_by_name(publisher)
+  puts "  Creator: #{publisher}, Corporate Body: #{cor.id}"
 
-    pro = Production.find(:first,
-                          :conditions => {
-                            :manifestation_id => m.id,
-                            :producer_id => cor.id,
-                            :producer_type => "CorporateBody"
-                      })
+  pro = Production.find(:first,
+                        :conditions => {
+                          :manifestation_id => m.id,
+                          :producer_id => cor.id,
+                          :producer_type => "CorporateBody"
+                        })
 
-    unless pro.nil?
-      puts "  Production is known: #{pro.id}"
-    else
-      pro = Production.new(:manifestation_id => m.id,
-                           :producer_id => cor.id,
-                           :producer_type => "CorporateBody")
-      pro.save
-      puts "  Created Production: #{pro.id}"
-    end
-
+  unless pro.nil?
+    puts "  Production is known: #{pro.id}"
+  else
+    pro = Production.new(:manifestation_id => m.id,
+                         :producer_id => cor.id,
+                         :producer_type => "CorporateBody")
+    pro.save
+    puts "  Created Production: #{pro.id}"
+  end
 
   # Now we have a bunch of Manifestations entities stored away.
   # We have a bunch of Works stored away.
