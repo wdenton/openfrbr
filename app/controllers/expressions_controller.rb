@@ -76,8 +76,8 @@ class ExpressionsController < ApplicationController
   def create
     realizer_name = params[:name]
     realizer_type = params[:entity_type]
-    @expression = Expression.new(params[:expression])
 
+    @expression = Expression.new(params[:expression])
     @realizer = realizer_type._as_class.find_or_create_by_name(realizer_name)
 
     respond_to do |format|

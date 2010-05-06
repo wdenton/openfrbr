@@ -2,14 +2,14 @@
 
 <h1>Add a manifestation</h1>
 
-<% e = Expression.find(params[:expression_id]) %>
+<% @e = Expression.find(params[:expression_id]) %>
 
 <p>
 
 Work:
-<%= link_to "#{e.reification.work.anchor_text}",  @e.reification.work %>
+<%= link_to @e.reification.work.anchor_text, @e.reification.work %>
 <br />
-Expression: <%= link_to e.anchor_text, e %>
+Expression: <%= link_to @e.anchor_text, @e %>
 
 </p>
 
@@ -27,7 +27,7 @@ Producer:
 
 <%= render(:partial => 'form', :object => f) %>
 
-<%= hidden_field (:manifestation, :expression_id, :value => params[:expression_id]) %>
+<%= hidden_field_tag ('expression_id', :value => params[:expression_id]) %>
 
 <p>
 <%= f.submit "Create" %>
