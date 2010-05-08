@@ -12,6 +12,27 @@ Work-to-expression relation: <%= @expression.reification.relation %>
 
 </p>
 
+<% @reification = @expression.reification %>
+
+<% form_for @reification do |f| %>
+
+Reassign to Work: <select name="work_id">
+
+<% Work.find(:all).sort.each do |w|  %>
+
+<option value="<%= w.id %>" ><%= w.anchor_text %></option>
+
+<% end %>
+
+<%= hidden_field_tag ('expression_id', @expression.id) %>
+
+</select>
+
+<%= f.submit %>
+
+<% end %>
+
+</p>
 
 <hr />
 
