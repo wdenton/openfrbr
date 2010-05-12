@@ -99,11 +99,6 @@ TODO list for OpenFRBR
 
 * Try Ross Singer's http://github.com/rsinger/RDFObjects
 
-* Upgrade Rails on anvil.
-
-* Get Capistrano deployment working so I can just cap deploy it up to
-  the server.
-
 * Let user add/remove a Creator on a work page, a Realizer on an
   Expression page, a Producer on an Manifestation page, and an Owner
   on an Item page.
@@ -123,7 +118,8 @@ TODO list for OpenFRBR
 
 * Investigate OCLC work ID.
 
-
+* Get Capistrano working. Copy Ross Singer's set-up:
+  http://github.com/rsinger/openlcsh/blob/master/config/deploy.rb.tmp
 
 Aggregates
 ----------
