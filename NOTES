@@ -1751,5 +1751,36 @@ you don't know to where.
 I fiddled with this for a while without much success and then decided
 to leave it for now, and ask.
 
+* 27 May 2010
+
+Got Capistrano deployment working, thanks to
+
+  http://www.modrails.com/documentation/Users%20guide.html#capistrano
+
+and by looking at Ross Singer's example here:
+
+  http://github.com/rsinger/openlcsh/blob/master/config/deploy.rb.tmp
+
+Now I can just run
+
+$ cap deploy
+
+and it installs the latest version from Github onto anvil.
+
+There was a problem, though: the production database kept being
+recreated from scratch each time.  To fix that, I put it in a shared
+directory where it will remain unchanged over deployments.  I edited
+config/database.yml to say:
+
+  production:
+    adapter: sqlite3
+    database: /var/www/openfrbr.org/shared/db/production.sqlite3
+    timeout: 5000
+
+After redeploying (and restarting Apache) it worked fine.
+
+
+
+
 
 

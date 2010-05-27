@@ -119,9 +119,6 @@ TODO list for OpenFRBR
 
 * Investigate OCLC work ID.
 
-* Get Capistrano working. Copy Ross Singer's set-up:
-  http://github.com/rsinger/openlcsh/blob/master/config/deploy.rb.tmp
-
 * Try http://rdf.rubyforge.org/
 
 * Look at Freebase and DBPedia as sources of information.  Eg:
