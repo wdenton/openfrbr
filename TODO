@@ -114,12 +114,20 @@ TODO list for OpenFRBR
   well.  Maybe Works.
   http://www.myidentifiers.com/multimedia/pdfs/ISTC_overview_ISQv21no3.pdf
 
-* Investigate Open Library work ID.
+* Investigate Open Library work ID and their API.
+  http://openlibrary.org/dev/docs/restful_api
 
 * Investigate OCLC work ID.
 
 * Get Capistrano working. Copy Ross Singer's set-up:
   http://github.com/rsinger/openlcsh/blob/master/config/deploy.rb.tmp
+
+* Try http://rdf.rubyforge.org/
+
+* Look at Freebase and DBPedia as sources of information.  Eg:
+  http://dbpedia.org/page/Harry_Potter_and_the_Philosopher%27s_Stone
+  http://www.freebase.com/view/en/harry_potter_and_the_goblet_of_fire
+  http://rdf.freebase.com/rdf/en.harry_potter_and_the_goblet_of_fire
 
 Aggregates
 ----------
