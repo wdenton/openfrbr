@@ -1,0 +1,645 @@
+{
+  "code": "/api/status/ok",
+  "result": {
+    "alias": [],
+    "description": "Harry Potter and the Goblet of Fire is the fourth instalment in the Harry Potter series written by J. K. Rowling, published on 8 July 2000. The book attracted additional attention because of a pre-publication warning from J. K. Rowling that one of the characters would be murdered in the book.\nThe novel won a Hugo Award in 2001; it was the only Harry Potter novel to do so. The book was made into a film, which was released worldwide on 18 November 2005.\nThroughout the three previous novels in the Harry Potter series, the main character, Harry Potter, has struggled with the difficulties that come with growing up and the added challenge of being a famous wizard. When Harry was a baby, Voldemort, the most powerful evil wizard in living memory, killed Harry's parents but mysteriously vanished after unsuccessfully trying to kill Harry. This results in Harry's immediate fame, and his being placed in the care of his muggle, or non-magical, relatives Aunt Petunia and Uncle Vernon.\nHarry enters...",
+    "id": "/en/harry_potter_and_the_goblet_of_fire",
+    "properties": {
+      "/award/award_nominated_work/award_nominations": {
+        "expected_type": {
+          "id": "/award/award_nomination",
+          "text": "Award Nomination"
+        },
+        "properties": [
+          {
+            "expected_type": {
+              "id": "/type/datetime",
+              "text": "Date/Time"
+            },
+            "id": "/award/award_nomination/year",
+            "text": "Year"
+          },
+          {
+            "expected_type": {
+              "id": "/award/award_category",
+              "text": "Award category"
+            },
+            "id": "/award/award_nomination/award",
+            "text": "Award"
+          },
+          {
+            "expected_type": {
+              "id": "/award/award_nominee",
+              "text": "Award Nominee"
+            },
+            "id": "/award/award_nomination/award_nominee",
+            "text": "Award Nominee"
+          }
+        ],
+        "text": "Award Nominations",
+        "values": [
+          {
+            "/award/award_nomination/award": {
+              "expected_type": {
+                "id": "/award/award_category",
+                "text": "Award category"
+              },
+              "text": "Award",
+              "values": [
+                {
+                  "id": "/en/hugo_award_for_best_novel",
+                  "text": "Hugo Award for Best Novel",
+                  "url": "http://www.freebase.com/view/en/hugo_award_for_best_novel"
+                }
+              ]
+            },
+            "/award/award_nomination/award_nominee": {
+              "expected_type": {
+                "id": "/award/award_nominee",
+                "text": "Award Nominee"
+              },
+              "text": "Award Nominee",
+              "values": [
+                {
+                  "id": "/en/j_k_rowling",
+                  "text": "J. K. Rowling",
+                  "url": "http://www.freebase.com/view/en/j_k_rowling"
+                }
+              ]
+            },
+            "/award/award_nomination/year": {
+              "expected_type": {
+                "id": "/type/datetime",
+                "text": "Date/Time"
+              },
+              "text": "Year",
+              "values": [
+                {
+                  "text": "2001",
+                  "value": "2001"
+                }
+              ]
+            },
+            "id": "/m/08f5bqw",
+            "text": "2001 - Hugo Award for Best Novel - J. K. Rowling"
+          },
+          {
+            "/award/award_nomination/award": {
+              "expected_type": {
+                "id": "/award/award_category",
+                "text": "Award category"
+              },
+              "text": "Award",
+              "values": [
+                {
+                  "id": "/en/locus_award_for_best_fantasy_novel",
+                  "text": "Locus Award for Best Fantasy Novel",
+                  "url": "http://www.freebase.com/view/en/locus_award_for_best_fantasy_novel"
+                }
+              ]
+            },
+            "/award/award_nomination/award_nominee": {
+              "expected_type": {
+                "id": "/award/award_nominee",
+                "text": "Award Nominee"
+              },
+              "text": "Award Nominee",
+              "values": [
+                {
+                  "id": "/en/j_k_rowling",
+                  "text": "J. K. Rowling",
+                  "url": "http://www.freebase.com/view/en/j_k_rowling"
+                }
+              ]
+            },
+            "/award/award_nomination/year": {
+              "expected_type": {
+                "id": "/type/datetime",
+                "text": "Date/Time"
+              },
+              "text": "Year",
+              "values": [
+                {
+                  "text": "2001",
+                  "value": "2001"
+                }
+              ]
+            },
+            "id": "/m/0bj8y_v",
+            "text": "2001 - Locus Award for Best Fantasy Novel - J. K. Rowling"
+          }
+        ]
+      },
+      "/award/award_winning_work/awards_won": {
+        "expected_type": {
+          "id": "/award/award_honor",
+          "text": "Award Honor"
+        },
+        "properties": [
+          {
+            "expected_type": {
+              "id": "/type/datetime",
+              "text": "Date/Time"
+            },
+            "id": "/award/award_honor/year",
+            "text": "Year"
+          },
+          {
+            "expected_type": {
+              "id": "/award/award_category",
+              "text": "Award category"
+            },
+            "id": "/award/award_honor/award",
+            "text": "Award"
+          },
+          {
+            "expected_type": {
+              "id": "/award/award_winner",
+              "text": "Award Winner"
+            },
+            "id": "/award/award_honor/award_winner",
+            "text": "Award Winner"
+          }
+        ],
+        "text": "Awards Won",
+        "values": [
+          {
+            "/award/award_honor/award": {
+              "expected_type": {
+                "id": "/award/award_category",
+                "text": "Award category"
+              },
+              "text": "Award",
+              "values": [
+                {
+                  "id": "/en/hugo_award_for_best_novel",
+                  "text": "Hugo Award for Best Novel",
+                  "url": "http://www.freebase.com/view/en/hugo_award_for_best_novel"
+                }
+              ]
+            },
+            "/award/award_honor/award_winner": {
+              "expected_type": {
+                "id": "/award/award_winner",
+                "text": "Award Winner"
+              },
+              "text": "Award Winner",
+              "values": [
+                {
+                  "id": "/en/j_k_rowling",
+                  "text": "J. K. Rowling",
+                  "url": "http://www.freebase.com/view/en/j_k_rowling"
+                }
+              ]
+            },
+            "/award/award_honor/year": {
+              "expected_type": {
+                "id": "/type/datetime",
+                "text": "Date/Time"
+              },
+              "text": "Year",
+              "values": [
+                {
+                  "text": "2001",
+                  "value": "2001"
+                }
+              ]
+            },
+            "id": "/m/040vl1y",
+            "text": "2001 - Hugo Award for Best Novel - J. K. Rowling"
+          }
+        ]
+      },
+      "/book/book/characters": {
+        "expected_type": {
+          "id": "/book/book_character",
+          "text": "Book Character"
+        },
+        "text": "Characters",
+        "values": [
+          {
+            "id": "/en/ron_weasley",
+            "text": "Ronald Weasley",
+            "url": "http://www.freebase.com/view/en/ron_weasley"
+          },
+          {
+            "id": "/en/amos_diggory",
+            "text": "Amos Diggory",
+            "url": "http://www.freebase.com/view/en/amos_diggory"
+          },
+          {
+            "id": "/en/molly_weasley",
+            "text": "Molly Weasley",
+            "url": "http://www.freebase.com/view/en/molly_weasley"
+          },
+          {
+            "id": "/m/03647x",
+            "text": "Harry Potter",
+            "url": "http://www.freebase.com/view/m/03647x"
+          },
+          {
+            "id": "/en/albus_dumbledore",
+            "text": "Albus Dumbledore",
+            "url": "http://www.freebase.com/view/en/albus_dumbledore"
+          },
+          {
+            "id": "/en/severus_snape",
+            "text": "Severus Snape",
+            "url": "http://www.freebase.com/view/en/severus_snape"
+          },
+          {
+            "id": "/en/george_weasley",
+            "text": "George Weasley",
+            "url": "http://www.freebase.com/view/en/george_weasley"
+          },
+          {
+            "id": "/en/fred_weasley",
+            "text": "Fred Weasley",
+            "url": "http://www.freebase.com/view/en/fred_weasley"
+          },
+          {
+            "id": "/en/arthur_weasley",
+            "text": "Arthur Weasley",
+            "url": "http://www.freebase.com/view/en/arthur_weasley"
+          },
+          {
+            "id": "/en/draco_malfoy",
+            "text": "Draco Malfoy",
+            "url": "http://www.freebase.com/view/en/draco_malfoy"
+          }
+        ]
+      },
+      "/book/book/editions": {
+        "expected_type": {
+          "id": "/book/book_edition",
+          "text": "Book Edition"
+        },
+        "text": "Editions",
+        "values": [
+          {
+            "id": "/soft/isbn/9785353005797/best",
+            "text": "Garri Potter i Kubok Ognia",
+            "url": "http://www.freebase.com/view/soft/isbn/9785353005797/best"
+          },
+          {
+            "id": "/soft/isbn/9789955081760/best",
+            "text": "Haris Poteris ir Ugnies Taure",
+            "url": "http://www.freebase.com/view/soft/isbn/9789955081760/best"
+          },
+          {
+            "id": "/soft/isbn/9781594130038/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9781594130038/best"
+          },
+          {
+            "id": "/soft/isbn/9780439139601/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9780439139601/best"
+          },
+          {
+            "id": "/soft/isbn/9780786229277/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9780786229277/best"
+          },
+          {
+            "id": "/soft/isbn/9780439139595/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9780439139595/best"
+          },
+          {
+            "id": "/soft/isbn/9780747550990/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9780747550990/best"
+          },
+          {
+            "id": "/soft/isbn/9780747546245/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9780747546245/best"
+          },
+          {
+            "id": "/soft/isbn/9780747550792/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9780747550792/best"
+          },
+          {
+            "id": "/soft/isbn/9780195799163/best",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/soft/isbn/9780195799163/best"
+          }
+        ]
+      },
+      "/book/book/genre": {
+        "expected_type": {
+          "id": "/book/literary_genre",
+          "text": "Literary Genre"
+        },
+        "text": "Genre",
+        "values": [
+          {
+            "id": "/en/speculative_fiction",
+            "text": "Speculative fiction",
+            "url": "http://www.freebase.com/view/en/speculative_fiction"
+          }
+        ]
+      },
+      "/book/translated_work/translations": {
+        "expected_type": {
+          "id": "/book/translation",
+          "text": "Translation"
+        },
+        "text": "Translations",
+        "values": [
+          {
+            "id": "/en/garri_potter_i_kubok_ognia",
+            "text": "Garri Potter i Kubok Ognia",
+            "url": "http://www.freebase.com/view/en/garri_potter_i_kubok_ognia"
+          },
+          {
+            "id": "/en/haris_poteris_ir_ugnies_taure",
+            "text": "Haris Poteris ir Ugnies Taure",
+            "url": "http://www.freebase.com/view/en/haris_poteris_ir_ugnies_taure"
+          },
+          {
+            "id": "/en/harry_potter_e_il_calice_de_fuoco",
+            "text": "Harry Potter e il Calice de Fuoco",
+            "url": "http://www.freebase.com/view/en/harry_potter_e_il_calice_de_fuoco"
+          },
+          {
+            "id": "/en/harry_potter_und_der_feuerkelch",
+            "text": "Harry Potter und der Feuerkelch",
+            "url": "http://www.freebase.com/view/en/harry_potter_und_der_feuerkelch"
+          },
+          {
+            "id": "/en/harry_potter_y_el_caliz_de_fuego",
+            "text": "Harry Potter y el Caliz de Fuego",
+            "url": "http://www.freebase.com/view/en/harry_potter_y_el_caliz_de_fuego"
+          }
+        ]
+      },
+      "/book/written_work/author": {
+        "expected_type": {
+          "id": "/book/author",
+          "text": "Author"
+        },
+        "text": "Author",
+        "values": [
+          {
+            "id": "/en/j_k_rowling",
+            "text": "J. K. Rowling",
+            "url": "http://www.freebase.com/view/en/j_k_rowling"
+          }
+        ]
+      },
+      "/book/written_work/copyright_date": {
+        "expected_type": {
+          "id": "/type/datetime",
+          "text": "Date/Time"
+        },
+        "text": "Copyright date",
+        "values": [
+          {
+            "text": "Jul 8, 2000",
+            "value": "2000-07-08"
+          }
+        ]
+      },
+      "/book/written_work/date_of_first_publication": {
+        "expected_type": {
+          "id": "/type/datetime",
+          "text": "Date/Time"
+        },
+        "text": "Date of first publication",
+        "values": [
+          {
+            "text": "Jul 8, 2000",
+            "value": "2000-07-08"
+          }
+        ]
+      },
+      "/book/written_work/next_in_series": {
+        "expected_type": {
+          "id": "/book/written_work",
+          "text": "Written Work"
+        },
+        "text": "Next in series",
+        "values": [
+          {
+            "id": "/en/harry_potter_and_the_order_of_the_phoenix",
+            "text": "Harry Potter and the Order of the Phoenix",
+            "url": "http://www.freebase.com/view/en/harry_potter_and_the_order_of_the_phoenix"
+          }
+        ]
+      },
+      "/book/written_work/part_of_series": {
+        "expected_type": {
+          "id": "/book/literary_series",
+          "text": "Literary Series"
+        },
+        "text": "Part of series",
+        "values": [
+          {
+            "id": "/m/02676m4",
+            "text": "Harry Potter",
+            "url": "http://www.freebase.com/view/m/02676m4"
+          }
+        ]
+      },
+      "/book/written_work/previous_in_series": {
+        "expected_type": {
+          "id": "/book/written_work",
+          "text": "Written Work"
+        },
+        "text": "Previous in series",
+        "values": [
+          {
+            "id": "/en/harry_potter_and_the_prisoner_of_azkaban",
+            "text": "Harry Potter and the Prisoner of Azkaban",
+            "url": "http://www.freebase.com/view/en/harry_potter_and_the_prisoner_of_azkaban"
+          }
+        ]
+      },
+      "/book/written_work/subjects": {
+        "expected_type": {
+          "id": "/book/book_subject",
+          "text": "Literature Subject"
+        },
+        "text": "Subjects",
+        "values": [
+          {
+            "id": "/en/england",
+            "text": "England",
+            "url": "http://www.freebase.com/view/en/england"
+          },
+          {
+            "id": "/m/02jfh41",
+            "text": "Wizards",
+            "url": "http://www.freebase.com/view/m/02jfh41"
+          },
+          {
+            "id": "/en/schools",
+            "text": "Schools",
+            "url": "http://www.freebase.com/view/en/schools"
+          }
+        ]
+      },
+      "/fictional_universe/work_of_fiction/part_of_these_fictional_universes": {
+        "expected_type": {
+          "id": "/fictional_universe/fictional_universe",
+          "text": "Fictional Universe"
+        },
+        "text": "Part of fictional universes",
+        "values": [
+          {
+            "id": "/en/harry_potter",
+            "text": "Harry Potter Universe",
+            "url": "http://www.freebase.com/view/en/harry_potter"
+          }
+        ]
+      },
+      "/fictional_universe/work_of_fiction/setting": {
+        "expected_type": {
+          "id": "/fictional_universe/fictional_setting",
+          "text": "Fictional Setting"
+        },
+        "text": "Setting",
+        "values": [
+          {
+            "id": "/en/wizarding_world",
+            "text": "Wizarding world",
+            "url": "http://www.freebase.com/view/en/wizarding_world"
+          }
+        ]
+      },
+      "/media_common/adapted_work/adaptations": {
+        "expected_type": {
+          "id": "/media_common/adaptation",
+          "text": "Adaptation"
+        },
+        "text": "Adaptations",
+        "values": [
+          {
+            "id": "/en/harry_potter_and_the_goblet_of_fire_2005",
+            "text": "Harry Potter and the Goblet of Fire",
+            "url": "http://www.freebase.com/view/en/harry_potter_and_the_goblet_of_fire_2005"
+          }
+        ]
+      },
+      "/media_common/quotation_source/quotations": {
+        "expected_type": {
+          "id": "/media_common/quotation",
+          "text": "Quotation"
+        },
+        "text": "Quotations",
+        "values": [
+          {
+            "id": "/m/075snfx",
+            "text": "Nothing like a nighttime stroll to give you ideas.",
+            "url": "http://www.freebase.com/view/m/075snfx"
+          },
+          {
+            "id": "/m/075snf_",
+            "text": "If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals.",
+            "url": "http://www.freebase.com/view/m/075snf_"
+          },
+          {
+            "id": "/m/075sng2",
+            "text": "I sometimes find, and I am sure you know the feeling, that I simply have too many thoughts and memories crammed into my mind.... At these times... I use the Pensieve. One simply siphons the excess thoughts from one's mind, pours them into the basin, and examines them at one's leisure.",
+            "url": "http://www.freebase.com/view/m/075sng2"
+          },
+          {
+            "id": "/m/075sng5",
+            "text": "Curiosity is not a sin.... But we should exercise caution with our curiosity... yes, indeed.",
+            "url": "http://www.freebase.com/view/m/075sng5"
+          },
+          {
+            "id": "/m/075sng8",
+            "text": "Numbing the pain for a while will make it worse when you finally feel it.",
+            "url": "http://www.freebase.com/view/m/075sng8"
+          },
+          {
+            "id": "/m/075sngc",
+            "text": "It is my belief... that the truth is generally preferable to lies.",
+            "url": "http://www.freebase.com/view/m/075sngc"
+          },
+          {
+            "id": "/m/075sngg",
+            "text": "Differences of habit and language are nothing at all if our aims are identical and our hearts are open.",
+            "url": "http://www.freebase.com/view/m/075sngg"
+          },
+          {
+            "id": "/m/075sngk",
+            "text": "If you're holding out for universal popularity, I'm afraid you will be in this cabin for a very long time.",
+            "url": "http://www.freebase.com/view/m/075sngk"
+          },
+          {
+            "id": "/m/075sngn",
+            "text": "You place too much importance... on the so-called purity of blood! You fail to recognize that it matters not what someone is born, but what they grow to be!",
+            "url": "http://www.freebase.com/view/m/075sngn"
+          },
+          {
+            "id": "/m/075sngr",
+            "text": "We are only as strong as we are united, as weak as we are divided. Lord Voldemort's gift for spreading discord and enmity is very great. We can fight it only by showing an equally strong bond of friendship and trust. Differences of habit and language are nothing at all if our aims are identical and our hearts are open.",
+            "url": "http://www.freebase.com/view/m/075sngr"
+          }
+        ]
+      }
+    },
+    "text": "Harry Potter and the Goblet of Fire",
+    "thumbnail": "http://api.freebase.com/api/trans/image_thumb/en/harry_potter_and_the_goblet_of_fire",
+    "type": [
+      {
+        "id": "/book/book",
+        "text": "Book"
+      },
+      {
+        "id": "/fictional_universe/work_of_fiction",
+        "text": "Work of Fiction"
+      },
+      {
+        "id": "/media_common/adapted_work",
+        "text": "Adapted Work"
+      },
+      {
+        "id": "/book/written_work",
+        "text": "Written Work"
+      },
+      {
+        "id": "/award/award_winning_work",
+        "text": "Award-Winning Work"
+      },
+      {
+        "id": "/book/translated_work",
+        "text": "Translated Work"
+      },
+      {
+        "id": "/media_common/quotation_source",
+        "text": "Quotation Source"
+      },
+      {
+        "id": "/award/award_nominated_work",
+        "text": "Award-Nominated Work"
+      }
+    ],
+    "url": "http://www.freebase.com/view/en/harry_potter_and_the_goblet_of_fire",
+    "webpage": [
+      {
+        "text": "Wikipedia",
+        "url": "http://en.wikipedia.org/wiki/index.html?curid=259128"
+      },
+      {
+        "text": "ISFDB Title Listing",
+        "url": "http://www.isfdb.org/cgi-bin/title.cgi?19766"
+      },
+      {
+        "text": "Ellerdale (real-time trends)",
+        "url": "http://www.ellerdale.com/topics/view/0080-6e3c"
+      },
+      {
+        "text": "Harry Potter and the Goblet of Fire Videos",
+        "url": "http://www.videosurf.com/harry-potter-and-the-goblet-of-fire-17902"
+      }
+    ]
+  },
+  "status": "200 OK",
+  "transaction_id": "cache;cache02.p01.sjc1:8101;2010-05-27T20:19:13Z;0020"
+}

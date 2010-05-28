@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:cc="http://creativecommons.org/ns#"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:fb="http://rdf.freebase.com/ns/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml/vocab#"
+>
+  <fb:common.webpage rdf:about="http://rdf.freebase.com/ns/m.09xhhbz">
+    <fb:common.webpage.resource rdf:resource="http://rdf.freebase.com/ns/source.entertainmentweekly.blogs.popwatch.$002F2005$002F10$002F25$002Fbritrockers_per"/>
+    <fb:common.webpage.topic>
+      <fb:media_common.adapted_work rdf:about="http://rdf.freebase.com/ns/en.harry_potter_and_the_goblet_of_fire">
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Harry_Potter_IV</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Tri_Wizard_Tournament</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>0080-6e3c</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/user.avh.ellerdale"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>harry_potter_and_the_goblet_of_fire</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>4th_harry_potter_book</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>17902</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/source.videosurf"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Harry_potter_and_the_goblet_of_fire</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Triwizard_Tournament</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Hpgf</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Harry_Potter_and_the_Goblet_of_Fire</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>HP_4</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>19766</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/authority.isfdb.title_id"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>HPGF</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Triwizard_tournament</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Yule_Ball</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>The_Goblet_of_Fire</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Tri-Wizard_Tournament</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Fourth_harry_potter_book</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>HPGOF</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>HP$0024</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Harry_Potter_4</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>HP4</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Harry_Potter_and_The_Goblet_of_Fire</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>HPATGOF</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Harry_Potter_aur_Aag_Ka_Pyala</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Goblet_of_Fire</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>Goblet_of_fire</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:type.object.key>
+          <rdf:Description>
+            <fb:type.value.value>259128</fb:type.value.value>
+            <fb:type.key.namespace rdf:resource="http://rdf.freebase.com/ns/wikipedia.en_id"/>
+          </rdf:Description>
+        </fb:type.object.key>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478886647.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9785353005797.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780439139601.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780828839822.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780320047954.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747550990.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478888641.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788884510495.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780685110928.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780786229277.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747546245.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478889051.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780685115763.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781594130038.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780195799163.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780439139595.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9789955081760.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478887620.best"/>
+        <fb:book.book.editions rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747550792.best"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075snfx"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sngc"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sngn"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sngy"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sngv"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sngg"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sng2"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sngk"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sngr"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/en.whats_comin_will_come_and_well_meet_it_when_it_does"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sng5"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075sng8"/>
+        <fb:media_common.quotation_source.quotations rdf:resource="http://rdf.freebase.com/ns/m.075snf_"/>
+        <fb:common.topic.article rdf:resource="http://rdf.freebase.com/ns/m.01m5h9"/>
+        <cc:attributionURL rdf:resource="http://www.freebase.com/view/en/harry_potter_and_the_goblet_of_fire"/>
+        <fb:book.written_work.part_of_series rdf:resource="http://rdf.freebase.com/ns/m.02676m4"/>
+        <fb:book.written_work.date_of_first_publication>2000-07-08</fb:book.written_work.date_of_first_publication>
+        <fb:book.translated_work.translations rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_und_der_feuerkelch"/>
+        <fb:book.translated_work.translations rdf:resource="http://rdf.freebase.com/ns/en.garri_potter_i_kubok_ognia"/>
+        <fb:book.translated_work.translations rdf:resource="http://rdf.freebase.com/ns/en.haris_poteris_ir_ugnies_taure"/>
+        <fb:book.translated_work.translations rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_y_el_caliz_de_fuego"/>
+        <fb:book.translated_work.translations rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_e_il_calice_de_fuoco"/>
+        <fb:book.written_work.author rdf:resource="http://rdf.freebase.com/ns/en.j_k_rowling"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/common.topic"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.written_work"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.book"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/media_common.quotation_source"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/award.award_nominated_work"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/freebase.apps.hosts.com.appspot.acre.juggle.juggle"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/book.translated_work"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/base.harrypotter.topic"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/award.award_winning_work"/>
+        <rdf:type rdf:resource="http://rdf.freebase.com/ns/fictional_universe.work_of_fiction"/>
+        <fb:common.topic.image rdf:resource="http://rdf.freebase.com/ns/wikipedia.images.en_id.883454"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478886647.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9785353005797.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780439139601.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780828839822.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780320047954.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747550990.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478888641.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788884510495.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780685110928.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780786229277.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747546245.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478889051.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780685115763.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9781594130038.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780195799163.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780439139595.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9789955081760.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9788478887620.best"/>
+        <dc:hasVersion rdf:resource="http://rdf.freebase.com/ns/soft.isbn.9780747550792.best"/>
+        <fb:award.award_nominated_work.award_nominations rdf:resource="http://rdf.freebase.com/ns/m.0bj8y_v"/>
+        <fb:award.award_nominated_work.award_nominations rdf:resource="http://rdf.freebase.com/ns/m.08f5bqw"/>
+        <fb:award.award_winning_work.awards_won rdf:resource="http://rdf.freebase.com/ns/m.040vl1y"/>
+        <fb:media_common.adapted_work.adaptations rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_goblet_of_fire_2005"/>
+        <xhtml:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <fb:book.written_work.previous_in_series rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_prisoner_of_azkaban"/>
+        <fb:type.object.name xml:lang="zh">哈利·波特与火焰杯</fb:type.object.name>
+        <fb:type.object.name xml:lang="pt">Harry Potter e o Cálice de Fogo</fb:type.object.name>
+        <fb:type.object.name xml:lang="pl">Harry Potter i Czara Ognia</fb:type.object.name>
+        <fb:type.object.name xml:lang="ro">Harry Potter şi Pocalul de Foc</fb:type.object.name>
+        <fb:type.object.name xml:lang="de">Harry Potter und der Feuerkelch</fb:type.object.name>
+        <fb:type.object.name xml:lang="id">Harry Potter dan Piala Api</fb:type.object.name>
+        <fb:type.object.name xml:lang="nl">Harry Potter en de Vuurbeker</fb:type.object.name>
+        <fb:type.object.name xml:lang="da">Harry Potter og Flammernes Pokal</fb:type.object.name>
+        <fb:type.object.name xml:lang="ko">해리 포터와 불의 잔</fb:type.object.name>
+        <fb:type.object.name xml:lang="en">Harry Potter and the Goblet of Fire</fb:type.object.name>
+        <fb:type.object.name xml:lang="ja">ハリー・ポッターと炎のゴブレット</fb:type.object.name>
+        <fb:type.object.name xml:lang="lt">Haris Poteris ir Ugnies taurė</fb:type.object.name>
+        <fb:type.object.name xml:lang="bg">Хари Потър и Огненият бокал</fb:type.object.name>
+        <fb:type.object.name xml:lang="hu">Harry Potter és a Tűz Serlege</fb:type.object.name>
+        <fb:type.object.name xml:lang="ca">Harry Potter i el calze de foc</fb:type.object.name>
+        <fb:type.object.name xml:lang="it">Harry Potter e il calice di fuoco</fb:type.object.name>
+        <fb:type.object.name xml:lang="sv">Harry Potter och Den flammande bägaren</fb:type.object.name>
+        <fb:type.object.name xml:lang="cs">Harry Potter a Ohnivý pohár</fb:type.object.name>
+        <fb:type.object.name xml:lang="fr">Harry Potter et la coupe de feu</fb:type.object.name>
+        <fb:type.object.name xml:lang="sl">Harry Potter in ognjeni kelih</fb:type.object.name>
+        <fb:type.object.name xml:lang="es">Harry Potter y el cáliz de fuego</fb:type.object.name>
+        <fb:type.object.name xml:lang="ru">Гарри Поттер и Кубок Огня</fb:type.object.name>
+        <fb:type.object.name xml:lang="he">הארי פוטר וגביע האש</fb:type.object.name>
+        <fb:type.object.name xml:lang="tr">Harry Potter ve Ateş Kadehi (kitap)</fb:type.object.name>
+        <fb:type.object.name xml:lang="th">แฮร์รี่ พอตเตอร์กับถ้วยอัคนี</fb:type.object.name>
+        <fb:type.object.name xml:lang="uk">Гаррі Поттер і келих вогню</fb:type.object.name>
+        <fb:type.object.name xml:lang="fi">Harry Potter ja liekehtivä pikari</fb:type.object.name>
+        <fb:type.object.name xml:lang="no">Harry Potter og ildbegeret</fb:type.object.name>
+        <dc:title>Harry Potter and the Goblet of Fire</dc:title>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Goblet_of_fire"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HP$"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HP_4"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Tri-Wizard_Tournament"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Triwizard_tournament"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_aur_Aag_Ka_Pyala"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HPGF"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_potter_and_the_goblet_of_fire"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_IV"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Tri_Wizard_Tournament"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HPGOF"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HP4"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_the_Goblet_of_Fire"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Triwizard_Tournament"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Hpgf"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Goblet_of_Fire"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/4th_harry_potter_book"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/HPATGOF"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_and_The_Goblet_of_Fire"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Yule_Ball"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harry_Potter_4"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Fourth_harry_potter_book"/>
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Goblet_of_Fire"/>
+        <dc:creator rdf:resource="http://rdf.freebase.com/ns/en.j_k_rowling"/>
+        <fb:user.mikeshwe.default_domain.videosurf_card.videosurf_link_text>harry-potter-and-the-goblet-of-fire</fb:user.mikeshwe.default_domain.videosurf_card.videosurf_link_text>
+        <fb:fictional_universe.work_of_fiction.setting rdf:resource="http://rdf.freebase.com/ns/en.wizarding_world"/>
+        <cc:attributionName>Source: Freebase - The World's database</cc:attributionName>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.draco_malfoy"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.colin_and_dennis_creevey"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.molly_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.amos_diggory"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/m.09g3gz8"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.aberforth_dumbledore"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.hermione_granger"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.neville_longbottom"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.gregory_goyle"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.albus_dumbledore"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.fred_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.george_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.percy_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.lily_evans_potter"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.fleur_delacour"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.minerva_mcgonagall"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.vernon_dursley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.frank_bryce"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.filius_flitwick"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.arthur_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.gilderoy_lockhart"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.ernie_macmillan"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.lord_voldemort"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/m.03647x"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.rita_skeeter"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.petunia_dursley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.seamus_finnigan"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.sirius_black"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.charlie_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.bill_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.angelina_johnson"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/m.02h_frd"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.cho_chang"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.winky"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.poppy_pomfrey"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.ron_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.gabrielle_delacour"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.severus_snape"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.pomona_sprout"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.ginny_weasley"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.igor_karkaroff"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.lucius_malfoy"/>
+        <fb:book.book.characters rdf:resource="http://rdf.freebase.com/ns/en.hannah_abbott"/>
+        <fb:common.topic.webpage rdf:resource="http://rdf.freebase.com/ns/m.09xhhbz"/>
+        <dc:subject rdf:resource="http://rdf.freebase.com/ns/en.schools"/>
+        <dc:subject rdf:resource="http://rdf.freebase.com/ns/m.02jfh41"/>
+        <dc:subject rdf:resource="http://rdf.freebase.com/ns/en.england"/>
+        <dc:issued>2000-07-08</dc:issued>
+        <fb:book.written_work.copyright_date>2000-07-08</fb:book.written_work.copyright_date>
+        <fb:fictional_universe.work_of_fiction.part_of_these_fictional_universes rdf:resource="http://rdf.freebase.com/ns/en.harry_potter"/>
+        <dc:description>Harry Potter and the Goblet of Fire is the fourth instalment in the Harry Potter series written by J. K. Rowling, published on 8 July 2000. The book attracted additional attention because of a...</dc:description>
+        <fb:book.written_work.next_in_series rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_order_of_the_phoenix"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.schools"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/m.02jfh41"/>
+        <fb:book.written_work.subjects rdf:resource="http://rdf.freebase.com/ns/en.england"/>
+        <fb:book.book.genre rdf:resource="http://rdf.freebase.com/ns/en.speculative_fiction"/>
+        <fb:freebase.apps.hosts.z.appspot.acre.juggle.juggle.juggleid xml:lang="en">Harry-Potter-And-The-Goblet-Of-Fire</fb:freebase.apps.hosts.z.appspot.acre.juggle.juggle.juggleid>
+      </fb:media_common.adapted_work>
+    </fb:common.webpage.topic>
+    <fb:common.webpage.in_index rdf:resource="http://rdf.freebase.com/ns/base.ew.index"/>
+    <fb:base.ew.ew_annotation.character_offset rdf:datatype="http://www.w3.org/2001/XMLSchema#long">154</fb:base.ew.ew_annotation.character_offset>
+  </fb:common.webpage>
+  <fb:award.award_nomination rdf:about="http://rdf.freebase.com/ns/m.0bj8y_v">
+    <fb:award.award_nomination.award_nominee rdf:resource="http://rdf.freebase.com/ns/en.j_k_rowling"/>
+    <fb:award.award_nomination.award rdf:resource="http://rdf.freebase.com/ns/en.locus_award_for_best_fantasy_novel"/>
+    <fb:award.award_nomination.year>2001</fb:award.award_nomination.year>
+    <fb:award.award_nomination.nominated_for rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_goblet_of_fire"/>
+  </fb:award.award_nomination>
+  <fb:award.award_honor rdf:about="http://rdf.freebase.com/ns/m.040vl1y">
+    <fb:award.award_honor.award rdf:resource="http://rdf.freebase.com/ns/en.hugo_award_for_best_novel"/>
+    <fb:award.award_honor.honored_for rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_goblet_of_fire"/>
+    <fb:award.award_honor.award_winner rdf:resource="http://rdf.freebase.com/ns/en.j_k_rowling"/>
+    <fb:award.award_honor.year>2001</fb:award.award_honor.year>
+  </fb:award.award_honor>
+  <fb:award.award_nomination rdf:about="http://rdf.freebase.com/ns/m.08f5bqw">
+    <fb:award.award_nomination.award_nominee rdf:resource="http://rdf.freebase.com/ns/en.j_k_rowling"/>
+    <fb:award.award_nomination.award rdf:resource="http://rdf.freebase.com/ns/en.hugo_award_for_best_novel"/>
+    <fb:award.award_nomination.year>2001</fb:award.award_nomination.year>
+    <fb:award.award_nomination.nominated_for rdf:resource="http://rdf.freebase.com/ns/en.harry_potter_and_the_goblet_of_fire"/>
+  </fb:award.award_nomination>
+</rdf:RDF>
+

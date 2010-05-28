@@ -1779,6 +1779,9 @@ config/database.yml to say:
 
 After redeploying (and restarting Apache) it worked fine.
 
+Trying out RDF.rb
+
+$ sudo gem install rdf rdf-raptor rdf-json rdf-trix
 
 
 

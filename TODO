@@ -97,8 +97,6 @@ TODO list for OpenFRBR
   http://railscasts.com/episodes/170-openid-with-authlogic
   for example.
 
-* Try Ross Singer's http://github.com/rsinger/RDFObjects
-
 * Let user add/remove a Creator on a work page, a Realizer on an
   Expression page, a Producer on an Manifestation page, and an Owner
   on an Item page.
@@ -120,12 +118,19 @@ TODO list for OpenFRBR
 
 * Investigate OCLC work ID.
 
-* Try http://rdf.rubyforge.org/
-
 * Look at Freebase and DBPedia as sources of information.  Eg:
+
   http://dbpedia.org/page/Harry_Potter_and_the_Philosopher%27s_Stone
+  RDF: http://dbpedia.org/data/Harry_Potter_and_the_Philosopher%27s_Stone.rdf
+
   http://www.freebase.com/view/en/harry_potter_and_the_goblet_of_fire
-  http://rdf.freebase.com/rdf/en.harry_potter_and_the_goblet_of_fire
+  RDF: http://rdf.freebase.com/rdf/en.harry_potter_and_the_goblet_of_fire
+
+* Ruby RDF libraries
+  http://github.com/rsinger/RDFObjects (Ross Singer)
+  http://github.com/gkellogg/rdf_context
+  http://rdf.rubyforge.org/
+    See http://blog.datagraph.org/2010/04/parsing-rdf-with-ruby
 
 Aggregates
 ----------
