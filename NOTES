@@ -1793,6 +1793,48 @@ http://rdf.freebase.com/rdf/en.harry_potter_and_the_goblet_of_fire
 http://dbpedia.org/data/The_Maltese_Falcon.rdf
 http://openlibrary.org/books/OL6026352M.rdf
 
+* 27 March 2011
+
+Moved to Heroku, because I need to move off of anvil.lisforge.net
+
+Set up an account and followed the instructions about setting up
+another git remote repository and so on.  Had some problems getting
+the database uploaded but when I installed the taps gem then heroku
+db:push worked nicely.  As usual there was some stumbling through the
+instructions and Stack Overflow posts, and now that I've done it all,
+it works, but I can't remember everything I did.
+
+One thing I had to do was configure database.yml with connection
+details for the production database, but I didn't want these to end up
+in Github.  Here's what I did (from
+http://devcenter.heroku.com/articles/database and some blog posts):
+
+$ heroku console
+>> ENV['DATABASE_URL']
+=> "postgres://username:password@hostname/database"
+
+This told me the information I needed. I picked out the details, then:
+
+heroku add:config PROD_DB_USERNAME=username PROD_DB_HOST=hostname PROD_DB_DATABASE=database PROD_DB_PASSWORD=password
+
+Then I edited database.yml to use those environment variables:
+
+production:
+  encoding: unicode
+  adapter: postgresql
+  username: "#{ENV['PROD_DB_USERNAME']}"
+  port: 5432
+  host: "#{ENV['PROD_DB_HOST'}"
+  database: "#{ENV['PROD_DB_DATABASE']}"
+  password: "#{ENV['PROD_DB_PASSWORD']}"
+
+And that did it.  I had to use git rebase to hide a commit from the
+world, and then git push -f it to get the rebased stuff up to Heroku
+and Github.
+
+But now it's at http://openfrbr.heroku.com/
+
+
 
 
 
