@@ -19,6 +19,7 @@ production:
   #  database: /var/www/openfrbr.org/shared/db/production.sqlite3
   #  timeout: 5000
   # For Heroku
+  # I set these with heroku add:config VAR=value VAR2=value
   encoding: unicode
   adapter: postgresql
   username: "#{ENV['PROD_DB_USERNAME']}"
