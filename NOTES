@@ -1783,6 +1783,17 @@ Trying out RDF.rb
 
 $ sudo gem install rdf rdf-raptor rdf-json rdf-trix
 
+* 12 July 2010
+
+Left off with these in my browser tabs:
+
+http://github.com/bendiken/rdf/blob/master/README.md
+http://github.com/rsinger/RDFObjects
+http://rdf.freebase.com/rdf/en.harry_potter_and_the_goblet_of_fire
+http://dbpedia.org/data/The_Maltese_Falcon.rdf
+http://openlibrary.org/books/OL6026352M.rdf
+
+
 
 
 

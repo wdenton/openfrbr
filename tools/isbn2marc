@@ -35,7 +35,7 @@
 #
 # ruby-zoom: http://ruby-zoom.rubyforge.org/
 # See the installation instructions there.
-# 
+#
 # To install on Ubuntu, run
 # $ sudo apt-get install yaz libyaz3 libyaz3-dev
 # $ sudo gem install zoom
@@ -45,9 +45,9 @@
 # $ sudo gem install marc
 #
 # NOTE ruby-zoom installs its own marc.rb file that will conflict with
-# marc! You will need to delete ruby-zoom's marc.rb or rename it 
+# marc! You will need to delete ruby-zoom's marc.rb or rename it
 # for the marc gem to work.
-# 
+#
 # On my system it was installed in
 #   /usr/local/lib/ruby/site_ruby/1.8/marc.rb
 # but you'll have to look for it wherever your system put it.
@@ -56,7 +56,7 @@
 #
 # isbn2marc [-q] [-d marcfile] [-x xmlfile] ISBN
 #
-# -q          Run quietly, don't list servers queried and don't 
+# -q          Run quietly, don't list servers queried and don't
 # --quiet     dump MARC to STDOUT
 #             By default isbn2marc tells STDERR what it's doing
 #
@@ -77,7 +77,7 @@
 # Find a MARC record for the first volume of Casanova's HISTORY OF
 # MY LIFE and pretty print it:
 #
-# $ isbn2marc 0801856620 
+# $ isbn2marc 0801856620
 #
 # Find a MARC record for Terry Pratchett's THIEF OF TIME and write
 # a binary MARC file to disk as well as pretty printing it:
@@ -116,14 +116,15 @@
 #
 # Proper ISBN validity check.
 
-require 'net/http'
-require 'optparse'
-require "rexml/document"
-include REXML
-
 require 'rubygems'
 require 'marc'
 require 'zoom'
+
+require 'net/http'
+require 'optparse'
+require 'rexml/document'
+include REXML
+
 
 # I don't know if it's cool to use global variables for these
 # options, or for the MARC writer and xmlwriter thingies, but
@@ -149,11 +150,11 @@ OptionParser.new do |opts|
   opts.on("-d", "--dump d", "Dump MARC to file d") do |d|
     $options[:dump]  = d
   end
-  opts.on("-x", "--dumpxml x", "Dump MARCXML to file x") do |x| 
+  opts.on("-x", "--dumpxml x", "Dump MARCXML to file x") do |x|
     $options[:dumpxml] = x
   end
   opts.on("-f", "--file f",  String, "Read ISBNs from file f (one per line)") do |f|
-    $options[:file] = f 
+    $options[:file] = f
   end
   opts.on("-w", "--worldcat apikey", String, "WorldCat API key") do |w|
     $options[:worldcat] = w
@@ -267,7 +268,7 @@ servers = [
   ['linc.nus.edu.sg',             210, 'INNOPAC'     ], # Nat U Singapore
   ['nbinet.ncl.edu.tw',           210, 'INNOPAC'     ], # Nat Cent Lib Taiwan
   # Africa
-  ['explore.up.ac.za',            210, 'INNOPAC'     ], # U Pretoria  
+  ['explore.up.ac.za',            210, 'INNOPAC'     ], # U Pretoria
 ]
 
 # Given an ISBN and some Z39.50 server information, return MARCXML.
@@ -280,7 +281,7 @@ def z3950query (isbn, host, port, db)
       conn.database_name = db
       conn.preferred_record_syntax = 'MARC21'
       rset = conn.search("@attr 1=7 #{isbn}")
-      return rset[0].xml 
+      return rset[0].xml
     end
   rescue Exception => e
     STDERR.puts "\nERROR Z39.50 query: '#{e}'" if /failed/.match(e)
@@ -308,7 +309,7 @@ end
 # it's the best source.  If we can't, or if it fails, loop through all
 # the servers listed above and ask about the ISBN(s).
 
-isbns.each do |isbn| 
+isbns.each do |isbn|
   if $options[:worldcat].length > 0
     STDERR.print "\r#{isbn} WorldCat" + " "*20 unless $options[:quiet] == true
     worldcatURL = worldcatAPIURL.gsub(/::ISBN::/, isbn)
@@ -319,7 +320,7 @@ isbns.each do |isbn|
     begin
       doc = REXML::Document.new worldcat_xml
       error = doc.elements['//diagnostics/diagnostic/message'].nil? ? nil : doc.elements['//diagnostics/diagnostic/message'].text
-      if error.nil? 
+      if error.nil?
         write_record(worldcat_xml)
         next
       else
@@ -336,7 +337,7 @@ isbns.each do |isbn|
     next if marcxml.nil?
     write_record(marcxml)
     break
-  end  
+  end
 end
 
 $writer.close if $options[:dump]

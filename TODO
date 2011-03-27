@@ -1,5 +1,3 @@
-TODO list for OpenFRBR
-
 * Make a universal edit_in_place function instead of duplicating it in
   the work and expression controllers.  (Tried but got funny stuff
   about an & sneaking in somewhere that messed things up.)
@@ -131,6 +129,12 @@ TODO list for OpenFRBR
   http://github.com/gkellogg/rdf_context
   http://rdf.rubyforge.org/
     See http://blog.datagraph.org/2010/04/parsing-rdf-with-ruby
+
+* Bill Dueber's library_stdnums gem would make some things easier
+  http://robotlibrarian.billdueber.com/simple-ruby-gem-for-dealing-with-isbnissnlccn/
+
+* Investigate the new RDF.rb
+  http://blog.datagraph.org/2010/12/rdf-for-ruby
 
 Aggregates
 ----------
